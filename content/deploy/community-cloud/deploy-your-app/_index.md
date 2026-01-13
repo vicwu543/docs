@@ -1,53 +1,53 @@
 ---
-title: Prep and deploy your app on Community Cloud
+title: 在 Community Cloud 上准备和部署应用
 slug: /deploy/streamlit-community-cloud/deploy-your-app
-description: Complete guide to preparing and deploying your Streamlit app on Community Cloud with file organization, dependencies, and secrets management.
+description: Streamlit 应用在 Community Cloud 上的部署完整指南，涵盖项目结构、依赖管理和密钥配置。
 keywords: deploy, community cloud, preparation, file organization, dependencies, secrets, deployment guide
 ---
 
-# Prep and deploy your app on Community Cloud
+# 在 Community Cloud 上准备和部署应用
 
-Streamlit Community Cloud lets you deploy your apps in just one click, and most apps will be deployed in only a few minutes. If you don't have an app ready to deploy, you can fork or clone one from our <a href="https://streamlit.io/gallery" target="_blank">App gallery</a>&mdash;you can find apps for machine learning, data visualization, data exploration, A/B testing, and more. You can also [Deploy an app from a template](/deploy/streamlit-community-cloud/get-started/deploy-from-a-template). After you've deployed your app, check out how you can [Edit your app with GitHub Codespaces](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app#edit-your-app-with-github-codespaces).
+Streamlit Community Cloud 支持一键部署，大多数应用可在数分钟内完成部署。若无现成应用，可从 <a href="https://streamlit.io/gallery" target="_blank">应用库</a>中 fork 或克隆示例项目——涵盖机器学习、数据可视化、数据分析、A/B 测试等多种场景。你也可以[使用模板快速部署](/deploy/streamlit-community-cloud/get-started/deploy-from-a-template)。应用部署后，可[通过 GitHub Codespaces 进行在线编辑](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app#edit-your-app-with-github-codespaces)。
 
 <Note>
 
-If you want to deploy your app on a different cloud service, see our [Deployment tutorials](/deploy/tutorials).
+如需在其他云平台部署应用，请参阅[部署指南](/deploy/tutorials)。
 
 </Note>
 
-## Summary
+## 概述
 
-The pages that follow explain how to organize your app and provide complete information for Community Cloud to run it correctly.
+以下内容说明如何组织项目结构，为 Community Cloud 提供必要配置以确保应用正常运行。
 
-When your app has everything it needs, deploying is easy. Just go to your workspace and click "**Create app**" in the upper-right corner. Follow the prompts to fill in your app's information, and then click "**Deploy**."
+准备就绪后，部署流程十分简洁。进入工作区，点击右上角的"**新建应用**"。按照向导完成应用信息配置，最后点击"**部署**"。
 
-![Deploy a new app from your workspace](/images/streamlit-community-cloud/deploy-empty-new-app.png)
+![从工作区部署新应用](/images/streamlit-community-cloud/deploy-empty-new-app.png)
 
-## Ready, set, go!
+## 核心步骤
 
 <InlineCalloutContainer>
     <InlineCallout
         color="lightBlue-70"
         icon="description"
-        bold="File organization."
+        bold="项目结构"
         href="/deploy/streamlit-community-cloud/deploy-your-app/file-organization"
-    >Learn how Community Cloud initializes your app and interprets paths. Learn where to put your configuration files.</InlineCallout>
+    >了解 Community Cloud 应用初始化机制及路径解析规则。掌握配置文件的放置位置。</InlineCallout>
     <InlineCallout
         color="lightBlue-70"
         icon="build_circle"
-        bold="App dependencies."
+        bold="依赖管理"
         href="/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies"
-    >Learn how to install dependencies and other Python libraries into your deployment environment.</InlineCallout>
+    >学习如何声明依赖项，将 Python 库及其他依赖安装到运行时环境。</InlineCallout>
     <InlineCallout
         color="lightBlue-70"
         icon="password"
-        bold="Secrets management."
+        bold="密钥管理"
         href="/deploy/streamlit-community-cloud/deploy-your-app/secrets-management"
-    >Learn about the interface Community Cloud provides to securely upload your <code>secrets.toml</code> data.</InlineCallout>
+    >掌握 Community Cloud 提供的密钥管理接口，安全上传 <code>secrets.toml</code> 配置。</InlineCallout>
     <InlineCallout
         color="lightBlue-70"
         icon="flight_takeoff"
-        bold="Deploy your app"
+        bold="部署应用"
         href="/deploy/streamlit-community-cloud/deploy-your-app/deploy"
-    >Put it all together to deploy your app for the whole world to see.</InlineCallout>
+    >整合所有配置，将应用发布到生产环境。</InlineCallout>
 </InlineCalloutContainer>
