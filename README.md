@@ -1,4 +1,10 @@
-# Streamlit Docs
+# Streamlit Docs（Streamlit中文文档）
+
+部分翻译来自于AI大模型，如有不理想情况，请谅解。
+
+英文文档看得累了，翻译纯属个人喜好，如有官方文档更新，欢迎反馈。
+
+欢迎指正。
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1ddc1b5a-ec21-4b66-987d-feeb68854c28/deploy-status?branch=main)](https://app.netlify.com/sites/streamlit-docs/deploys)
 
