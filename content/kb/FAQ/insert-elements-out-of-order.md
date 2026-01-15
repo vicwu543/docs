@@ -1,12 +1,11 @@
 ---
-title: How to insert elements out of order?
+title: 如何按不同的顺序插入元素？
 slug: /knowledge-base/using-streamlit/insert-elements-out-of-order
 ---
 
-# How to insert elements out of order?
+# 如何按不同的顺序插入元素？
 
-You can use the [`st.empty`](/develop/api-reference/layout/st.empty) method as a placeholder,
-to "save" a slot in your app that you can use later.
+您可以使用 [`st.empty`](/develop/api-reference/layout/st.empty) 方法作为占位符，以"保留"应用中的一个槽，您可以稍后使用。
 
 ```python
 st.text('This will appear first')

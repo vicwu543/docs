@@ -1,31 +1,31 @@
 ---
-title: Rename or change your app's GitHub coordinates
+title: 重命名或更改您的应用的 GitHub 坐标
 slug: /deploy/streamlit-community-cloud/manage-your-app/rename-your-app
-description: Learn how to safely rename your GitHub repository or change app coordinates without losing access to your Streamlit app.
+description: 了解如何安全地重命名您的 GitHub 仓库或更改应用坐标，而不会丢失对您的 Streamlit 应用的访问权限。
 keywords: rename, github coordinates, repository, username, view-only access, delete, redeploy, access control, coordinates
 ---
 
-# Rename or change your app's GitHub coordinates
+# 重命名或更改您的应用的 GitHub 坐标
 
-Streamlit Community Cloud identifies apps by their GitHub coordinates (owner, repository, branch, entrypoint file path). If you move or rename one of these coordinates without preparation, you will lose access to administer any associated app.
+Streamlit Community Cloud 通过 GitHub 坐标（所有者、仓库、分支、入口点文件路径）识别应用。如果您在没有准备的情况下移动或重命名这些坐标之一，您将失去管理任何关联应用的访问权限。
 
-## Delete, rename, redeploy
+## 删除、重命名、重新部署
 
-If you need to rename your repository, move your entrypoint file, or otherwise change a deployed app's GitHub coordinates, do the following:
+如果您需要重命名您的仓库、移动您的入口点文件，或以其他方式更改已部署应用的 GitHub 坐标，请执行以下操作：
 
-1. Delete your app.
-1. Make your desired changes in GitHub.
-1. Redeploy your app.
+1. 删除您的应用。
+1. 在 GitHub 中进行您想要的更改。
+1. 重新部署您的应用。
 
-## Regain access when you've already made changes to your app's GitHub coordinates
+## 当您已经更改了应用的 GitHub 坐标时重新获得访问权限
 
-If you have changed a repository so that Community Cloud can no longer find your app on GitHub, your app will be missing or shown as view-only. View-only means that you can't edit, reboot, delete, or view settings for your app. You can only access analytics.
+如果您更改了仓库，使得 Community Cloud 无法再在 GitHub 上找到您的应用，您的应用将丢失或显示为仅查看。仅查看意味着您无法编辑、重启、删除或查看应用的设置。您只能访问分析。
 
-You may be able to regain control as follows:
+您可以通过以下方式重新获得控制权：
 
-1. Revert the change you made to your app so that Community Cloud can see the owner, repository, branch, and entrypoint file it expects.
-1. Sign out of Community Cloud and GitHub.
-1. Sign back in to Community Cloud and GitHub.
-1. If you have regained access, delete your app. Proceed with your original change, and redeploy your app.
+1. 恢复您对应用的更改，以便 Community Cloud 可以看到它期望的所有者、仓库、分支和入口点文件。
+1. 退出 Community Cloud 和 GitHub。
+1. 重新登录 Community Cloud 和 GitHub。
+1. 如果您已重新获得访问权限，请删除您的应用。继续进行您的原始更改，并重新部署您的应用。
 
-   If this does not restore access to your app, please [contact Snowflake support](/knowledge-base/deploy/how-to-submit-a-support-case-for-streamlit-community-cloud) for assistance. They can delete your disconnected apps so you can redeploy them. For the quickest help, please provide a complete list of your affected apps by URL.
+   如果这不能恢复对您的应用的访问权限，请[联系 Snowflake 支持](/knowledge-base/deploy/how-to-submit-a-support-case-for-streamlit-community-cloud)寻求帮助。他们可以删除您的断开连接的应用，以便您重新部署它们。为了获得最快的帮助，请按 URL 提供您的受影响应用的完整列表。

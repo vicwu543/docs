@@ -1,46 +1,42 @@
 ---
-title: Button behavior and examples
+title: 按钮行为和示例
 slug: /develop/concepts/design/buttons
-description: Learn about Streamlit button behavior, state management, and practical examples using st.button with st.session_state for interactive applications.
-keywords: button behavior, st.button, streamlit buttons, session state, button state, button examples, interactive buttons, button patterns, button anti-patterns, state management
+description: 了解 Streamlit 按钮行为、状态管理以及使用 st.button 与 st.session_state 的实际示例用于交互式应用。
+keywords: 按钮行为, st.button, streamlit 按钮, 会话状态, 按钮状态, 按钮示例, 交互式按钮, 按钮模式, 按钮反模式, 状态管理
 ---
 
-# Button behavior and examples
+# 按钮行为和示例
 
-## Summary
+## 摘要
 
-Buttons created with [`st.button`](/develop/api-reference/widgets/st.button) do not retain state. They return `True` on the script rerun resulting from their click and immediately return to `False` on the next script rerun. If a displayed element is nested inside `if st.button('Click me'):`, the element will be visible when the button is clicked and disappear as soon as the user takes their next action. This is because the script reruns and the button return value becomes `False`.
+使用 [`st.button`](/develop/api-reference/widgets/st.button) 创建的按钮不保留状态。它们在由其点击导致的脚本重新运行时返回 `True`，并在下一个脚本重新运行时立即返回 `False`。如果显示的元素嵌套在 `if st.button('Click me'):` 内，该元素将在单击按钮时可见，并在用户采取下一步操作后立即消失。这是因为脚本重新运行，按钮返回值变为 `False`。
 
-In this guide, we will illustrate the use of buttons and explain common misconceptions. Read on to see a variety of examples that expand on `st.button` using [`st.session_state`](/develop/api-reference/caching-and-state/st.session_state). [Anti-patterns](#anti-patterns) are included at the end. Go ahead and pull up your favorite code editor so you can `streamlit run` the examples as you read. Check out Streamlit's [Basic concepts](/get-started/fundamentals/main-concepts) if you haven't run your own Streamlit scripts yet.
+在本指南中，我们将说明按钮的使用并解释常见的误解。继续阅读以查看各种示例，这些示例使用 [`st.session_state`](/develop/api-reference/caching-and-state/st.session_state) 扩展 `st.button`。[反模式](#anti-patterns)包含在最后。继续并拿起你喜欢的代码编辑器，这样当你阅读时可以 `streamlit run` 示例。如果你还没有运行过自己的 Streamlit 脚本，请查看 Streamlit 的[基本概念](/get-started/fundamentals/main-concepts)。
 
-## When to use `if st.button()`
+## 何时使用 `if st.button()`
 
-When code is conditioned on a button's value, it will execute once in response to the button being clicked and not again (until the button is clicked again).
+当代码以按钮的值为条件时，它将一次执行以响应按钮被单击，并且不会再次执行（直到再次单击按钮）。
 
-Good to nest inside buttons:
+适合在按钮内嵌套：
 
-- Transient messages that immediately disappear.
-- Once-per-click processes that saves data to session state, a file, or
-  a database.
+- 立即消失的临时消息。
+- 每次单击一次的过程，将数据保存到会话状态、文件或数据库。
 
-Bad to nest inside buttons:
+不适合在按钮内嵌套：
 
-- Displayed items that should persist as the user continues.
-- Other widgets which cause the script to rerun when used.
-- Processes that neither modify session state nor write to a file/database.\*
+- 应在用户继续时保持的显示项。
+- 使用时导致脚本重新运行的其他小部件。
+- 既不修改会话状态也不写入文件/数据库的过程。\*
 
-\* This can be appropriate when disposable results are desired. If you
-have a "Validate" button, that could be a process conditioned directly on a
-button. It could be used to create an alert to say 'Valid' or 'Invalid' with no
-need to keep that info.
+\* 当需要一次性结果时，这可能是合适的。如果你有一个"验证"按钮，它可能是直接以按钮为条件的过程。它可以用来创建一个警报来说"有效"或"无效"，无需保留该信息。
 
-## Common logic with buttons
+## 按钮的常见逻辑
 
-### Show a temporary message with a button
+### 使用按钮显示临时消息
 
-If you want to give the user a quick button to check if an entry is valid, but not keep that check displayed as the user continues.
+如果你想给用户一个快速按钮来检查条目是否有效，但在用户继续时不保留该检查显示。
 
-In this example, a user can click a button to check if their `animal` string is in the `animal_shelter` list. When the user clicks "**Check availability**" they will see "We have that animal!" or "We don't have that animal." If they change the animal in [`st.text_input`](/develop/api-reference/widgets/st.text_input), the script reruns and the message disappears until they click "**Check availability**" again.
+在此示例中，用户可以单击按钮来检查其 `animal` 字符串是否在 `animal_shelter` 列表中。当用户单击"**检查可用性**"时，他们将看到"我们有那个动物！"或"我们没有那个动物。"如果他们在 [`st.text_input`](/develop/api-reference/widgets/st.text_input) 中更改动物，脚本会重新运行，消息会消失，直到他们再次单击"**检查可用性**"。
 
 ```python
 import streamlit as st
@@ -54,11 +50,11 @@ if st.button('Check availability'):
     'We have that animal!' if have_it else 'We don\'t have that animal.'
 ```
 
-Note: The above example uses [magic](/develop/api-reference/write-magic/magic) to render the message on the frontend.
+注意：上面的示例使用[魔法](/develop/api-reference/write-magic/magic)在前端渲染消息。
 
-### Stateful button
+### 有状态按钮
 
-If you want a clicked button to continue to be `True`, create a value in `st.session_state` and use the button to set that value to `True` in a callback.
+如果你希望单击的按钮继续为 `True`，请在 `st.session_state` 中创建一个值，并使用按钮通过回调将该值设置为 `True`。
 
 ```python
 import streamlit as st
@@ -77,11 +73,11 @@ if st.session_state.clicked:
     st.slider('Select a value')
 ```
 
-### Toggle button
+### 切换按钮
 
-If you want a button to work like a toggle switch, consider using [`st.checkbox`](/develop/api-reference/widgets/st.checkbox). Otherwise, you can use a button with a callback function to reverse a boolean value saved in `st.session_state`.
+如果你希望按钮像切换开关一样工作，请考虑使用 [`st.checkbox`](/develop/api-reference/widgets/st.checkbox)。否则，你可以使用带有回调函数的按钮来反转保存在 `st.session_state` 中的布尔值。
 
-In this example, we use `st.button` to toggle another widget on and off. By displaying [`st.slider`](/develop/api-reference/widgets/st.slider) conditionally on a value in `st.session_state`, the user can interact with the slider without it disappearing.
+在此示例中，我们使用 `st.button` 来打开和关闭另一个小部件。通过在 `st.session_state` 中的值上有条件地显示 [`st.slider`](/develop/api-reference/widgets/st.slider)，用户可以与滑块交互而不会使其消失。
 
 ```python
 import streamlit as st
@@ -102,7 +98,7 @@ else:
     st.write('Button is off!')
 ```
 
-Alternatively, you can use the value in `st.session_state` on the slider's `disabled` parameter.
+或者，你可以在滑块的 `disabled` 参数上使用 `st.session_state` 中的值。
 
 ```python
 import streamlit as st
@@ -118,16 +114,16 @@ st.button('Click me', on_click=click_button)
 st.slider('Select a value', disabled=st.session_state.button)
 ```
 
-### Buttons to continue or control stages of a process
+### 按钮用于继续或控制过程的阶段
 
-Another alternative to nesting content inside a button is to use a value in `st.session_state` that designates the "step" or "stage" of a process. In this example, we have four stages in our script:
+另一种替代在按钮内嵌套内容的方法是在 `st.session_state` 中使用指定过程的"步骤"或"阶段"的值。在此示例中，我们的脚本中有四个阶段：
 
-0. Before the user begins.
-1. User enters their name.
-2. User chooses a color.
-3. User gets a thank-you message.
+0. 用户开始之前。
+1. 用户输入他们的名字。
+2. 用户选择颜色。
+3. 用户获得感谢消息。
 
-A button at the beginning advances the stage from 0 to 1. A button at the end resets the stage from 3 to 0. The other widgets used in stage 1 and 2 have callbacks to set the stage. If you have a process with dependant steps and want to keep previous stages visible, such a callback forces a user to retrace subsequent stages if they change an earlier widget.
+开始处的按钮将阶段从 0 推进到 1。末尾的按钮将阶段从 3 重置为 0。阶段 1 和 2 中使用的其他小部件有回调来设置阶段。如果你有一个依赖步骤的过程，并希望保持之前的阶段可见，这样的回调会强制用户在更改早期小部件时重新追踪后续阶段。
 
 ```python
 import streamlit as st
@@ -159,13 +155,13 @@ if st.session_state.stage >= 3:
     st.button('Start Over', on_click=set_state, args=[0])
 ```
 
-### Buttons to modify `st.session_state`
+### 按钮修改 `st.session_state`
 
-If you modify `st.session_state` inside of a button, you must consider where that button is within the script.
+如果你在按钮内修改 `st.session_state`，你必须考虑该按钮在脚本中的位置。
 
-#### A slight problem
+#### 一个小问题
 
-In this example, we access `st.session_state.name` both before and after the buttons which modify it. When a button ("**Jane**" or "**John**") is clicked, the script reruns. The info displayed before the buttons lags behind the info written after the button. The data in `st.session_state` before the button is not updated. When the script executes the button function, that is when the conditional code to update `st.session_state` creates the change. Thus, this change is reflected after the button.
+在此示例中，我们在修改它的按钮之前和之后访问 `st.session_state.name`。单击按钮（"**Jane**"或"**John**"）时，脚本会重新运行。按钮之前显示的信息滞后于按钮之后写入的信息。按钮之前的 `st.session_state` 中的数据未更新。当脚本执行按钮函数时，这是有条件代码更新 `st.session_state` 的创建更改的时候。因此，此更改在按钮之后反映。
 
 ```python
 import streamlit as st
@@ -185,9 +181,9 @@ if st.button('John'):
 st.header(st.session_state['name'])
 ```
 
-#### Logic used in a callback
+#### 回调中使用的逻辑
 
-Callbacks are a clean way to modify `st.session_state`. Callbacks are executed as a prefix to the script rerunning, so the position of the button relative to accessing data is not important.
+回调是修改 `st.session_state` 的干净方法。回调作为脚本重新运行的前缀执行，因此按钮相对于访问数据的位置并不重要。
 
 ```python
 import streamlit as st
@@ -207,9 +203,9 @@ st.button('John', on_click=change_name, args=['John Doe'])
 st.header(st.session_state['name'])
 ```
 
-#### Logic nested in a button with a rerun
+#### 按钮内嵌套的逻辑和重新运行
 
-Although callbacks are often preferred to avoid extra reruns, our first 'John Doe'/'Jane Doe' example can be modified by adding [`st.rerun`](/develop/api-reference/execution-flow/st.rerun) instead. If you need to acces data in `st.session_state` before the button that modifies it, you can include `st.rerun` to rerun the script after the change has been committed. This means the script will rerun twice when a button is clicked.
+虽然回调通常优先于避免额外重新运行，但我们的第一个"John Doe"/"Jane Doe"示例可以通过添加 [`st.rerun`](/develop/api-reference/execution-flow/st.rerun) 来修改。如果你需要在修改它的按钮之前访问 `st.session_state` 中的数据，你可以包含 `st.rerun` 来在进行更改后重新运行脚本。这意味着单击按钮时脚本将重新运行两次。
 
 ```python
 import streamlit as st
@@ -231,13 +227,13 @@ if st.button('John'):
 st.header(st.session_state['name'])
 ```
 
-### Buttons to modify or reset other widgets
+### 按钮修改或重置其他小部件
 
-When a button is used to modify or reset another widget, it is the same as the above examples to modify `st.session_state`. However, an extra consideration exists: you cannot modify a key-value pair in `st.session_state` if the widget with that key has already been rendered on the page for the current script run.
+当使用按钮来修改或重置另一个小部件时，它与上述修改 `st.session_state` 的示例相同。但是，存在一个额外的考虑：如果小部件的小部件已经为当前脚本运行呈现在页面上，你不能修改 `st.session_state` 中的键值对。
 
 <Important>
 
-Don't do this!
+不要这样做！
 
 ```python
 import streamlit as st
@@ -254,9 +250,9 @@ if st.button('Streamlit!'):
 
 </Important>
 
-#### Option 1: Use a key for the button and put the logic before the widget
+#### 选项 1：为按钮使用键并将逻辑放在小部件之前
 
-If you assign a key to a button, you can condition code on a button's state by using its value in `st.session_state`. This means that logic depending on your button can be in your script before that button. In the following example, we use the `.get()` method on `st.session_state` because the keys for the buttons will not exist when the script runs for the first time. The `.get()` method will return `False` if it can't find the key. Otherwise, it will return the value of the key.
+如果你为按钮分配了一个键，你可以通过在 `st.session_state` 中使用其值来根据按钮的状态来条件化代码。这意味着取决于你的按钮的逻辑可以在你的脚本中的该按钮之前。在以下示例中，我们在 `st.session_state` 上使用 `.get()` 方法，因为按钮的键在脚本首次运行时不会存在。`.get()` 方法如果找不到密钥，将返回 `False`。否则，它将返回密钥的值。
 
 ```python
 import streamlit as st
@@ -274,7 +270,7 @@ st.button('Clear name', key='clear')
 st.button('Streamlit!', key='streamlit')
 ```
 
-#### Option 2: Use a callback
+#### 选项 2：使用回调
 
 ```python
 import streamlit as st
@@ -288,9 +284,9 @@ st.button('Clear name', on_click=set_name, args=[''])
 st.button('Streamlit!', on_click=set_name, args=['Streamlit'])
 ```
 
-#### Option 3: Use containers
+#### 选项 3：使用容器
 
-By using [`st.container`](/develop/api-reference/layout/st.container) you can have widgets appear in different orders in your script and frontend view (webpage).
+通过使用 [`st.container`](/develop/api-reference/layout/st.container)，你可以在脚本和前端视图（网页）中以不同的顺序显示小部件。
 
 ```python
 import streamlit as st
@@ -306,9 +302,9 @@ if st.button('Streamlit!'):
 begin.text_input('Name', key='name')
 ```
 
-### Buttons to add other widgets dynamically
+### 按钮动态添加其他小部件
 
-When dynamically adding widgets to the page, make sure to use an index to keep the keys unique and avoid a `DuplicateWidgetID` error. In this example, we define a function `display_input_row` which renders a row of widgets. That function accepts an `index` as a parameter. The widgets rendered by `display_input_row` use `index` within their keys so that `display_input_row` can be executed multiple times on a single script rerun without repeating any widget keys.
+动态向页面添加小部件时，请确保使用索引来保持键唯一并避免 `DuplicateWidgetID` 错误。在此示例中，我们定义一个函数 `display_input_row`，它呈现一行小部件。该函数接受 `index` 作为参数。`display_input_row` 呈现的小部件在其键中使用 `index`，以便可以在单个脚本重新运行上多次执行 `display_input_row` 而不重复任何小部件键。
 
 ```python
 import streamlit as st
@@ -341,9 +337,9 @@ for i in range(st.session_state['rows']):
     )
 ```
 
-### Buttons to handle expensive or file-writing processes
+### 按钮处理昂贵或文件写入的过程
 
-When you have expensive processes, set them to run upon clicking a button and save the results into `st.session_state`. This allows you to keep accessing the results of the process without re-executing it unnecessarily. This is especially helpful for processes that save to disk or write to a database. In this example, we have an `expensive_process` that depends on two parameters: `option` and `add`. Functionally, `add` changes the output, but `option` does not&mdash;`option` is there to provide a parameter
+当你有昂贵的过程时，将其设置为在单击按钮时运行，并将结果保存到 `st.session_state`。这允许你继续访问过程的结果而无需不必要地重新执行它。这对于保存到磁盘或写入数据库的过程特别有帮助。在此示例中，我们有一个 `expensive_process`，取决于两个参数：`option` 和 `add`。从功能上讲，`add` 改变输出，但 `option` 不改变 — `option` 的存在是为了提供参数
 
 ```python
 import streamlit as st
@@ -371,13 +367,13 @@ if st.button('Process'):
     result[0]
 ```
 
-Astute observers may think, "This feels a little like caching." We are only saving results relative to one parameter, but the pattern could easily be expanded to save results relative to both parameters. In that sense, yes, it has some similarities to caching, but also some important differences. When you save results in `st.session_state`, the results are only available to the current user in their current session. If you use [`st.cache_data`](/develop/api-reference/caching-and-state/st.cache_data) instead, the results are available to all users across all sessions. Furthermore, if you want to update a saved result, you have to clear all saved results for that function to do so.
+敏锐的观察者可能会想，"这感觉有点像缓存。"我们只保存与一个参数相关的结果，但该模式可以轻松扩展以保存与两个参数都相关的结果。从这个意义上讲，是的，它与缓存有一些相似之处，但也有一些重要的区别。当你在 `st.session_state` 中保存结果时，这些结果仅可用于其当前会话中的当前用户。如果你改为使用 [`st.cache_data`](/develop/api-reference/caching-and-state/st.cache_data)，这些结果将对所有会话中的所有用户可用。此外，如果要更新保存的结果，你必须清除该函数的所有保存结果才能这样做。
 
-## Anti-patterns
+## 反模式
 
-Here are some simplified examples of how buttons can go wrong. Be on the lookout for these common mistakes.
+以下是按钮如何出错的一些简化示例。请注意这些常见错误。
 
-### Buttons nested inside buttons
+### 嵌套在按钮内的按钮
 
 ```python
 import streamlit as st
@@ -389,7 +385,7 @@ if st.button('Button 1'):
         st.write('Button 2 was clicked')
 ```
 
-### Other widgets nested inside buttons
+### 嵌套在按钮内的其他小部件
 
 ```python
 import streamlit as st
@@ -402,7 +398,7 @@ if st.button('Sign up'):
         st.success(f'Welcome {name}')
 ```
 
-### Nesting a process inside a button without saving to session state
+### 在按钮内嵌套过程而不保存到会话状态
 
 ```python
 import streamlit as st

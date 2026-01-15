@@ -1,8 +1,8 @@
 ---
-title: How can I make st.pydeck_chart use custom Mapbox styles?
+title: 如何使 st.pydeck_chart 使用自定义 Mapbox 样式？
 slug: /knowledge-base/using-streamlit/pydeck-chart-custom-mapbox-styles
 ---
 
-# How can I make st.pydeck_chart use custom Mapbox styles?
+# 如何使 st.pydeck_chart 使用自定义 Mapbox 样式？
 
-If you are supplying a Mapbox token, but the resulting `pydeck_chart` doesn't show your custom Mapbox styles, please check that you are adding the Mapbox token to the Streamlit `config.toml` configuration file. Streamlit DOES NOT read Mapbox tokens from inside of a PyDeck specification (i.e. from inside of the Streamlit app). Please see this [forum thread](https://discuss.streamlit.io/t/deprecation-warning-deckgl-pydeck-maps-to-require-mapbox-token-for-production-usage/2982/10) for more information.
+如果您提供了 Mapbox 令牌，但生成的 `pydeck_chart` 没有显示您的自定义 Mapbox 样式，请检查您是否将 Mapbox 令牌添加到 Streamlit `config.toml` 配置文件中。Streamlit 不从 PyDeck 规范内部（即从 Streamlit 应用内部）读取 Mapbox 令牌。有关更多信息，请参阅此 [论坛讨论](https://discuss.streamlit.io/t/deprecation-warning-deckgl-pydeck-maps-to-require-mapbox-token-for-production-usage/2982/10)。

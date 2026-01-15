@@ -1,7 +1,7 @@
 ---
 title: st.scatter_chart
 slug: /develop/api-reference/charts/st.scatter_chart
-description: st.scatter_chart displays an interactive scatter chart.
+description: st.scatter_chart 显示交互式散点图。
 keywords: scatter chart, chart, visualization, data, plot, graph, dataframe, correlation, points
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: st.experimental_set_query_params
 slug: /develop/api-reference/caching-and-state/st.experimental_set_query_params
-description: st.experimental_set_query_params sets query parameters shown in the browser's URL bar.
+description: st.experimental_set_query_params 设置显示在浏览器 URL 栏中的查询参数。
 keywords: experimental_set_query_params, query parameters, url, browser, deprecated, experimental, set
 ---
 

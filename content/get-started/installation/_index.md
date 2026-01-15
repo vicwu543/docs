@@ -1,94 +1,94 @@
 ---
-title: Install Streamlit
+title: 安装 Streamlit
 slug: /get-started/installation
-description: Learn how to install Streamlit with comprehensive guides to use pip, conda, Anaconda Distribution, cloud environments, and command line tools.
+description: 了解如何安装 Streamlit，包括使用 pip、conda、Anaconda Distribution、云环境和命令行工具的综合指南。
 keywords: install streamlit, installation, pip install, conda install, anaconda, command line, cloud installation, setup streamlit
 ---
 
-# Install Streamlit
+# 安装 Streamlit
 
-There are multiple ways to set up your development environment and install Streamlit.
-Developing locally with Python installed on your own computer is the most
-common scenario.
+有多种方式来设置您的开发环境并安装 Streamlit。
+在您自己的计算机上安装 Python 后进行本地开发是最
+常见的场景。
 
 <Tip>
 
-Try a Streamlit Playground that runs in your browser &mdash; no installation required.
-(Note that this is not how Streamlit is meant to be used, because it has many downsides. That's why it's a
-_playground_!)
+试试在您的浏览器中运行的 Streamlit Playground &mdash; 无需安装。
+（请注意，这不是 Streamlit 的预期使用方式，因为它有许多缺点。这就是为什么它是
+一个_游乐场_！）
 
 <IconLink
     href="/get-started/installation/streamlit-playground"
     icon="arrow_forward"
-    label="Instructions for the playground"
+    label="游乐场说明"
     cssModuleClassName="Indigo"
     cssModuleIconClassName="IconRight"
 />
 
 </Tip>
 
-## Summary for experienced Python developers
+## 经验丰富的 Python 开发者摘要
 
-1. To set up your Python environment and test your installation, execute the following terminal commands:
+1. 要设置您的 Python 环境并测试您的安装，请执行以下终端命令：
 
    ```bash
    pip install streamlit
    streamlit hello
    ```
 
-1. Jump to our [Basic concepts](/get-started/fundamentals/main-concepts).
+1. 跳转到我们的 [基本概念](/get-started/fundamentals/main-concepts)。
 
-## Install Streamlit on your machine
+## 在您的机器上安装 Streamlit
 
-### Option 1: I like the command line
+### 选项 1：我喜欢命令行
 
-Install Streamlit on your own machine using tools like `venv` and `pip`.
+使用 `venv` 和 `pip` 等工具在您自己的机器上安装 Streamlit。
 
 <IconLink
     href="/get-started/installation/command-line"
     icon="arrow_forward"
-    label="Instructions for the command line"
+    label="命令行说明"
     cssModuleClassName="Orange"
     cssModuleIconClassName="IconRight"
 />
 
-### Option 2: I prefer a graphical interface
+### 选项 2：我更喜欢图形界面
 
-Install Streamlit using the Anaconda Distribution graphical user interface. This is also the best
-approach if you're on Windows or don't have Python set up.
+使用 Anaconda Distribution 图形用户界面安装 Streamlit。如果您使用 Windows 或没有设置 Python，这也是最好的
+方法。
 
 <IconLink
     href="/get-started/installation/anaconda-distribution"
     icon="arrow_forward"
-    label="Instructions for Anaconda Distribution"
+    label="Anaconda Distribution 说明"
     cssModuleClassName="Orange"
     cssModuleIconClassName="IconRight"
 />
 
-## Create an app in the cloud
+## 在云中创建应用
 
-### Option 1: I want a free cloud environment
+### 选项 1：我想要一个免费的云环境
 
-Use Streamlit Community Cloud with GitHub Codespaces so you don't have to go through the trouble
-of installing Python and setting up an environment.
+使用 Streamlit Community Cloud 和 GitHub Codespaces，这样您就不必费力
+安装 Python 和设置环境。
 
 <IconLink
     href="/get-started/installation/community-cloud"
     icon="arrow_forward"
-    label="Instructions for GitHub Codespaces"
+    label="GitHub Codespaces 说明"
     cssModuleClassName="Orange"
     cssModuleIconClassName="IconRight"
 />
 
-### Option 2: I need something secure, controlled, and in the cloud
+### 选项 2：我需要安全、受控且在云中的东西
 
-Use Streamlit in Snowflake to code your apps in the cloud, right alongside your
-data with role-based access controls.
+使用 Snowflake 中的 Streamlit 在云中编码您的应用，同时使用基于角色的访问控制与您的
+数据在一起。
 
 <IconLink
     href="/get-started/installation/streamlit-in-snowflake"
     icon="arrow_forward"
-    label="Instructions for Snowflake"
+    label="Snowflake 说明"
     cssModuleClassName="Orange"
     cssModuleIconClassName="IconRight"
 />

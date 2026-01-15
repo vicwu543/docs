@@ -1,121 +1,121 @@
 ---
-title: Widget behavior
+title: 部件行为
 slug: /develop/concepts/architecture/widget-behavior
-description: Learn how Streamlit widgets behave across reruns, handle state persistence, manage user interactions, and control widget lifecycle in your applications.
+description: 了解 Streamlit 部件如何在重新运行中表现，处理状态持久化，管理用户交互，以及控制应用程序中的部件生命周期。
 keywords: widget behavior, widget state, user interactions, widget persistence, rerun behavior, interaction handling, state management, widget lifecycle
 ---
 
-# Understanding widget behavior
+# 理解部件行为
 
-Widgets (like `st.button`, `st.selectbox`, and `st.text_input`) are at the heart of Streamlit apps. They are the interactive elements of Streamlit that pass information from your users into your Python code. Widgets are magical and often work how you want, but they can have surprising behavior in some situations. Understanding the different parts of a widget and the precise order in which events occur helps you achieve your desired results.
+部件（如 `st.button`、`st.selectbox` 和 `st.text_input`）是 Streamlit 应用的核心。它们是 Streamlit 的交互元素，将用户信息传递到您的 Python 代码中。部件是神奇的，通常按您想要的方式工作，但在某些情况下它们可能会有令人惊讶的行为。了解部件的不同部分以及事件发生的精确顺序有助于您实现所需的结果。
 
-This guide covers advanced concepts about widgets. Generally, it begins with simpler concepts and increases in complexity. For most beginning users, these details won't be important to know right away. When you want to dynamically change widgets or preserve widget information between pages, these concepts will be important to understand. We recommend having a basic understanding of [Session State](/develop/api-reference/caching-and-state/st.session_state) before reading this guide.
+本指南涵盖有关部件的高级概念。通常，它从更简单的概念开始并逐渐增加复杂性。对于大多数初学者来说，这些细节不需要马上知道。当您想要动态更改部件或在页面之间保留部件信息时，这些概念就很重要了。我们建议在阅读本指南之前先基本了解[会话状态](/develop/api-reference/caching-and-state/st.session_state)。
 
-<Collapse title="🎈 TL;DR" expanded={false}>
+<Collapse title="🎈 简而言之" expanded={false}>
 
-1. The actions of one user do not affect the widgets of any other user.
-2. A widget command returns the widget's current value, which is a simple Python type. For example, `st.button` returns a boolean value.
-3. Widgets return their default values on their first call before a user interacts with them.
-4. A widget's identity depends on the arguments passed to the widget command. **If a key is provided, only the key determines the widget's identity, with some limitations as this is still being implemented.** If no key is provided, changing a widget's label, min or max value, default value, placeholder text, or help text will cause it to reset.
-5. If you don't call a widget command in a script run, Streamlit will delete the widget's information&mdash;_including its key-value pair in Session State_. If you call the same widget command later, Streamlit treats it as a new widget.
-6. Widgets are not stateful between pages. If you have two widgets with the same key on different pages, they will be treated as two different widgets.
+1. 一个用户的行为不会影响任何其他用户的部件。
+2. 部件命令返回部件的当前值，这是一个简单的 Python 类型。例如，`st.button` 返回一个布尔值。
+3. 部件在首次调用时返回其默认值，直到用户与其交互。
+4. 部件的身份取决于传递给部件命令的参数。**如果提供了键，只有键决定部件的身份，但有一些限制，因为这仍在实施中。** 如果没有提供键，更改部件的标签、最小或最大值、默认值、占位符文本或帮助文本将导致它重置。
+5. 如果您在脚本运行中不调用部件命令，Streamlit 将删除部件的信息——_包括其在会话状态中的键值对_。如果您稍后调用相同的部件命令，Streamlit 将其视为新部件。
+6. 部件在页面之间不是有状态的。如果您在不同页面上有两个具有相同键的部件，它们将被视为两个不同的部件。
 
-The last three points (widget identity and widget deletion) are the most relevant when dynamically changing widgets or working with multi-page applications. This is covered in detail later in this guide: [Statefulness of widgets](#statefulness-of-widgets) and [Widget life cycle](#widget-life-cycle).
+最后三点（部件身份和部件删除）在动态更改部件或使用多页面应用时最相关。本指南后面将详细介绍：[部件的状态性](#部件的状态性) 和 [部件生命周期](#部件生命周期)。
 
 </Collapse>
 
 <Important>
 
-**Recent changes to widget behavior**
+**部件行为的最近变化**
 
-From v1.46.0 through v1.52.0, significant changes to widget statefulness were introduced:
+从 v1.46.0 到 v1.52.0，引入了部件状态性的重大变化：
 
-- **v1.46.0**: When navigating between pages, widget keys in `st.session_state` are deleted at the beginning of the new page's script run instead of the end.
-- **v1.50.0-1.52.0**: When a key is provided, the widget identity is determined by the key and select parameters (min/max and options). This is a transitional period during implementation until widgets are fully converted to key-only identity.
+- **v1.46.0**：在页面之间导航时，`st.session_state` 中的部件键在新页面脚本运行开始时而非结束时删除。
+- **v1.50.0-1.52.0**：当提供键时，部件身份由键和选择参数（最小/最大值和选项）确定。这是实施期间的过渡阶段，直到部件完全转换为仅键身份。
 
-These changes affect how widgets maintain state across page navigation and parameter changes. To review which widgets have been converted to key-based identity, see the release notes for [v1.50.0](https://docs.streamlit.io/release-notes/v1.50.0), [v1.51.0](https://docs.streamlit.io/release-notes/v1.51.0), and [v1.52.0](https://docs.streamlit.io/release-notes/v1.52.0).
+这些变化影响部件在页面导航和参数更改时如何保持状态。要查看哪些部件已转换为基于键的身份，请参阅 [v1.50.0](https://docs.streamlit.io/release-notes/v1.50.0)、[v1.51.0](https://docs.streamlit.io/release-notes/v1.51.0) 和 [v1.52.0](https://docs.streamlit.io/release-notes/v1.52.0) 的发行说明。
 
-As of v1.52.0, the following widgets **haven't** been converted to key-based identity: `st.data_editor` and elements with selection modes, like `st.dataframe` and charts.
+截至 v1.52.0，以下部件**尚未**转换为基于键的身份：`st.data_editor` 和具有选择模式的元素，如 `st.dataframe` 和图表。
 
 </Important>
 
-## Anatomy of a widget
+## 部件的组成
 
-There are four parts to keep in mind when using widgets:
+使用部件时需要记住四个部分：
 
-1. The frontend component as seen by the user.
-2. The backend (Python) in-memory value.
-3. The key-value pair in `st.session_state` that provides programmatic access to the widget's value.
-4. The return value given by the widget's function.
+1. 用户看到的前端组件。
+2. 后端（Python）内存中的值。
+3. `st.session_state` 中的键值对，提供对部件值的程序访问。
+4. 部件函数返回的值。
 
-### Widgets are session dependent
+### 部件依赖于会话
 
-Widget states are dependent on a particular session (browser connection). The actions of one user do not affect the widgets of any other user. Furthermore, if a user opens up multiple tabs to access an app, each tab will be a unique session. Changing a widget in one tab will not affect the same widget in another tab.
+部件状态依赖于特定会话（浏览器连接）。一个用户的行为不会影响任何其他用户的部件。此外，如果用户打开多个标签页访问应用，每个标签页将是唯一的会话。更改一个标签页中的部件不会影响另一个标签页中的相同部件。
 
-### Widgets return simple Python data types
+### 部件返回简单的 Python 数据类型
 
-The value of a widget as seen through `st.session_state` and returned by the widget function are of simple Python types. For example, `st.button` returns a boolean value and will have the same boolean value saved in `st.session_state` if using a key. The first time a widget function is called (before a user interacts with it), it will return its default value. For example, `st.selectbox` returns the first option by default. Default values are configurable for all widgets with a few special exceptions like `st.button` and `st.file_uploader`.
+通过 `st.session_state` 看到的部件值以及部件函数返回的值都是简单的 Python 类型。例如，`st.button` 返回一个布尔值，如果使用键，将在 `st.session_state` 中保存相同的布尔值。首次调用部件函数时（在用户与其交互之前），它将返回其默认值。例如，`st.selectbox` 默认返回第一个选项。除了 `st.button` 和 `st.file_uploader` 等少数特殊情况外，所有部件都可以配置默认值。
 
-### Keys help distinguish widgets and access their values
+### 键帮助区分部件并访问其值
 
-Widget keys serve three purposes:
+部件键有三个用途：
 
-1. Distinguishing two otherwise identical widgets.
-2. Maintaining statefulness of the widget while changing its parameters (v1.50.0+).
-3. Creating a means to access and manipulate the widget's value through `st.session_state`.
+1. 区分两个其他方面相同的部件。
+2. 在更改参数的同时保持部件的状态性（v1.50.0+）。
+3. 创建通过 `st.session_state` 访问和操作部件值的方法。
 
-Additionally, for developer convenience, keys are repeated in the DOM as HTML attributes with a Streamlit-specific prefix to prevent conflicts. The exact prefix and attribute name aren't guaranteed to be stable between versions.
+此外，为了开发人员的便利，键在 DOM 中作为带有 Streamlit 特定前缀的 HTML 属性重复，以防止冲突。确切的前缀和属性名称不能保证在版本之间稳定。
 
-#### Widget identity: Key-based vs parameter-based
+#### 部件身份：基于键 vs 基于参数
 
-Whenever possible, Streamlit updates widgets incrementally on the frontend instead of rebuilding them with each rerun. This means Streamlit assigns a widget identity to each widget from the arguments passed to the widget command.
+只要可能，Streamlit 会在前端增量更新部件，而不是在每次重新运行时重建它们。这意味着 Streamlit 根据传递给部件命令的参数为每个部件分配一个部件身份。
 
-**Previous behavior (before v1.50.0):** Widget identity was determined by all parameters including label, options, min/max values, default value, placeholder text, help text, and key.
+**以前的行为（v1.50.0 之前）：** 部件身份由所有参数确定，包括标签、选项、最小/最大值、默认值、占位符文本、帮助文本和键。
 
-**Current behavior (v1.50.0+):** Widget identity depends on whether a key is provided:
+**当前行为（v1.50.0+）：** 部件身份取决于是否提供了键：
 
-- **With a key**: Only the key, min/max, and options parameters determine the widget identity. Other parameters can change without resetting the widget.
-- **Without a key**: A widget's parameters (label, options, min/max, default, placeholder, help text) determine the widget identity. Changing one of these parameters will reset the widget. Note that callback functions, callback args and kwargs, label visibility, and disabling a widget do not affect the widget identity.
+- **带键：** 只有键、最小/最大值和选项参数决定部件身份。其他参数可以更改而不会重置部件。
+- **无键：** 部件的参数（标签、选项、最小/最大值、默认值、占位符、帮助文本）决定部件身份。更改这些参数之一将重置部件。请注意，回调函数、回调参数和关键字参数、标签可见性以及禁用部件不会影响部件身份。
 
-In all cases, widget identities and states aren't preserved between pages. More information is provided below in [Statefulness of widgets](#statefulness-of-widgets).
+在所有情况下，部件身份和状态不会在页面之间保留。更多信息请参见下面的[部件的状态性](#部件的状态性)。
 
-#### Streamlit can't understand two identical widgets on the same page
+#### Streamlit 无法理解同一页面上的两个相同部件
 
-If you have two widgets of the same type with the same arguments on the same page, you will get a `DuplicateWidgetID` error. In this case, assign unique keys to the two widgets.
+如果在同一页面上有两个相同类型和相同参数的部件，您将收到 `DuplicateWidgetID` 错误。在这种情况下，为两个部件分配唯一键。
 
-The following example will cause a `DuplicateWidgetID` error.
-
-```python
-st.button("OK")
-st.button("OK")
-```
-
-The following example correctly assigns unique keys to the two buttons to avoid the `DuplicateWidgetID` error.
+以下示例将导致 `DuplicateWidgetID` 错误。
 
 ```python
-st.button("OK", key="privacy")
-st.button("OK", key="terms")
+st.button("确定")
+st.button("确定")
 ```
 
-## Order of operations
+以下示例正确为两个按钮分配唯一键以避免 `DuplicateWidgetID` 错误。
 
-When a user interacts with a widget, the widget is updated and triggers a rerun in the following order:
+```python
+st.button("确定", key="privacy")
+st.button("确定", key="terms")
+```
 
-1. The widget value in `st.session_state` is updated.
-2. The callback function (if any) is executed.
-3. The page reruns with the widget command returning its new value.
+## 操作顺序
 
-If the callback function displays anything on the screen, that content will appear above the rest of the page. A callback function runs as a _prefix_ to the script run. Consequently, that means anything written via a callback function will disappear as soon as the user performs their next action. Widget commands should generally not be called within a callback function.
+当用户与部件交互时，部件被更新并按以下顺序触发重新运行：
+
+1. `st.session_state` 中的部件值被更新。
+2. 回调函数（如果有）被执行。
+3. 页面重新运行，部件命令返回其新值。
+
+如果回调函数在屏幕上显示任何内容，该内容将出现在页面上方。回调函数作为脚本运行的_前缀_运行。因此，这意味着通过回调函数编写的任何内容都会在用户执行下一个操作时消失。一般不应在回调函数中调用部件命令。
 
 <Note>
 
-If a callback function is passed any args or kwargs, those arguments will be established when the widget command is called, not later when the user interacts with the widget. In particular, if you want to use a widget's value in its own callback function, you can't pass that value to the callback function via the `args` parameter; you must assign a key to the widget and look up its value using `st.session_state` _within the callback function_.
+如果回调函数传递了任何参数或关键字参数，这些参数将在部件命令调用时建立，而不是在用户与部件交互时建立。特别是，如果您想在部件自身的回调函数中使用部件的值，不能通过 `args` 参数将该值传递给回调函数；您必须为部件分配一个键，并使用 `st.session_state` 在回调函数_内_查找其值。
 
 </Note>
 
-### Using callback functions with forms
+### 将回调函数与表单一起使用
 
-Using a callback function with a form requires understanding of this order of operations.
+将回调函数与表单一起使用需要了解此操作顺序。
 
 ```python
 import streamlit as st
@@ -126,63 +126,63 @@ if "attendance" not in st.session_state:
 
 def take_attendance():
     if st.session_state.name in st.session_state.attendance:
-        st.info(f"{st.session_state.name} has already been counted.")
+        st.info(f"{st.session_state.name} 已经被记录过了。")
     else:
         st.session_state.attendance.add(st.session_state.name)
 
 
 with st.form(key="my_form"):
-    st.text_input("Name", key="name")
-    st.form_submit_button("I'm here!", on_click=take_attendance)
+    st.text_input("姓名", key="name")
+    st.form_submit_button("我在这里！", on_click=take_attendance)
 ```
 
 <Cloud name="doc-guide-widgets-form-callbacks" height="250px"/>
 
-## Statefulness of widgets
+## 部件的状态性
 
-As long as the widget identity remains the same and that widget is continuously rendered on the frontend, then it will be stateful and remember user input.
+只要部件身份保持相同并且该部件持续在前端渲染，它就有状态并记住用户输入。
 
-### Changing a widget's identity will reset it
+### 更改部件的身份将重置它
 
-If any of the parameters that determine a widget's identity change, Streamlit will see it as a new widget and it will reset. With the new key-based identity system, providing a key protects the widget from resets when other parameters change. The use of default values is particularly important in this case. If you use a key and change a widget's default value, there will be no change to the widget's state. If you don't use a key, changing a widget's default value will reset the widget to that default value.
+如果确定部件身份的任何参数发生变化，Streamlit 将将其视为新部件并重置。使用新的基于键的身份系统，提供键可以保护部件免受其他参数更改时的重置。在这种情况下，默认值的使用尤为重要。如果您使用键并更改部件的默认值，部件状态不会有变化。如果您不使用键，更改部件的默认值将重置部件为该默认值。
 
-In this example, we have a two sliders where you can change the min, max, and default values. Try interacting with each slider to change its value then change the min or max setting to see what happens. When you change the min or max, both slider identities will update and they will be reset to their current default value. However, if you change the default value, only the slider without a key will reset. The keyed slider will remain stateful.
+在此示例中，我们有两个滑块，您可以更改最小值、最大值和默认值。尝试与每个滑块交互以更改其值，然后更改最小值或最大值设置以查看发生了什么。当您更改最小值或最大值时，两个滑块身份都将更新，它们将重置为其当前默认值。但是，如果您更改默认值，只有没有键的滑块会重置。有键的滑块将保持有状态。
 
 ```python
 import streamlit as st
 
 cols = st.columns([2, 1, 2])
-minimum = cols[0].number_input("Minimum", 1, 3)
-maximum = cols[2].number_input("Maximum", 8, 10, 10)
-value = cols[1].number_input("Default", 4, 7, 5)
+minimum = cols[0].number_input("最小值", 1, 3)
+maximum = cols[2].number_input("最大值", 8, 10, 10)
+value = cols[1].number_input("默认值", 4, 7, 5)
 
-st.slider("No key", minimum, maximum, value)
-st.slider("With a key", minimum, maximum, value, key="a")
+st.slider("无键", minimum, maximum, value)
+st.slider("带键", minimum, maximum, value, key="a")
 ```
 
 <Cloud name="doc-guide-widgets-change-parameters" height="550px"/>
 
-### Widgets do not persist when not continually rendered
+### 部件在不连续渲染时不保留
 
-If a widget command for a specific widget instance isn't called during a script run, then none of its parts are retained, including its value in `st.session_state`. If a widget has a key and you navigate away from that widget, its key and associated value in `st.session_state` are deleted. Even temporarily hiding a widget causes it to reset when it reappears; Streamlit will treat it like a new widget. To preserve widget state across pages or when widgets are temporarily hidden, save the value to a separate placeholder key as shown below.
+如果在脚本运行期间未调用特定部件实例的部件命令，则不会保留其任何部分，包括其在 `st.session_state` 中的值。如果部件有键并且您从此部件导航离开，其在 `st.session_state` 中的键和关联值将被删除。即使是临时隐藏部件也会导致它重新出现时重置；Streamlit 将将其视为新部件。要在页面之间或部件暂时隐藏时保留部件状态，请将值保存到单独的占位键中，如下所示。
 
-#### Save widget values in Session State to preserve them between pages
+#### 在会话状态中保存部件值以在页面之间保留它们
 
-If you want to navigate away from a widget and return to it while keeping its value, use a separate key in `st.session_state` to save the information independently from the widget. This technique is also recommended to carry a widget's state to a new instance on another page. In this example, an underscore-prefixed, temporary key is used with a widget. Hence, `"_my_key"` is used as the widget key, but the data is copied to `"my_key"` to preserve it between pages.
+如果您想离开部件并返回它同时保持其值，请使用 `st.session_state` 中的单独键独立于部件保存信息。也建议使用此技术将部件的状态携带到另一页上的新实例。在此示例中，使用带有部件的下划线前缀的临时键。因此，`"_my_key"` 用作部件键，但数据被复制到 `"my_key"` 以在页面之间保留它。
 
 ```python
 import streamlit as st
 
 def store_value():
-    # Copy the value to the permanent key
+    # 将值复制到永久键
     st.session_state["my_key"] = st.session_state["_my_key"]
 
-# Copy the saved value to the temporary key
+# 将保存的值复制到临时键
 st.session_state["_my_key"] = st.session_state["my_key"]
-st.number_input("Number of filters", key="_my_key", on_change=store_value)
+st.number_input("过滤器数量", key="_my_key", on_change=store_value)
 ```
 
-If this is functionalized to work with multiple widgets, it could look something like this:
+如果将其函数化以处理多个部件，可能看起来像这样：
 
 ```python
 import streamlit as st
@@ -193,100 +193,100 @@ def load_value(key):
     st.session_state["_"+key] = st.session_state[key]
 
 load_value("my_key")
-st.number_input("Number of filters", key="_my_key", on_change=store_value, args=["my_key"])
+st.number_input("过滤器数量", key="_my_key", on_change=store_value, args=["my_key"])
 ```
 
-## Widget life cycle
+## 部件生命周期
 
-When a widget command is called, Streamlit will check if it already has a widget with the same identity. Streamlit will reconnect if it thinks the widget already exists. Otherwise, it will make a new one.
+当调用部件命令时，Streamlit 将检查是否已经有一个具有相同身份的部件。如果 Streamlit 认为部件已存在，它将重新连接。否则，它将创建一个新部件。
 
-As mentioned earlier, Streamlit determines a widget's identity differently based on if it has a key. The page name also factors into a widget's identity, where widget identites are not preserved between pages. On the other hand, callback functions, callback args and kwargs, label visibility, and disabling a widget never affect a widget's identity.
+如前所述，Streamlit 根据部件是否有键以不同方式确定部件身份。页面名称也会影响部件身份，其中部件身份在页面之间不保留。另一方面，回调函数、回调参数和关键字参数、标签可见性以及禁用部件从不影响部件身份。
 
-### Calling a widget command when the widget doesn't already exist
+### 当部件尚不存在时调用部件命令
 
-If your script rerun calls a widget command with a changed identity or calls a widget command that wasn't used on the last script run:
+如果您的脚本重新运行调用具有更改身份的部件命令，或调用在上次脚本运行中未使用的部件命令：
 
-1. Streamlit will build the frontend and backend parts of the widget, using its default value.
-2. If the widget has been assigned a key, Streamlit will check if that key already exists in Session State.
-   a. If the key exists and **isn't** associated to a widget with a different identity, Streamlit will assign that key's value to the widget.
-   b. If the key exists and is associated to a widget with a different identity, Streamlit will overwrite the key-value pair with the default value.
-   b. If the key doesn't exist, Streamlit will create a new key-value pair with the default value.
-3. If there are args or kwargs for a callback function, they are evaluated and saved in memory.
-4. The widget value is then returned by the function.
+1. Streamlit 将构建部件的前端和后端部分，使用其默认值。
+2. 如果部件已分配键，Streamlit 将检查该键是否已存在于会话状态中。
+   a. 如果键存在且**不**与具有不同身份的部件关联，Streamlit 将将该键的值分配给部件。
+   b. 如果键存在且与具有不同身份的部件关联，Streamlit 将用默认值覆盖键值对。
+   b. 如果键不存在，Streamlit 将使用默认值创建新的键值对。
+3. 如果有回调函数的参数或关键字参数，它们将在内存中评估和保存。
+4. 然后函数返回部件值。
 
-For step 2, prior to v1.46.0, Streamlit would ignore the value in Session State if it came from an instance of the widget on another page. This is because a widget on another page necessarily has a different identity. As of v1.46.0, Streamlit deletes such values at the beginning of a script run on a new page.
+对于第2步，v1.46.0 之前，如果值来自另一页面的部件实例，Streamlit 将忽略会话状态中的值。这是因为另一页面上的部件必然具有不同的身份。从 v1.46.0 开始，Streamlit 在新页面脚本运行开始时删除此类值。
 
-### Calling a widget command when the widget already exists
+### 当部件已存在时调用部件命令
 
-When rerunning a script without changing a widget's identity:
+在不更改部件身份的情况下重新运行脚本时：
 
-1. Streamlit will connect to the existing frontend and backend parts.
-2. If the widget has a key that was deleted from `st.session_state`, then Streamlit will recreate the key using the current frontend value. This is because deleting a key from Session State will not revert the widget to a default value.
-3. The widget command will return the current value of the widget.
+1. Streamlit 将连接到现有的前端和后端部分。
+2. 如果部件有从 `st.session_state` 中删除的键，则 Streamlit 将使用当前前端值重新创建键。这是因为从会话状态中删除键不会将部件恢复为默认值。
+3. 部件命令将返回部件的当前值。
 
-### Widget clean-up process
+### 部件清理过程
 
-Streamlit cleans up widget data at the end of every script run and at the beginning of a script run on a new page.
+Streamlit 在每次脚本运行结束时以及在新页面上脚本运行开始时清理部件数据。
 
-When Streamlit gets to the end of a script run, it will delete the data for any widgets it has in memory that were not rendered on the screen. Most importantly, that means Streamlit will delete all key-value pairs in `st.session_state` associated with a widget not currently on screen. When you switch pages, Streamlit will delete all data associated with widgets from the previous page.
+当 Streamlit 到达脚本运行结束时，它将删除内存中所有未在屏幕上渲染的部件的数据。最重要的是，这意味着 Streamlit 将删除与当前不在屏幕上显示的部件相关的 `st.session_state` 中的所有键值对。当您切换页面时，Streamlit 将删除与前一页部件相关的所有数据。
 
-### Retain statefulness when changing a widget's identity
+### 更改部件身份时保持状态性
 
-If you just need to manipulate identity-affecting parameters without carrying the widget state between pages, you can use a callback to directly maintin a widget's state. Here is a solution to our earlier example of changing a slider's min and max values. Note that the widget's initial value is set through Session State and not its `value` parameter. When you are programmatically changing a widget, you should just use Session State to maintain the widget's state to avoid unexpected behavior.
+如果您只需要操作影响身份的参数而不在页面之间携带部件状态，可以使用回调直接维护部件状态。这是我们之前更改滑块最小值和最大值示例的解决方案。请注意，部件的初始值是通过会话状态而不是其 `value` 参数设置的。当您以编程方式更改部件时，应该只使用会话状态来维护部件状态以避免意外行为。
 
 ```python
 import streamlit as st
 
-# Set the default value for the widget
+# 设置部件的默认值
 st.session_state.setdefault("a", 5)
 
 cols = st.columns(2)
-minimum = cols[0].number_input("Min", 1, 5, key="min")
-maximum = cols[1].number_input("Max", 6, 10, 10, key="max")
+minimum = cols[0].number_input("最小值", 1, 5, key="min")
+maximum = cols[1].number_input("最大值", 6, 10, 10, key="max")
 
 
 def update_value():
-    # Helper function to ensure consistency between widget parameters and value
+    # 辅助函数，确保部件参数和值之间的一致性
     st.session_state.a = min(st.session_state.a, maximum)
     st.session_state.a = max(st.session_state.a, minimum)
 
 
-# Validate the slider value before rendering
+# 渲染前验证滑块值
 update_value()
 st.slider("A", minimum, maximum, key="a")
 ```
 
 <Cloud name="doc-guide-widgets-change-parameters-solution" height="250px"/>
 
-The `update_value()` helper function ensures consistency between the widget parameters and value. Also, by writing to `st.session_state.a`, we ensure that the key-value pair is availble for use by the "new" widget. If this script didn't write to `st.session_state.a`, Streamlit would interpret the key-value pair as being associated to a different widget and overwrite the key-value pair.
+`update_value()` 辅助函数确保部件参数和值之间的一致性。此外，通过写入 `st.session_state.a`，我们确保键值对可用于"新"部件。如果此脚本不写入 `st.session_state.a`，Streamlit 将解释键值对与不同部件关联并覆盖键值对。
 
-## Best practices and recommendations
+## 最佳实践和建议
 
-### For multipage apps
+### 对于多页面应用
 
-**Primary recommendation:** Use common widgets in the entrypoint file with [`st.navigation`](/develop/api-reference/navigation/st.navigation) to bypass page identity issues entirely:
+**主要建议：** 在入口点文件中使用通用部件和 [`st.navigation`](/develop/api-reference/navigation/st.navigation) 来完全绕过页面身份问题：
 
 ```python
-# streamlit_app.py (entrypoint)
+# streamlit_app.py (入口点)
 import streamlit as st
 
-# Common widgets that persist across all pages
-user_name = st.sidebar.text_input("Name", key="global_name")
-user_role = st.sidebar.selectbox("Role", ["User", "Admin"], key="global_role")
+# 在所有页面上持续存在的通用部件
+user_name = st.sidebar.text_input("姓名", key="global_name")
+user_role = st.sidebar.selectbox("角色", ["用户", "管理员"], key="global_role")
 
-# Navigation
+# 导航
 page = st.navigation([
-    st.Page("page1.py", title="Dashboard"),
-    st.Page("page2.py", title="Settings"),
+    st.Page("page1.py", title="仪表板"),
+    st.Page("page2.py", title="设置"),
 ])
 page.run()
 ```
 
-**Secondary recommendation:** For widgets that must be on individual pages, use the placeholder key pattern. See [Save widget values in Session State to preserve them between pages](#save-widget-values-in-session-state-to-preserve-them-between-pages) for more information.
+**次要建议：** 对于必须在各个页面上的部件，请使用占位键模式。更多信息请参见[在会话状态中保存部件值以在页面之间保留它们](#在会话状态中保存部件值以在页面之间保留它们)。
 
-### For parameter changes
+### 对于参数更改
 
-- Use keys when you need widgets to maintain state despite parameter changes.
-- If you need to change a parameter that affects a widget's identity, use placeholder keys like you would for multipage apps,
-  or use a callback to directly maintain a widget's state. For more information, see [Retain statefulness when changing a widget's identity](#retain-statefulness-when-changing-a-widgets-identity).
-- To force a widget to reset, update its key, or update a parameter without using a key.
+- 当您需要部件在参数更改时保持状态时使用键。
+- 如果您需要更改影响部件身份的参数，请使用占位键，就像对多页面应用一样，
+  或使用回调直接维护部件状态。更多信息请参见[更改部件身份时保持状态性](#更改部件身份时保持状态性)。
+- 要强制部件重置，请更新其键，或在不使用键的情况下更新参数。

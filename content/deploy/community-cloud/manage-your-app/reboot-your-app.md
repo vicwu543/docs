@@ -1,43 +1,43 @@
 ---
-title: Reboot your app
+title: 重启您的应用
 slug: /deploy/streamlit-community-cloud/manage-your-app/reboot-your-app
-description: Learn how to reboot your Streamlit app on Community Cloud to clear memory, force fresh builds, and resolve issues.
+description: 了解如何在 Community Cloud 上重启您的 Streamlit 应用以清除内存、强制全新构建和解决问题。
 keywords: reboot, restart, memory, fresh build, redeploy, workspace, cloud logs, confirmation, troubleshooting
 ---
 
-# Reboot your app
+# 重启您的应用
 
-If you need to clear your app's memory or force a fresh build after modifying a file that Streamlit Community Cloud doesn't monitor, you may need to reboot your app. This will interrupt any user who may currently be using your app and may take a few minutes for your app to redeploy. Anyone visiting your app will see "Your app is in the oven" during a reboot.
+如果您需要清除您的应用的内存或在修改 Streamlit Community Cloud 不监控的文件后强制全新构建，您可能需要重启您的应用。这将中断任何当前可能正在使用您的应用的用户，并且您的应用重新部署可能需要几分钟时间。在重启期间，访问您的应用的任何人都会看到"您的应用正在烘焙中"。
 
-Rebooting your app on Community Cloud is easy! You can reboot your app:
+在 Community Cloud 上重启您的应用很容易！您可以重启您的应用：
 
-- [From your workspace](#reboot-your-app-from-your-workspace).
-- [From your Cloud logs](#reboot-your-app-from-your-cloud-logs).
+- [从您的工作区](#reboot-your-app-from-your-workspace)。
+- [从您的 Cloud 日志](#reboot-your-app-from-your-cloud-logs)。
 
-### Reboot your app from your workspace
+### 从您的工作区重启您的应用
 
-1. From your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, click the overflow icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) next to your app. Click "**Reboot**."
+1. 从您在 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> 的工作区，单击您的应用旁边的溢出图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>)。单击"**重启**"。
 
-   ![Reboot your app from your workspace](/images/streamlit-community-cloud/workspace-app-reboot.png)
+   ![从您的工作区重启您的应用](/images/streamlit-community-cloud/workspace-app-reboot.png)
 
-2. A confirmation will display. Click "**Reboot**."
+2. 将显示确认。单击"**重启**"。
 
 <div style={{ maxWidth: '50%', margin: 'auto' }}>
-<Image alt="Confirm rebooting your app in Streamlit Community Cloud" src="/images/streamlit-community-cloud/workspace-app-reboot-confirm.png" clean />
+<Image alt="确认在 Streamlit Community Cloud 中重启您的应用" src="/images/streamlit-community-cloud/workspace-app-reboot-confirm.png" clean />
 </div>
 
-### Reboot your app from your Cloud logs
+### 从您的 Cloud 日志重启您的应用
 
-1. From your app at `<your-custom-subdomain>.streamlit.app`, click "**Manage app**" in the lower-right corner.
+1. 从您的应用 `<your-custom-subdomain>.streamlit.app`，单击右下角的"**管理应用**"。
 
-   ![Access Streamlit Community Cloud logs from your app](/images/streamlit-community-cloud/cloud-logs-open.png)
+   ![从您的应用访问 Streamlit Community Cloud 日志](/images/streamlit-community-cloud/cloud-logs-open.png)
 
-2. Click the overflow menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) and click "**Reboot app**."
+2. 单击溢出菜单图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) 并单击"**重启应用**"。
 
-   ![Reboot your app from your Cloud logs](/images/streamlit-community-cloud/cloud-logs-menu-reboot.png)
+   ![从您的 Cloud 日志重启您的应用](/images/streamlit-community-cloud/cloud-logs-menu-reboot.png)
 
-3. A confirmation will display. Click "**Reboot**."
+3. 将显示确认。单击"**重启**"。
 
 <div style={{ maxWidth: '50%', margin: 'auto' }}>
-<Image alt="Confirm rebooting your app in Streamlit Community Cloud" src="/images/streamlit-community-cloud/workspace-app-reboot-confirm.png" clean />
+<Image alt="确认在 Streamlit Community Cloud 中重启您的应用" src="/images/streamlit-community-cloud/workspace-app-reboot-confirm.png" clean />
 </div>

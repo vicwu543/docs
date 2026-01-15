@@ -1,67 +1,67 @@
 ---
-title: Working with Streamlit's execution model
+title: 使用 Streamlit 的执行模型
 slug: /develop/concepts/architecture
-description: Explore comprehensive guides about Streamlit's architecture and execution model, including app lifecycle, caching, session state, forms, fragments, and widget behavior.
-keywords: streamlit architecture, execution model, app lifecycle, streamlit reruns, session state, caching, forms, fragments, widget behavior, client-server model
+description: 探索关于 Streamlit 架构和执行模型的综合指南，包括应用生命周期、缓存、会话状态、表单、fragments 和小部件行为。
+keywords: streamlit 架构, 执行模型, 应用生命周期, streamlit 重新运行, 会话状态, 缓存, 表单, fragments, 小部件行为, 客户端-服务器模型
 ---
 
-# Working with Streamlit's execution model
+# 使用 Streamlit 的执行模型
 
 <TileContainer layout="list">
 
 <RefCard href="/develop/concepts/architecture/run-your-app">
 
-<h5>Run your app</h5>
+<h5>运行你的应用</h5>
 
-Understand how to start your Streamlit app.
+了解如何启动你的 Streamlit 应用。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/architecture/architecture">
 
-<h5>Streamlit's architecture</h5>
+<h5>Streamlit 的架构</h5>
 
-Understand Streamlit's client-server architecture and related considerations.
+了解 Streamlit 的客户端-服务器架构和相关考虑。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/architecture/app-chrome">
 
-<h5>The app chrome</h5>
+<h5>应用 chrome</h5>
 
-Every Streamlit app has a few widgets in the top right to help you as you develop your app and help your users as they view your app. This is called the app chrome.
+每个 Streamlit 应用的右上角都有一些小部件，以在你开发应用时帮助你，并在用户查看你的应用时帮助用户。这称为应用 chrome。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/architecture/caching">
 
-<h5>Caching</h5>
+<h5>缓存</h5>
 
-Make your app performant by caching results to avoid unecessary recomputation with each rerun.
+通过缓存结果以避免每次重新运行时进行不必要的重新计算，使你的应用性能更好。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/architecture/session-state">
 
-<h5>Session State</h5>
+<h5>会话状态</h5>
 
-Manage your app's statefulness with Session State.
+使用会话状态管理你的应用的状态性。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/architecture/forms">
 
-<h5>Forms</h5>
+<h5>表单</h5>
 
-Use forms to isolate user input and prevent unnecessary app reruns.
+使用表单隔离用户输入并防止不必要的应用重新运行。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/architecture/widget-behavior">
 
-<h5>Widget behavior</h5>
+<h5>小部件行为</h5>
 
-Understand how widgets work in detail.
+详细了解小部件如何工作。
 
 </RefCard>
 

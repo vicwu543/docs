@@ -1,48 +1,48 @@
 ---
-title: Sign in & sign out
+title: 登录和退出
 slug: /deploy/streamlit-community-cloud/manage-your-account/sign-in-sign-out
-description: Learn how to sign in to and sign out of Streamlit Community Cloud using Google, GitHub, or email authentication methods.
-keywords: sign in, sign out, authentication, google, github, email, login, logout, account access, credentials
+description: 了解如何使用Google、GitHub或电子邮件认证方法登录和退出Streamlit Community Cloud。
+keywords: 登录, 退出, 认证, google, github, 电子邮件, 登录, 登出, 账户访问, 凭证
 ---
 
-# Sign in & sign out
+# 登录和退出
 
-After you've created your account, you can sign in to <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> as described by the following options.
+在你创建了账户后，你可以按照以下选项登录到<a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>。
 
-![Sign in to Streamlit Community Cloud](/images/streamlit-community-cloud/account-sign-in.png)
+![登录到Streamlit Community Cloud](/images/streamlit-community-cloud/account-sign-in.png)
 
-## Sign in with Google
+## 使用Google登录
 
-1. Click "**Continue to sign-in**."
-1. Click "**Continue with Google**."
-1. Enter your Google account credentials and follow the prompts.
+1. 点击"**继续登录**"。
+1. 点击"**使用Google继续**"。
+1. 输入你的Google账户凭据并遵循提示。
 
-If your account is already linked to GitHub, you may be immediately prompted to sign in with GitHub.
+如果你的账户已与GitHub关联，你可能会立即被提示使用GitHub登录。
 
-## Sign in with GitHub
+## 使用GitHub登录
 
-1. Click "**Continue to sign-in**."
-1. Click "**Continue with GitHub**."
-1. Enter your GitHub credentials and follow the prompts.
+1. 点击"**继续登录**"。
+1. 点击"**使用GitHub继续**"。
+1. 输入你的GitHub凭据并遵循提示。
 
 <Important>
-    When you sign in with GitHub, Community Cloud will look for an account that uses the same email you have on your GitHub account. If such an account doesn't exist, Community Cloud will look for an account that uses your GitHub account for source control. In this latter instance, Community Cloud will update the email on your Community Cloud account to match the email on your GitHub account.
+    当你使用GitHub登录时，Community Cloud会查找使用你GitHub账户上相同电子邮件的账户。如果该账户不存在，Community Cloud会查找使用你的GitHub账户进行源代码控制的账户。在后一种情况下，Community Cloud会更新Community Cloud账户上的电子邮件，以匹配GitHub账户上的电子邮件。
 </Important>
 
-## Sign in with Email
+## 使用电子邮件登录
 
-1. Click "**Continue to sign-in**."
-1. In the "Email" field, enter your email address.
-1. Click "**Continue**." (If prompted, verify you are human.)
-1. Go to your email inbox, and copy your one-time, six-digit code. The code is valid for ten minutes.
-1. Return to the authentication page, and enter your code. (If prompted, verify you are human.)
+1. 点击"**继续登录**"。
+1. 在"电子邮件"字段中，输入你的电子邮件地址。
+1. 点击"**继续**"。（如果提示，验证你是人类。）
+1. 转到你的电子邮件收件箱，复制你的一次性六位数代码。代码有效期为十分钟。
+1. 返回认证页面，输入你的代码。（如果提示，验证你是人类。）
 
-If your account is already linked to GitHub, you may be immediately prompted to sign in with GitHub.
+如果你的账户已与GitHub关联，你可能会立即被提示使用GitHub登录。
 
-## Sign out of your account
+## 从你的账户退出
 
-From your workspace, click on your workspace name in the upper-left corner. Click "**Sign out**."
+从你的工作空间，点击左上角的工作空间名称。点击"**退出**"。
 
 <div style={{ maxWidth: '80%', margin: 'auto' }}>
-<Image alt="Sign out of Streamlit Community Cloud" src="/images/streamlit-community-cloud/account-sign-out.png" />
+<Image alt="从Streamlit Community Cloud退出" src="/images/streamlit-community-cloud/account-sign-out.png" />
 </div>

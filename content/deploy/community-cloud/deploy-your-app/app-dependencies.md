@@ -1,39 +1,38 @@
 ---
-title: App dependencies for your Community Cloud app
+title: Community Cloud应用的应用依赖
 slug: /deploy/streamlit-community-cloud/deploy-your-app/app-dependencies
-description: Learn how to manage Python and external dependencies for your Community Cloud app using requirements.txt, packages.txt, and other package managers.
+description: 了解如何使用requirements.txt、packages.txt和其他包管理器为Community Cloud应用管理Python和外部依赖。
 keywords: dependencies, requirements.txt, packages.txt, pip, apt-get, python packages, external dependencies, package managers
 ---
 
-# App dependencies for your Community Cloud app
+# Community Cloud应用的应用依赖
 
-The main reason that apps fail to build properly is because Streamlit Community Cloud can't find your dependencies! There are two kinds of dependencies your app might have: Python dependencies and external dependencies. Python dependencies are other Python packages (just like Streamlit!) that you `import` into your script. External dependencies are less common, but they include any other software your script needs to function properly. Because Community Cloud runs on Linux, these will be Linux dependencies installed with `apt-get` outside the Python environment.
+应用无法正确构建的主要原因是Streamlit Community Cloud找不到你的依赖！你的应用可能有两种依赖：Python依赖和外部依赖。Python依赖是你`import`到脚本中的其他Python包（就像Streamlit一样！）。外部依赖不太常见，但它们包括脚本正常运行所需的任何其他软件。由于Community Cloud在Linux上运行，这些将是在Python环境外使用`apt-get`安装的Linux依赖。
 
-For your dependencies to be installed correctly, make sure you:
+为了确保你的依赖被正确安装，请确保你：
 
-1. Add a [requirements file](#add-python-dependencies) for Python dependencies.
-2. Optional: To manage any external dependencies, add a `packages.txt` file.
+1. 为Python依赖添加[需求文件](#add-python-dependencies)。
+2. 可选：要管理任何外部依赖，请添加`packages.txt`文件。
 
 <Note>
 
-Python requirements files should be placed either in the root of your repository or in the same
-directory as your app's entrypoint file.
+Python需求文件应放在你的仓库根目录或与你应用的入口文件相同的目录中。
 
 </Note>
 
-## Add Python dependencies
+## 添加Python依赖
 
-With each `import` statement in your script, you are bringing in a Python dependency. You need to tell Community Cloud how to install those dependencies through a Python package manager. We recommend using a `requirements.txt` file, which is based on `pip`.
+每当你在脚本中使用`import`语句时，你就引入了一个Python依赖。你需要告诉Community Cloud如何通过Python包管理器安装这些依赖。我们推荐使用`requirements.txt`文件，它基于`pip`。
 
-You should _not_ include <a href="https://docs.python.org/3/py-modindex.html" target="_blank">built-in Python libraries</a> like `math`, `random`, or `distutils` in your `requirements.txt` file. These are a part of Python and aren't installed separately. Also, Community Cloud has `streamlit` installed by default. You don't strictly need to include `streamlit` unless you want to pin or restrict the version. If you deploy an app without a `requirements.txt` file, your app will run in an environment with just `streamlit` (and its dependencies) installed.
+你_不应该_在`requirements.txt`文件中包含<a href="https://docs.python.org/3/py-modindex.html" target="_blank">内置Python库</a>如`math`、`random`或`distutils`。这些是Python的一部分，不需要单独安装。另外，Community Cloud默认已安装了`streamlit`。除非你想固定或限制版本，否则不必严格包含`streamlit`。如果你部署的应用没有`requirements.txt`文件，你的应用将在只安装了`streamlit`（及其依赖）的环境中运行。
 
 <Important>
 
-The version of Python you use is important! Built-in libraries change between versions of Python and other libraries may have specific version requirements, too. Whenever Streamlit supports a new version of Python, Community Cloud quickly follows to default to that new version of Python. Always develop your app in the same version of Python you will use to deploy it. For more information about setting the version of Python when you deploy your app, see [Optional: Configure secrets and Python version](/deploy/streamlit-community-cloud/deploy-your-app/deploy#optional-configure-secrets-and-python-version).
+Python的版本很重要！内置库在不同的Python版本之间会发生变化，其他库也可能有特定的版本要求。每当Streamlit支持新的Python版本时，Community Cloud会快速跟进并默认该新的Python版本。始终在与部署应用相同的Python版本中开发应用。有关部署应用时设置Python版本的更多信息，请参阅[可选：配置秘密和Python版本](/deploy/streamlit-community-cloud/deploy-your-app/deploy#optional-configure-secrets-and-python-version)。
 
 </Important>
 
-If you have a script like the following, no extra dependencies would be needed since `pandas` and `numpy` are installed as direct dependencies of `streamlit`. Similarly, `math` and `random` are built into Python.
+如果你有如下脚本，则不需要额外的依赖，因为`pandas`和`numpy`已安装为`streamlit`的直接依赖。同样，`math`和`random`是Python的内置库。
 
 ```python
 import streamlit as st
@@ -45,7 +44,7 @@ import random
 st.write("Hi!")
 ```
 
-However, a valid `requirements.txt` file would be:
+但是，一个有效的`requirements.txt`文件将是：
 
 ```none
 streamlit
@@ -53,7 +52,7 @@ pandas
 numpy
 ```
 
-Alternatively, if you needed to specify certain versions, another valid example would be:
+或者，如果你需要指定某些版本，另一个有效的例子将是：
 
 ```none
 streamlit==1.24.1
@@ -61,15 +60,15 @@ pandas>2.0
 numpy<=1.25.1
 ```
 
-In the above example, `streamlit` is pinned to version `1.24.1`, `pandas` must be strictly greater than version 2.0, and `numpy` must be at-or-below version 1.25.1. Each line in your `requirements.txt` file is effectively what you would like to `pip install` into your cloud environment.
+在上面的例子中，`streamlit`被固定到版本`1.24.1`，`pandas`必须严格大于版本2.0，`numpy`必须在版本1.25.1或以下。你的`requirements.txt`文件中的每一行都是你想要在云环境中`pip install`的内容。
 
 <Tip>
-    To learn about limitations of Community Cloud's Python environments, see [Community Cloud status and limitations](/deploy/streamlit-community-cloud/status#python-environments).
+    要了解Community Cloud的Python环境的限制，请参阅[Community Cloud状态和限制](/deploy/streamlit-community-cloud/status#python-environments)。
 </Tip>
 
-### Other Python package managers
+### 其他Python包管理器
 
-There are other Python package managers in addition to `pip`. If you want to consider alternatives to using a `requirements.txt` file, Community Cloud will use the first dependency file it finds. Community Cloud will search the directory where your entrypoint file is, then it will search the root of your repository. In each location, dependency files are prioritized in the following order:
+除了`pip`之外，还有其他Python包管理器。如果你想考虑使用`requirements.txt`文件的替代方案，Community Cloud将使用它找到的第一个依赖文件。Community Cloud将搜索你的入口文件所在的目录，然后将搜索你仓库的根目录。在每个位置中，依赖文件的优先顺序如下：
 
 <table style={{ textAlign: 'center' }}>
     <tr>
@@ -98,11 +97,11 @@ There are other Python package managers in addition to `pip`. If you want to con
     </tr>
 </table>
 
-&dagger; For efficiency, Community Cloud will attempt to process `requirements.txt` with `uv`, but will fall back to `pip` if needed. `uv` is generally faster and more efficient than `pip`.
+&dagger; 为了效率起见，Community Cloud将尝试使用`uv`处理`requirements.txt`，但在需要时将回退到`pip`。`uv`通常比`pip`更快更高效。
 
 <Warning>
 
-You should only use one dependency file for your app. If you include more than one (e.g. `requirements.txt` and `environment.yaml`), only the first file encountered will be used as described above, with any dependency file in your entrypoint file's directory taking precedence over any dependency file in the root of your repository.
+你应该只为你的应用使用一个依赖文件。如果你包含多个（例如`requirements.txt`和`environment.yaml`），如上所述，只会使用第一个找到的文件，入口文件目录中的任何依赖文件优先于仓库根目录中的任何依赖文件。
 
 </Warning>
 

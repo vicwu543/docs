@@ -1,12 +1,12 @@
 ---
-title: Installing dependencies
+title: 安装依赖项
 slug: /knowledge-base/dependencies
-description: Explore common dependency and environment problems, and see possible solutions.
+description: 探索常见的依赖项和环境问题，并查看可能的解决方案。
 ---
 
-# Installing dependencies
+# 安装依赖项
 
 - [ModuleNotFoundError: No module named](/knowledge-base/dependencies/module-not-found-error)
 - [ImportError: libGL.so.1: cannot open shared object file: No such file or directory](/knowledge-base/dependencies/libgl)
 - [ERROR: No matching distribution found for](/knowledge-base/dependencies/no-matching-distribution)
-- [How to install a package not on PyPI/Conda but available on GitHub](/knowledge-base/dependencies/install-package-not-pypi-conda-available-github)
+- [如何安装不在PyPI/Conda上但可在GitHub上获得的包](/knowledge-base/dependencies/install-package-not-pypi-conda-available-github)

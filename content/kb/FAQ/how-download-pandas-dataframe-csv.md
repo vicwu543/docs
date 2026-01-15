@@ -1,13 +1,13 @@
 ---
-title: How to download a Pandas DataFrame as a CSV?
+title: 如何将 Pandas DataFrame 下载为 CSV？
 slug: /knowledge-base/using-streamlit/how-download-pandas-dataframe-csv
 ---
 
-# How to download a Pandas DataFrame as a CSV?
+# 如何将 Pandas DataFrame 下载为 CSV？
 
-Use the [`st.download_button`](/develop/api-reference/widgets/st.download_button) widget that is natively built into Streamlit. Check out a [sample app](https://streamlit-release-demos-0-88streamlit-app-0-88-v8ram3.streamlit.app/) demonstrating how you can use `st.download_button` to download common file formats.
+使用 Streamlit 中原生内置的 [`st.download_button`](/develop/api-reference/widgets/st.download_button) 小部件。查看一个 [示例应用](https://streamlit-release-demos-0-88streamlit-app-0-88-v8ram3.streamlit.app/)，演示如何使用 `st.download_button` 下载常见的文件格式。
 
-## Example usage
+## 使用示例
 
 ```python
 import streamlit as st
@@ -31,8 +31,8 @@ st.download_button(
 )
 ```
 
-Additional resources:
+其他资源：
 
 - [https://blog.streamlit.io/0-88-0-release-notes/](https://blog.streamlit.io/0-88-0-release-notes/)
 - [https://streamlit-release-demos-0-88streamlit-app-0-88-v8ram3.streamlit.app/](https://streamlit-release-demos-0-88streamlit-app-0-88-v8ram3.streamlit.app/)
-- [https://docs.streamlit.io/develop/api-reference/widgets/st.download_button](/develop/api-reference/widgets/st.download_button)
+- https://docs.streamlit.io/develop/api-reference/widgets/st.download_button

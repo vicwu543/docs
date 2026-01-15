@@ -1,144 +1,144 @@
 ---
-title: Quickstart
+title: 快速入门
 slug: /deploy/streamlit-community-cloud/get-started/quickstart
-description: Quick start guide to create your Community Cloud account, deploy a sample app, and start editing with GitHub Codespaces in minutes.
-keywords: quickstart, community cloud, account, deploy, sample app, github codespaces, template, editing
+description: 快速入门指南，创建您的社区云账户，部署示例应用程序，并在几分钟内开始使用 GitHub Codespaces 进行编辑。
+keywords: 快速入门, 社区云, 账户, 部署, 示例应用程序, github codespaces, 模板, 编辑
 ---
 
-# Quickstart
+# 快速入门
 
-This is a concise set of steps to create your Streamlit Community Cloud account, deploy a sample app, and start editing it with GitHub Codespaces. For other options and complete explanations, start with [Create your account](/deploy/streamlit-community-cloud/get-started/create-your-account).
+这是一套简洁的步骤，用于创建您的 Streamlit 社区云账户、部署示例应用程序，并使用 GitHub Codespaces 开始编辑。对于其他选项和完整说明，请从 [创建您的账户](/deploy/streamlit-community-cloud/get-started/create-your-account) 开始。
 
-You will sign in to your GitHub account during this process. Community Cloud will use the email from your GitHub account to create your Community Cloud account. For other sign-in options, see [Create your account](/deploy/streamlit-community-cloud/get-started/create-your-account).
+在此过程中，您将登录到您的 GitHub 账户。社区云将使用您 GitHub 账户中的电子邮件来创建您的社区云账户。对于其他登录选项，请参见 [创建您的账户](/deploy/streamlit-community-cloud/get-started/create-your-account)。
 
-## Prerequisites
+## 先决条件
 
-- You must have a GitHub account.
+- 您必须拥有一个 GitHub 账户。
 
-## Sign up for Streamlit Community Cloud
+## 注册 Streamlit 社区云
 
-1. Go to <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>.
-1. Click "**Continue to sign-in**."
-1. Click "**Continue with GitHub**."
-1. Enter your GitHub credentials and follow GitHub's authentication prompts.
-1. Fill in your account information, and click "**I accept**" at the bottom.
+1. 前往 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>。
+1. 点击"**继续登录**"。
+1. 点击"**使用 GitHub 继续**"。
+1. 输入您的 GitHub 凭据并按照 GitHub 的身份验证提示操作。
+1. 填写您的账户信息，然后点击底部的"**我接受**"。
 
-## Add access to your public repositories
+## 添加对公共仓库的访问权限
 
-1. In the upper-left corner, click "**Workspaces <i style={{ verticalAlign: "-.25em", color: "#ff8700" }} className={{ class: "material-icons-sharp" }}>warning</i>**."
+1. 在左上角，点击"**工作空间 <i style={{ verticalAlign: "-.25em", color: "#ff8700" }} className={{ class: "material-icons-sharp" }}>warning</i>**。"
 
 <div style={{ maxWidth: '90%', margin: 'auto' }}>
-<Image alt="Connect your GitHub account to a new Community Cloud account" src="/images/streamlit-community-cloud/workspace-unconnected-setup.png" />
+<Image alt="将您的 GitHub 账户连接到新的社区云账户" src="/images/streamlit-community-cloud/workspace-unconnected-setup.png" />
 </div>
 
-1. From the drop down, click "**Connect GitHub account**."
-1. Enter your GitHub credentials and follow GitHub's authentication prompts.
-1. Click "**Authorize streamlit**."
+1. 从下拉菜单中，点击"**连接 GitHub 账户**。"
+1. 输入您的 GitHub 凭据并按照 GitHub 的身份验证提示操作。
+1. 点击"**授权 streamlit**。"
 
 <div style={{ maxWidth: '40%', margin: 'auto' }}>
-<Image alt="Authorize Community Cloud to connect to your GitHub account" src="/images/streamlit-community-cloud/GitHub-auth1-none.png" />
+<Image alt="授权社区云连接到您的 GitHub 账户" src="/images/streamlit-community-cloud/GitHub-auth1-none.png" />
 </div>
 
-## Optional: Add access to private repositories
+## 可选：添加对私有仓库的访问权限
 
-1. In the upper-left corner, click on your GitHub username.
+1. 在左上角，点击您的 GitHub 用户名。
 
 <div style={{ maxWidth: '90%', margin: 'auto' }}>
-<Image alt="Access your workspace settings" src="/images/streamlit-community-cloud/workspace-empty-menu.png" />
+<Image alt="访问您的工作区设置" src="/images/streamlit-community-cloud/workspace-empty-menu.png" />
 </div>
 
-1. From the drop down, click "**Settings**."
-1. On the left side of the dialog, select "**Linked accounts**."
-1. Under "Source control," click "**Connect here <i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>arrow_forward</i>**."
-1. Click "**Authorize streamlit**."
+1. 从下拉菜单中，点击"**设置**。"
+1. 在对话框左侧，选择"**已连接的账户**。"
+1. 在"源码控制"下，点击"**在此连接 <i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>arrow_forward</i>**。"
+1. 点击"**授权 streamlit**。"
 
 <div style={{ maxWidth: '40%', margin: 'auto' }}>
-<Image alt="Authorize Community Cloud to connect to your private GitHub repositories" src="/images/streamlit-community-cloud/GitHub-auth2-none.png" />
+<Image alt="授权社区云连接到您的私有 GitHub 仓库" src="/images/streamlit-community-cloud/GitHub-auth2-none.png" />
 </div>
 
-## Create a new app from a template
+## 从模板创建新应用程序
 
-1. In the upper-right corner, click "**Create app**."
+1. 在右上角，点击"**创建应用程序**。"
 
 <div style={{ maxWidth: '90%', margin: 'auto' }}>
-<Image alt="Create a new app from your workspace in Streamlit Community Cloud" src="/images/streamlit-community-cloud/deploy-empty-new-app.png" />
+<Image alt="在 Streamlit 社区云中从工作区创建新应用程序" src="/images/streamlit-community-cloud/deploy-empty-new-app.png" />
 </div>
 
-1. When asked "Do you already have an app?" click "**Nope, create one from a template**."
-1. From the list of templates on the left, select "**Blank app**."
-1. At the bottom, select the option to "**Open GitHub Codespaces...**"
-1. At the bottom, click "**Deploy**."
+1. 当被问到"您已经有应用程序了吗？"时，点击"**没有，从模板创建一个**。"
+1. 从左侧的模板列表中，选择"**空白应用程序**。"
+1. 在底部，选择"**打开 GitHub Codespaces...**"选项
+1. 在底部，点击"**部署**。"
 
-## Edit your app in GitHub Codespaces
+## 在 GitHub Codespaces 中编辑您的应用程序
 
-1. Wait for GitHub to set up your codespace.
+1. 等待 GitHub 设置您的代码空间。
 
-   It can take several minutes to fully initialize your codespace. After the Visual Studio Code editor appears in your codespace, it can take several minutes to install Python and start the Streamlit server. When complete, a split screen view displays a code editor on the left and a running app on the right. The code editor opens two tabs by default: the repository's readme file and the app's entrypoint file.
+   完全初始化您的代码空间可能需要几分钟时间。在 Visual Studio Code 编辑器出现在您的代码空间中后，安装 Python 并启动 Streamlit 服务器可能还需要几分钟时间。完成后，分屏视图显示左侧的代码编辑器和右侧正在运行的应用程序。代码编辑器默认打开两个标签：仓库的 readme 文件和应用程序的入口文件。
 
    <div style={{ maxWidth: '90%', margin: 'auto' }}>
-   <Image alt="Your new GitHub Codespace" src="/images/streamlit-community-cloud/deploy-template-blank-codespace.png" />
+   <Image alt="您的新 GitHub 代码空间" src="/images/streamlit-community-cloud/deploy-template-blank-codespace.png" />
    </div>
 
-1. Go to the app's entrypoint file (`streamlit_app.py`) in the left pane, and change line 3 by adding "Streamlit" inside `st.title`.
+1. 在左窗格中转到应用程序的入口文件（`streamlit_app.py`），并在第3行中在 `st.title` 内添加"Streamlit"。
 
    ```diff
    -st.title("🎈 My new app")
    +st.title("🎈 My new Streamlit app")
    ```
 
-   Files are automatically saved in your codespace with each edit.
+   在您的代码空间中，每次编辑时文件都会自动保存。
 
-1. A moment after typing a change, your app on the right side will display a rerun prompt. Click "**Always rerun**."
+1. 输入更改后片刻，您右侧的应用程序将显示重新运行提示。点击"**始终重新运行**。"
 
    <div style={{ maxWidth: '90%', margin: 'auto' }}>
-   <Image alt="Edit the title of your sample Streamlit app" src="/images/streamlit-community-cloud/deploy-template-blank-codespace-edit.png" />
+   <Image alt="编辑示例 Streamlit 应用程序的标题" src="/images/streamlit-community-cloud/deploy-template-blank-codespace-edit.png" />
    </div>
 
-   If the rerun prompt disappears before you click it, you can hover over the overflow menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) to bring it back.
+   如果您点击之前重新运行提示消失，可以悬停在溢出菜单图标上（<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>）将其恢复。
 
-1. Optional: Continue to make edits and observe the changes within seconds.
+1. 可选：继续进行编辑并在几秒钟内观察更改。
 
-## Publish your changes
+## 发布您的更改
 
-1. In the left navigation bar, click the source control icon.
-
-<div style={{ maxWidth: '90%', margin: 'auto' }}>
-<Image alt="See your deployed Streamlit app" src="/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-source-control.png" />
-</div>
-
-1. In the source control sidebar on the left, enter a name for your commit.
-1. Click "**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>check</i> Commit**."
+1. 在左侧导航栏中，点击源码控制图标。
 
 <div style={{ maxWidth: '90%', margin: 'auto' }}>
-<Image alt="See your deployed Streamlit app" src="/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-commit.png" />
+<Image alt="查看您已部署的 Streamlit 应用程序" src="/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-source-control.png" />
 </div>
 
-1. To stage and commit all your changes, in the confirmation dialog, click "**Yes**." Your changes are committed locally in your codespace.
-1. To push your commit to GitHub, in the source control sidebar on the left, click "**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>cached</i> 1 <i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>arrow_upward</i>**."
-1. To push commits to "origin/main," in the confirmation dialog, click "**OK**."
-
-   Your changes are now saved to your GitHub repository. Community Cloud will immediately reflect the changes in your deployed app.
-
-1. Optional: To see your updated, published app, return to the "**My apps**" section of your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, and click on your app.
-
-## Stop or delete your codespace
-
-When you stop interacting with your codespace, GitHub will generally stop your codespace for you. However, the surest way to avoid undesired use of your capacity is to stop or delete your codespace when you are done.
-
-1. Go to <a href="https://github.com/codespaces" target="_blank">github.com/codespaces</a>. At the bottom of the page, all your codespaces are listed. Click the overflow menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_horiz</i>) for your codespace.
+1. 在左侧的源码控制侧边栏中，为您的提交输入一个名称。
+1. 点击"**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>check</i> 提交**。"
 
 <div style={{ maxWidth: '90%', margin: 'auto' }}>
-<Image alt="Stop or delete your GitHub Codespace" src="/images/streamlit-community-cloud/deploy-hello-codespace-manage.png" />
+<Image alt="查看您已部署的 Streamlit 应用程序" src="/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-commit.png" />
 </div>
 
-2. If you want to return to your work later, click "**Stop codespace**." Otherwise, click "**Delete**."
+1. 要暂存并提交所有更改，在确认对话框中点击"**是**。"您的更改在代码空间中本地提交。
+1. 要将您的提交推送到 GitHub，在左侧的源码控制侧边栏中点击"**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>cached</i> 1 <i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>arrow_upward</i>**。"
+1. 要将提交推送到"origin/main"，在确认对话框中点击"**确定**。"
+
+   您的更改现在已保存到您的 GitHub 仓库。社区云将立即在您已部署的应用程序中反映更改。
+
+1. 可选：要查看您更新后的已发布应用程序，请返回到 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> 工作区的"**我的应用程序**"部分，然后点击您的应用程序。
+
+## 停止或删除您的代码空间
+
+当您停止与代码空间交互时，GitHub 通常会为您停止代码空间。然而，避免不必要使用容量的最可靠方法是在完成后停止或删除代码空间。
+
+1. 前往 <a href="https://github.com/codespaces" target="_blank">github.com/codespaces</a>。在页面底部，列出您的所有代码空间。点击您代码空间的溢出菜单图标（<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_horiz</i>）。
+
+<div style={{ maxWidth: '90%', margin: 'auto' }}>
+<Image alt="停止或删除您的 GitHub 代码空间" src="/images/streamlit-community-cloud/deploy-hello-codespace-manage.png" />
+</div>
+
+2. 如果您想稍后返回您的工作，请点击"**停止代码空间**。否则，请点击"**删除**。"
 
    <div style={{ maxWidth: '40%', margin: 'auto' }}>
-   <Image alt="Stop your GitHub codespace" src="/images/streamlit-community-cloud/codespace-menu.png" />
+   <Image alt="停止您的 GitHub 代码空间" src="/images/streamlit-community-cloud/codespace-menu.png" />
    </div>
 
-3. Congratulations! You just deployed an app to Streamlit Community Cloud. 🎉 Return to your workspace at <a href="https://share.streamlit.io/" target="_blank">share.streamlit.io/</a> and [deploy another Streamlit app](/deploy/streamlit-community-cloud/deploy-your-app).
+3. 恭喜！您刚刚将应用程序部署到 Streamlit 社区云。🎉 返回到 <a href="https://share.streamlit.io/" target="_blank">share.streamlit.io/</a> 的工作区并 [部署另一个 Streamlit 应用程序](/deploy/streamlit-community-cloud/deploy-your-app)。
 
    <div style={{ maxWidth: '90%', margin: 'auto' }}>
-   <Image alt="See your deployed Streamlit app" src="/images/streamlit-community-cloud/deploy-template-blank-edited.png" />
+   <Image alt="查看您已部署的 Streamlit 应用程序" src="/images/streamlit-community-cloud/deploy-template-blank-edited.png" />
    </div>

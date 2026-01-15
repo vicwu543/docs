@@ -1,51 +1,41 @@
 ---
-title: Basic concepts of Streamlit
+title: Streamlit 基本概念
 slug: /get-started/fundamentals/main-concepts
-description: Learn the fundamental concepts of Streamlit including data flow, widgets, layout, and the development workflow for building interactive apps.
-keywords: streamlit, concepts, fundamentals, data flow, widgets, layout, development
+description: 了解 Streamlit 的基本概念，包括数据流、小部件、布局以及构建交互式应用程序的开发工作流程。
+keywords: streamlit, 概念, 基础知识, 数据流, 小部件, 布局, 开发
 ---
 
-# Basic concepts of Streamlit
+# Streamlit 基本概念
 
-Working with Streamlit is simple. First you sprinkle a few Streamlit commands
-into a normal Python script, then you run it with `streamlit run`:
+使用 Streamlit 很简单。首先在普通 Python 脚本中加入一些 Streamlit 命令，然后使用 `streamlit run` 运行它：
 
 ```bash
 streamlit run your_script.py [-- script args]
 ```
 
-As soon as you run the script as shown above, a local Streamlit server will
-spin up and your app will open in a new tab in your default web browser. The app
-is your canvas, where you'll draw charts, text, widgets, tables, and more.
+一旦你按上述方式运行脚本，一个本地 Streamlit 服务器将启动，并且你的应用程序将在默认网络浏览器的新标签页中打开。应用程序是你的画布，你可以在其中绘制图表、文本、小部件、表格等。
 
-What gets drawn in the app is up to you. For example
-[`st.text`](/develop/api-reference/text/st.text) writes raw text to your app, and
-[`st.line_chart`](/develop/api-reference/charts/st.line_chart) draws — you guessed it — a
-line chart. Refer to our [API documentation](/develop/api-reference) to see all commands that
-are available to you.
+绘制到应用程序中的内容取决于你。例如，[`st.text`](/develop/api-reference/text/st.text) 将原始文本写入你的应用程序，而 [`st.line_chart`](/develop/api-reference/charts/st.line_chart) 绘制——你猜对了——线形图。请参阅我们的 [API 文档](/develop/api-reference) 以查看所有可用的命令。
 
 <Note>
 
-When passing your script some custom arguments, they must be passed after two dashes. Otherwise the
-arguments get interpreted as arguments to Streamlit itself.
+当给脚本传递一些自定义参数时，它们必须在两个破折号后传递。否则参数将被解释为 Streamlit 本身的参数。
 
 </Note>
 
-Another way of running Streamlit is to run it as a Python module. This can be
-useful when configuring an IDE like PyCharm to work with Streamlit:
+运行 Streamlit 的另一种方法是将其作为 Python 模块运行。这在配置像 PyCharm 这样的 IDE 与 Streamlit 配合使用时很有用：
 
 ```bash
-# Running
+# 运行
 python -m streamlit run your_script.py
 
-# is equivalent to:
+# 等同于:
 streamlit run your_script.py
 ```
 
 <Tip>
 
-You can also pass a URL to `streamlit run`! This is great when combined with
-GitHub Gists. For example:
+你也可以传递一个 URL 给 `streamlit run`！这与 GitHub Gists 结合使用效果很好。例如：
 
 ```bash
 streamlit run https://raw.githubusercontent.com/streamlit/demo-uber-nyc-pickups/master/streamlit_app.py
@@ -53,133 +43,90 @@ streamlit run https://raw.githubusercontent.com/streamlit/demo-uber-nyc-pickups/
 
 </Tip>
 
-## Development flow
+## 开发流程
 
-Every time you want to update your app, save the source file. When you do
-that, Streamlit detects if there is a change and asks you whether you want to
-rerun your app. Choose "Always rerun" at the top-right of your screen to
-automatically update your app every time you change its source code.
+每次你想要更新应用程序时，保存源文件。当您这样做时，Streamlit 会检测是否有更改，并询问您是否要重新运行应用程序。在屏幕右上角选择"始终重新运行"，以便每次更改源代码时自动更新应用程序。
 
-This allows you to work in a fast interactive loop: you type some code, save
-it, try it out live, then type some more code, save it, try it out, and so on
-until you're happy with the results. This tight loop between coding and viewing
-results live is one of the ways Streamlit makes your life easier.
+这使您能够在一个快速的交互循环中工作：您输入一些代码，保存它，实时尝试，然后输入更多代码，保存它，尝试它，等等，直到对结果满意为止。这种编码和实时查看结果之间的紧密循环是 Streamlit 让您的生活更轻松的方式之一。
 
 <Tip>
 
-While developing a Streamlit app, it's recommended to lay out your editor and
-browser windows side by side, so the code and the app can be seen at the same
-time. Give it a try!
+在开发 Streamlit 应用程序时，建议将编辑器和浏览器窗口并排布局，这样可以同时看到代码和应用程序。试试看！
 
 </Tip>
 
-As of Streamlit version 1.10.0 and higher, Streamlit apps cannot be run from the root directory of Linux distributions. If you try to run a Streamlit app from the root directory, Streamlit will throw a `FileNotFoundError: [Errno 2] No such file or directory` error. For more information, see GitHub issue [#5239](https://github.com/streamlit/streamlit/issues/5239).
+从 Streamlit 版本 1.10.0 及更高版本开始，Streamlit 应用程序不能从 Linux 发行版的根目录运行。如果您尝试从根目录运行 Streamlit 应用程序，Streamlit 将抛出一个 `FileNotFoundError: [Errno 2] No such file or directory` 错误。有关更多信息，请参见 GitHub 问题 [#5239](https://github.com/streamlit/streamlit/issues/5239)。
 
-If you are using Streamlit version 1.10.0 or higher, your main script should live in a directory other than the root directory. When using Docker, you can use the `WORKDIR` command to specify the directory where your main script lives. For an example of how to do this, read [Create a Dockerfile](/deploy/tutorials/docker#create-a-dockerfile).
+如果您使用的是 Streamlit 版本 1.10.0 或更高版本，则主脚本应该位于非根目录中。使用 Docker 时，可以使用 `WORKDIR` 命令指定主脚本所在的目录。有关如何执行此操作的示例，请阅读 [创建 Dockerfile](/deploy/tutorials/docker#create-a-dockerfile)。
 
-## Data flow
+## 数据流
 
-Streamlit's architecture allows you to write apps the same way you write plain
-Python scripts. To unlock this, Streamlit apps have a unique data flow: any
-time something must be updated on the screen, Streamlit reruns your entire
-Python script from top to bottom.
+Streamlit 的架构允许您以编写普通 Python 脚本的方式编写应用程序。为了实现这一点，Streamlit 应用程序具有独特的数据流：每当屏幕上必须更新某些内容时，Streamlit 会从头到尾重新运行整个 Python 脚本。
 
-This can happen in two situations:
+这可能在两种情况下发生：
 
-- Whenever you modify your app's source code.
+- 每当您修改应用程序的源代码时。
 
-- Whenever a user interacts with widgets in the app. For example, when dragging
-  a slider, entering text in an input box, or clicking a button.
+- 每当用户与应用程序中的小部件交互时。例如，拖动滑块、在输入框中输入文本或单击按钮。
 
-Whenever a callback is passed to a widget via the `on_change` (or `on_click`) parameter, the callback will always run before the rest of your script. For details on the Callbacks API, please refer to our [Session State API Reference Guide](/develop/api-reference/caching-and-state/st.session_state#use-callbacks-to-update-session-state).
+每当通过 `on_change`（或 `on_click`）参数向小部件传递回调时，回调将在脚本其余部分之前运行。有关回调 API 的详细信息，请参阅我们的 [会话状态 API 参考指南](/develop/api-reference/caching-and-state/st.session_state#use-callbacks-to-update-session-state)。
 
-And to make all of this fast and seamless, Streamlit does some heavy lifting
-for you behind the scenes. A big player in this story is the
-[`@st.cache_data`](#caching) decorator, which allows developers to skip certain
-costly computations when their apps rerun. We'll cover caching later in this
-page.
+为了使这一切快速且无缝，Streamlit 在后台为您做了大量工作。其中一个重要角色是 [`@st.cache_data`](#caching) 装饰器，它允许开发人员在应用程序重新运行时跳过某些耗时的计算。我们将在本页后面介绍缓存。
 
-## Display and style data
+## 显示和样式化数据
 
-There are a few ways to display data (tables, arrays, data frames) in Streamlit
-apps. [Below](#use-magic), you will be introduced to _magic_
-and [`st.write()`](/develop/api-reference/write-magic/st.write), which can be used to write
-anything from text to tables. After that, let's take a look at methods designed
-specifically for visualizing data.
+在 Streamlit 应用程序中显示数据（表格、数组、数据框）有几种方法。[下面](#use-magic)，您将了解 _魔法_ 和 [`st.write()`](/develop/api-reference/write-magic/st.write)，它们可以用来写入从文本到表格的任何内容。之后，让我们看看专门用于可视化数据的方法。
 
-### Use magic
+### 使用魔法
 
-You can also write to your app without calling any Streamlit methods.
-Streamlit supports "[magic commands](/develop/api-reference/write-magic/magic)," which means you don't have to use
-[`st.write()`](/develop/api-reference/write-magic/st.write) at all! To see this in action try this snippet:
+您还可以在不调用任何 Streamlit 方法的情况下写入应用程序。Streamlit 支持 "[魔法命令](/develop/api-reference/write-magic/magic)"，这意味着你根本不必使用 [`st.write()`](/develop/api-reference/write-magic/st.write)！要查看实际效果，请尝试这个代码片段：
 
-```python try
+```
 """
-# My first app
-Here's our first attempt at using data to create a table:
+# 我的第一个应用程序
+这是我们第一次尝试使用数据创建表格：
 """
 
 import streamlit as st
 import pandas as pd
 df = pd.DataFrame({
-  'first column': [1, 2, 3, 4],
-  'second column': [10, 20, 30, 40]
+  '第一列': [1, 2, 3, 4],
+  '第二列': [10, 20, 30, 40]
 })
 
 df
 ```
 
-Any time that Streamlit sees a variable or a literal
-value on its own line, it automatically writes that to your app using
-[`st.write()`](/develop/api-reference/write-magic/st.write). For more information, refer to the
-documentation on [magic commands](/develop/api-reference/write-magic/magic).
+每当 Streamlit 在自己的行上看到变量或字面值时，它会自动使用 [`st.write()`](/develop/api-reference/write-magic/st.write) 将其写入应用程序。有关详细信息，请参阅 [魔法命令](/develop/api-reference/write-magic/magic) 的文档。
 
-### Write a data frame
+### 写入数据框
 
-Along with [magic commands](/develop/api-reference/write-magic/magic),
-[`st.write()`](/develop/api-reference/write-magic/st.write) is Streamlit's "Swiss Army knife". You
-can pass almost anything to [`st.write()`](/develop/api-reference/write-magic/st.write):
-text, data, Matplotlib figures, Altair charts, and more. Don't worry, Streamlit
-will figure it out and render things the right way.
+除了 [魔法命令](/develop/api-reference/write-magic/magic) 之外，[`st.write()`](/develop/api-reference/write-magic/st.write) 是 Streamlit 的"瑞士军刀"。你可以将几乎所有内容传递给 [`st.write()`](/develop/api-reference/write-magic/st.write)：文本、数据、Matplotlib 图形、Altair 图表等等。不用担心，Streamlit 会弄清楚并以正确的方式呈现内容。
 
 ```python
 import streamlit as st
 import pandas as pd
 
-st.write("Here's our first attempt at using data to create a table:")
+st.write("这是我们第一次尝试使用数据创建表格：")
 st.write(pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
+    '第一列': [1, 2, 3, 4],
+    '第二列': [10, 20, 30, 40]
 }))
 ```
 
-There are other data specific functions like
-[`st.dataframe()`](/develop/api-reference/data/st.dataframe) and
-[`st.table()`](/develop/api-reference/data/st.table) that you can also use for displaying
-data. Let's understand when to use these features and how to add colors and styling to your data frames.
+还有其他特定数据函数，如 [`st.dataframe()`](/develop/api-reference/data/st.dataframe) 和 [`st.table()`](/develop/api-reference/data/st.table)，你也可以用来显示数据。让我们了解何时使用这些功能以及如何为数据框添加颜色和样式。
 
-You might be asking yourself, "why wouldn't I always use `st.write()`?" There are
-a few reasons:
+你可能在问自己，"为什么我不能总是使用 `st.write()`？"有几个原因：
 
-1. _Magic_ and [`st.write()`](/develop/api-reference/write-magic/st.write) inspect the type of
-   data that you've passed in, and then decide how to best render it in the
-   app. Sometimes you want to draw it another way. For example, instead of
-   drawing a dataframe as an interactive table, you may want to draw it as a
-   static table by using `st.table(df)`.
-2. The second reason is that other methods return an object that can be used
-   and modified, either by adding data to it or replacing it.
-3. Finally, if you use a more specific Streamlit method you can pass additional
-   arguments to customize its behavior.
+1. _魔法_ 和 [`st.write()`](/develop/api-reference/write-magic/st.write) 检查您传入的数据类型，然后决定如何在应用程序中最好地呈现它。有时您想用另一种方式绘制。例如，不是将数据框绘制为交互式表格，您可能想使用 `st.table(df)` 将其绘制为静态表格。
+2. 第二个原因是其他方法返回一个可以使用和修改的对象，可以通过向其添加数据或替换它来实现。
+3. 最后，如果您使用更具体的 Streamlit 方法，您可以传递附加参数来自定义其行为。
 
-For example, let's create a data frame and change its formatting with a Pandas
-`Styler` object. In this example, you'll use Numpy to generate a random sample,
-and the [`st.dataframe()`](/develop/api-reference/data/st.dataframe) method to draw an
-interactive table.
+例如，让我们创建一个数据框并使用 Pandas `Styler` 对象更改其格式。在此示例中，您将使用 Numpy 生成一个随机样本，并使用 [`st.dataframe()`](/develop/api-reference/data/st.dataframe) 方法绘制交互式表格。
 
 <Note>
 
-This example uses Numpy to generate a random sample, but you can use Pandas
-DataFrames, Numpy arrays, or plain Python arrays.
+此示例使用 Numpy 生成随机样本，但您可以使用 Pandas DataFrames、Numpy 数组或纯 Python 数组。
 
 </Note>
 
@@ -191,8 +138,7 @@ dataframe = np.random.randn(10, 20)
 st.dataframe(dataframe)
 ```
 
-Let's expand on the first example using the Pandas `Styler` object to highlight
-some elements in the interactive table.
+让我们扩展第一个示例，使用 Pandas `Styler` 对象来突出显示交互式表格中的某些元素。
 
 ```python
 import streamlit as st
@@ -206,8 +152,7 @@ dataframe = pd.DataFrame(
 st.dataframe(dataframe.style.highlight_max(axis=0))
 ```
 
-Streamlit also has a method for static table generation:
-[`st.table()`](/develop/api-reference/data/st.table).
+Streamlit 还有一个用于静态表格生成的方法：[`st.table()`](/develop/api-reference/data/st.table)。
 
 ```python
 import streamlit as st
@@ -220,17 +165,13 @@ dataframe = pd.DataFrame(
 st.table(dataframe)
 ```
 
-### Draw charts and maps
+### 绘制图表和地图
 
-Streamlit supports several popular data charting libraries like [Matplotlib,
-Altair, deck.gl, and more](/develop/api-reference#chart-elements). In this section, you'll
-add a bar chart, line chart, and a map to your app.
+Streamlit 支持几个流行的数据图表库，如 [Matplotlib、Altair、deck.gl 等](/develop/api-reference#chart-elements)。在本节中，您将向应用程序添加条形图、折线图和地图。
 
-### Draw a line chart
+### 绘制折线图
 
-You can easily add a line chart to your app with
-[`st.line_chart()`](/develop/api-reference/charts/st.line_chart). We'll generate a random
-sample using Numpy and then chart it.
+您可以使用 [`st.line_chart()`](/develop/api-reference/charts/st.line_chart) 轻松地将折线图添加到应用程序中。我们将使用 Numpy 生成一个随机样本，然后将其绘制成图表。
 
 ```python
 import streamlit as st
@@ -244,11 +185,9 @@ chart_data = pd.DataFrame(
 st.line_chart(chart_data)
 ```
 
-### Plot a map
+### 绘制地图
 
-With [`st.map()`](/develop/api-reference/charts/st.map) you can display data points on a map.
-Let's use Numpy to generate some sample data and plot it on a map of
-San Francisco.
+使用 [`st.map()`](/develop/api-reference/charts/st.map) 您可以在地图上显示数据点。让我们使用 Numpy 生成一些样本数据，并将其绘制在旧金山地图上。
 
 ```python
 import streamlit as st
@@ -262,54 +201,42 @@ map_data = pd.DataFrame(
 st.map(map_data)
 ```
 
-## Widgets
+## 小部件
 
-When you've got the data or model into the state that you want to explore, you
-can add in widgets like [`st.slider()`](/develop/api-reference/widgets/st.slider),
-[`st.button()`](/develop/api-reference/widgets/st.button) or
-[`st.selectbox()`](/develop/api-reference/widgets/st.selectbox). It's really straightforward
-— treat widgets as variables:
+当你将数据或模型置于想要探索的状态时，你可以添加小部件，如 [`st.slider()`](/develop/api-reference/widgets/st.slider)、[`st.button()`](/develop/api-reference/widgets/st.button) 或 [`st.selectbox()`](/develop/api-reference/widgets/st.selectbox)。这非常简单——将小部件视为变量：
 
 ```python
 import streamlit as st
-x = st.slider('x')  # 👈 this is a widget
-st.write(x, 'squared is', x * x)
+x = st.slider('x')  # 👈 这是一个小部件
+st.write(x, '的平方是', x * x)
 ```
 
-On first run, the app above should output the text "0 squared is 0". Then
-every time a user interacts with a widget, Streamlit simply reruns your script
-from top to bottom, assigning the current state of the widget to your variable
-in the process.
+在第一次运行时，上面的应用程序应该输出文本"0 的平方是 0"。然后每次用户与小部件交互时，Streamlit 只是从头到尾重新运行您的脚本，在此过程中将小部件的当前状态分配给您的变量。
 
-For example, if the user moves the slider to position `10`, Streamlit will
-rerun the code above and set `x` to `10` accordingly. So now you should see the
-text "10 squared is 100".
+例如，如果用户将滑块移动到位置 `10`，Streamlit 将重新运行上面的代码并将 `x` 设置为 `10`。所以现在您应该看到文本"10 的平方是 100"。
 
-Widgets can also be accessed by key, if you choose to specify a string to use as the unique key for the widget:
+如果选择指定一个字符串作为小部件的唯一键，小部件也可以通过键访问：
 
 ```python
 import streamlit as st
-st.text_input("Your name", key="name")
+st.text_input("您的姓名", key="name")
 
-# You can access the value at any point with:
+# 您可以在任何时间点访问该值：
 st.session_state.name
 ```
 
-Every widget with a key is automatically added to Session State. For more information about Session State, its association with widget state, and its limitations, see [Session State API Reference Guide](/develop/api-reference/caching-and-state/st.session_state).
+每个带键的小部件都会自动添加到会话状态中。有关会话状态的更多信息、它与小部件状态的关联及其限制，请参阅 [会话状态 API 参考指南](/develop/api-reference/caching-and-state/st.session_state)。
 
-### Use checkboxes to show/hide data
+### 使用复选框显示/隐藏数据
 
-One use case for checkboxes is to hide or show a specific chart or section in
-an app. [`st.checkbox()`](/develop/api-reference/widgets/st.checkbox) takes a single argument,
-which is the widget label. In this sample, the checkbox is used to toggle a
-conditional statement.
+复选框的一个用例是在应用程序中隐藏或显示特定图表或部分。[`st.checkbox()`](/develop/api-reference/widgets/st.checkbox) 接受一个参数，即小部件标签。在此示例中，复选框用于切换条件语句。
 
 ```python
 import streamlit as st
 import numpy as np
 import pandas as pd
 
-if st.checkbox('Show dataframe'):
+if st.checkbox('显示数据框'):
     chart_data = pd.DataFrame(
        np.random.randn(20, 3),
        columns=['a', 'b', 'c'])
@@ -317,113 +244,100 @@ if st.checkbox('Show dataframe'):
     chart_data
 ```
 
-### Use a selectbox for options
+### 使用选择框进行选项选择
 
-Use [`st.selectbox`](/develop/api-reference/widgets/st.selectbox) to choose from a series. You
-can write in the options you want, or pass through an array or data frame
-column.
+使用 [`st.selectbox`](/develop/api-reference/widgets/st.selectbox) 从一系列选项中选择。您可以输入想要的选项，或传递数组或数据框列。
 
-Let's use the `df` data frame we created earlier.
+让我们使用前面创建的 `df` 数据框。
 
 ```python
 import streamlit as st
 import pandas as pd
 
 df = pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
+    '第一列': [1, 2, 3, 4],
+    '第二列': [10, 20, 30, 40]
     })
 
 option = st.selectbox(
-    'Which number do you like best?',
-     df['first column'])
+    '您最喜欢哪个数字?',
+     df['第一列'])
 
-'You selected: ', option
+'您选择了: ', option
 ```
 
-## Layout
+## 布局
 
-Streamlit makes it easy to organize your widgets in a left panel sidebar with
-[`st.sidebar`](/develop/api-reference/layout/st.sidebar). Each element that's passed to
-[`st.sidebar`](/develop/api-reference/layout/st.sidebar) is pinned to the left, allowing
-users to focus on the content in your app while still having access to UI
-controls.
+Streamlit 通过 [`st.sidebar`](/develop/api-reference/layout/st.sidebar) 使您能够轻松地将小部件组织到左侧边栏中。传递给 [`st.sidebar`](/develop/api-reference/layout/st.sidebar) 的每个元素都会固定到左侧，允许用户专注于应用程序中的内容，同时仍然可以访问 UI 控件。
 
-For example, if you want to add a selectbox and a slider to a sidebar,
-use `st.sidebar.slider` and `st.sidebar.selectbox` instead of `st.slider` and
-`st.selectbox`:
+例如，如果您想向侧边栏添加选择框和滑块，请使用 `st.sidebar.slider` 和 `st.sidebar.selectbox` 而不是 `st.slider` 和 `st.selectbox`：
 
 ```python
 import streamlit as st
 
-# Add a selectbox to the sidebar:
+# 向侧边栏添加一个选择框:
 add_selectbox = st.sidebar.selectbox(
-    'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone')
+    '您希望如何被联系?',
+    ('电子邮件', '家庭电话', '手机')
 )
 
-# Add a slider to the sidebar:
+# 向侧边栏添加一个滑块:
 add_slider = st.sidebar.slider(
-    'Select a range of values',
+    '选择一个值的范围',
     0.0, 100.0, (25.0, 75.0)
 )
 ```
 
-Beyond the sidebar, Streamlit offers several other ways to control the layout
-of your app. [`st.columns`](/develop/api-reference/layout/st.columns) lets you place widgets side-by-side, and
-[`st.expander`](/develop/api-reference/layout/st.expander) lets you conserve space by hiding away large content.
+除了侧边栏，Streamlit 还提供了其他几种控制应用程序布局的方法。[`st.columns`](/develop/api-reference/layout/st.columns) 让您可以将小部件并排放置，而 [`st.expander`](/develop/api-reference/layout/st.expander) 让您通过隐藏大内容来节省空间。
 
 ```python
 import streamlit as st
 
 left_column, right_column = st.columns(2)
-# You can use a column just like st.sidebar:
-left_column.button('Press me!')
+# 您可以像使用 st.sidebar 一样使用列:
+left_column.button('点我!')
 
-# Or even better, call Streamlit functions inside a "with" block:
+# 或者更好的是，在 "with" 块内调用 Streamlit 函数:
 with right_column:
     chosen = st.radio(
-        'Sorting hat',
-        ("Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"))
-    st.write(f"You are in {chosen} house!")
+        '分院帽',
+        ("格兰芬多", "拉文克劳", "赫奇帕奇", "斯莱特林"))
+    st.write(f"你在 {chosen} 学院!")
 ```
 
 <Note>
 
-`st.echo` and `st.spinner` are not currently supported inside the sidebar
-or layout options. Rest assured, though, we're currently working on adding support for those too!
+目前不支持在侧边栏或布局选项中使用 `st.echo` 和 `st.spinner`。不过请放心，我们目前正在努力添加对这些的支持！
 
 </Note>
 
-### Show progress
+### 显示进度
 
-When adding long running computations to an app, you can use
-[`st.progress()`](/develop/api-reference/status/st.progress) to display status in real time.
+在向应用程序添加长时间运行的计算时，您可以使用 [`st.progress()`](/develop/api-reference/status/st.progress) 实时显示状态。
 
-First, let's import time. We're going to use the `time.sleep()` method to
-simulate a long running computation:
+首先，让我们导入 time。我们将使用 `time.sleep()` 方法来模拟长时间运行的计算：
 
 ```python
 import time
 ```
 
-Now, let's create a progress bar:
+现在，让我们创建一个进度条：
 
 ```python
 import streamlit as st
 import time
 
-'Starting a long computation...'
+'开始长时间计算...'
 
-# Add a placeholder
+# 添加一个占位符
 latest_iteration = st.empty()
 bar = st.progress(0)
 
 for i in range(100):
-  # Update the progress bar with each iteration.
-  latest_iteration.text(f'Iteration {i+1}')
+  # 每次迭代更新进度条。
+  latest_iteration.text(f'迭代 {i+1}')
   bar.progress(i + 1)
   time.sleep(0.1)
 
-'...and now we\'re done!'
+'...现在完成了!'
 ```

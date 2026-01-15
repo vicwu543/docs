@@ -1,7 +1,7 @@
 ---
 title: st.vega_lite_chart
 slug: /develop/api-reference/charts/st.vega_lite_chart
-description: st.vega_lite_chart displays an interactive chart using the Vega-Lite library.
+description: st.vega_lite_chart 使用 Vega-Lite 库显示交互式图表。
 keywords: vega_lite_chart, vega-lite, chart, visualization, data, plot, graph, interactive, json, grammar of graphics
 ---
 
@@ -15,11 +15,11 @@ keywords: vega_lite_chart, vega-lite, chart, visualization, data, plot, graph, i
 
 ## Theming
 
-Vega-Lite charts are displayed using the Streamlit theme by default. This theme is sleek, user-friendly, and incorporates Streamlit's color palette. The added benefit is that your charts better integrate with the rest of your app's design.
+Vega-Lite 图表默认使用 Streamlit 主题显示。这个主题简洁、用户友好，并包含 Streamlit 的调色板。额外的好处是您的图表能更好地与应用的其余设计集成。
 
-The Streamlit theme is available from Streamlit 1.16.0 through the `theme="streamlit"` keyword argument. To disable it, and use Vega-Lite's native theme, use `theme=None` instead.
+从 Streamlit 1.16.0 开始，可以通过 `theme="streamlit"` 关键字参数使用 Streamlit 主题。要禁用它并使用 Vega-Lite 的原生主题，请改用 `theme=None`。
 
-Let's look at an example of charts with the Streamlit theme and the native Vega-Lite theme:
+让我们看看使用 Streamlit 主题和原生 Vega-Lite 主题的图表示例：
 
 ```python
 import streamlit as st
@@ -57,8 +57,8 @@ with tab2:
     )
 ```
 
-Click the tabs in the interactive app below to see the charts with the Streamlit theme enabled and disabled.
+点击下方交互式应用中的选项卡，查看启用和禁用 Streamlit 主题的图表。
 
 <Cloud name="doc-vega-lite-theme" height="500px" />
 
-If you're wondering if your own customizations will still be taken into account, don't worry! You can still make changes to your chart configurations. In other words, although we now enable the Streamlit theme by default, you can overwrite it with custom colors or fonts. For example, if you want a chart line to be green instead of the default red, you can do it!
+如果您想知道自己的自定义设置是否仍会被考虑，不要担心！您仍然可以对图表配置进行更改。换句话说，虽然我们现在默认启用 Streamlit 主题，但您可以用自定义颜色或字体覆盖它。例如，如果您希望图表线条是绿色而不是默认的红色，您可以这样做！

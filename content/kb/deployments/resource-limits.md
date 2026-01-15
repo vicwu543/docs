@@ -1,27 +1,27 @@
 ---
-title: Argh. This app has gone over its resource limits
+title: 呃。此应用已超过其资源限制
 slug: /knowledge-base/deploy/resource-limits
 ---
 
-# Argh. This app has gone over its resource limits
+# 呃。此应用已超过其资源限制
 
-Sorry! It means you've hit the [resource limits](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits) of your [Streamlit Community Cloud](https://streamlit.io/cloud) account.
+遗憾！这意味着你已达到[Streamlit Community Cloud](https://streamlit.io/cloud)账户的[资源限制](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits)。
 
-There are a few things you can change in your app to make it less resource-hungry:
+你可以在应用中进行一些更改以使其占用更少资源：
 
-- Reboot your app (temporary fix)
-- Use `st.cache_data` or `st.cache_resource` to load models or data only once
-- Restrict the cache size with `ttl` or `max_entries`
-- Move big datasets to a database
-- Profile your app's memory usage
+- 重启应用(临时修复)
+- 使用`st.cache_data`或`st.cache_resource`仅加载模型或数据一次
+- 使用`ttl`或`max_entries`限制缓存大小
+- 将大型数据集移到数据库
+- 分析应用的内存使用情况
 
-Check out our [blog post](https://blog.streamlit.io/common-app-problems-resource-limits/) on ["Common app problems: Resource limits"](https://blog.streamlit.io/common-app-problems-resource-limits/) for more in-depth tips prevent your app from hitting the [resource limits](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits) of the Streamlit Community Cloud.
+查看我们关于["常见应用问题：资源限制"](https://blog.streamlit.io/common-app-problems-resource-limits/)的[博客文章](https://blog.streamlit.io/common-app-problems-resource-limits/)，了解更多深入的提示以防止你的应用达到Streamlit Community Cloud的[资源限制](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits)。
 
-Related forum posts:
+相关论坛帖子：
 
 - [https://discuss.streamlit.io/t/common-app-problems-resource-limits/16969](https://discuss.streamlit.io/t/common-app-problems-resource-limits/16969)
 - [https://blog.streamlit.io/common-app-problems-resource-limits/](https://blog.streamlit.io/common-app-problems-resource-limits/)
 
-We offer free resource increases only to support nonprofits or educational organizations on a case-by-case basis. If you are a nonprofit or educational organization, please complete [this form](https://info.snowflake.com/streamlit-resource-increase-request.html) and we will review your submission as soon as possible.
+我们仅在逐案例基础上向非营利组织或教育组织提供免费资源增加。如果你是非营利组织或教育组织，请填写[此表单](https://info.snowflake.com/streamlit-resource-increase-request.html)，我们将尽快审查你的提交。
 
-Once the increase is completed, you will receive an email from the Streamlit marketing team with a confirmation that the increase has been applied.
+增加完成后，你将收到来自Streamlit市场营销团队的电子邮件，确认增加已应用。

@@ -1,7 +1,7 @@
 ---
-title: Manage your app
+title: 管理您的应用
 slug: /deploy/streamlit-community-cloud/manage-your-app
-description: Learn how to manage your deployed Streamlit apps including editing, analytics, settings, and resource optimization on Community Cloud.
+description: 了解如何在 Community Cloud 上管理您的已部署 Streamlit 应用，包括编辑、分析、设置和资源优化。
 keywords: manage, app, analytics, settings, edit, reboot, delete, resources, optimization, workspace
 ---
 
@@ -15,57 +15,57 @@ Streamlit Community Cloud is organized into workspaces, which automatically grou
 
 To deploy or manage any app, always switch to the workspace matching the repository's owner first.
 
-### Sort your apps
+### 排序您的应用
 
-If you have many apps in your workspace, you can pin apps to the top by marking them as favorite (<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>). For more information, see [Favorite your app](/deploy/streamlit-community-cloud/manage-your-app/favorite-your-app).
+如果您的工作区中有许多应用，可以通过将应用标记为收藏 (<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>) 来将应用固定到顶部。有关更多信息，请参阅[收藏您的应用](/deploy/streamlit-community-cloud/manage-your-app/favorite-your-app)。
 
-### App overflow menus
+### 应用溢出菜单
 
-Each app has a menu accessible from the overflow icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) to the right.
+每个应用都有一个菜单，可从右侧的溢出图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) 访问。
 
-- **Edit with Codespaces** &mdash; See [Edit your app with GitHub Codespaces](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app#edit-your-app-with-github-codespaces)
-- **Reboot** &mdash; See [Reboot your app](/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app)
-- **Delete** &mdash; See [Delete your app](/deploy/streamlit-community-cloud/manage-your-app/delete-your-app)
-- **Analytics** &mdash; See [App analytics](/deploy/streamlit-community-cloud/manage-your-app/app-analytics)
-- **Settings** &mdash; See [App settings](/deploy/streamlit-community-cloud/manage-your-app/app-settings)
+- **使用 Codespaces 编辑** &mdash; 请参阅[使用 GitHub Codespaces 编辑您的应用](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app#edit-your-app-with-github-codespaces)
+- **重启** &mdash; 请参阅[重启您的应用](/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app)
+- **删除** &mdash; 请参阅[删除您的应用](/deploy/streamlit-community-cloud/manage-your-app/delete-your-app)
+- **分析** &mdash; 请参阅[应用分析](/deploy/streamlit-community-cloud/manage-your-app/app-analytics)
+- **设置** &mdash; 请参阅[应用设置](/deploy/streamlit-community-cloud/manage-your-app/app-settings)
 
-![App overflow menu in your workspace](/images/streamlit-community-cloud/workspace-app-overflow.png)
+![您的工作区中的应用溢出菜单](/images/streamlit-community-cloud/workspace-app-overflow.png)
 
-If you have view-only access to an app, all options in the app's menu will be disabled except analytics.
+如果您对某个应用具有仅查看权限，则应用菜单中的所有选项都将被禁用，除了分析。
 
-![View-only app overflow menu in your workspace](/images/streamlit-community-cloud/workspace-view-only.png)
+![您的工作区中的仅查看应用溢出菜单](/images/streamlit-community-cloud/workspace-view-only.png)
 
-## Manage your app directly from your app
+## 直接从应用管理您的应用
 
-You can manage your deployed app directly from the app itself! Just make sure you are signed in to Community Cloud, and then visit your app.
+您可以直接从应用本身管理已部署的应用！只需确保您已登录到 Community Cloud，然后访问您的应用。
 
-### Cloud logs
+### 云日志
 
-1. From your app at `<your-custom-subdomain>.streamlit.app`, click "**Manage app**" in the lower-right corner.
+1. 从您的应用 `<your-custom-subdomain>.streamlit.app`，单击右下角的"**管理应用**"。
 
-   ![Access Cloud logs from Manage app in the lower-right corner of your app](/images/streamlit-community-cloud/cloud-logs-open.png)
+   ![从应用右下角的"管理应用"访问云日志](/images/streamlit-community-cloud/cloud-logs-open.png)
 
-2. Once you've clicked on "**Manage app**", you will be able to view your app's logs. This is your primary place to troubleshoot any issues with your app.
+2. 单击"**管理应用**"后，您将能够查看应用的日志。这是您排查应用问题的主要位置。
 
-   ![Streamlit Community Cloud logs](/images/streamlit-community-cloud/cloud-logs.png)
+   ![Streamlit Community Cloud 日志](/images/streamlit-community-cloud/cloud-logs.png)
 
-3. You can access more developer options by clicking the overflow icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) at the bottom of your Cloud logs. To conveniently download your logs, click "**Download log**."
+3. 您可以通过单击云日志底部的溢出图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) 来访问更多开发者选项。要方便地下载日志，请单击"**下载日志**"。
 
-   ![Download your Streamlit Community Cloud logs](/images/streamlit-community-cloud/cloud-logs-menu-download.png)
+   ![下载您的 Streamlit Community Cloud 日志](/images/streamlit-community-cloud/cloud-logs-menu-download.png)
 
 <Flex>
 
 <div>
 
-Other options accessible from Cloud logs are:
+从云日志访问的其他选项包括：
 
-- **Analytics** &mdash; See [App analytics](/deploy/streamlit-community-cloud/manage-your-app/app-analytics).
-- **Reboot app** &mdash; See [Reboot your app](/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app).
-- **Delete app** &mdash; See [Delete your app](/deploy/streamlit-community-cloud/manage-your-app/delete-your-app).
-- **Settings** &mdash; See [App settings](/deploy/streamlit-community-cloud/manage-your-app/app-settings).
-- **Your apps** &mdash; Takes you to your [app workspace](#manage-your-app-from-your-workspace).
-- **Documentation** &mdash; Takes you to our documentation.
-- **Support** &mdash; Takes you to <a href="https://discuss.streamlit.io/" target="_blank">our forums</a>!
+- **分析** &mdash; 请参阅 [应用分析](/deploy/streamlit-community-cloud/manage-your-app/app-analytics)。
+- **重启应用** &mdash; 请参阅 [重启您的应用](/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app)。
+- **删除应用** &mdash; 请参阅 [删除您的应用](/deploy/streamlit-community-cloud/manage-your-app/delete-your-app)。
+- **设置** &mdash; 请参阅 [应用设置](/deploy/streamlit-community-cloud/manage-your-app/app-settings)。
+- **您的应用** &mdash; 带您前往您的 [应用工作区](#manage-your-app-from-your-workspace)。
+- **文档** &mdash; 带您前往我们的文档。
+- **支持** &mdash; 带您前往 <a href="https://discuss.streamlit.io/" target="_blank">我们的论坛</a>！
 
 </div>
 
@@ -75,79 +75,79 @@ Other options accessible from Cloud logs are:
 
 </Flex>
 
-### App chrome
+### 应用界面
 
-From your app at `<your-custom-subdomain>.streamlit.app`, you can always access the [app chrome](/develop/concepts/architecture/app-chrome) just like you can when developing locally. The option to deploy your app is removed, but you can still clear your cache from here.
+从 `<your-custom-subdomain>.streamlit.app` 的应用，您始终可以访问 [应用界面](/develop/concepts/architecture/app-chrome)，就像在本地开发时一样。部署应用的选项已被删除，但您仍然可以从这里清除缓存。
 
-![App menus in Streamlit Community Cloud](/images/streamlit-community-cloud/app-menu.png)
+![Streamlit Community Cloud 中的应用菜单](/images/streamlit-community-cloud/app-menu.png)
 
-## Manage your app in GitHub
+## 在 GitHub 中管理您的应用
 
-### Update your app
+### 更新您的应用
 
-Your GitHub repository is the source for your app, so that means that any time you push an update to your repository you'll see it reflected in the app in almost real time. Try it out!
+您的 GitHub 存储库是应用的源，这意味着每当您将更新推送到存储库时，您将看到应用中的更改几乎实时反映。试试看！
 
-Streamlit also smartly detects whether you touched your dependencies, in which case it will automatically do a full redeploy for you—which will take a little more time. But since most updates don't involve dependency changes, you should usually see your app update in real time.
+Streamlit 还会聪明地检测您是否修改了依赖项，在这种情况下，它将自动为您进行完整重新部署，这将花费更多时间。但由于大多数更新不涉及依赖项更改，您通常应该看到应用实时更新。
 
-### Add or remove dependencies
+### 添加或删除依赖项
 
-To add or remove dependencies at any point, just update `requirements.txt` (Python dependenciess) or `packages.txt` (Linux dependencies), and commit the changes to your repository on GitHub. Community Cloud detects the change in your dependencies and automatically triggers (re)installation.
+要随时添加或删除依赖项，只需更新 `requirements.txt`（Python 依赖项）或 `packages.txt`（Linux 依赖项），然后将更改提交到 GitHub 上的存储库。Community Cloud 检测到您的依赖项中的更改，并自动触发（重新）安装。
 
-It is best practice to pin your Streamlit version in `requirements.txt`. Otherwise, the version may be auto-upgraded at any point without your knowledge, which could lead to undesired results (e.g. when we deprecate a feature in Streamlit).
+最好的做法是在 `requirements.txt` 中固定您的 Streamlit 版本。否则，版本可能在您不知情的情况下随时自动升级，这可能导致不期望的结果（例如，当我们在 Streamlit 中弃用功能时）。
 
-## App resources and limits
+## 应用资源和限制
 
-### Resource limits
+### 资源限制
 
-All Community Cloud users have access to the same resources and are subject to the same limits. These limits may change at any time without notice. If your app meets or exceeds its limits, it may slow down from throttling or become nonfunctional. The limits as of February 2024 are approximately as follows:
+所有 Community Cloud 用户都可以访问相同的资源，并受相同限制的约束。这些限制可能随时更改，恕不另行通知。如果您的应用达到或超过其限制，它可能会因限流而变慢或无法正常运行。截至 2024 年 2 月，限制大约如下：
 
-- CPU: 0.078 cores minimum, 2 cores maximum
-- Memory: 690MB minimum, 2.7GBs maximum
-- Storage: No minimum, 50GB maximum
+- CPU：最小 0.078 核，最大 2 核
+- 内存：最小 690MB，最大 2.7GB
+- 存储：无最小值，最大 50GB
 
-Symptoms that your app is running out of resources include the following:
+应用资源不足的症状包括以下几项：
 
-- Your app is running slowly.
-- Your app displays "🤯 This app has gone over its resource limits."
-- Your app displays "😦 Oh no."
+- 您的应用运行缓慢。
+- 您的应用显示"🤯 此应用已超过其资源限制"。
+- 您的应用显示"😦 哎呀"。
 
-### Good for the world
+### 对世界有益
 
-Streamlit offers increased resources for apps with good-for-the-world use cases. Generally, these apps are used by an educational institution or nonprofit organization, are part of an open-source project, or benefit the world in some way. If your app is **not** primarily used by a for-profit company you can [apply for increased resources](https://info.snowflake.com/streamlit-resource-increase-request.html).
+Streamlit 为具有对世界有益的用例的应用提供增加的资源。通常，这些应用由教育机构或非营利组织使用、属于开源项目的一部分，或以某种方式造福世界。如果您的应用 **不是** 主要由营利公司使用，您可以 [申请增加资源](https://info.snowflake.com/streamlit-resource-increase-request.html)。
 
-### Optimizing your app
+### 优化您的应用
 
-If your app is running slow or showing the error pages mentioned above, we first highly recommend going through and implementing the suggestions in the following blog posts to prevent your app from hitting the resource limits and to detect if your Streamlit app leaks memory:
+如果您的应用运行缓慢或显示上述错误页面，我们首先强烈建议您通读以下博客文章中的建议并加以实施，以防止您的应用达到资源限制，并检测您的 Streamlit 应用是否存在内存泄漏：
 
-- <a href="https://blog.streamlit.io/common-app-problems-resource-limits/" target="_blank">Common app problems: Resource limits</a>
-- <a href="https://blog.streamlit.io/3-steps-to-fix-app-memory-leaks/" target="_blank">3 steps to fix app memory leaks</a>
+- <a href="https://blog.streamlit.io/common-app-problems-resource-limits/" target="_blank">常见应用问题：资源限制</a>
+- <a href="https://blog.streamlit.io/3-steps-to-fix-app-memory-leaks/" target="_blank">修复应用内存泄漏的 3 个步骤</a>
 
-If your app exceeds its resource limits, developers and viewers alike will see "😦 Oh no."
+如果您的应用超过其资源限制，开发人员和查看者都会看到"😦 哎呀"。
 
 <div style={{ maxWidth: '70%', margin: 'auto' }}>
-<Image alt="App state: Oh no. Error running your app." src="/images/streamlit-community-cloud/app-state-oh-no.png" />
+<Image alt="应用状态：哎呀。运行应用时出错。" src="/images/streamlit-community-cloud/app-state-oh-no.png" />
 </div>
 
-If see "😦 Oh no." when viewing your app, first check your Cloud logs for any specific errors. If there are no errors in your Cloud logs you are likely dealing with a resource issue.
+如果查看应用时看到"😦 哎呀"，首先检查云日志以查找任何特定错误。如果云日志中没有错误，您可能正在处理资源问题。
 
-#### Developer view
+#### 开发者视图
 
-If you are signed in to a developer account for an app over its limits, you can access "**Manage app**" from the lower-right corner of the app to reboot it and clear its memory. "**Manage app**" will be red and have a warning icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>error</i>).
+如果您以超过限制的应用的开发者账户身份登录，您可以从应用右下角访问"**管理应用**"以重新启动应用并清除其内存。"**管理应用**"将显示为红色并带有警告图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>error</i>)。
 
-![Developer view: Oh no. Error running your app.](/images/streamlit-community-cloud/app-state-oh-no-developer.png)
+![开发者视图：哎呀。运行应用时出错。](/images/streamlit-community-cloud/app-state-oh-no-developer.png)
 
-### App hibernation
+### 应用休眠
 
-All apps without traffic for 12 hours go to sleep. Community Cloud hibernates apps to conserve resources and allow the best communal use of the platform. To keep your app awake, simply visit your app.
+12 小时无流量的所有应用都会进入休眠。Community Cloud 将应用置于休眠状态以节省资源并允许平台的最佳共享使用。要保持应用保持活跃，只需访问您的应用。
 
-When someone visits a sleeping app, they will see the sleeping page:
+当有人访问处于睡眠状态的应用时，他们将看到睡眠页面：
 
 <div style={{ maxWidth: '80%', margin: 'auto' }}>
-<Image alt="App state: Zzzz. This app has gone to sleep due to inactivity." src="/images/streamlit-community-cloud/app-state-zzzz.png" />
+<Image alt="应用状态：Zzzz。此应用由于不活动而进入睡眠。" src="/images/streamlit-community-cloud/app-state-zzzz.png" />
 </div>
 
-To wake the app up, click "**Yes, get this app back up!**" This can be done by *anyone* who has access to view the app, not just the app developer!
+要唤醒应用，请单击"**是的，让此应用重新启动！**"这可以由 *任何* 可以查看应用的人完成，而不仅仅是应用开发者！
 
-You can see which of your apps are asleep from your workspace. Sleeping apps have a moon icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>bedtime</i>) to the right.
+您可以从工作区查看哪些应用处于睡眠状态。睡眠应用右侧有一个月亮图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>bedtime</i>)。
 
-![App state: Zzzz. This app has gone to sleep due to inactivity](/images/streamlit-community-cloud/workspace-sleeping-app.png)
+![应用状态：Zzzz。此应用由于不活动而进入睡眠](/images/streamlit-community-cloud/workspace-sleeping-app.png)

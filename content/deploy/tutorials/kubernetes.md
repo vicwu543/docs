@@ -1,34 +1,34 @@
 ---
-title: Deploy Streamlit using Kubernetes
+title: 使用 Kubernetes 部署 Streamlit
 slug: /deploy/tutorials/kubernetes
-description: Learn how to deploy your Streamlit app using Kubernetes with Google Container Registry, OAuth authentication, and TLS support.
-keywords: kubernetes, k8s, deployment, gcr, google container registry, OAuth, authentication, tls, load balancer, orchestration
+description: 了解如何使用 Kubernetes 部署你的 Streamlit 应用，包括 Google Container Registry、OAuth 认证和 TLS 支持。
+keywords: kubernetes, k8s, 部署, gcr, google container registry, OAuth, 认证, tls, 负载均衡器, 编排
 ---
 
-# Deploy Streamlit using Kubernetes
+# 使用 Kubernetes 部署 Streamlit
 
-## Introduction
+## 介绍
 
-So you have an amazing app and you want to start sharing it with other people, what do you do? You have a few options. First, where do you want to run your Streamlit app, and how do you want to access it?
+你有一个了不起的应用，想开始与他人分享，你应该怎么做？你有几个选择。首先，你想在哪里运行你的 Streamlit 应用，你想如何访问它？
 
-- **On your corporate network** - Most corporate networks are closed to the outside world. You typically use a VPN to log onto your corporate network and access resources there. You could run your Streamlit app on a server in your corporate network for security reasons, to ensure that only folks internal to your company can access it.
-- **On the cloud** - If you'd like to access your Streamlit app from outside of a corporate network, or share your app with folks outside of your home network or laptop, you might choose this option. In this case, it'll depend on your hosting provider. We have [community-submitted guides](/knowledge-base/deploy/deploy-streamlit-heroku-aws-google-cloud) from Heroku, AWS, and other providers.
+- **在你的公司网络上** - 大多数公司网络与外部世界隔离。你通常使用 VPN 登录到公司网络并访问那里的资源。出于安全原因，你可以在公司网络的服务器上运行 Streamlit 应用，以确保只有公司内部的人才能访问它。
+- **在云上** - 如果你想从公司网络外部访问 Streamlit 应用，或与不在你的家庭网络或笔记本电脑上的人分享应用，你可能会选择此选项。在这种情况下，这取决于你的托管提供商。我们有来自 Heroku、AWS 和其他提供商的[社区提交的指南](/knowledge-base/deploy/deploy-streamlit-heroku-aws-google-cloud)。
 
-Wherever you decide to deploy your app, you will first need to containerize it. This guide walks you through using Kubernetes to deploy your app. If you prefer Docker see [Deploy Streamlit using Docker](/deploy/tutorials/docker).
+无论你决定在哪里部署应用，你首先需要将其容器化。本指南将指导你使用 Kubernetes 部署应用。如果你更喜欢 Docker，请参阅[使用 Docker 部署 Streamlit](/deploy/tutorials/docker)。
 
-## Prerequisites
+## 前置条件
 
-1. [Install Docker Engine](#install-docker-engine)
-2. [Install the gcloud CLI](#install-the-gcloud-cli)
+1. [安装 Docker Engine](#install-docker-engine)
+2. [安装 gcloud CLI](#install-the-gcloud-cli)
 
-### Install Docker Engine
+### 安装 Docker Engine
 
-If you haven't already done so, install [Docker](https://docs.docker.com/engine/install/#server) on your server. Docker provides `.deb` and `.rpm` packages from many Linux distributions, including:
+如果你还没有安装，请在服务器上安装 [Docker](https://docs.docker.com/engine/install/#server)。Docker 提供来自许多 Linux 发行版的 `.deb` 和 `.rpm` 包，包括：
 
 - [Debian](https://docs.docker.com/engine/install/debian/)
 - [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
-Verify that Docker Engine is installed correctly by running the `hello-world` Docker image:
+通过运行 `hello-world` Docker 镜像验证 Docker Engine 已正确安装：
 
 ```bash
 sudo docker run hello-world
@@ -36,23 +36,23 @@ sudo docker run hello-world
 
 <Tip>
 
-Follow Docker's official [post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/) to run Docker as a non-root user, so that you don't have to preface the `docker` command with `sudo`.
+遵循 Docker 的官方[Linux 后安装步骤](https://docs.docker.com/engine/install/linux-postinstall/)，以便以非 root 用户身份运行 Docker，这样你就不必在 `docker` 命令前加上 `sudo`。
 
 </Tip>
 
-### Install the gcloud CLI
+### 安装 gcloud CLI
 
-In this guide, we will orchestrate Docker containers with Kubernetes and host docker images on the Google Container Registry (GCR). As GCR is a Google-supported Docker registry, we need to register [`gcloud`](https://cloud.google.com/sdk/gcloud/reference) as the Docker credential helper.
+在本指南中，我们将使用 Kubernetes 编排 Docker 容器，并在 Google Container Registry (GCR) 上托管 docker 镜像。由于 GCR 是 Google 支持的 Docker 注册表，我们需要将 [`gcloud`](https://cloud.google.com/sdk/gcloud/reference) 注册为 Docker 凭证帮助程序。
 
-Follow the official documentation to [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install) and initialize it.
+按照官方文档[安装 gcloud CLI](https://cloud.google.com/sdk/docs/install) 并初始化它。
 
-## Create a Docker container
+## 创建 Docker 容器
 
-We need to create a docker container which contains all the dependencies and the application code. Below you can see the entrypoint, i.e. the command run when the container starts, and the Dockerfile definition.
+我们需要创建一个包含所有依赖和应用代码的 docker 容器。下面你可以看到入口点，即容器启动时运行的命令，以及 Dockerfile 定义。
 
-### Create an entrypoint script
+### 创建入口点脚本
 
-Create a `run.sh` script containing the following:
+创建一个包含以下内容的 `run.sh` 脚本：
 
 ```bash
 #!/bin/bash
@@ -83,11 +83,11 @@ APP_ID=${!}
 wait ${APP_ID}
 ```
 
-### Create a Dockerfile
+### 创建 Dockerfile
 
-Docker builds images by reading the instructions from a `Dockerfile`. A `Dockerfile` is a text document that contains all the commands a user could call on the command line to assemble an image. Learn more in the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/). The [docker build](https://docs.docker.com/engine/reference/commandline/build/) command builds an image from a `Dockerfile`. The [docker run](https://docs.docker.com/engine/reference/commandline/run/) command first creates a container over the specified image, and then starts it using the specified command.
+Docker 通过读取 `Dockerfile` 中的指令来构建镜像。`Dockerfile` 是一个文本文档，包含用户可在命令行上调用以组建镜像的所有命令。在 [Dockerfile 参考](https://docs.docker.com/engine/reference/builder/)中了解更多信息。[docker build](https://docs.docker.com/engine/reference/commandline/build/) 命令从 `Dockerfile` 构建镜像。[docker run](https://docs.docker.com/engine/reference/commandline/run/) 命令首先在指定的镜像上创建一个容器，然后使用指定的命令启动它。
 
-Here's an example `Dockerfile` that you can add to the root of your directory.
+下面是一个可以添加到目录根目录的示例 `Dockerfile`。
 
 ```docker
 FROM python:3.9-slim
@@ -121,14 +121,14 @@ ENTRYPOINT ["./run.sh"]
 
 <Important>
 
-As mentioned in [Development flow](/get-started/fundamentals/main-concepts#development-flow), for Streamlit version 1.10.0 and higher, Streamlit apps cannot be run from the root directory of Linux distributions. Your main script should live in a directory other than the root directory. If you try to run a Streamlit app from the root directory, Streamlit will throw a `FileNotFoundError: [Errno 2] No such file or directory` error. For more information, see GitHub issue [#5239](https://github.com/streamlit/streamlit/issues/5239).
+如[开发流程](/get-started/fundamentals/main-concepts#development-flow)中所述，对于 Streamlit 版本 1.10.0 及更高版本，Streamlit 应用无法从 Linux 发行版的根目录运行。你的主脚本应该位于除根目录之外的目录中。如果你尝试从根目录运行 Streamlit 应用，Streamlit 将抛出 `FileNotFoundError: [Errno 2] No such file or directory` 错误。有关更多信息，请参阅 GitHub 问题 [#5239](https://github.com/streamlit/streamlit/issues/5239)。
 
-If you are using Streamlit version 1.10.0 or higher, you must set the `WORKDIR` to a directory other than the root directory. For example, you can set the `WORKDIR` to `/home/appuser` as shown in the example `Dockerfile` above.
+如果你使用的是 Streamlit 版本 1.10.0 或更高版本，你必须将 `WORKDIR` 设置为除根目录以外的目录。例如，你可以将 `WORKDIR` 设置为 `/home/appuser`，如上面的示例 `Dockerfile` 中所示。
 </Important>
 
-### Build a Docker image
+### 构建 Docker 镜像
 
-Put the above files (`run.sh` and `Dockerfile`) in the same folder and build the docker image:
+将上述文件（`run.sh` 和 `Dockerfile`）放在同一文件夹中并构建 docker 镜像：
 
 ```docker
 docker build --platform linux/amd64 -t gcr.io/<GCP_PROJECT_ID>/k8s-streamlit:test .
@@ -136,44 +136,44 @@ docker build --platform linux/amd64 -t gcr.io/<GCP_PROJECT_ID>/k8s-streamlit:tes
 
 <Important>
 
-Replace `<GCP_PROJECT_ID>` in the above command with the name of your Google Cloud project.
+将上述命令中的 `<GCP_PROJECT_ID>` 替换为你的 Google Cloud 项目的名称。
 
 </Important>
 
-### Upload the Docker image to a container registry
+### 将 Docker 镜像上传到容器注册表
 
-The next step is to upload the Docker image to a container registry. In this example, we will use the [Google Container Registry (GCR)](https://cloud.google.com/container-registry). Start by enabling the Container Registry API. Sign in to Google Cloud and navigate to your project’s **Container Registry** and click **Enable**.
+下一步是将 Docker 镜像上传到容器注册表。在本示例中，我们将使用 [Google Container Registry (GCR)](https://cloud.google.com/container-registry)。首先启用 Container Registry API。登录 Google Cloud 并导航到你的项目的 **Container Registry**，然后单击 **Enable**。
 
-We can now build the Docker image from the previous step and push it to our project’s GCR. Be sure to replace `<GCP_PROJECT_ID>` in the docker push command with the name of your project:
+我们现在可以从上一步构建 Docker 镜像并将其推送到我们的项目的 GCR。确保将 docker push 命令中的 `<GCP_PROJECT_ID>` 替换为你的项目名称：
 
 ```bash
 gcloud auth configure-docker
 docker push gcr.io/<GCP_PROJECT_ID>/k8s-streamlit:test
 ```
 
-## Create a Kubernetes deployment
+## 创建 Kubernetes 部署
 
-For this step you will need a:
+对于此步骤，你需要：
 
-- Running Kubernetes service
-- Custom domain for which you can generate a TLS certificate
-- DNS service where you can configure your custom domain to point to the application IP
+- 正在运行的 Kubernetes 服务
+- 可以为其生成 TLS 证书的自定义域
+- DNS 服务，你可以在其中配置你的自定义域以指向应用程序 IP
 
-As the image was uploaded to the container registry in the previous step, we can run it in Kubernetes using the below configurations.
+由于镜像在上一步中已上传到容器注册表，我们可以使用以下配置在 Kubernetes 中运行它。
 
-### Install and run Kubernetes
+### 安装和运行 Kubernetes
 
-Make sure your [Kubernetes client](https://kubernetes.io/docs/tasks/tools/#kubectl), `kubectl`, is installed and running on your machine.
+确保你的 [Kubernetes 客户端](https://kubernetes.io/docs/tasks/tools/#kubectl) `kubectl` 已安装并在你的机器上运行。
 
-### Configure a Google OAuth Client and OAuth2-Proxy
+### 配置 Google OAuth 客户端和 OAuth2-Proxy
 
-For configuring the Google OAuth Client, please see [Google Auth Provider](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider#google-auth-provider). Configure OAuth2-Proxy to use the desired [OAuth Provider Configuration](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider) and update the OAuth2-Proxy config in the config map.
+有关配置 Google OAuth 客户端，请参阅 [Google Auth Provider](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider#google-auth-provider)。将 OAuth2-Proxy 配置为使用所需的 [OAuth 提供商配置](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/oauth_provider)，并更新配置映射中的 OAuth2-Proxy 配置。
 
-The below configuration contains an OAuth2-Proxy sidecar container which handles the authentication with Google. You can learn more from the [`oauth2-proxy` repository](https://github.com/oauth2-proxy/oauth2-proxy).
+以下配置包含一个处理 Google 认证的 OAuth2-Proxy sidecar 容器。你可以从 [`oauth2-proxy` 仓库](https://github.com/oauth2-proxy/oauth2-proxy)了解更多信息。
 
-### Create a Kubernetes configuration file
+### 创建 Kubernetes 配置文件
 
-Create a [YAML](https://yaml.org/) [configuration file](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#organizing-resource-configurations) named `k8s-streamlit.yaml`:
+创建一个名为 `k8s-streamlit.yaml` 的 [YAML](https://yaml.org/) [配置文件](https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#organizing-resource-configurations)：
 
 ```yaml
 apiVersion: v1
@@ -273,26 +273,26 @@ spec:
 
 <Important>
 
-While the above configurations can be copied verbatim, you will have to update the following placeholders: `<GOOGLE_CLIENT_ID>`, `<GOOGLE_CLIENT_SECRET>`, `<REDIRECT_URL>`, and `<GCP_PROJECT_ID>`.
+虽然上述配置可以逐字复制，但你必须更新以下占位符：`<GOOGLE_CLIENT_ID>`、`<GOOGLE_CLIENT_SECRET>`、`<REDIRECT_URL>` 和 `<GCP_PROJECT_ID>`。
 
 </Important>
 
-Now create the configuration from the file in Kubernetes with the [`kubectl create`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create) command:
+现在使用 [`kubectl create`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create) 命令从文件在 Kubernetes 中创建配置：
 
 ```bash
 kubctl create -f k8s-streamlit.yaml
 ```
 
-### Set up TLS support
+### 设置 TLS 支持
 
-Since you are using the Google authentication, you will need to set up TLS support. Find out how in [TLS Configuration](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/tls).
+由于你使用 Google 认证，你需要设置 TLS 支持。在 [TLS 配置](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/tls)中了解如何执行此操作。
 
-### Verify the deployment
+### 验证部署
 
-Once the deployment and the service are created, we need to wait a couple of minutes for the public IP address to become available. We can check when that is ready by running:
+创建部署和服务后，我们需要等待几分钟才能获得公开 IP 地址。我们可以通过运行以下命令来检查何时准备好：
 
 ```bash
 kubectl get service streamlit-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 
-After the public IP is assigned, you will need to configure in your DNS service an `A record` pointing to the above IP address.
+分配公开 IP 后，你需要在 DNS 服务中配置指向上述 IP 地址的 `A 记录`。

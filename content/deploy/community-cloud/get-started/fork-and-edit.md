@@ -1,44 +1,44 @@
 ---
-title: Fork and edit a public app
+title: Fork和编辑公共应用
 slug: /deploy/streamlit-community-cloud/get-started/fork-and-edit-a-public-app
-description: Learn how to fork and edit public Streamlit apps from Community Cloud with GitHub Codespaces for immediate development.
-keywords: fork, public app, edit, github codespaces, development, repository, subdomain, customization
+description: 了解如何从Community Cloud中fork和编辑公共Streamlit应用，使用GitHub Codespaces进行即时开发。
+keywords: fork, 公共应用, 编辑, github codespaces, 开发, 仓库, 子域, 自定义
 ---
 
-# Fork and edit a public app
+# Fork和编辑公共应用
 
-Community Cloud is all about learning, sharing, and exploring the world of Streamlit. For apps with public repositories, you can quickly fork copies to your GitHub account, deploy your own version, and jump into a codespace on GitHub to start editing and exploring Streamlit code.
+Community Cloud就是关于学习、分享和探索Streamlit世界。对于具有公共仓库的应用，你可以快速fork副本到你的GitHub账户、部署你自己的版本并跳入GitHub上的codespace以开始编辑和探索Streamlit代码。
 
-1. From a forkable app, in the upper-right corner, click "**Fork**."
+1. 从可fork的应用，在右上角点击"**Fork**"。
 
-   ![Click Fork in the upper-right corner of a public app](/images/streamlit-community-cloud/fork-public-hello.png)
+   ![在公共应用的右上角点击Fork](/images/streamlit-community-cloud/fork-public-hello.png)
 
-1. Optional: In the "App URL" field, choose a custom subdomain for your app.
+1. 可选：在"应用URL"字段中，为你的应用选择自定义子域。
 
-   Every Community Cloud app is deployed to a subdomain on `streamlit.app`, but you can change your app's subdomain at any time. For more information, see [App settings](/deploy/streamlit-community-cloud/manage-your-app/app-settings).
+   每个Community Cloud应用都部署到`streamlit.app`上的子域，但你可以随时更改应用的子域。有关更多信息，请参阅[应用设置](/deploy/streamlit-community-cloud/manage-your-app/app-settings)。
 
-1. Click "**Fork!**"
+1. 点击"**Fork!**"
 
-   The repository will be forked to your GitHub account. If you have already forked the repository, Community Cloud will use the existing fork. If your existing fork already has an associated codespace, the codespace will be reused.
+   仓库将被fork到你的GitHub账户。如果你已经fork了仓库，Community Cloud将使用现有的fork。如果你现有的fork已经有关联的codespace，codespace将被重用。
 
    <Warning>
-      Do not use this method in the following situations:
-      - You have an existing repository that matches the fork name (but isn't a fork of this app).
-      - You have an existing fork of this app, but you've changed the name of the repository.
+      在以下情况下不要使用此方法：
+      - 你有与fork名称匹配的现有仓库（但不是此应用的fork）。
+      - 你有此应用的现有fork，但你已更改仓库的名称。
 
-   If you have an existing fork of this app and kept the original repository name, Community Cloud will use your existing fork. If you've previously deployed the app and opened a codespace, Community Cloud will open your existing codespace.
+   如果你有此应用的现有fork并保持了原始仓库名称，Community Cloud将使用你现有的fork。如果你之前部署了应用并打开了codespace，Community Cloud将打开你现有的codespace。
    </Warning>
 
-   ![Click Fork to confirm and deploy your app](/images/streamlit-community-cloud/fork-public-hello-deploy.png)
+   ![点击Fork以确认和部署你的应用](/images/streamlit-community-cloud/fork-public-hello-deploy.png)
 
-1. Wait for GitHub to set up your codespace.
+1. 等待GitHub设置你的codespace。
 
-   It can take several minutes to fully initialize your codespace. After the Visual Studio Code editor appears in your codespace, it can take several minutes to install Python and start the Streamlit server. When complete, a split screen view displays a code editor on the left and a running app on the right. The code editor opens two tabs by default: the repository's readme file and the app's entrypoint file.
+   完全初始化你的codespace可能需要几分钟。在Visual Studio Code编辑器出现在你的codespace中后，安装Python并启动Streamlit服务器可能需要几分钟。完成后，分割屏幕视图在左侧显示代码编辑器，在右侧显示运行应用。代码编辑器默认打开两个选项卡：仓库的readme文件和应用的入口文件。
 
-   ![Click Fork to confirm and deploy your app](/images/streamlit-community-cloud/fork-public-hello-codespace.png)
+   ![点击Fork以确认和部署你的应用](/images/streamlit-community-cloud/fork-public-hello-codespace.png)
 
    <Important>
-      The app displayed in your codespace is not the same instance you deployed on Community Cloud. Your codespace is a self-contained development environment. When you make edits inside a codespace, those edits don't leave the codespace until you commit them to your repository. When you commit your changes to your repository, Community Cloud detects the changes and updates your deployed app. To learn more, see [Edit your app](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app).
+      你的codespace中显示的应用不是你在Community Cloud上部署的同一个实例。你的codespace是一个独立的开发环境。当你在codespace内进行编辑时，这些编辑在你提交到仓库之前不会离开codespace。当你提交更改到仓库时，Community Cloud检测更改并更新你部署的应用。要了解更多，请参阅[编辑你的应用](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app)。
    </Important>
 
-1. Edit your newly forked app as desired. For more instructions on working with GitHub Codespaces, see [Edit your app](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app).
+1. 根据需要编辑你新fork的应用。有关使用GitHub Codespaces的更多说明，请参阅[编辑你的应用](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app)。

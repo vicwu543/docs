@@ -1,25 +1,25 @@
 ---
-title: First steps building Streamlit apps
+title: 构建 Streamlit 应用的第一步
 slug: /get-started/tutorials
-description: Build your first Streamlit apps with step-by-step tutorials for creating single-page and multi-page applications.
+description: 通过分步骤教程为创建单页和多页应用构建您的第一个 Streamlit 应用。
 keywords: first app tutorial, create app, multipage app, beginner tutorial, hands-on tutorial, streamlit tutorial, getting started tutorial
 ---
 
-# First steps building Streamlit apps
+# 构建 Streamlit 应用的第一步
 
-If you've just read through our [Basic concepts](/get-started/fundamentals/main-concepts) and want to get your hands on Streamlit. Check out these tutorials. Make sure you have [installed Streamlit](/get-started/installation) so you can execute the code yourself.
+如果您刚刚阅读了我们的 [基本概念](/get-started/fundamentals/main-concepts) 并想开始学习 Streamlit。查看这些教程。确保您已 [安装 Streamlit](/get-started/installation) 以便您可以自己执行代码。
 
 <InlineCalloutContainer>
     <InlineCallout
         color="orange-70"
         icon="description"
-        bold="Create an app"
+        bold="创建应用"
         href="/get-started/tutorials/create-an-app"
-    >uses the concepts learned in Fundamentals along with caching to walk through making your first app.</InlineCallout>
+    >使用基础知识中学到的概念以及缓存来指导您创建第一个应用。</InlineCallout>
     <InlineCallout
         color="orange-70"
         icon="auto_stories"
-        bold="Create a multipage app"
+        bold="创建多页应用"
         href="/get-started/tutorials/create-a-multipage-app"
-    >walks through the easy steps to add pages to your app.</InlineCallout>
+    >完成向您的应用添加页面的简单步骤。</InlineCallout>
 </InlineCalloutContainer>

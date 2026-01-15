@@ -1,7 +1,7 @@
 ---
 title: st.experimental_get_query_params
 slug: /develop/api-reference/caching-and-state/st.experimental_get_query_params
-description: st.experimental_get_query_params returns query parameters currently showing in the browser's URL bar.
+description: st.experimental_get_query_params 返回当前显示在浏览器 URL 栏中的查询参数。
 keywords: experimental_get_query_params, query parameters, url, browser, deprecated, experimental, get
 ---
 

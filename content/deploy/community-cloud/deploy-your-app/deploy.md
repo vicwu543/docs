@@ -1,88 +1,88 @@
 ---
-title: Deploy your app on Community Cloud
+title: 在Community Cloud上部署你的应用
 slug: /deploy/streamlit-community-cloud/deploy-your-app/deploy
-description: Step-by-step guide to deploy your Streamlit app on Community Cloud including repository selection, configuration, and deployment process.
-keywords: deploy, community cloud, repository, entrypoint, python version, secrets, subdomain, deployment process
+description: 分步指南，在Community Cloud上部署Streamlit应用，包括仓库选择、配置和部署过程。
+keywords: 部署, community cloud, 仓库, 入口文件, python版本, 秘密, 子域, 部署过程
 ---
 
-# Deploy your app on Community Cloud
+# 在Community Cloud上部署你的应用
 
-After you've [organized your files](/deploy/streamlit-community-cloud/deploy-your-app/file-organization) and [added your dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies) as described on the previous pages, you're ready to deploy your app to Community Cloud!
+在你[整理了你的文件](/deploy/streamlit-community-cloud/deploy-your-app/file-organization)和[添加了你的依赖](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies)如前面页面所述后，你已准备好将你的应用部署到Community Cloud！
 
-## Select your repository and entrypoint file
+## 选择你的仓库和入口文件
 
-1. From your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, in the upper-right corner, click "**Create app**."
+1. 从你在 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> 的工作空间，在右上角点击"**创建应用**"。
 
-   ![Deploy a new app from your workspace](/images/streamlit-community-cloud/deploy-empty-new-app.png)
+   ![从你的工作空间部署新应用](/images/streamlit-community-cloud/deploy-empty-new-app.png)
 
-1. When asked "Do you already have an app?" click "**Yup, I have an app**."
-1. Fill in your repository, branch, and file path. Alternatively, to paste a link directly to `your_app.py` on GitHub, click "**Paste GitHub URL**."
-1. Optional: In the "App URL" field, choose a subdomain for your new app.
+1. 当被问及"你已经有应用吗？"时，点击"**是的，我有应用**"。
+1. 填入你的仓库、分支和文件路径。或者，要直接粘贴GitHub上的`your_app.py`链接，点击"**粘贴GitHub URL**"。
+1. 可选：在"应用URL"字段中，为你的新应用选择一个子域。
 
-   Every Community Cloud app is deployed to a subdomain on `streamlit.app`, but you can change your app's subdomain at any time. For more information, see [App settings](/deploy/streamlit-community-cloud/manage-your-app/app-settings). In the following example, Community Cloud will deploy an app to `https://red-balloon.streamlit.app/`.
+   每个Community Cloud应用都部署到`streamlit.app`上的子域，但你可以随时更改应用的子域。有关更多信息，请参阅[应用设置](/deploy/streamlit-community-cloud/manage-your-app/app-settings)。在下面的示例中，Community Cloud将应用部署到`https://red-balloon.streamlit.app/`。
 
-   ![Fill in your app's information to deploy your app](/images/streamlit-community-cloud/deploy-an-app.png)
+   ![填入你的应用信息以部署你的应用](/images/streamlit-community-cloud/deploy-an-app.png)
 
-   Although Community Cloud attempts to suggest available repositories and files, these suggestions are not always complete. If the desired information is not listed for any field, enter it manually.
+   尽管Community Cloud尝试建议可用的仓库和文件，这些建议并不总是完整的。如果任何字段中找不到所需的信息，请手动输入。
 
-## Optional: Configure secrets and Python version
+## 可选：配置秘密和Python版本
 
 <Note>
 
-Streamlit Community Cloud supports all released [versions of Python that are still receiving security updates](https://devguide.python.org/versions/). Streamlit Community Cloud defaults to version 3.12. You can select a version of your choice from the "Python version" dropdown in the "Advanced settings" modal. If an app is running a version of Python that becomes unsupported, it will be forcibly upgraded to the oldest supported version of Python and may break.
+Streamlit Community Cloud支持所有仍在接收安全更新的发布的 [Python版本](https://devguide.python.org/versions/)。Streamlit Community Cloud默认为版本3.12。你可以从"高级设置"模态框中的"Python版本"下拉菜单中选择你选择的版本。如果应用运行的Python版本变得不支持，它将被强制升级到最旧的受支持的Python版本，可能会出现问题。
 
 </Note>
 
-1. Click "**Advanced settings**."
-1. Select your desired version of Python.
-1. To define environment variables and secrets, in the "Secrets" field, paste the contents of your `secrets.toml` file.
+1. 点击"**高级设置**"。
+1. 选择你想要的Python版本。
+1. 要定义环境变量和秘密，在"秘密"字段中粘贴你的`secrets.toml`文件的内容。
 
-   For more information, see [Community Cloud secrets management](/deploy/streamlit-community-cloud/deploy-your-app/secrets-management).
+   有关更多信息，请参阅[Community Cloud秘密管理](/deploy/streamlit-community-cloud/deploy-your-app/secrets-management)。
 
-1. Click "**Save**."
+1. 点击"**保存**"。
 
 <div style={{ maxWidth: '70%', margin: 'auto' }}>
-<Image alt="Advanced settings for deploying your app" src="/images/streamlit-community-cloud/deploy-an-app-advanced.png" />
+<Image alt="部署你的应用的高级设置" src="/images/streamlit-community-cloud/deploy-an-app-advanced.png" />
 </div>
 
-## Watch your app launch
+## 观看你的应用启动
 
-Your app is now being deployed, and you can watch while it launches. Most apps are deployed within a few minutes, but if your app has a lot of dependencies, it may take longer. After the initial deployment, changes to your code should be reflected immediately in your app. Changes to your dependencies will be processed immediately, but may take a few minutes to install.
+你的应用现在正在被部署，你可以在它启动时观看。大多数应用在几分钟内部署，但如果你的应用有很多依赖，可能需要更长时间。初始部署后，对代码的更改应该立即反映在你的应用中。对依赖的更改将立即处理，但可能需要几分钟时间来安装。
 
-![Watch your app launch](/images/streamlit-community-cloud/deploy-an-app-provisioning.png)
+![观看你的应用启动](/images/streamlit-community-cloud/deploy-an-app-provisioning.png)
 
 <Note>
 
-The Streamlit Community Cloud logs on the right-hand side of your app are only viewable to users with write access to your repository. These logs help you debug any issues with the app. Learn more about [Streamlit Community Cloud logs](/deploy/streamlit-community-cloud/manage-your-app#cloud-logs).
+Streamlit Community Cloud日志在你的应用右侧只对具有仓库写入权限的用户可见。这些日志帮助你调试应用的任何问题。了解更多关于[Streamlit Community Cloud日志](/deploy/streamlit-community-cloud/manage-your-app#cloud-logs)。
 
 </Note>
 
 <a name="your-app-url"></a>
 
-## View your app
+## 查看你的应用
 
-That's it&mdash;you're done! Your app now has a unique URL that you can share with others. Read more about how to [Share your app](/deploy/streamlit-community-cloud/share-your-app) with viewers.
+就这样&mdash;你完成了！你的应用现在有一个你可以与他人共享的唯一URL。阅读更多关于如何与查看者[共享你的应用](/deploy/streamlit-community-cloud/share-your-app)。
 
-### Unique subdomains
+### 唯一的子域
 
-If the "**Custom subdomain (optional)**" field is blank when you deploy your app, a URL is assigned following a structure based on your GitHub repo. The subdomain of the URL is a dash-separated list of the following:
+如果在部署应用时"**自定义子域（可选）**"字段为空，将根据你的GitHub仓库结构分配一个URL。URL的子域是以下内容的破折号分隔列表：
 
-- Repository owner (GitHub user or organization)
-- Repository name
-- Entrypoint file path
-- Branch name, if other than `main` or `master`
-- A random hash
+- 仓库所有者（GitHub用户或组织）
+- 仓库名称
+- 入口文件路径
+- 分支名称（如果不是`main`或`master`）
+- 随机哈希
 
 ```bash
 https://[GitHub username or organization]-[repo name]-[app path]-[branch name]-[short hash].streamlit.app
 ```
 
-For example, the following app is deployed from the `streamlit` organization. The repo is `demo-self-driving` and the app name is `streamlit_app.py` in the root directory. The branch name is `master` and therefore not included.
+例如，以下应用从`streamlit`组织部署。仓库是`demo-self-driving`，应用名称是根目录中的`streamlit_app.py`。分支名称是`master`，因此不包括在内。
 
 ```bash
 https://streamlit-demo-self-driving-streamlit-app-8jya0g.streamlit.app
 ```
 
-### Custom subdomains
+### 自定义子域
 
-Setting a custom subdomain makes it much easier to share your app because you can choose something memorable. To learn how to change the subdomain of a deployed app, see [View or change your app's URL](/deploy/streamlit-community-cloud/manage-your-app/app-settings#view-or-change-your-apps-url).
+设置自定义子域使共享你的应用变得容易得多，因为你可以选择容易记住的名称。要了解如何更改已部署应用的子域，请参阅[查看或更改你的应用URL](/deploy/streamlit-community-cloud/manage-your-app/app-settings#view-or-change-your-apps-url)。

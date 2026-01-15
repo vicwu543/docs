@@ -1,7 +1,7 @@
 ---
 title: st.button
 slug: /develop/api-reference/widgets/st.button
-description: st.button displays a button widget.
+description: st.button 显示按钮小部件。
 keywords: st.button, button, click button, interactive button, button widget, user interaction, button click, action button
 ---
 
@@ -9,14 +9,14 @@ keywords: st.button, button, click button, interactive button, button widget, us
 
 ### Advanced functionality
 
-Although a button is the simplest of input widgets, it's very common for buttons to be deeply tied to the use of [`st.session_state`](/develop/api-reference/caching-and-state/st.session_state). Check out our advanced guide on [Button behavior and examples](/develop/concepts/design/buttons).
+虽然按钮是最简单的输入小部件，但按钮通常与 [`st.session_state`](/develop/api-reference/caching-and-state/st.session_state) 的使用紧密相关。请查看我们关于[按钮行为和示例](/develop/concepts/design/buttons)的进阶指南。
 
 ### Featured videos
 
-Check out our video on how to use one of Streamlit's core functions, the button!
+查看我们关于如何使用 Streamlit 核心功能之一的视频：按钮！
 
 <YouTube videoId="JSeQSnGovSE" />
 
-In the video below, we'll take it a step further and learn how to combine a [button](/develop/api-reference/widgets/st.button), [checkbox](/develop/api-reference/widgets/st.checkbox) and [radio button](/develop/api-reference/widgets/st.radio)!
+在下面的视频中，我们将更进一步，学习如何组合[按钮](/develop/api-reference/widgets/st.button)、[复选框](/develop/api-reference/widgets/st.checkbox)和[单选按钮](/develop/api-reference/widgets/st.radio)！
 
 <YouTube videoId="EnXJBsCIl_A" />

@@ -1,33 +1,27 @@
 ---
-title: Share previews
+title: 共享预览
 slug: /deploy/streamlit-community-cloud/share-your-app/share-previews
-description: Learn how to create compelling share previews for social media with custom titles and descriptions for your Streamlit app.
-keywords: share previews, social media, title, description, preview image, twitter, facebook, linkedin, sharing, optimization
+description: 了解如何为社交媒体创建吸引人的共享预览，具有Streamlit应用的自定义标题和描述。
+keywords: 共享预览, 社交媒体, 标题, 描述, 预览图像, twitter, facebook, linkedin, 共享, 优化
 ---
 
-# Share previews
+# 共享预览
 
-Social media sites generate a card with a title, preview image, and description when you share a link. This feature is called a "share preview." In the same way, when you share a link to a public Streamlit app on social media, a share preview is also generated. Here's an example of a share preview for a public Streamlit app posted on Twitter:
-
-<div style={{ marginLeft: '3em' }}>
-    <Flex>
-    <Image caption="Share preview for a public Streamlit app" src="/images/streamlit-community-cloud/share-preview-twitter-annotated.png" />
-    </Flex>
-</div>
+当你分享链接时，社交媒体网站会生成一张带有标题、预览图像和描述的卡片。此功能称为"共享预览"。同样，当你在社交媒体上分享公开Streamlit应用的链接时，也会生成共享预览。以下是在Twitter上发布的公开Streamlit应用的共享预览示例：
 
 <Note>
 
-Share previews are generated only for public apps deployed on Streamlit Community Cloud.
+共享预览仅为部署在Streamlit Community Cloud上的公开应用生成。
 
 </Note>
 
-## Titles
+## 标题
 
-The title is the text that appears at the top of the share preview. The text also appears in the browser tab when you visit the app. You should set the title to something that will make sense to your app's audience and describe what the app does. It is best practice to keep the title concise, ideally under 60 characters.
+标题是显示在共享预览顶部的文本。访问应用时，文本也出现在浏览器选项卡中。你应该将标题设置为对应用受众有意义并描述应用功能的内容。最佳做法是保持标题简洁，理想情况下少于60个字符。
 
-There are two ways to set the title of a share preview:
+有两种方法可以设置共享预览的标题：
 
-1. Set the `page_title` parameter in [`st.set_page_config()`](/develop/api-reference/configuration/st.set_page_config) to your desired title. E.g.:
+1. 将[`st.set_page_config()`](/develop/api-reference/configuration/st.set_page_config)中的`page_title`参数设置为你想要的标题。例如：
 
    ```python
    import streamlit as st
@@ -37,28 +31,22 @@ There are two ways to set the title of a share preview:
    # ... rest of your app
    ```
 
-2. If you don't set the `page_title` parameter, the title of the share preview will be the name of your app's GitHub repository. For example, the default title for an app hosted on GitHub at <a href="https://github.com/jrieke/traingenerator" target="_blank">github.com/jrieke/traingenerator</a> will be "traingenerator".
+2. 如果不设置`page_title`参数，共享预览的标题将是应用GitHub仓库的名称。例如，对于托管在GitHub上的应用的默认标题为"traingenerator"。
 
-## Descriptions
+## 描述
 
-The description is the text that appears below the title in the share preview. The description should summarize what the app does and ideally should be under 100 characters.
+描述是显示在共享预览标题下方的文本。描述应该总结应用功能，理想情况下应少于100个字符。
 
-Streamlit pulls the description from the README in the app's GitHub repository. If there is no README, the description will default to:
+Streamlit从应用的GitHub仓库的README中提取描述。如果没有README，描述将默认为：
 
-_This app was built in Streamlit! Check it out and visit https://streamlit.io for more awesome community apps. 🎈_
+"此应用在Streamlit中构建！查看它并访问https://streamlit.io以获取更多精彩社区应用。🎈"
 
-<div style={{ marginLeft: '6em' }}>
-    <Flex>
-    <Image caption="Default share preview when a description is missing" src="/images/streamlit-community-cloud/share-preview-private-app.png" />
-    </Flex>
-</div>
+如果你想让共享预览看起来很好，并希望用户分享你的应用并点击你的链接，你应该在应用的GitHub仓库的README中写一个很好的描述。
 
-If you want your share previews to look great and want users to share your app and click on your links, you should write a good description in the README of your app’s GitHub repository.
+## 预览图像
 
-## Preview images
+Streamlit Community Cloud每天对应用进行一次屏幕截图，并将其用作预览图像，不像从应用代码或GitHub仓库直接提取的标题和描述。此屏幕截图可能需要长达24小时才能更新。
 
-Streamlit Community Cloud takes a screenshot of your app once a day and uses it as the preview image, unlike titles and descriptions which are pulled directly from your app's code or GitHub repository. This screenshot may take up to 24 hours to update.
+### 将应用从公开转换为私有
 
-### Switching your app from public to private
-
-If you initially made your app public and later decided to make it private, we will stop generating share previews for the app. However, it may take up to 24 hours for the share previews to stop appearing.
+如果你最初将应用设为公开，后来决定将其设为私有，我们将停止为应用生成共享预览。但是，共享预览可能需要长达24小时才能停止出现。

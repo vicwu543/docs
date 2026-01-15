@@ -1,62 +1,58 @@
 ---
-title: Components
+title: 组件
 slug: /develop/concepts/custom-components
-description: Learn how to build and use custom Streamlit components to extend app functionality with third-party Python modules and custom UI elements.
-keywords: custom components, third-party modules, component development, extend functionality, custom UI, component integration, Streamlit components
+description: 了解如何构建和使用自定义 Streamlit 组件，以使用第三方 Python 模块和自定义 UI 元素扩展应用功能。
+keywords: 自定义组件, 第三方模块, 组件开发, 扩展功能, 自定义 UI, 组件集成, Streamlit 组件
 ---
 
-# Custom Components
+# 自定义组件
 
-Components are third-party Python modules that extend what's possible with Streamlit.
+组件是扩展 Streamlit 可能性的第三方 Python 模块。
 
-## How to use a Component
+## 如何使用组件
 
-Components are super easy to use:
+组件非常容易使用：
 
-1. Start by finding the Component you'd like to use. Two great resources for this are:
-   - The [Component gallery](https://streamlit.io/components)
-   - [This thread](https://discuss.streamlit.io/t/streamlit-components-community-tracker/4634),
-     by Fanilo A. from our forums.
+1. 首先找到您想要使用的组件。两个很好的资源是：
+   - [组件画廊](https://streamlit.io/components)
+   - [此线程](https://discuss.streamlit.io/t/streamlit-components-community-tracker/4634)，
+     由我们的论坛的 Fanilo A. 提供。
 
-2. Install the Component using your favorite Python package manager. This step and all following
-   steps are described in your component's instructions.
+2. 使用您喜欢的 Python 包管理器安装组件。此步骤以及所有后续步骤都在您的组件说明中描述。
 
-   For example, to use the fantastic [AgGrid
-   Component](https://github.com/PablocFonseca/streamlit-aggrid), you first install it with:
+   例如，要使用出色的 [AgGrid 组件](https://github.com/PablocFonseca/streamlit-aggrid)，您首先使用以下命令安装它：
 
    ```python
    pip install streamlit-aggrid
    ```
 
-3. In your Python code, import the Component as described in its instructions. For AgGrid, this step
-   is:
+3. 在您的 Python 代码中，按照其说明导入组件。对于 AgGrid，此步骤是：
 
    ```python
    from st_aggrid import AgGrid
    ```
 
-4. ...now you're ready to use it! For AgGrid, that's:
+4. ...现在您准备好使用它了！对于 AgGrid，就是：
 
    ```python
    AgGrid(my_dataframe)
    ```
 
-## Making your own Component
+## 制作您自己的组件
 
-If you're interested in making your own component, check out the following resources:
+如果您有兴趣制作自己的组件，请查看以下资源：
 
-- [Create a Component](/develop/concepts/custom-components/create)
-- [Publish a Component](/develop/concepts/custom-components/publish)
-- [Components API](/develop/concepts/custom-components/intro)
-- [Blog post for when we launched Components!](https://blog.streamlit.io/introducing-streamlit-components/)
+- [创建组件](/develop/concepts/custom-components/create)
+- [发布组件](/develop/concepts/custom-components/publish)
+- [组件 API](/develop/concepts/custom-components/intro)
+- [我们推出组件时的博客文章！](https://blog.streamlit.io/introducing-streamlit-components/)
 
-Alternatively, if you prefer to learn using videos, our engineer Tim Conkling has put together some
-amazing tutorials:
+或者，如果您喜欢使用视频学习，我们的工程师 Tim Conkling 准备了一些令人惊叹的教程：
 
-##### Video tutorial, part 1
+##### 视频教程，第 1 部分
 
 <YouTube videoId="BuD3gILJW-Q" />
 
-##### Video tutorial, part 2
+##### 视频教程，第 2 部分
 
 <YouTube videoId="QjccJl_7Jco" />

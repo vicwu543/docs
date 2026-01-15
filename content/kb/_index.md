@@ -1,30 +1,30 @@
 ---
-title: Knowledge Base
+title: 知识库
 slug: /knowledge-base
-description: Explore troubleshooting guides for common problems.
+description: 探索常见问题的故障排除指南和最佳实践。
 ---
 
-# Knowledge base
+# 知识库
 
-The knowledge base is a self-serve library of tips, step-by-step tutorials, and articles that answer your questions about creating and deploying Streamlit apps.
+知识库是一个自助式的技巧、分步教程和文章库，可以回答您关于创建和部署 Streamlit 应用的问题。
 
 <InlineCalloutContainer>
   <InlineCallout
     color="darkBlue-70"
     icon="quiz"
-    bold="FAQ"
+    bold="常见问题"
     href="/knowledge-base/using-streamlit"
-  >Here are some frequently asked questions about using Streamlit.</InlineCallout>
+  >以下是关于使用 Streamlit 的一些常见问题。</InlineCallout>
   <InlineCallout
     color="darkBlue-70"
     icon="downloading"
-    bold="Installing dependencies."
+    bold="安装依赖项"
     href="/knowledge-base/dependencies"
-  >If you run into problems installing dependencies for your Streamlit apps, we've got you covered.</InlineCallout>
+  >如果您在为 Streamlit 应用安装依赖项时遇到问题，我们可以帮助您。</InlineCallout>
   <InlineCallout
     color="darkBlue-70"
     icon="report"
-    bold="Deployment issues."
+    bold="部署问题"
     href="/knowledge-base/deploy"
-  >Have questions about deploying Streamlit apps to the cloud? This section covers deployment-related issues.</InlineCallout>
+  >对将 Streamlit 应用部署到云有疑问？本部分涵盖部署相关的问题。</InlineCallout>
 </InlineCalloutContainer>

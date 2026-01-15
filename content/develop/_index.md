@@ -1,37 +1,37 @@
 ---
-title: Develop
+title: 开发
 slug: /develop
-description: Complete development resources for building beautiful, performant web apps with Streamlit including concepts, API reference, tutorials, and quick references.
+description: 完整的开发资源，用于使用 Streamlit 构建美观、高性能的网络应用，包括概念、API 参考、教程和快速参考。
 keywords: develop, development, api, concepts, tutorials, reference, streamlit, web apps
 ---
 
-# Develop
+# 开发
 
-Get all the information you need to build beautiful, performant web apps with Streamlit!
+获取所有信息，您需要使用 Streamlit 构建美观、高性能的网络应用！
 
 <InlineCalloutContainer>
     <InlineCallout
         color="indigo-70"
         icon="book"
-        bold="Concepts."
+        bold="概念。"
         href="/develop/concepts"
-    >Learn how Streamlit works with in-depth guides to our execution model and features.</InlineCallout>
+    >通过关于我们的执行模型和功能的深入指南，了解 Streamlit 的工作原理。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="list"
-        bold="API reference."
+        bold="API 参考。"
         href="/develop/api-reference"
-    >Learn about our API with function definitions and examples.</InlineCallout>
+    >通过函数定义和示例了解我们的 API。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="auto_awesome"
-        bold="Tutorials."
+        bold="教程。"
         href="/develop/tutorials"
-    >Follow step-by-step instructions to build example apps and useful snippets.</InlineCallout>
+    >按照分步说明构建示例应用和有用的代码片段。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="bolt"
-        bold="Quick references."
+        bold="快速参考。"
         href="/develop/quick-reference"
-    >Check out our quick references for easy access to convenient information like our changelog, cheat sheet, pre-release features, and roadmap.</InlineCallout>
+    >查看我们的快速参考，以便轻松访问方便的信息，如我们的变更日志、速查表、预发布功能和路线图。</InlineCallout>
 </InlineCalloutContainer>

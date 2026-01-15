@@ -1,31 +1,31 @@
 ---
-title: Using custom Python classes in your Streamlit app
+title: 在 Streamlit 应用中使用自定义 Python 类
 slug: /develop/concepts/design/custom-classes
-description: Learn best practices for using custom Python classes, dataclasses, and Enums in Streamlit apps, including handling class redefinition and comparison issues across reruns.
-keywords: custom classes, python classes, dataclass, enum, class redefinition, streamlit reruns, class comparison, instance comparison, custom interfaces, class patterns
+description: 学习在 Streamlit 应用中使用自定义 Python 类、数据类和枚举的最佳实践，包括处理类重定义和跨重新运行的比较问题。
+keywords: 自定义类, python 类, dataclass, enum, 类重定义, streamlit 重新运行, 类比较, 实例比较, 自定义接口, 类模式
 ---
 
-# Using custom Python classes in your Streamlit app
+# 在 Streamlit 应用中使用自定义 Python 类
 
-If you are building a complex Streamlit app or working with existing code, you may have custom Python classes defined in your script. Common examples include the following:
+如果你正在构建一个复杂的 Streamlit 应用或使用现有代码，你可能在脚本中定义了自定义 Python 类。常见的例子包括以下内容：
 
-- Defining a `@dataclass` to store related data within your app.
-- Defining an `Enum` class to represent a fixed set of options or values.
-- Defining custom interfaces to external services or databases not covered by [`st.connection`](/develop/api-reference/connections/st.connection).
+- 定义 `@dataclass` 来在应用中存储相关数据。
+- 定义 `Enum` 类来表示一组固定的选项或值。
+- 定义自定义接口到外部服务或 [`st.connection`](/develop/api-reference/connections/st.connection) 未覆盖的数据库。
 
-Because Streamlit reruns your script after every user interaction, custom classes may be redefined multiple times within the same Streamlit session. This may result in unwanted effects, especially with class and instance comparisons. Read on to understand this common pitfall and how to avoid it.
+因为 Streamlit 在每次用户交互后重新运行你的脚本，自定义类可能在同一 Streamlit 会话内多次重定义。这可能导致不期望的效果，特别是在类和实例比较中。继续阅读以了解这个常见陷阱以及如何避免它。
 
-We begin by covering some general-purpose patterns you can use for different types of custom classes, and follow with a few more technical details explaining why this matters. Finally, we go into more detail about [Using `Enum` classes](#using-enum-classes-in-streamlit) specifically, and describe a configuration option which can make them more convenient.
+我们首先介绍一些通用模式，你可以将其用于不同类型的自定义类，然后介绍一些更多技术细节，说明为什么这很重要。最后，我们详细介绍[使用 `Enum` 类](#using-enum-classes-in-streamlit)，并描述一个可以使其更方便的配置选项。
 
-## Patterns to define your custom classes
+## 定义自定义类的模式
 
-### Pattern 1: Define your class in a separate module
+### 模式 1：在单独的模块中定义你的类
 
-This is the recommended, general solution. If possible, move class definitions into their own module file and import them into your app script. As long as you are not editing the files that define your app, Streamlit will not re-import those classes with each rerun. Therefore, if a class is defined in an external file and imported into your script, the class will not be redefined during the session, unless you are actively editing your app.
+这是推荐的通用解决方案。如果可能，将类定义移到它们自己的模块文件中并将其导入到应用脚本中。只要你不编辑定义应用的文件，Streamlit 就不会在每次重新运行时重新导入那些类。因此，如果一个类在外部文件中定义并导入到你的脚本中，该类在会话期间不会被重定义，除非你正在主动编辑你的应用。
 
-#### Example: Move your class definition
+#### 示例：移动你的类定义
 
-Try running the following Streamlit app where `MyClass` is defined within the page's script. `isinstance()` will return `True` on the first script run then return `False` on each rerun thereafter.
+尝试运行以下 Streamlit 应用，其中 `MyClass` 在页面的脚本中定义。`isinstance()` 将在第一个脚本运行时返回 `True`，然后在之后的每次重新运行时返回 `False`。
 
 ```python
 # app.py
@@ -46,7 +46,7 @@ st.write(isinstance(st.session_state.my_instance, MyClass))
 st.button("Rerun")
 ```
 
-If you move the class definition out of `app.py` into another file, you can make `isinstance()` consistently return `True`. Consider the following file structure:
+如果你将类定义移出 `app.py` 到另一个文件中，你可以使 `isinstance()` 一致地返回 `True`。考虑以下文件结构：
 
 ```
 myproject/
@@ -76,15 +76,15 @@ st.write(isinstance(st.session_state.my_instance, MyClass))
 st.button("Rerun")
 ```
 
-Streamlit only reloads code in imported modules when it detects the code has changed. Thus, if you are actively editing your app code, you may need to start a new session or restart your Streamlit server to avoid an undesirable class redefinition.
+Streamlit 仅在检测到代码已更改时重新加载导入模块中的代码。因此，如果你正在主动编辑应用代码，你可能需要启动新的会话或重新启动 Streamlit 服务器以避免不期望的类重定义。
 
-### Pattern 2: Force your class to compare internal values
+### 模式 2：强制你的类比较内部值
 
-For classes that store data (like [dataclasses](https://docs.python.org/3/library/dataclasses.html)), you may be more interested in comparing the internally stored values rather than the class itself. If you define a custom `__eq__` method, you can force comparisons to be made on the internally stored values.
+对于存储数据的类（如[数据类](https://docs.python.org/3/library/dataclasses.html)），你可能更感兴趣的是比较内部存储的值而不是类本身。如果你定义自定义的 `__eq__` 方法，你可以强制在内部存储的值上进行比较。
 
-#### Example: Define `__eq__`
+#### 示例：定义 `__eq__`
 
-Try running the following Streamlit app and observe how the comparison is `True` on the first run then `False` on every rerun thereafter.
+尝试运行以下 Streamlit 应用，并观察比较如何在第一次运行时为 `True`，然后在之后的每次重新运行时为 `False`。
 
 ```python
 import streamlit as st
@@ -104,7 +104,7 @@ st.session_state.my_dataclass == MyDataclass(1, 5.5)
 st.button("Rerun")
 ```
 
-Since `MyDataclass` gets redefined with each rerun, the instance stored in Session State will not be equal to any instance defined in a later script run. You can fix this by forcing a comparison of internal values as follows:
+由于 `MyDataclass` 在每次重新运行时被重定义，存储在会话状态中的实例将不等于在稍后脚本运行中定义的任何实例。你可以通过强制比较内部值来修复此问题，如下所示：
 
 ```python
 import streamlit as st
@@ -129,15 +129,15 @@ st.session_state.my_dataclass == MyDataclass(1, 5.5)
 st.button("Rerun")
 ```
 
-The default Python `__eq__` implementation for a regular class or `@dataclass` depends on the in-memory ID of the class or class instance. To avoid problems in Streamlit, your custom `__eq__` method should not depend the `type()` of `self` and `other`.
+对于常规类或 `@dataclass` 的默认 Python `__eq__` 实现取决于类或类实例的内存中 ID。为了避免 Streamlit 中的问题，你的自定义 `__eq__` 方法不应依赖 `self` 和 `other` 的 `type()`。
 
-### Pattern 3: Store your class as serialized data
+### 模式 3：将你的类存储为序列化数据
 
-Another option for classes that store data is to define serialization and deserialization methods like `to_str` and `from_str` for your class. You can use these to store class instance data in `st.session_state` rather than storing the class instance itself. Similar to pattern 2, this is a way to force comparison of the internal data and bypass the changing in-memory IDs.
+存储数据的类的另一个选项是为你的类定义序列化和反序列化方法，如 `to_str` 和 `from_str`。你可以使用这些在 `st.session_state` 中存储类实例数据而不是存储类实例本身。与模式 2 相似，这是一种强制比较内部数据并绕过不断变化的内存中 ID 的方式。
 
-#### Example: Save your class instance as a string
+#### 示例：将你的类实例保存为字符串
 
-Using the same example from pattern 2, this can be done as follows:
+使用与模式 2 相同的示例，这可以按如下方式完成：
 
 ```python
 import streamlit as st
@@ -167,9 +167,9 @@ MyDataclass.from_str(st.session_state.my_dataclass) == MyDataclass(1, 5.5)
 st.button("Rerun")
 ```
 
-### Pattern 4: Use caching to preserve your class
+### 模式 4：使用缓存来保留你的类
 
-For classes that are used as resources (database connections, state managers, APIs), consider using the cached singleton pattern. Use `@st.cache_resource` to decorate a `@staticmethod` of your class to generate a single, cached instance of the class. For example:
+对于用作资源的类（数据库连接、状态管理器、API），请考虑使用缓存单例模式。使用 `@st.cache_resource` 来装饰你类的 `@staticmethod` 以生成该类的单个缓存实例。例如：
 
 ```python
 import streamlit as st
@@ -187,15 +187,15 @@ class MyResource:
 resource_manager = MyResource.get_resource_manager("http://example.com/api/")
 ```
 
-When you use one of Streamlit's caching decorators on a function, Streamlit doesn't use the function object to look up cached values. Instead, Streamlit's caching decorators index return values using the function's qualified name and module. So, even though Streamlit redefines `MyResource` with each script run, `st.cache_resource` is unaffected by this. `get_resource_manager()` will return its cached value with each rerun, until the value expires.
+当你在函数上使用 Streamlit 的缓存装饰器之一时，Streamlit 不使用函数对象来查找缓存的值。相反，Streamlit 的缓存装饰器使用函数的限定名称和模块来索引返回值。因此，即使 Streamlit 在每次脚本运行时都重定义了 `MyResource`，`st.cache_resource` 也不受此影响。`get_resource_manager()` 将在每次重新运行时返回其缓存值，直到该值过期。
 
-## Understanding how Python defines and compares classes
+## 理解 Python 如何定义和比较类
 
-So what's really happening here? We'll consider a simple example to illustrate why this is a pitfall. Feel free to skip this section if you don't want to deal more details. You can jump ahead to learn about [Using `Enum` classes](#using-enum-classes-in-streamlit).
+那么这里真正发生了什么？我们将考虑一个简单的例子来说明为什么这是一个陷阱。如果你不想处理更多细节，可以随时跳过本部分。你可以跳到前面以了解[使用 `Enum` 类](#using-enum-classes-in-streamlit)。
 
-### Example: What happens when you define the same class twice?
+### 示例：定义同一个类两次时会发生什么？
 
-Set aside Streamlit for a moment and think about this simple Python script:
+暂时搁置 Streamlit，思考这个简单的 Python 脚本：
 
 ```python
 from dataclasses import dataclass
@@ -223,30 +223,30 @@ Marshall_C = Student(1, "Marshall")
 Marshall_A == Marshall_C
 ```
 
-In this example, the dataclass `Student` is defined twice. All three Marshalls have the same internal values. If you compare `Marshall_A` and `Marshall_B` they will be equal because they were both created from the first definition of `Student`. However, if you compare `Marshall_A` and `Marshall_C` they will not be equal because `Marshall_C` was created from the _second_ definition of `Student`. Even though both `Student` dataclasses are defined exactly the same, they have different in-memory IDs and are therefore different.
+在此示例中，数据类 `Student` 定义了两次。所有三个 Marshall 都有相同的内部值。如果你比较 `Marshall_A` 和 `Marshall_B`，它们将相等，因为它们都是从 `Student` 的第一个定义创建的。但是，如果你比较 `Marshall_A` 和 `Marshall_C`，它们将不相等，因为 `Marshall_C` 是从 `Student` 的第二个定义创建的。即使两个 `Student` 数据类的定义完全相同，它们有不同的内存中 ID，因此是不同的。
 
-### What's happening in Streamlit?
+### Streamlit 中发生了什么？
 
-In Streamlit, you probably don't have the same class written twice in your page script. However, the rerun logic of Streamlit creates the same effect. Let's use the above example for an analogy. If you define a class in one script run and save an instance in Session State, then a later rerun will redefine the class and you may end up comparing a `Mashall_C` in your rerun to a `Marshall_A` in Session State. Since widgets rely on Session State under the hood, this is where things can get confusing.
+在 Streamlit 中，你可能在页面脚本中没有两次写同一个类。但是，Streamlit 的重新运行逻辑产生了相同的效果。让我们使用上面的示例作为类比。如果你在一个脚本运行中定义一个类并在会话状态中保存一个实例，那么稍后的重新运行将重定义该类，你最终可能会将重新运行中的 `Marshall_C` 与会话状态中的 `Marshall_A` 进行比较。由于小部件在底层依赖会话状态，这是事情变得混乱的地方。
 
-## How Streamlit widgets store options
+## Streamlit 小部件如何存储选项
 
-Several Streamlit UI elements, such as `st.selectbox` or `st.radio`, accept multiple-choice options via an `options` argument. The user of your application can typically select one or more of these options. The selected value is returned by the widget function. For example:
+多个 Streamlit UI 元素，如 `st.selectbox` 或 `st.radio`，通过 `options` 参数接受多选选项。应用的用户通常可以选择其中一个或多个选项。小部件函数返回选定的值。例如：
 
 ```python
 number = st.selectbox("Pick a number, any number", options=[1, 2, 3])
 # number == whatever value the user has selected from the UI.
 ```
 
-When you call a function like `st.selectbox` and pass an `Iterable` to `options`, the `Iterable` and current selection are saved into a hidden portion of [Session State](/develop/concepts/architecture/session-state) called the Widget Metadata.
+当你调用函数（如 `st.selectbox`）并向 `options` 传递 `Iterable` 时，`Iterable` 和当前选择被保存到[会话状态](/develop/concepts/architecture/session-state)的隐藏部分，称为小部件元数据。
 
-When the user of your application interacts with the `st.selectbox` widget, the broswer sends the index of their selection to your Streamlit server. This index is used to determine which values from the original `options` list, _saved in the Widget Metadata from the previous page execution_, are returned to your application.
+当应用的用户与 `st.selectbox` 小部件交互时，浏览器将其选择的索引发送到 Streamlit 服务器。该索引用于确定从原始 `options` 列表返回到应用的值，该列表保存在上一个页面执行的小部件元数据中。
 
-The key detail is that the value returned by `st.selectbox` (or similar widget function) is from an `Iterable` saved in Session State during a _previous_ execution of the page, NOT the values passed to `options` on the _current_ execution. There are a number of architectural reasons why Streamlit is designed this way, which we won't go into here. However, **this** is how we end up comparing instances of different classes when we think we are comparing instances of the same class.
+关键细节是 `st.selectbox`（或类似的小部件函数）返回的值来自在页面的先前执行期间保存在会话状态中的 `Iterable`，而不是在当前执行中传递给 `options` 的值。Streamlit 以这种方式设计的有许多架构原因，我们不会在这里讨论。但是，**这**是我们最终比较不同类的实例的方式，而我们认为我们在比较同一类的实例。
 
-### A pathological example
+### 一个病理性示例
 
-The above explanation might be a bit confusing, so here's a pathological example to illustrate the idea.
+上面的解释可能有点令人困惑，所以这里有一个病理性的例子来说明这个想法。
 
 ```python
 import streamlit as st
@@ -271,13 +271,13 @@ selected == Marshall_A
 selected == Marshall_B
 ```
 
-As a final note, we used `@dataclass` in the example for this section to illustrate a point, but in fact it is possible to encounter these same problems with classes, in general. Any class which checks class identity inside of a comparison operator&mdash;such as `__eq__` or `__gt__`&mdash;can exhibit these issues.
+最后的说明是，我们在这一部分的示例中使用了 `@dataclass` 来说明一点，但实际上，一般来说，可能会遇到这些相同的类问题。任何在比较运算符（如 `__eq__` 或 `__gt__`）中检查类身份的类都可以展示这些问题。
 
-## Using `Enum` classes in Streamlit
+## 在 Streamlit 中使用 `Enum` 类
 
-The [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum) class from the Python standard library is a powerful way to define custom symbolic names that can be used as options for `st.multiselect` or `st.selectbox` in place of `str` values.
+Python 标准库中的 [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum) 类是定义自定义符号名称的强大方式，这些名称可以代替 `str` 值用作 `st.multiselect` 或 `st.selectbox` 的选项。
 
-For example, you might add the following to your streamlit page:
+例如，你可能向 streamlit 页面添加以下内容：
 
 ```python
 from enum import Enum
@@ -295,18 +295,18 @@ if selected_colors == {Color.RED, Color.GREEN}:
     st.write("Hooray, you found the color YELLOW!")
 ```
 
-If you're using the latest version of Streamlit, this Streamlit page will work as it appears it should. When a user picks both `Color.RED` and `Color.GREEN`, they are shown the special message.
+如果你使用的是最新版本的 Streamlit，此 Streamlit 页面将按其应该的方式工作。当用户同时选择 `Color.RED` 和 `Color.GREEN` 时，他们会看到特殊消息。
 
-However, if you've read the rest of this page you might notice something tricky going on. Specifically, the `Enum` class `Color` gets redefined every time this script is run. In Python, if you define two `Enum` classes with the same class name, members, and values, the classes and their members are still considered unique from each other. This _should_ cause the above `if` condition to always evaluate to `False`. In any script rerun, the `Color` values returned by `st.multiselect` would be of a different class than the `Color` defined in that script run.
+但是，如果你已经读过本页的其余部分，你可能会注意到一些棘手的地方。具体来说，`Enum` 类 `Color` 在每次运行此脚本时都会被重定义。在 Python 中，如果你使用相同的类名、成员和值定义两个 `Enum` 类，这些类及其成员仍然被认为彼此是唯一的。这应该导致上面的 `if` 条件始终计算为 `False`。在任何脚本重新运行中，`st.multiselect` 返回的 `Color` 值将是与该脚本运行中定义的 `Color` 的不同类。
 
-If you run the snippet above with Streamlit version 1.28.0 or less, you will not be able see the special message. Thankfully, as of version 1.29.0, Streamlit introduced a configuration option to greatly simplify the problem. That's where the enabled-by-default `enumCoercion` configuration option comes in.
+如果你使用 Streamlit 版本 1.28.0 或更早版本运行上面的代码片段，你将无法看到特殊消息。幸运的是，从版本 1.29.0 起，Streamlit 引入了一个配置选项来大大简化问题。这就是启用的默认 `enumCoercion` 配置选项的用武之地。
 
-### Understanding the `enumCoercion` configuration option
+### 理解 `enumCoercion` 配置选项
 
-When `enumCoercion` is enabled, Streamlit tries to recognize when you are using an element like `st.multiselect` or `st.selectbox` with a set of `Enum` members as options.
+启用 `enumCoercion` 后，Streamlit 会尝试识别你何时使用元素（如 `st.multiselect` 或 `st.selectbox`），且以一组 `Enum` 成员为选项。
 
-If Streamlit detects this, it will convert the widget's returned values to members of the `Enum` class defined in the latest script run. This is something we call automatic `Enum` coercion.
+如果 Streamlit 检测到这一点，它会将小部件的返回值转换为最新脚本运行中定义的 `Enum` 类的成员。这是我们称之为自动 `Enum` 强制转换的东西。
 
-This behavior is [configurable](/develop/concepts/configuration) via the `enumCoercion` setting in your Streamlit `config.toml` file. It is enabled by default, and may be disabled or set to a stricter set of matching criteria.
+此行为可通过你的 Streamlit `config.toml` 文件中的 `enumCoercion` 设置进行[配置](/develop/concepts/configuration)。它默认启用，并可能被禁用或设置为一组更严格的匹配条件。
 
-If you find that you still encounter issues with `enumCoercion` enabled, consider using the [custom class patterns](#patterns-to-define-your-custom-classes) described above, such as moving your `Enum` class definition to a separate module file.
+如果你发现在启用 `enumCoercion` 的情况下仍然遇到问题，请考虑使用上面描述的[自定义类模式](#patterns-to-define-your-custom-classes)，例如将你的 `Enum` 类定义移到单独的模块文件中。

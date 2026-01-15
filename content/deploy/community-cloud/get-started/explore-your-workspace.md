@@ -1,59 +1,59 @@
 ---
-title: Explore your workspace
+title: 探索你的工作空间
 slug: /deploy/streamlit-community-cloud/get-started/explore-your-workspace
-description: Learn how to navigate your Community Cloud workspace, switch between workspaces, and manage your apps and profile.
-keywords: workspace, explore, switch, apps, profile, developers, permissions, github, collaboration
+description: 了解如何导航Community Cloud工作空间、在工作空间之间切换以及管理你的应用和配置文件。
+keywords: 工作空间, 探索, 切换, 应用, 配置文件, 开发者, 权限, github, 协作
 ---
 
-# Explore your workspace
+# 探索你的工作空间
 
-If you just [created your account](/deploy/streamlit-community-cloud/get-started/create-your-account) and [connected your GitHub account](/deploy/streamlit-community-cloud/get-started/connect-your-github-account), congrats! You are now signed in and ready to go. If you are joining someone else's workspace you may already see some apps.
+如果你刚刚[创建了你的账户](/deploy/streamlit-community-cloud/get-started/create-your-account)并[连接了GitHub账户](/deploy/streamlit-community-cloud/get-started/connect-your-github-account)，恭喜！你现在已登录并准备好出发。如果你加入别人的工作空间，你可能已经看到了一些应用。
 
-## Workspaces
+## 工作空间
 
-Each GitHub account and organization is associated with a workspace in Community Cloud. When you sign in to Community Cloud for the first time, you will land in your personal workspace associated with your GitHub user account. The upper-left corner of Community Cloud shows your current workspace.
+GitHub账户和组织中的每一个都在Community Cloud中关联一个工作空间。当你第一次登录Community Cloud时，你将进入与GitHub用户账户关联的个人工作空间。Community Cloud的左上角显示你当前的工作空间。
 
-![A new, empty workspace in Streamlit Community Cloud. The workspace owner is displayed in the upper-left corner.](/images/streamlit-community-cloud/workspace-empty-SM.png)
+![Streamlit Community Cloud中的新的空工作空间。工作空间所有者显示在左上角。](/images/streamlit-community-cloud/workspace-empty-SM.png)
 
-### Switching workspaces
+### 切换工作空间
 
-To switch between workspaces, click the workspace name in the upper-left corner and select a new workspace.
+要在工作空间之间切换，点击左上角的工作空间名称并选择新的工作空间。
 
-Other workspaces are available to you as follows:
+其他工作空间对你可用如下：
 
-- When you have write permissions to a repository and the repository owner has joined Community Cloud, you can select the associated workspace. An owner can be a GitHub user or organization.
-- If someone has shared an app with you through Community Cloud, you will see the app's associated workspace. This is view-only access.
+- 当你对仓库有写入权限且仓库所有者已加入Community Cloud时，你可以选择关联的工作空间。所有者可以是GitHub用户或组织。
+- 如果有人通过Community Cloud与你分享了应用，你将看到应用的关联工作空间。这是仅查看访问。
 
-![This workspace is for the user `sammy-streamlit`, who has access to their personal workspace and another workspace for the organization `we-love-streamlit`.](/images/streamlit-community-cloud/workspace-empty-switch.png)
+![此工作空间用于用户`sammy-streamlit`，他有权访问其个人工作空间和组织`we-love-streamlit`的另一个工作空间。](/images/streamlit-community-cloud/workspace-empty-switch.png)
 
-### Invite other developers to your workspace
+### 邀请其他开发者到你的工作空间
 
-Inviting other developers is simple: Just give them write access to your GitHub repository so that you can code together. When they sign in to <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, they'll have access to your workspace.
+邀请其他开发者很简单：只需给他们对GitHub仓库的写入权限，这样你们就可以一起编码。当他们登录<a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>时，他们将有权访问你的工作空间。
 
-Streamlit Community Cloud inherits developer permissions from GitHub. When others sign in to Community Cloud, they will automatically see the workspaces they share with you. From there you can all deploy, manage, and share apps together.
+Streamlit Community Cloud从GitHub继承开发者权限。当其他人登录Community Cloud时，他们将自动看到与你共享的工作空间。从那里，你们都可以一起部署、管理和分享应用。
 
 <Note>
 
-When a user is added to a repository on GitHub, it will take at most 15 minutes before they can deploy or manage the app on Community Cloud. If a user is removed from a repository on GitHub, it will take at most 15 minutes before their permission to manage the app from that repository is revoked.
+当用户被添加到GitHub上的仓库时，最多需要15分钟才能在Community Cloud上部署或管理应用。如果用户从GitHub上的仓库中被移除，最多需要15分钟才能撤销他们从该仓库管理应用的权限。
 
 </Note>
 
-And remember, whenever anyone on the team updates the code on GitHub, the app will automatically update for you!
+记住，每当团队中的任何人在GitHub上更新代码时，应用都会自动为你更新！
 
-## My apps
+## 我的应用
 
-The "**My apps**" section of your workspace is your base of operations to deploy and manage your apps. When you deploy an app, it is added to this section of your workspace.
+工作空间的"**我的应用**"部分是你部署和管理应用的基地。当你部署应用时，它会被添加到工作空间的这一部分。
 
-### Deploying apps
+### 部署应用
 
-If you already have an app saved to a GitHub repo, you can deploy it directly. Otherwise, Community Cloud provides templates you can use. When you deploy from a template, Community Cloud will fork a project into your GitHub account and deploy from the new fork. This is a convenient way to get started if you haven't already created a Streamlit app.
+如果你已经将应用保存到GitHub仓库，你可以直接部署它。否则，Community Cloud提供你可以使用的模板。当你从模板部署时，Community Cloud将fork一个项目到你的GitHub账户并从新的fork部署。如果你还没有创建Streamlit应用，这是一个便捷的开始方式。
 
-To get started, just click "**Create app**" in the upper-right corner. To learn more, see [Deploy your app](/deploy/streamlit-community-cloud/deploy-your-app) and [Deploy from a template](/deploy/streamlit-community-cloud/get-started/deploy-from-a-template).
+要开始，只需在右上角点击"**创建应用**"。要了解更多，请参阅[部署你的应用](/deploy/streamlit-community-cloud/deploy-your-app)和[从模板部署](/deploy/streamlit-community-cloud/get-started/deploy-from-a-template)。
 
-## My profile
+## 我的配置文件
 
-The "**My profile**" section of your workspace lets you customize a personal portfolio of Streamlit apps to share with the world. Curate and feature your Streamlit apps to show off your work.
+工作空间的"**我的配置文件**"部分让你自定义Streamlit应用的个人组合与世界分享。策展和展示你的Streamlit应用来展示你的工作。
 
-## Explore
+## 探索
 
-For inspiration, check out the "**Explore**" section. This is a gallery of Streamlit apps created by the Streamlit community. Check out popular and trending apps, or search for apps in an area that interests you.
+如需灵感，请查看"**探索**"部分。这是Streamlit社区创建的Streamlit应用的画廊。查看热门和趋势应用，或搜索你感兴趣的领域中的应用。

@@ -1,15 +1,15 @@
 ---
-title: Invoking a Python subprocess in a deployed Streamlit app
+title: 在部署的Streamlit应用中调用Python子进程
 slug: /knowledge-base/deploy/invoking-python-subprocess-deployed-streamlit-app
 ---
 
-# Invoking a Python subprocess in a deployed Streamlit app
+# 在部署的Streamlit应用中调用Python子进程
 
-## Problem
+## 问题
 
-Let's suppose you want to invoke a subprocess to run a Python script `script.py` in your deployed Streamlit app `streamlit_app.py`. For example, the machine learning library [Ludwig](https://ludwig-ai.github.io/ludwig-docs/) is run using a command-line interface, or maybe you want to run a bash script or similar type of process from Python.
+假设你想在部署的Streamlit应用`streamlit_app.py`中调用子进程来运行Python脚本`script.py`。例如，机器学习库[Ludwig](https://ludwig-ai.github.io/ludwig-docs/)使用命令行界面运行，或者你可能想从Python运行bash脚本或类似类型的进程。
 
-You have tried the following, but run into dependency issues for `script.py`, even though you have specified your Python dependencies in a requirements file:
+你尝试了以下方法，但即使你在requirements文件中指定了Python依赖，仍然遇到`script.py`的依赖问题：
 
 ```python
 # streamlit_app.py
@@ -19,11 +19,11 @@ import subprocess
 subprocess.run(["python", "script.py"])
 ```
 
-## Solution
+## 解决方案
 
-When you run the above code block, you will get the version of Python that is on the system path—not necessarily the Python executable installed in the virtual environment that the Streamlit code is running under.
+当你运行上述代码块时，你将获得系统路径上的Python版本-不一定是Streamlit代码运行的虚拟环境中安装的Python可执行文件。
 
-The solution is to detect the Python executable directly with [`sys.executable`](https://docs.python.org/3/library/sys.html#sys.executable):
+解决方案是使用[`sys.executable`](https://docs.python.org/3/library/sys.html#sys.executable)直接检测Python可执行文件：
 
 ```python
 # streamlit_app.py
@@ -34,9 +34,9 @@ import sys
 subprocess.run([f"{sys.executable}", "script.py"])
 ```
 
-This ensures that `script.py` is running under the same Python executable as your Streamlit code—where your [Python dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies) are installed.
+这确保了`script.py`在与Streamlit代码相同的Python可执行文件下运行-其中安装了你的[Python依赖](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies)。
 
-### Relevant links
+### 相关链接
 
 - https://stackoverflow.com/questions/69947867/run-portion-of-python-code-in-parallel-from-a-streamlit-app/69948545#69948545
 - https://discuss.streamlit.io/t/modulenotfounderror-no-module-named-cv2-streamlit/18319/3?u=snehankekre

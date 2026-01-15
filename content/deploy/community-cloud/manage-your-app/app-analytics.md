@@ -1,60 +1,60 @@
 ---
-title: App analytics
+title: 应用分析
 slug: /deploy/streamlit-community-cloud/manage-your-app/app-analytics
-description: Learn how to view and analyze your Streamlit app's viewership data including total viewers, unique visitors, and privacy considerations.
-keywords: analytics, viewers, viewership, data, privacy, public, private, anonymous, tracking, metrics
+description: 了解如何查看和分析Streamlit应用的观众数据，包括总观众数、唯一访客和隐私考虑。
+keywords: 分析, 观众, 观众数, 数据, 隐私, 公开, 私有, 匿名, 追踪, 指标
 ---
 
-# App analytics
+# 应用分析
 
-Streamlit Community Cloud allows you to see the viewership of each of your apps. Specifically, you can see:
+Streamlit Community Cloud允许你看到每个应用的观众数。具体来说，你可以看到：
 
-- The total viewers count of your app (counted from April 2022).
-- The most recent unique viewers (capped at the last 20 viewers).
-- A relative timestamp of each unique viewer's last visit.
+- 应用的总观众数（从2022年4月计算）。
+- 最近的唯一观众（限制为最后20个观众）。
+- 每个唯一观众最后访问的相对时间戳。
 
-![App analytics on Streamlit Community Cloud](/images/streamlit-community-cloud/workspace-app-analytics-viewers.png)
+![Streamlit Community Cloud上的应用分析](/images/streamlit-community-cloud/workspace-app-analytics-viewers.png)
 
-## Access your app analytics
+## 访问应用分析
 
-You can get to your app's analytics:
+你可以通过以下方式访问应用的分析：
 
-- [From your workspace](#access-app-analytics-from-your-workspace).
-- [From your Cloud logs](#access-app-analytics-from-your-cloud-logs).
+- [从工作空间](#access-app-analytics-from-your-workspace)。
+- [从Cloud日志](#access-app-analytics-from-your-cloud-logs)。
 
-### Access app analytics from your workspace
+### 从工作空间访问应用分析
 
-From your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, click the overflow icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) next to your app. Click "**Analytics**."
+从<a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>的工作空间，点击应用旁边的溢出图标(<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>)。点击"**分析**"。
 
-![Access app analytics from your workspace through your app overflow menu](/images/streamlit-community-cloud/workspace-app-analytics.png)
+![通过应用溢出菜单从工作空间访问应用分析](/images/streamlit-community-cloud/workspace-app-analytics.png)
 
-### Access app analytics from your Cloud logs
+### 从Cloud日志访问应用分析
 
-From your app at `<your-custom-subdomain>.streamlit.app`, click "**Manage app**" in the lower-right corner.
+从`<your-custom-subdomain>.streamlit.app`的应用，在右下角点击"**管理应用**"。
 
-![Access Streamlit Community Cloud logs from your app](/images/streamlit-community-cloud/cloud-logs-open.png)
+![从应用访问Streamlit Community Cloud日志](/images/streamlit-community-cloud/cloud-logs-open.png)
 
-Click the overflow menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) and click "**Analytics**."
+点击溢出菜单图标(<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>)并点击"**分析**"。
 
-![Access app analytics from your Cloud logs](/images/streamlit-community-cloud/cloud-logs-menu-analytics.png)
+![从Cloud日志访问应用分析](/images/streamlit-community-cloud/cloud-logs-menu-analytics.png)
 
-## App viewers
+## 应用观众
 
-For public apps, we anonymize all viewers outside your workspace to protect their privacy and display anonymous viewers as random pseudonyms. You'll still be able to see the identities of fellow members in your workspace, including any viewers you've invited (once they've accepted).
+对于公开应用，我们匿名化工作空间外的所有观众以保护其隐私，并将匿名观众显示为随机假名。你仍然能够看到工作空间中的同事的身份，包括你邀请的任何观众（一旦他们接受）。
 
 <Important>
 
-When you invite a viewer to an app, they gain access to analytics as well. Additionally, if someone is invited as a viewer to _any_ app in your workspace, they can see analytics for all public apps in your workspace and invite additional viewers themselves. A viewer in your workspace may see the emails of developers and other viewers in your workspace through analytics.
+当你邀请观众到应用时，他们也获得分析访问权限。此外，如果有人被邀请作为工作空间中_任何_应用的观众，他们可以看到工作空间中所有公开应用的分析，并可以邀请额外的观众。工作空间中的观众可能通过分析看到工作空间中开发者和其他观众的电子邮件。
 
 </Important>
 
-Meanwhile, for private apps where you control who has access, you will be able to see the specific users who recently viewed your apps.
+同时，对于私有应用，你控制谁有访问权限，你将能够看到最近查看应用的特定用户。
 
-Additionally, you may occasionally see anonymous users in a private app. Rest assured, these anonymous users _do_ have authorized view access granted by you or your workspace members.
+此外，你偶尔可能在私有应用中看到匿名用户。放心，这些匿名用户_确实_有你或工作空间成员授予的授权查看访问权限。
 
-Common reasons why users show up anonymously are:
+用户显示为匿名的常见原因是：
 
-- The app was previously public.
-- The given viewer viewed the app in April 2022, when the Streamlit team was honing user identification for this feature.
+- 应用之前是公开的。
+- 给定的观众在2022年4月查看了应用，当时Streamlit团队正在为此功能改进用户识别。
 
-See Streamlit's general <a href="https://streamlit.io/privacy-policy" target="_blank">Privacy Notice</a>.
+请参阅Streamlit的通用<a href="https://streamlit.io/privacy-policy" target="_blank">隐私通知</a>。

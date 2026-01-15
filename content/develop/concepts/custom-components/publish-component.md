@@ -1,109 +1,105 @@
 ---
-title: Publish a Component
+title: 发布组件
 slug: /develop/concepts/custom-components/publish
-description: Learn how to publish Streamlit custom components to PyPI, making them accessible to the Python community and Streamlit users worldwide.
+description: 了解如何将 Streamlit 自定义组件发布到 PyPI，使其可被全球 Python 社区和 Streamlit 用户访问。
 keywords: publish component, PyPI publishing, component distribution, package publishing, component sharing, public components, Python package distribution
 ---
 
-# Publish a Component
+# 发布组件
 
-## Publish to PyPI
+## 发布到 PyPI
 
-Publishing your Streamlit Component to [PyPI](https://pypi.org/) makes it easily accessible to Python users around the world. This step is completely optional, so if you won’t be releasing your component publicly, you can skip this section!
+将您的 Streamlit 组件发布到 [PyPI](https://pypi.org/) 可以让全世界的 Python 用户轻松访问。这一步完全是可选的，如果您不打算公开发布组件，可以跳过此部分！
 
 <Note>
 
-For [static Streamlit Components](/develop/concepts/custom-components/intro#create-a-static-component), publishing a Python package to PyPI follows the same steps as the
-[core PyPI packaging instructions](https://packaging.python.org/tutorials/packaging-projects/). A static Component likely contains only Python code, so once you have your
-[setup.py](https://packaging.python.org/tutorials/packaging-projects/#creating-setup-py) file correct and
-[generate your distribution files](https://packaging.python.org/tutorials/packaging-projects/#generating-distribution-archives), you're ready to
-[upload to PyPI](https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives).
+对于[静态 Streamlit 组件](/develop/concepts/custom-components/intro#create-a-static-component)，将 Python 包发布到 PyPI 遵循与[核心 PyPI 打包说明](https://packaging.python.org/tutorials/packaging-projects/)相同的步骤。静态组件可能只包含 Python 代码，因此一旦您的[setup.py](https://packaging.python.org/tutorials/packaging-projects/#creating-setup-py) 文件正确并且[生成了分发文件](https://packaging.python.org/tutorials/packaging-projects/#generating-distribution-archives)，您就可以准备[上传到 PyPI](https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives)。
 
-[Bi-directional Streamlit Components](/develop/concepts/custom-components/intro#create-a-bi-directional-component) at minimum include both Python and JavaScript code, and as such, need a bit more preparation before they can be published on PyPI. The remainder of this page focuses on the bi-directional Component preparation process.
+[双向 Streamlit 组件](/develop/concepts/custom-components/intro#create-a-bi-directional-component) 至少包含 Python 和 JavaScript 代码，因此在可以发布到 PyPI 之前需要稍作准备。本页面的其余部分重点介绍双向组件的准备工作。
 
 </Note>
 
-### Prepare your Component
+### 准备您的组件
 
-A bi-directional Streamlit Component varies slightly from a pure Python library in that it must contain pre-compiled frontend code. This is how base Streamlit works as well; when you `pip install streamlit`, you are getting a Python library where the HTML and frontend code contained within it have been compiled into static assets.
+双向 Streamlit 组件与纯 Python 库略有不同，因为它必须包含预编译的前端代码。这也是基础 Streamlit 的工作方式；当您 `pip install streamlit` 时，您得到的是一个 Python 库，其中包含的 HTML 和前端代码已编译为静态资源。
 
-The [component-template](https://github.com/streamlit/component-template) GitHub repo provides the folder structure necessary for PyPI publishing. But before you can publish, you'll need to do a bit of housekeeping:
+[component-template](https://github.com/streamlit/component-template) GitHub 仓库提供了发布到 PyPI 所需的文件夹结构。但在发布之前，您需要做一些整理工作：
 
-1. Give your Component a name, if you haven't already
-   - Rename the `template/my_component/` folder to `template/<component name>/`
-   - Pass your component's name as the the first argument to `declare_component()`
-2. Edit `MANIFEST.in`, change the path for recursive-include from `package/frontend/build *` to `<component name>/frontend/build *`
-3. Edit `setup.py`, adding your component's name and other relevant info
-4. Create a release build of your frontend code. This will add a new directory, `frontend/build/`, with your compiled frontend in it:
+1. 给您的组件命名（如果尚未命名）
+   - 将 `template/my_component/` 文件夹重命名为 `template/<组件名称>/`
+   - 将组件名称作为第一个参数传递给 `declare_component()`
+2. 编辑 `MANIFEST.in`，将 `recursive-include` 的路径从 `package/frontend/build *` 更改为 `<组件名称>/frontend/build *`
+3. 编辑 `setup.py`，添加组件名称和其他相关信息
+4. 创建前端代码的发布构建。这将添加一个新目录 `frontend/build/`，其中包含已编译的前端：
 
    ```bash
    cd frontend
    npm run build
    ```
 
-5. Pass the build folder's path as the `path` parameter to `declare_component`. (If you're using the template Python file, you can set `_RELEASE = True` at the top of the file):
+5. 将构建文件夹的路径作为 `path` 参数传递给 `declare_component`。（如果您使用模板 Python 文件，可以在文件顶部设置 `_RELEASE = True`）：
 
    ```python
       import streamlit.components.v1 as components
 
-      # Change this:
+      # 将这个:
       # component = components.declare_component("my_component", url="http://localhost:3001")
 
-      # To this:
+      # 改为:
       parent_dir = os.path.dirname(os.path.abspath(__file__))
       build_dir = os.path.join(parent_dir, "frontend/build")
       component = components.declare_component("new_component_name", path=build_dir)
    ```
 
-### Build a Python wheel
+### 构建 Python wheel
 
-Once you've changed the default `my_component` references, compiled the HTML and JavaScript code and set your new component name in `components.declare_component()`, you're ready to build a Python wheel:
+更改默认的 `my_component` 引用，编译 HTML 和 JavaScript 代码并在 `components.declare_component()` 中设置新的组件名称后，您就可以构建 Python wheel：
 
-1. Make sure you have the latest versions of setuptools, wheel, and twine
+1. 确保您拥有最新版本的 setuptools、wheel 和 twine
 
-2. Create a wheel from the source code:
+2. 从源代码构建 wheel：
 
    ```bash
-    # Run this from your component's top-level directory; that is,
-    # the directory that contains `setup.py`
+    # 从组件的顶级目录运行此命令；即，
+    # 包含 `setup.py` 的目录
     python setup.py sdist bdist_wheel
    ```
 
-### Upload your wheel to PyPI
+### 将 wheel 上传到 PyPI
 
-With your wheel created, the final step is to upload to PyPI. The instructions here highlight how to upload to [Test PyPI](https://test.pypi.org/), so that you can learn the mechanics of the process without worrying about messing anything up. Uploading to PyPI follows the same basic procedure.
+创建 wheel 后，最后一步是上传到 PyPI。此处的说明重点介绍如何上传到 [Test PyPI](https://test.pypi.org/)，以便您可以在不用担心搞砸任何东西的情况下学习此过程的机制。上传到 PyPI 遵循相同的基本过程。
 
-1. Create an account on [Test PyPI](https://test.pypi.org/) if you don't already have one
-   - Visit [https://test.pypi.org/account/register/](https://test.pypi.org/account/register/) and complete the steps
+1. 如果还没有，请在 [Test PyPI](https://test.pypi.org/) 上创建一个账户
+   - 访问 [https://test.pypi.org/account/register/](https://test.pypi.org/account/register/) 并完成步骤
 
-   - Visit [https://test.pypi.org/manage/account/#api-tokens](https://test.pypi.org/manage/account/#api-tokens) and create a new API token. Don’t limit the token scope to a particular project, since you are creating a new project. Copy your token before closing the page, as you won’t be able to retrieve it again.
+   - 访问 [https://test.pypi.org/manage/account/#api-tokens](https://test.pypi.org/manage/account/#api-tokens) 并创建一个新的 API 令牌。不要将令牌作用域限制为特定项目，因为您正在创建一个新项目。在关闭页面之前复制您的令牌，因为您将无法再次检索它。
 
-2. Upload your wheel to Test PyPI. `twine` will prompt you for a username and password. For the username, use **\_\_token\_\_**. For the password, use your token value from the previous step, including the `pypi-` prefix:
+2. 将 wheel 上传到 Test PyPI。`twine` 将提示您输入用户名和密码。对于用户名，使用 **\_\_token\_\_**。对于密码，使用您上一步的令牌值，包括 `pypi-` 前缀：
 
    ```bash
    python -m twine upload --repository testpypi dist/*
    ```
 
-3. Install your newly-uploaded package in a new Python project to make sure it works:
+3. 在新 Python 项目中安装您刚刚上传的包以确保它能正常工作：
 
    ```bash
     python -m pip install --index-url https://test.pypi.org/simple/ --no-deps example-pkg-YOUR-USERNAME-HERE
    ```
 
-If all goes well, you're ready to upload your library to PyPI by following the instructions at [https://packaging.python.org/tutorials/packaging-projects/#next-steps](https://packaging.python.org/tutorials/packaging-projects/#next-steps).
+如果一切顺利，您就可以按照 [https://packaging.python.org/tutorials/packaging-projects/#next-steps](https://packaging.python.org/tutorials/packaging-projects/#next-steps) 上的说明将您的库上传到 PyPI。
 
-Congratulations, you've created a publicly-available Streamlit Component!
+恭喜，您已经创建了一个公开可用的 Streamlit 组件！
 
-## Promote your Component!
+## 推广您的组件！
 
-We'd love to help you share your Component with the Streamlit Community! To share it:
+我们很高兴帮助您与 Streamlit 社区分享您的组件！要分享它：
 
-1. If you host your code on GitHub, add the tag `streamlit-component`, so that it's listed in the [GitHub **streamlit-component** topic](https://github.com/topics/streamlit-component):
+1. 如果您的代码托管在 GitHub 上，请添加 `streamlit-component` 标签，以便它被列入 [GitHub **streamlit-component** 主题](https://github.com/topics/streamlit-component) 中：
 
-   <Image caption="Add the streamlit-component tag to your GitHub repo" src="/images/component-tag.gif" />
+   <Image caption="将 streamlit-component 标签添加到您的 GitHub 仓库" src="/images/component-tag.gif" />
 
-2. Post on the Streamlit Forum in [Show the Community!](https://discuss.streamlit.io/c/streamlit-examples/9). Use a post title similar to "New Component: `<your component name>`, a new way to do X".
-3. Add your component to the [Community Component Tracker](https://discuss.streamlit.io/t/streamlit-components-community-tracker/4634).
-4. Tweet us at [@streamlit](https://twitter.com/streamlit) so that we can retweet your announcement for you.
+2. 在 Streamlit 论坛的 [展示社区！](https://discuss.streamlit.io/c/streamlit-examples/9) 中发帖。使用类似"新组件：`<您的组件名称>`，一种实现 X 的新方式"的帖子标题。
+3. 将您的组件添加到 [社区组件跟踪器](https://discuss.streamlit.io/t/streamlit-components-community-tracker/4634)。
+4. 在 Twitter 上 @[@streamlit](https://twitter.com/streamlit) 发帖，以便我们可以转发您的公告。
 
-Our [Components Gallery](https://streamlit.io/components) is updated approximately every month. Follow the above recommendations to maximize the liklihood of your component landing in our Components Gallery. Community Components featured in our docs are hand-curated on a less-regular basis. Popular components with many stars and good documentation are more likely to be selected.
+我们的[组件库](https://streamlit.io/components) 大约每月更新一次。遵循以上建议以最大化您的组件进入我们组件库的可能性。我们文档中的社区组件是不定期手工策划的。受欢迎的、有很多星标和良好文档的组件更有可能被选中。

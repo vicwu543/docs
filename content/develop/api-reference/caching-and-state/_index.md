@@ -1,31 +1,31 @@
 ---
-title: Caching and state
+title: 缓存和状态
 slug: /develop/api-reference/caching-and-state
-description: Optimize performance and manage state in Streamlit apps with st.cache_data, st.cache_resource, session state, and query parameters for efficient applications.
+description: 使用 st.cache_data、st.cache_resource、会话状态和查询参数优化 Streamlit 应用的性能并管理状态，以实现高效应用。
 keywords: caching, state, session state, cache_data, cache_resource, query_params, context, performance, optimization
 ---
 
-# Caching and state
+# 缓存和状态
 
-Optimize performance and add statefulness to your app!
+优化性能并为您的应用添加状态性！
 
-## Caching
+## 缓存
 
-Streamlit provides powerful [cache primitives](/develop/concepts/architecture/caching) for data and global resources. They allow your app to stay performant even when loading data from the web, manipulating large datasets, or performing expensive computations.
+Streamlit 为数据和全局资源提供强大的[缓存原语](/develop/concepts/architecture/caching)。它们允许您的应用即使在从网络加载数据、操作大型数据集或执行昂贵计算时也能保持性能。
 
 <TileContainer>
 
 <RefCard href="/develop/api-reference/caching-and-state/st.cache_data" size="half">
 
-<h4>Cache data</h4>
+<h4>缓存数据</h4>
 
-Function decorator to cache functions that return data (e.g. dataframe transforms, database queries, ML inference).
+函数装饰器，用于缓存返回数据（例如数据框转换、数据库查询、ML 推理）的函数。
 
 ```python
 @st.cache_data
 def long_function(param1, param2):
-  # Perform expensive computation here or
-  # fetch data from the web here
+  # 在这里执行昂贵计算或
+  # 从网络获取数据
   return data
 ```
 
@@ -33,14 +33,14 @@ def long_function(param1, param2):
 
 <RefCard href="/develop/api-reference/caching-and-state/st.cache_resource" size="half">
 
-<h4>Cache resource</h4>
+<h4>缓存资源</h4>
 
-Function decorator to cache functions that return global resources (e.g. database connections, ML models).
+函数装饰器，用于缓存返回全局资源（例如数据库连接、ML 模型）的函数。
 
 ```python
 @st.cache_resource
 def init_model():
-  # Return a global resource here
+  # 在这里返回全局资源
   return pipeline(
     "sentiment-analysis",
     model="distilbert-base-uncased-finetuned-sst-2-english"
@@ -51,16 +51,16 @@ def init_model():
 
 </TileContainer>
 
-## Browser and server state
+## 浏览器和服务器状态
 
-Streamlit re-executes your script with each user interaction. Widgets have built-in statefulness between reruns, but Session State lets you do more!
+Streamlit 在每次用户交互时重新执行您的脚本。窗口小部件在重运行之间具有内置的状态性，但会话状态让您可以做更多！
 
 <TileContainer>
 <RefCard href="/develop/api-reference/caching-and-state/st.context">
 
-<h4>Context</h4>
+<h4>上下文</h4>
 
-`st.context` provides a read-only interface to access cookies, headers, locale, and other browser-session information.
+`st.context` 提供只读接口来访问 cookies、headers、locale 和其他浏览器会话信息。
 
 ```python
 st.context.cookies
@@ -70,9 +70,9 @@ st.context.headers
 </RefCard>
 <RefCard href="/develop/api-reference/caching-and-state/st.session_state">
 
-<h4>Session State</h4>
+<h4>会话状态</h4>
 
-Save data between reruns and across pages.
+在重运行和页面之间保存数据。
 
 ```python
 st.session_state["foo"] = "bar"
@@ -81,9 +81,9 @@ st.session_state["foo"] = "bar"
 </RefCard>
 <RefCard href="/develop/api-reference/caching-and-state/st.query_params">
 
-<h4>Query parameters</h4>
+<h4>查询参数</h4>
 
-Get, set, or clear the query parameters that are shown in the browser's URL bar.
+获取、设置或清除显示在浏览器 URL 栏中的查询参数。
 
 ```python
 st.query_params[key] = value
@@ -94,15 +94,15 @@ st.query_params.clear()
 
 </TileContainer>
 
-## Deprecated commands
+## 已弃用的命令
 
 <TileContainer>
 
 <RefCard href="/develop/api-reference/caching-and-state/st.experimental_get_query_params" size="half" deprecated={true}>
 
-<h4>Get query parameters</h4>
+<h4>获取查询参数</h4>
 
-Get query parameters that are shown in the browser's URL bar.
+获取显示在浏览器 URL 栏中的查询参数。
 
 ```python
 param_dict = st.experimental_get_query_params()
@@ -111,9 +111,9 @@ param_dict = st.experimental_get_query_params()
 </RefCard>
 <RefCard href="/develop/api-reference/caching-and-state/st.experimental_set_query_params" size="half" deprecated={true}>
 
-<h4>Set query parameters</h4>
+<h4>设置查询参数</h4>
 
-Set query parameters that are shown in the browser's URL bar.
+设置显示在浏览器 URL 栏中的查询参数。
 
 ```python
 st.experimental_set_query_params(

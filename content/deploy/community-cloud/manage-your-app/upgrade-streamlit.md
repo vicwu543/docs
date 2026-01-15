@@ -1,32 +1,32 @@
 ---
-title: Upgrade your app's Streamlit version on Streamlit Community Cloud
+title: 在 Streamlit Community Cloud 上升级您的应用的 Streamlit 版本
 slug: /deploy/streamlit-community-cloud/manage-your-app/upgrade-streamlit
-description: Learn how to upgrade your Streamlit library version on Community Cloud using dependency files or rebooting your app.
+description: 了解如何使用依赖文件或重启您的应用在 Community Cloud 上升级您的 Streamlit 库版本。
 keywords: upgrade streamlit, streamlit version, dependencies, requirements.txt, reboot, pin version, latest version, dependency file
 ---
 
-# Upgrade your app's Streamlit version on Streamlit Community Cloud
+# 在 Streamlit Community Cloud 上升级您的应用的 Streamlit 版本
 
-Want to use a cool new Streamlit feature but your app on Streamlit Community Cloud is running an old version of the Streamlit library? If that's you, don't worry! Here's how to upgrade your app's Streamlit version, based on how you manage your [app dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies):
+想要使用一个很酷的新 Streamlit 功能，但您的应用在 Streamlit Community Cloud 上运行的是旧版本的 Streamlit 库？如果是这样，别担心！以下是如何升级您的应用的 Streamlit 版本，基于您如何管理您的[应用依赖项](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies)：
 
-## No dependency file
+## 没有依赖文件
 
-When there is no dependencies file in your repository, your app will use the lastest Streamlit version that existed when it was last rebooted. In this case, simply [reboot your app](/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app) and Community Cloud will install the latest version.
+当您的仓库中没有依赖文件时，您的应用将使用上次重启时存在的最新 Streamlit 版本。在这种情况下，只需[重启您的应用](/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app)，Community Cloud 将安装最新版本。
 
-You may want to avoid getting into this situation if your app depends on a specific version of Streamlit. That is why we encourage you to use a dependency file and pin your desired version of Streamlit.
+如果您的应用依赖于特定版本的 Streamlit，您可能想要避免陷入这种情况。这就是为什么我们鼓励您使用依赖文件并固定您想要的 Streamlit 版本。
 
-## With a dependency file
+## 使用依赖文件
 
-When your app includes a dependency file, reboot your app or change your dependency file as follows:
+当您的应用包含依赖文件时，重启您的应用或按如下方式更改您的依赖文件：
 
-- If Streamlit is not included in your dependency file, reboot the app as described above.
+- 如果 Streamlit 未包含在您的依赖文件中，如上所述重启应用。
 
-  Note that we don't recommend having an incomplete dependency file since `pip` won't be able to include `streamlit` when resolving compatible versions of your dependencies.
+  请注意，我们不推荐有不完整的依赖文件，因为 `pip` 在解析您的依赖项的兼容版本时无法包含 `streamlit`。
 
-- If Streamlit is included in your dependency file, but the version is not pinned or capped, reboot the app as described above.
+- 如果 Streamlit 包含在您的依赖文件中，但版本未固定或未限制，如上所述重启应用。
 
-  When Community Cloud reboots your app, it will re-resolve your dependency file. Your app will then have the latest version of all dependencies that are consistent with your dependency file.
+  当 Community Cloud 重启您的应用时，它将重新解析您的依赖文件。您的应用随后将拥有与您的依赖文件一致的所有依赖项的最新版本。
 
-- If Streamlit is included in your dependency file, and the version is pinned (e.g., `streamlit==1.37.0`), update your dependency file.
+- 如果 Streamlit 包含在您的依赖文件中，并且版本已固定（例如，`streamlit==1.37.0`），更新您的依赖文件。
 
-  When you commit a change to your dependency file in your repository, Community Cloud will detect the change and automatically resolve the new dependencies. This is how you add, remove, or change all Python dependencies in general. You don't need to manually reboot your app, but you can if you want to.
+  当您在您的仓库中提交对依赖文件的更改时，Community Cloud 将检测更改并自动解析新依赖项。这就是您添加、删除或更改所有 Python 依赖项的一般方式。您不需要手动重启您的应用，但如果您想，可以这样做。

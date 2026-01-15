@@ -1,21 +1,21 @@
 ---
-title: ModuleNotFoundError No module named
+title: ModuleNotFoundError: No module named
 slug: /knowledge-base/dependencies/module-not-found-error
 ---
 
 # ModuleNotFoundError: No module named
 
-## Problem
+## 问题
 
-You receive the error `ModuleNotFoundError: No module named` when you deploy an app on [Streamlit Community Cloud](https://streamlit.io/cloud).
+在[Streamlit Community Cloud](https://streamlit.io/cloud)上部署应用时，你会收到错误 `ModuleNotFoundError: No module named`。
 
-## Solution
+## 解决方案
 
-This error occurs when you import a module on Streamlit Community Cloud that isn’t included in your requirements file. Any external [Python dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies) that are not distributed with a [standard Python installation](https://docs.python.org/3/py-modindex.html) should be included in your requirements file.
+当你在 Streamlit Community Cloud 上导入一个未包含在 requirements 文件中的模块时，会发生此错误。任何不与[标准 Python 安装](https://docs.python.org/3/py-modindex.html)一起分发的外部[Python 依赖项](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies)都应包含在 requirements 文件中。
 
-E.g. You will see `ModuleNotFoundError: No module named 'sklearn'` if you don’t include `scikit-learn` in your requirements file and `import sklearn` in your app.
+例如，如果你不在 requirements 文件中包含 `scikit-learn` 并在你的应用中 `import sklearn`，你会看到 `ModuleNotFoundError: No module named 'sklearn'`。
 
-Related forum posts:
+相关主论坛帖子：
 
 - https://discuss.streamlit.io/t/getting-error-modulenotfounderror-no-module-named-beautifulsoup/9126
 - https://discuss.streamlit.io/t/modulenotfounderror-no-module-named-vega-datasets/16354

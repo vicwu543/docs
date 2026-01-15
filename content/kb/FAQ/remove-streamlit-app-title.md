@@ -1,11 +1,11 @@
 ---
-title: How to remove "· Streamlit" from the app title?
+title: 如何从应用标题中删除"· Streamlit"？
 slug: /knowledge-base/using-streamlit/remove-streamlit-app-title
 ---
 
-# How to remove "· Streamlit" from the app title?
+# 如何从应用标题中删除"· Streamlit"？
 
-Using [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) to assign the page title will not append "· Streamlit" to that title. E.g.:
+使用 [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) 分配页面标题不会在该标题后附加"· Streamlit"。例如：
 
 ```python
 import streamlit as st

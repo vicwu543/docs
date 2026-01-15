@@ -1,31 +1,31 @@
 ---
-title: Intro to custom components
+title: 自定义组件简介
 slug: /develop/concepts/custom-components/intro
-description: Learn to develop Streamlit custom components with static and bi-directional communication between Python and JavaScript for extended functionality.
+description: 了解如何使用 Python 和 JavaScript 之间的静态和双向通信开发 Streamlit 自定义组件以扩展功能。
 keywords: custom component development, static components, bi-directional components, Python JavaScript communication, component API, component development
 ---
 
-# Intro to custom components
+# 自定义组件简介
 
-The first step in developing a Streamlit Component is deciding whether to create a static component (i.e. rendered once, controlled by Python) or to create a bi-directional component that can communicate from Python to JavaScript and back.
+开发 Streamlit 组件的第一步是决定创建静态组件（即仅渲染一次，由 Python 控制）还是创建可以实现 Python 到 JavaScript 及返回的双向通信的组件。
 
-## Create a static component
+## 创建静态组件
 
-If your goal in creating a Streamlit Component is solely to display HTML code or render a chart from a Python visualization library, Streamlit provides two methods that greatly simplify the process: `components.html()` and `components.iframe()`.
+如果创建 Streamlit 组件的目标仅仅是显示 HTML 代码或从 Python 可视化库渲染图表，Streamlit 提供了两种大大简化此过程的方法：`components.html()` 和 `components.iframe()`。
 
-If you are unsure whether you need bi-directional communication, **start here first**!
+如果您不确定是否需要双向通信，**请先从这里开始**！
 
-### Render an HTML string
+### 渲染 HTML 字符串
 
-While [`st.text`](/develop/api-reference/text/st.text), [`st.markdown`](/develop/api-reference/text/st.markdown) and [`st.write`](/develop/api-reference/write-magic/st.write) make it easy to write text to a Streamlit app, sometimes you'd rather implement a custom piece of HTML. Similarly, while Streamlit natively supports [many charting libraries](/develop/api-reference/charts#chart-elements), you may want to implement a specific HTML/JavaScript template for a new charting library. [`components.html`](/develop/api-reference/custom-components/st.components.v1.html) works by giving you the ability to embed an iframe inside of a Streamlit app that contains your desired output.
+虽然 [`st.text`](/develop/api-reference/text/st.text)、[`st.markdown`](/develop/api-reference/text/st.markdown) 和 [`st.write`](/develop/api-reference/write-magic/st.write) 可以轻松将文本写入 Streamlit 应用，但有时您可能更愿意实现自定义 HTML 片段。同样，虽然 Streamlit 本地支持[许多图表库](/develop/api-reference/charts#chart-elements)，但您可能希望为新的图表库实现特定的 HTML/JavaScript 模板。[`components.html`](/develop/api-reference/custom-components/st.components.v1.html) 通过为您提供在 Streamlit 应用中嵌入包含所需输出的 iframe 的能力来工作。
 
-**Example**
+**示例**
 
 ```python
 import streamlit as st
 import streamlit.components.v1 as components
 
-# bootstrap 4 collapse example
+# bootstrap 4 折叠示例
 components.html(
     """
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -36,13 +36,13 @@ components.html(
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Collapsible Group Item #1
+            可折叠组项目 #1
             </button>
           </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
-            Collapsible Group Item #1 content
+            可折叠组项目 #1 内容
           </div>
         </div>
       </div>
@@ -50,13 +50,13 @@ components.html(
         <div class="card-header" id="headingTwo">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Collapsible Group Item #2
+            可折叠组项目 #2
             </button>
           </h5>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
-            Collapsible Group Item #2 content
+            可折叠组项目 #2 内容
           </div>
         </div>
       </div>
@@ -66,159 +66,152 @@ components.html(
 )
 ```
 
-### Render an iframe URL
+### 渲染 iframe URL
 
-[`components.iframe`](/develop/api-reference/custom-components/st.components.v1.iframe) is similar in features to `components.html`, with the difference being that `components.iframe` takes a URL as its input. This is used for situations where you want to include an entire page within a Streamlit app.
+[`components.iframe`](/develop/api-reference/custom-components/st.components.v1.iframe) 在功能上与 `components.html` 类似，区别在于 `components.iframe` 以 URL 作为输入。这用于您想在 Streamlit 应用中包含整个页面的情况。
 
-**Example**
+**示例**
 
 ```python
 import streamlit as st
 import streamlit.components.v1 as components
 
-# embed streamlit docs in a streamlit app
+# 在 streamlit 应用中嵌入 streamlit 文档
 components.iframe("https://example.com", height=500)
 ```
 
-## Create a bi-directional component
+## 创建双向组件
 
-A bi-directional Streamlit Component has two parts:
+双向 Streamlit 组件有两个部分：
 
-1. A **frontend**, which is built out of HTML and any other web tech you like (JavaScript, React, Vue, etc.), and gets rendered in Streamlit apps via an iframe tag.
-2. A **Python API**, which Streamlit apps use to instantiate and talk to that frontend
+1. 一个**前端**，由 HTML 和您喜欢的任何其他网络技术（JavaScript、React、Vue 等）构建，并通过 iframe 标签在 Streamlit 应用中渲染。
+2. 一个**Python API**，Streamlit 应用使用它来实例化并与前端通信
 
-To make the process of creating bi-directional Streamlit Components easier, we've created a React template and a TypeScript-only template in the [Streamlit Component-template GitHub repo](https://github.com/streamlit/component-template). We also provide some [example Components](https://github.com/streamlit/component-template/tree/master/examples) in the same repo.
+为了使创建双向 Streamlit 组件的过程更容易，我们在 [Streamlit Component-template GitHub 仓库](https://github.com/streamlit/component-template) 中创建了一个 React 模板和一个仅 TypeScript 模板。我们还在同一个仓库中提供了一些[示例组件](https://github.com/streamlit/component-template/tree/master/examples)。
 
-### Development Environment Setup
+### 开发环境设置
 
-To build a Streamlit Component, you need the following installed in your development environment:
+要构建 Streamlit 组件，您需要在开发环境中安装以下内容：
 
 - Python 3.9 - Python 3.13
 - Streamlit
 - [nodejs](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/) 或 [yarn](https://yarnpkg.com/)
 
-Clone the [component-template GitHub repo](https://github.com/streamlit/component-template), then decide whether you want to use the React.js (["template"](https://github.com/streamlit/component-template/tree/master/template)) or plain TypeScript (["template-reactless"](https://github.com/streamlit/component-template/tree/master/template-reactless)) template.
+克隆 [component-template GitHub 仓库](https://github.com/streamlit/component-template)，然后决定是否要使用 React.js (["template"](https://github.com/streamlit/component-template/tree/master/template)) 或纯 TypeScript (["template-reactless"](https://github.com/streamlit/component-template/tree/master/template-reactless)) 模板。
 
-1. Initialize and build the component template frontend from the terminal:
+1. 从终端初始化并构建组件模板前端：
 
    ```bash
-   # React template
+   # React 模板
    template/my_component/frontend
-   npm install    # Initialize the project and install npm dependencies
-   npm run start  # Start the Vite dev server
+   npm install    # 初始化项目并安装 npm 依赖项
+   npm run start  # 启动 Vite 开发服务器
 
-   # or
+   # 或
 
-   # TypeScript-only template
+   # 仅 TypeScript 模板
    template-reactless/my_component/frontend
-   npm install    # Initialize the project and install npm dependencies
-   npm run start  # Start the Vite dev server
+   npm install    # 初始化项目并安装 npm 依赖项
+   npm run start  # 启动 Vite 开发服务器
    ```
 
-2. _From a separate terminal_, run the Streamlit app (Python) that declares and uses the component:
+2. _从另一个终端_，运行声明和使用组件的 Streamlit 应用（Python）：
 
    ```bash
-   # React template
+   # React 模板
    cd template
-   . venv/bin/activate # or similar to activate the venv/conda environment where Streamlit is installed
-   pip install -e . # install template as editable package
-   streamlit run my_component/example.py # run the example
+   . venv/bin/activate # 或类似命令激活安装了 Streamlit 的 venv/conda 环境
+   pip install -e . # 将模板安装为可编辑包
+   streamlit run my_component/example.py # 运行示例
 
-   # or
+   # 或
 
-   # TypeScript-only template
+   # 仅 TypeScript 模板
    cd template-reactless
-   . venv/bin/activate # or similar to activate the venv/conda environment where Streamlit is installed
-   pip install -e . # install template as editable package
-   streamlit run my_component/example.py # run the example
+   . venv/bin/activate # 或类似命令激活安装了 Streamlit 的 venv/conda 环境
+   pip install -e . # 将模板安装为可编辑包
+   streamlit run my_component/example.py # 运行示例
    ```
 
-After running the steps above, you should see a Streamlit app in your browser that looks like this:
+运行上述步骤后，您应该在浏览器中看到一个 Streamlit 应用，如下所示：
 
-![Streamlit Component Example App](/images/component_demo_example.png)
+![Streamlit 组件示例应用](/images/component_demo_example.png)
 
-The example app from the template shows how bi-directional communication is implemented. The Streamlit Component displays a button (`Python → JavaScript`), and the end-user can click the button. Each time the button is clicked, the JavaScript front-end increments the counter value and passes it back to Python (`JavaScript → Python`), which is then displayed by Streamlit (`Python → JavaScript`).
+模板中的示例应用展示了双向通信是如何实现的。Streamlit 组件显示一个按钮（`Python → JavaScript`），终端用户可以点击该按钮。每次点击按钮时，JavaScript 前端都会递增计数器值并将其传回 Python（`JavaScript → Python`），然后由 Streamlit 显示（`Python → JavaScript`）。
 
-### Frontend
+### 前端
 
-Because each Streamlit Component is its own webpage that gets rendered into an `iframe`, you can use just about any web tech you'd like to create that web page. We provide two templates to get started with in the Streamlit [Components-template GitHub repo](https://github.com/streamlit/component-template/); one of those templates uses [React](https://reactjs.org/) and the other does not.
+由于每个 Streamlit 组件都是一个独立的网页，通过 `iframe` 渲染到应用中，您可以使用几乎任何网络技术来创建该网页。我们在 Streamlit [Components-template GitHub 仓库](https://github.com/streamlit/component-template/) 中提供了两个模板来开始；其中一个模板使用 [React](https://reactjs.org/)，另一个不使用。
 
 <Note>
 
-Even if you're not already familiar with React, you may still want to check out the React-based
-template. It handles most of the boilerplate required to send and receive data from Streamlit, and
-you can learn the bits of React you need as you go.
+即使您还不熟悉 React，您可能仍想查看基于 React 的模板。它处理了从 Streamlit 发送和接收数据所需的大部分样板代码，您可以随着进展学习所需的 React 知识。
 
-If you'd rather not use React, please read this section anyway! It explains the fundamentals of
-Streamlit ↔ Component communication.
+如果您不想使用 React，请无论如何阅读此部分！它解释了 Streamlit ↔ 组件通信的基础知识。
 </Note>
 
 #### React
 
-The React-based template is in `template/my_component/frontend/src/MyComponent.tsx`.
+基于 React 的模板位于 `template/my_component/frontend/src/MyComponent.tsx`。
 
-- `MyComponent.render()` is called automatically when the component needs to be re-rendered (just like in any React app)
-- Arguments passed from the Python script are available via the `this.props.args` dictionary:
+- 当组件需要重新渲染时（就像在任何 React 应用中一样），会自动调用 `MyComponent.render()`
+- 从 Python 脚本传递的参数可通过 `this.props.args` 字典获得：
 
 ```python
-# Send arguments in Python:
+# 在 Python 中发送参数:
 result = my_component(greeting="Hello", name="Streamlit")
 ```
 
 ```javascript
-// Receive arguments in frontend:
+// 在前端接收参数:
 let greeting = this.props.args["greeting"]; // greeting = "Hello"
 let name = this.props.args["name"]; // name = "Streamlit"
 ```
 
-- Use `Streamlit.setComponentValue()` to return data from the component to the Python script:
+- 使用 `Streamlit.setComponentValue()` 将数据从前端返回到 Python 脚本：
 
 ```javascript
-// Set value in frontend:
+// 在前端设置值:
 Streamlit.setComponentValue(3.14);
 ```
 
 ```python
-# Access value in Python:
+# 在 Python 中访问值:
 result = my_component(greeting="Hello", name="Streamlit")
 st.write("result = ", result) # result = 3.14
 ```
 
-When you call `Streamlit.setComponentValue(new_value)`, that new value is sent to Streamlit, which then _re-executes the Python script from top to bottom_. When the script is re-executed, the call to `my_component(...)` will return the new value.
+当您调用 `Streamlit.setComponentValue(new_value)` 时，该新值会被发送到 Streamlit，然后 _从头到尾重新执行 Python 脚本_。当脚本重新执行时，对 `my_component(...)` 的调用将返回新值。
 
-From a _code flow_ perspective, it appears that you're transmitting data synchronously with the frontend: Python sends the arguments to JavaScript, and JavaScript returns a value to Python, all in a single function call! But in reality this is all happening _asynchronously_, and it's the re-execution of the Python script that achieves the sleight of hand.
+从 _代码流_ 的角度来看，似乎您正在与前端同步传输数据：Python 将参数发送给 JavaScript，JavaScript 将值返回给 Python，全部在单个函数调用中！但实际上这一切都是 _异步_ 发生的，正是 Python 脚本的重新执行实现了这种巧妙的手法。
 
-- Use `Streamlit.setFrameHeight()` to control the height of your component. By default, the React template calls this automatically (see `StreamlitComponentBase.componentDidUpdate()`). You can override this behavior if you need more control.
-- There's a tiny bit of magic in the last line of the file: `export default withStreamlitConnection(MyComponent)` - this does some handshaking with Streamlit, and sets up the mechanisms for bi-directional data communication.
+- 使用 `Streamlit.setFrameHeight()` 控制组件的高度。默认情况下，React 模板会自动调用此函数（请参见 `StreamlitComponentBase.componentDidUpdate()`）。如果您需要更多控制，可以覆盖此行为。
+- 文件的最后一行有一个小技巧：`export default withStreamlitConnection(MyComponent)` - 这会与 Streamlit 进行一些握手，并建立双向数据通信机制。
 
-#### TypeScript-only
+#### 仅 TypeScript
 
-The TypeScript-only template is in `template-reactless/my_component/frontend/src/MyComponent.tsx`.
+仅 TypeScript 模板位于 `template-reactless/my_component/frontend/src/MyComponent.tsx`。
 
-This template has much more code than its React sibling, in that all the mechanics of handshaking, setting up event listeners, and updating the component's frame height are done manually. The React version of the template handles most of these details automatically.
+此模板比其 React 对应版本有更多的代码，因为握手、设置事件监听器和更新组件框架高度的所有机制都是手动完成的。React 版本的模板自动处理大部分这些细节。
 
-- Towards the bottom of the source file, the template calls `Streamlit.setComponentReady()` to tell Streamlit it's ready to start receiving data. (You'll generally want to do this after creating and loading everything that the Component relies on.)
-- It subscribes to `Streamlit.RENDER_EVENT` to be notified of when to redraw. (This event won't be fired until `setComponentReady` is called)
-- Within its `onRender` event handler, it accesses the arguments passed in the Python script via `event.detail.args`
-- It sends data back to the Python script in the same way that the React template does—clicking on the "Click Me!" button calls `Streamlit.setComponentValue()`
-- It informs Streamlit when its height may have changed via `Streamlit.setFrameHeight()`
+- 在源文件底部附近，模板调用 `Streamlit.setComponentReady()` 告诉 Streamlit 它已准备好开始接收数据。（通常在创建和加载组件依赖的所有内容后执行此操作。）
+- 它订阅 `Streamlit.RENDER_EVENT` 以获知何时重绘。（在调用 `setComponentReady` 之前不会触发此事件）
+- 在其 `onRender` 事件处理程序中，它通过 `event.detail.args` 访问 Python 脚本中传递的参数
+- 它以与 React 模板相同的方式将数据发送回 Python 脚本——点击"Click Me!"按钮调用 `Streamlit.setComponentValue()`
+- 它通过 `Streamlit.setFrameHeight()` 通知 Streamlit 其高度可能已更改
 
-#### Working with Themes
+#### 使用主题
 
 <Note>
 
-Custom component theme support requires streamlit-component-lib version 1.2.0 or higher.
+自定义组件主题支持需要 streamlit-component-lib 版本 1.2.0 或更高版本。
 
 </Note>
 
-Along with sending an `args` object to your component, Streamlit also sends
-a `theme` object defining the active theme so that your component can adjust
-its styling in a compatible way. This object is sent in the same message as
-`args`, so it can be accessed via `this.props.theme` (when using the React
-template) or `event.detail.theme` (when using the plain TypeScript template).
+除了向组件发送 `args` 对象外，Streamlit 还发送一个定义活动主题的 `theme` 对象，以便您的组件可以以兼容的方式调整其样式。此对象与 `args` 在同一条消息中发送，因此可通过 `this.props.theme`（使用 React 模板时）或 `event.detail.theme`（使用纯 TypeScript 模板时）访问。
 
-The `theme` object has the following shape:
+`theme` 对象具有以下结构：
 
 ```json
 {
@@ -231,14 +224,11 @@ The `theme` object has the following shape:
 }
 ```
 
-The `base` option allows you to specify a preset Streamlit theme that your custom theme inherits from. Any theme config options not defined in your theme settings have their values set to those of the base theme. Valid values for `base` are `"light"` and `"dark"`.
+`base` 选项允许您指定自定义主题继承的预设 Streamlit 主题。在主题设置中未定义的任何主题配置选项的值将设置为基本主题的值。`base` 的有效值为 `"light"` 和 `"dark"`。
 
-Note that the theme object has fields with the same names and semantics as the
-options in the "theme" section of the config options printed with the command
-`streamlit config show`.
+请注意，主题对象具有与使用命令 `streamlit config show` 打印的配置选项中"theme"部分选项同名且语义相同的字段。
 
-When using the React template, the following CSS variables are also set
-automatically.
+使用 React 模板时，还会自动设置以下 CSS 变量。
 
 ```css
 --base
@@ -249,9 +239,7 @@ automatically.
 --font
 ```
 
-If you're not familiar with
-[CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties),
-the TLDR version is that you can use them like this:
+如果您不熟悉 [CSS 变量](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)，简单来说您可以这样使用它们：
 
 ```css
 .mySelector {
@@ -259,24 +247,22 @@ the TLDR version is that you can use them like this:
 }
 ```
 
-These variables match the fields defined in the `theme` object above, and
-whether to use CSS variables or the theme object in your component is a matter
-of personal preference.
+这些变量与上面 `theme` 对象中定义的字段匹配，是否在组件中使用 CSS 变量还是主题对象是个人偏好的问题。
 
-#### Other frontend details
+#### 其他前端细节
 
-- Because you're hosting your component from a dev server (via `npm run start`), any changes you make should be automatically reflected in the Streamlit app when you save.
-- If you want to add more packages to your component, run `npm add` to add them from within your component's `frontend/` directory.
+- 由于您从开发服务器（通过 `npm run start`）托管组件，保存时所做的任何更改都应该自动反映在 Streamlit 应用中。
+- 如果您想向组件添加更多包，请在组件的 `frontend/` 目录中运行 `npm add` 来添加它们。
 
 ```bash
 npm add baseui
 ```
 
-- To build a static version of your component, run `npm run export`. See [Prepare your Component](publish#prepare-your-component) for more information
+- 要构建组件的静态版本，请运行 `npm run export`。更多信息请参见 [准备您的组件](publish#prepare-your-component)
 
 ### Python API
 
-`components.declare_component()` is all that's required to create your Component's Python API:
+`components.declare_component()` 是创建组件 Python API 所需的全部：
 
 ```python
   import streamlit.components.v1 as components
@@ -286,36 +272,36 @@ npm add baseui
   )
 ```
 
-You can then use the returned `my_component` function to send and receive data with your frontend code:
+然后您可以使用返回的 `my_component` 函数与前端代码发送和接收数据：
 
 ```python
-# Send data to the frontend using named arguments.
+# 使用命名参数向前端发送数据。
 return_value = my_component(name="Blackbeard", ship="Queen Anne's Revenge")
 
-# `my_component`'s return value is the data returned from the frontend.
+# `my_component` 的返回值是从前端返回的数据。
 st.write("Value = ", return_value)
 ```
 
-While the above is all you need to define from the Python side to have a working Component, we recommend creating a "wrapper" function with named arguments and default values, input validation and so on. This will make it easier for end-users to understand what data values your function accepts and allows for defining helpful docstrings.
+虽然以上是从 Python 方面定义工作组件所需的一切，但我们建议创建一个带有命名参数和默认值、输入验证等的"包装器"函数。这将使最终用户更容易理解您的函数接受哪些数据值，并允许定义有用的文档字符串。
 
-Please see [this example](https://github.com/streamlit/component-template/blob/master/template/my_component/__init__.py#L41-L77) from the Components-template for an example of creating a wrapper function.
+请参见 [此示例](https://github.com/streamlit/component-template/blob/master/template/my_component/__init__.py#L41-L77) 了解从 Components-template 创建包装函数的示例。
 
-### Data serialization
+### 数据序列化
 
-#### Python → Frontend
+#### Python → 前端
 
-You send data from Python to the frontend by passing keyword args to your Component's invoke function (that is, the function returned from `declare_component`). You can send the following types of data from Python to the frontend:
+您通过向前端调用函数（即 `declare_component` 返回的函数）传递关键字参数将数据从 Python 发送到前端。您可以从前端发送以下类型的数据：
 
-- Any JSON-serializable data
+- 任何 JSON 可序列化数据
 - `numpy.array`
 - `pandas.DataFrame`
 
-Any JSON-serializable data gets serialized to a JSON string, and deserialized to its JavaScript equivalent. `numpy.array` and `pandas.DataFrame` get serialized using [Apache Arrow](https://arrow.apache.org/) and are deserialized as instances of `ArrowTable`, which is a custom type that wraps Arrow structures and provides a convenient API on top of them.
+任何 JSON 可序列化数据都会序列化为 JSON 字符串，并反序列化为 JavaScript 等价物。`numpy.array` 和 `pandas.DataFrame` 使用 [Apache Arrow](https://arrow.apache.org/) 进行序列化，并反序列化为 `ArrowTable` 实例，这是一种包装 Arrow 结构并在其之上提供便捷 API 的自定义类型。
 
-Check out the [CustomDataframe](https://github.com/streamlit/component-template/tree/master/examples/CustomDataframe) and [SelectableDataTable](https://github.com/streamlit/component-template/tree/master/examples/SelectableDataTable) Component example code for more context on how to use `ArrowTable`.
+查看 [CustomDataframe](https://github.com/streamlit/component-template/tree/master/examples/CustomDataframe) 和 [SelectableDataTable](https://github.com/streamlit/component-template/tree/master/examples/SelectableDataTable) 组件示例代码，了解如何使用 `ArrowTable` 的更多上下文。
 
-#### Frontend → Python
+#### 前端 → Python
 
-You send data from the frontend to Python via the `Streamlit.setComponentValue()` API (which is part of the template code). Unlike arg-passing from Python → frontend, **this API takes a single value**. If you want to return multiple values, you'll need to wrap them in an `Array` or `Object`.
+您通过 `Streamlit.setComponentValue()` API（这是模板代码的一部分）从前端将数据发送到 Python。与从 Python → 前端的参数传递不同，**此 API 接受单个值**。如果您想返回多个值，需要将它们包装在 `Array` 或 `Object` 中。
 
-Custom Components can send JSON-serializable data from the frontend to Python, as well as [Apache Arrow](http://arrow.apache.org/) `ArrowTable`s to represent dataframes.
+自定义组件可以从前端向 Python 发送 JSON 可序列化数据，以及 [Apache Arrow](http://arrow.apache.org/) `ArrowTable` 以表示数据框。

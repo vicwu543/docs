@@ -1,22 +1,19 @@
 ---
-title: API Reference
+title: API 参考
 slug: /develop/api-reference
-description: Visually explore a gallery of Streamlit's API.
+description: 直观浏览 Streamlit API 的图库。
 keywords: api, reference, functions, documentation, streamlit, components, widgets, charts
 ---
 
-# API reference
+# API 参考
 
-Streamlit makes it easy for you to visualize, mutate, and share data. The API
-reference is organized by activity type, like displaying data or optimizing
-performance. Each section includes methods associated with the activity type,
-including examples.
+Streamlit 使您可以轻松地可视化、改变和分享数据。API 参考按活动类型进行组织，例如显示数据或优化性能。每个部分包括与活动类型关联的方法，包括示例。
 
-Browse our API below and click to learn more about any of our available commands! 🎈
+浏览下面的 API 并点击以了解更多关于我们任何可用命令的信息！🎈
 
-## Display almost anything
+## 几乎显示任何内容
 
-### Write and magic
+### 写入和魔法
 
 <br />
 
@@ -26,7 +23,7 @@ Browse our API below and click to learn more about any of our available commands
 
 <h4>st.write</h4>
 
-Write arguments to the app.
+将参数写入应用。
 
 ```python
 st.write("Hello **world**!")
@@ -39,7 +36,7 @@ st.write(my_mpl_figure)
 
 <h4>st.write_stream</h4>
 
-Write generators or streams to the app with a typewriter effect.
+使用打字机效果将生成器或流写入应用。
 
 ```python
 st.write_stream(my_generator)
@@ -49,9 +46,9 @@ st.write_stream(my_llm_stream)
 </RefCard>
 <RefCard href="/develop/api-reference/write-magic/magic">
 
-<h4>Magic</h4>
+<h4>魔法</h4>
 
-Any time Streamlit sees either a variable or literal value on its own line, it automatically writes that to your app using `st.write`
+每当 Streamlit 在其自己的一行上看到变量或文字值时，它会自动使用 `st.write` 将其写入您的应用
 
 ```python
 "Hello **world**!"
@@ -62,7 +59,7 @@ my_mpl_figure
 </RefCard>
 </TileContainer>
 
-### Text elements
+### 文本元素
 
 <br />
 
@@ -73,7 +70,7 @@ my_mpl_figure
 
 <h4>Markdown</h4>
 
-Display string formatted as Markdown.
+显示格式化为 Markdown 的字符串。
 
 ```python
 st.markdown("Hello **world**!")
@@ -84,9 +81,9 @@ st.markdown("Hello **world**!")
 
 <Image pure alt="screenshot" src="/images/api/title.jpg" />
 
-<h4>Title</h4>
+<h4>标题</h4>
 
-Display text in title formatting.
+以标题格式显示文本。
 
 ```python
 st.title("The app title")
@@ -97,9 +94,9 @@ st.title("The app title")
 
 <Image pure alt="screenshot" src="/images/api/header.jpg" />
 
-<h4>Header</h4>
+<h4>标题</h4>
 
-Display text in header formatting.
+以标题格式显示文本。
 
 ```python
 st.header("This is a header")
@@ -110,9 +107,9 @@ st.header("This is a header")
 
 <Image pure alt="screenshot" src="/images/api/subheader.jpg" />
 
-<h4>Subheader</h4>
+<h4>副标题</h4>
 
-Display text in subheader formatting.
+以副标题格式显示文本。
 
 ```python
 st.subheader("This is a subheader")
@@ -123,9 +120,9 @@ st.subheader("This is a subheader")
 
 <Image pure alt="screenshot" src="/images/api/badge.jpg" />
 
-<h4>Badge</h4>
+<h4>徽章</h4>
 
-Display a small, colored badge.
+显示一个小的着色徽章。
 
 ```python
 st.badge("New")
@@ -136,9 +133,9 @@ st.badge("New")
 
 <Image pure alt="screenshot" src="/images/api/caption.jpg" />
 
-<h4>Caption</h4>
+<h4>标题</h4>
 
-Display text in small font.
+用小字体显示文本。
 
 ```python
 st.caption("This is written small caption text")
@@ -149,9 +146,9 @@ st.caption("This is written small caption text")
 
 <Image pure alt="screenshot" src="/images/api/code.jpg" />
 
-<h4>Code block</h4>
+<h4>代码块</h4>
 
-Display a code block with optional syntax highlighting.
+显示一个代码块，可选语法高亮。
 
 ```python
 st.code("a = 1234")
@@ -162,9 +159,9 @@ st.code("a = 1234")
 
 <Image pure alt="screenshot" src="/images/api/code.jpg" />
 
-<h4>Echo</h4>
+<h4>回显</h4>
 
-Display some code in the app, then execute it. Useful for tutorials.
+在应用中显示一些代码，然后执行它。对教程很有用。
 
 ```python
 with st.echo():
@@ -178,7 +175,7 @@ with st.echo():
 
 <h4>LaTeX</h4>
 
-Display mathematical expressions formatted as LaTeX.
+显示格式化为 LaTeX 的数学表达式。
 
 ```python
 st.latex("\int a x^2 \,dx")
@@ -189,9 +186,9 @@ st.latex("\int a x^2 \,dx")
 
 <Image pure alt="screenshot" src="/images/api/text.jpg" />
 
-<h4>Preformatted text</h4>
+<h4>预格式化文本</h4>
 
-Write fixed-width and preformatted text.
+写入固定宽度和预格式化的文本。
 
 ```python
 st.text("Hello world")
@@ -202,9 +199,9 @@ st.text("Hello world")
 
 <Image pure alt="screenshot" src="/images/api/divider.jpg" />
 
-<h4>Divider</h4>
+<h4>分隔线</h4>
 
-Display a horizontal rule.
+显示水平线。
 
 ```python
 st.divider()
@@ -213,7 +210,7 @@ st.divider()
 </RefCard>
 <RefCard href="/develop/api-reference/text/st.help">
 
-<h4>Get help</h4>
+<h4>获得帮助</h4>
 
 Display object’s doc string, nicely formatted.
 
@@ -225,9 +222,9 @@ st.help(pd.DataFrame)
 </RefCard>
 <RefCard href="/develop/api-reference/text/st.html">
 
-<h4>Render HTML</h4>
+<h4>渲染 HTML</h4>
 
-Renders HTML strings to your app.
+将 HTML 字符串渲染到您的应用。
 
 ```python
 st.html("<p>Foo bar.</p>")
@@ -241,9 +238,9 @@ st.html("<p>Foo bar.</p>")
 
 <Image pure alt="screenshot" src="/images/api/components/annotated-text.jpg" />
 
-<h4>Annotated text</h4>
+<h4>注释文本</h4>
 
-Display annotated text in Streamlit apps. Created by [@tvst](https://github.com/tvst).
+在 Streamlit 应用中显示注释文本。由 [@tvst](https://github.com/tvst) 创建。
 
 ```python
 annotated_text("This ", ("is", "verb"), " some ", ("annotated", "adj"), ("text", "noun"), " for those of ", ("you", "pronoun"), " who ", ("like", "verb"), " this sort of ", ("thing", "noun"), ".")
@@ -255,9 +252,9 @@ annotated_text("This ", ("is", "verb"), " some ", ("annotated", "adj"), ("text",
 
 <Image pure alt="screenshot" src="/images/api/components/drawable-canvas.jpg" />
 
-<h4>Drawable Canvas</h4>
+<h4>可绘制画布</h4>
 
-Provides a sketching canvas using [Fabric.js](http://fabricjs.com/). Created by [@andfanilo](https://github.com/andfanilo).
+使用 [Fabric.js](http://fabricjs.com/) 提供绘图画布。由 [@andfanilo](https://github.com/andfanilo) 创建。
 
 ```python
 st_canvas(fill_color="rgba(255, 165, 0, 0.3)", stroke_width=stroke_width, stroke_color=stroke_color, background_color=bg_color, background_image=Image.open(bg_image) if bg_image else None, update_streamlit=realtime_update, height=150, drawing_mode=drawing_mode, point_display_radius=point_display_radius if drawing_mode == 'point' else 0, key="canvas",)
@@ -269,9 +266,9 @@ st_canvas(fill_color="rgba(255, 165, 0, 0.3)", stroke_width=stroke_width, stroke
 
 <Image pure alt="screenshot" src="/images/api/components/tags.jpg" />
 
-<h4>Tags</h4>
+<h4>标签</h4>
 
-Add tags to your Streamlit apps. Created by [@gagan3012](https://github.com/gagan3012).
+向您的 Streamlit 应用添加标签。由 [@gagan3012](https://github.com/gagan3012) 创建。
 
 ```python
 st_tags(label='# Enter Keywords:', text='Press enter to add more', value=['Zero', 'One', 'Two'], suggestions=['five', 'six', 'seven', 'eight', 'nine', 'three', 'eleven', 'ten', 'four'], maxtags = 4, key='1')
@@ -285,7 +282,7 @@ st_tags(label='# Enter Keywords:', text='Press enter to add more', value=['Zero'
 
 <h4>NLU</h4>
 
-Apply text mining on a dataframe. Created by [@JohnSnowLabs](https://github.com/JohnSnowLabs/).
+对数据框应用文本挖掘。由 [@JohnSnowLabs](https://github.com/JohnSnowLabs/) 创建。
 
 ```python
 nlu.load("sentiment").predict("I love NLU! <3")
@@ -299,7 +296,7 @@ nlu.load("sentiment").predict("I love NLU! <3")
 
 <h4>Streamlit Extras</h4>
 
-A library with useful Streamlit extras. Created by [@arnaudmiribel](https://github.com/arnaudmiribel/).
+一个包含有用 Streamlit 额外功能的库。由 [@arnaudmiribel](https://github.com/arnaudmiribel/) 创建。
 
 ```python
 mention(label="An awesome Streamlit App", icon="streamlit",  url="https://extras.streamlit.app",)
@@ -308,7 +305,7 @@ mention(label="An awesome Streamlit App", icon="streamlit",  url="https://extras
 </ComponentCard>
 </ComponentSlider>
 
-### Data elements
+### 数据元素
 
 <br />
 
@@ -316,9 +313,9 @@ mention(label="An awesome Streamlit App", icon="streamlit",  url="https://extras
 <RefCard href="/develop/api-reference/data/st.dataframe">
 <Image pure alt="screenshot" src="/images/api/dataframe.jpg" />
 
-<h4>Dataframes</h4>
+<h4>数据框</h4>
 
-Display a dataframe as an interactive table.
+将数据框显示为交互式表格。
 
 ```python
 st.dataframe(my_data_frame)
@@ -329,9 +326,9 @@ st.dataframe(my_data_frame)
 
 <Image pure alt="screenshot" src="/images/api/data_editor.jpg" />
 
-<h4>Data editor</h4>
+<h4>数据编辑器</h4>
 
-Display a data editor widget.
+显示数据编辑器小部件。
 
 ```python
 edited = st.data_editor(df, num_rows="dynamic")
@@ -342,9 +339,9 @@ edited = st.data_editor(df, num_rows="dynamic")
 
 <Image pure alt="screenshot" src="/images/api/column_config.jpg" />
 
-<h4>Column configuration</h4>
+<h4>列配置</h4>
 
-Configure the display and editing behavior of dataframes and data editors.
+配置数据框和数据编辑器的显示和编辑行为。
 
 ```python
 st.column_config.NumberColumn("Price (in USD)", min_value=0, format="$%d")
@@ -355,9 +352,9 @@ st.column_config.NumberColumn("Price (in USD)", min_value=0, format="$%d")
 <RefCard href="/develop/api-reference/data/st.table">
 <Image pure alt="screenshot" src="/images/api/table.jpg" />
 
-<h4>Static tables</h4>
+<h4>静态表格</h4>
 
-Display a static table.
+显示静态表格。
 
 ```python
 st.table(my_data_frame)
@@ -367,9 +364,9 @@ st.table(my_data_frame)
 <RefCard href="/develop/api-reference/data/st.metric">
 <Image pure alt="screenshot" src="/images/api/metric.jpg" />
 
-<h4>Metrics</h4>
+<h4>指标</h4>
 
-Display a metric in big bold font, with an optional indicator of how the metric changed.
+用大粗体字体显示指标，并可选择显示指标如何变化的指示符。
 
 ```python
 st.metric("My metric", 42, 2)
@@ -379,9 +376,9 @@ st.metric("My metric", 42, 2)
 <RefCard href="/develop/api-reference/data/st.json">
 <Image pure alt="screenshot" src="/images/api/json.jpg" />
 
-<h4>Dicts and JSON</h4>
+<h4>字典和 JSON</h4>
 
-Display object or string as a pretty-printed JSON string.
+将对象或字符串显示为格式良好的 JSON 字符串。
 
 ```python
 st.json(my_dict)
@@ -415,7 +412,7 @@ new_df = grid_return['data']
 
 <h4>Streamlit Folium</h4>
 
-Streamlit Component for rendering Folium maps. Created by [@randyzwitch](https://github.com/randyzwitch).
+Streamlit 组件用于呈现 Folium 地图。由 [@randyzwitch](https://github.com/randyzwitch) 创建。
 
 ```python
 m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
@@ -483,7 +480,7 @@ selected_points = plotly_events(fig)
 
 <h4>Streamlit Extras</h4>
 
-A library with useful Streamlit extras. Created by [@arnaudmiribel](https://github.com/arnaudmiribel/).
+一个包含有用 Streamlit 额外功能的库。由 [@arnaudmiribel](https://github.com/arnaudmiribel/) 创建。
 
 ```python
 from streamlit_extras.metric_cards import style_metric_cards
@@ -496,7 +493,7 @@ style_metric_cards()
 
 </ComponentSlider>
 
-### Chart elements
+### 图表元素
 
 <br />
 
@@ -505,9 +502,9 @@ style_metric_cards()
 <RefCard href="/develop/api-reference/charts/st.area_chart">
 <Image pure alt="screenshot" src="/images/api/area_chart.jpg" />
 
-<h4>Simple area charts</h4>
+<h4>简单面积图</h4>
 
-Display an area chart.
+显示面积图。
 
 ```python
 st.area_chart(my_data_frame)
@@ -517,9 +514,9 @@ st.area_chart(my_data_frame)
 <RefCard href="/develop/api-reference/charts/st.bar_chart">
 <Image pure alt="screenshot" src="/images/api/bar_chart.jpg" />
 
-<h4>Simple bar charts</h4>
+<h4>简单柱状图</h4>
 
-Display a bar chart.
+显示柱状图。
 
 ```python
 st.bar_chart(my_data_frame)
@@ -529,9 +526,9 @@ st.bar_chart(my_data_frame)
 <RefCard href="/develop/api-reference/charts/st.line_chart">
 <Image pure alt="screenshot" src="/images/api/line_chart.jpg" />
 
-<h4>Simple line charts</h4>
+<h4>简单折线图</h4>
 
-Display a line chart.
+显示折线图。
 
 ```python
 st.line_chart(my_data_frame)
@@ -541,9 +538,9 @@ st.line_chart(my_data_frame)
 <RefCard href="/develop/api-reference/charts/st.scatter_chart">
 <Image pure alt="screenshot" src="/images/api/scatter_chart.svg" />
 
-<h4>Simple scatter charts</h4>
+<h4>简单散点图</h4>
 
-Display a line chart.
+显示折线图。
 
 ```python
 st.scatter_chart(my_data_frame)
@@ -553,9 +550,9 @@ st.scatter_chart(my_data_frame)
 <RefCard href="/develop/api-reference/charts/st.map">
 <Image pure alt="screenshot" src="/images/api/map.jpg" />
 
-<h4>Scatterplots on maps</h4>
+<h4>地图上的散点图</h4>
 
-Display a map with points on it.
+显示带有点的地图。
 
 ```python
 st.map(my_data_frame)
@@ -567,7 +564,7 @@ st.map(my_data_frame)
 
 <h4>Matplotlib</h4>
 
-Display a matplotlib.pyplot figure.
+显示 matplotlib.pyplot 图形。
 
 ```python
 st.pyplot(my_mpl_figure)
@@ -579,7 +576,7 @@ st.pyplot(my_mpl_figure)
 
 <h4>Altair</h4>
 
-Display a chart using the Altair library.
+使用 Altair 库显示图表。
 
 ```python
 st.altair_chart(my_altair_chart)
@@ -591,7 +588,7 @@ st.altair_chart(my_altair_chart)
 
 <h4>Vega-Lite</h4>
 
-Display a chart using the Vega-Lite library.
+使用 Vega-Lite 库显示图表。
 
 ```python
 st.vega_lite_chart(my_vega_lite_chart)
@@ -603,7 +600,7 @@ st.vega_lite_chart(my_vega_lite_chart)
 
 <h4>Plotly</h4>
 
-Display an interactive Plotly chart.
+显示交互式 Plotly 图表。
 
 ```python
 st.plotly_chart(my_plotly_chart)
@@ -615,7 +612,7 @@ st.plotly_chart(my_plotly_chart)
 
 <h4>Bokeh</h4>
 
-Display an interactive Bokeh chart.
+显示交互式 Bokeh 图表。
 
 ```python
 st.bokeh_chart(my_bokeh_chart)
@@ -627,7 +624,7 @@ st.bokeh_chart(my_bokeh_chart)
 
 <h4>PyDeck</h4>
 
-Display a chart using the PyDeck library.
+使用 PyDeck 库显示图表。
 
 ```python
 st.pydeck_chart(my_pydeck_chart)
@@ -639,7 +636,7 @@ st.pydeck_chart(my_pydeck_chart)
 
 <h4>GraphViz</h4>
 
-Display a graph using the dagre-d3 library.
+使用 dagre-d3 库显示图形。
 
 ```python
 st.graphviz_chart(my_graphviz_spec)
@@ -656,7 +653,7 @@ st.graphviz_chart(my_graphviz_spec)
 
 <h4>Plost</h4>
 
-A deceptively simple plotting library for Streamlit. Created by [@tvst](https://github.com/tvst).
+一个用于 Streamlit 的简单绘图库。由 [@tvst](https://github.com/tvst) 创建。
 
 ```python
 import plost
@@ -671,7 +668,7 @@ plost.line_chart(my_dataframe, x='time', y='stock_value', color='stock_name',)
 
 <h4>HiPlot</h4>
 
-High dimensional Interactive Plotting. Created by [@facebookresearch](https://github.com/facebookresearch).
+高维交互式绘图。由 [@facebookresearch](https://github.com/facebookresearch) 创建。
 
 ```python
 data = [{'dropout':0.1, 'lr': 0.001, 'loss': 10.0, 'optimizer': 'SGD'}, {'dropout':0.15, 'lr': 0.01, 'loss': 3.5, 'optimizer': 'Adam'}, {'dropout':0.3, 'lr': 0.1, 'loss': 4.5, 'optimizer': 'Adam'}]
@@ -701,7 +698,7 @@ st_echarts(options=options)
 
 <h4>Streamlit Folium</h4>
 
-Streamlit Component for rendering Folium maps. Created by [@randyzwitch](https://github.com/randyzwitch).
+Streamlit 组件用于呈现 Folium 地图。由 [@randyzwitch](https://github.com/randyzwitch) 创建。
 
 ```python
 m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
@@ -716,7 +713,7 @@ st_data = st_folium(m, width=725)
 
 <h4>Spacy-Streamlit</h4>
 
-spaCy building blocks and visualizers for Streamlit apps. Created by [@explosion](https://github.com/explosion).
+spaCy 构件和 Streamlit 应用的可视化工具。由 [@explosion](https://github.com/explosion) 创建。
 
 ```python
 models = ["en_core_web_sm", "en_core_web_md"]
@@ -746,7 +743,7 @@ agraph(nodes=nodes, edges=edges, config=config)
 
 <h4>Streamlit Lottie</h4>
 
-Integrate [Lottie](https://lottiefiles.com/) animations inside your Streamlit app. Created by [@andfanilo](https://github.com/andfanilo).
+在您的 Streamlit 应用中集成 [Lottie](https://lottiefiles.com/) 动画。由 [@andfanilo](https://github.com/andfanilo) 创建。
 
 ```python
 lottie_hello = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
@@ -776,7 +773,7 @@ selected_points = plotly_events(fig)
 
 <h4>Streamlit Extras</h4>
 
-A library with useful Streamlit extras. Created by [@arnaudmiribel](https://github.com/arnaudmiribel/).
+一个包含有用 Streamlit 额外功能的库。由 [@arnaudmiribel](https://github.com/arnaudmiribel/) 创建。
 
 ```python
 chart += get_annotations_chart(annotations=[("Mar 01, 2008", "Pretty good day for GOOG"), ("Dec 01, 2007", "Something's going wrong for GOOG & AAPL"), ("Nov 01, 2008", "Market starts again thanks to..."), ("Dec 01, 2009", "Small crash for GOOG after..."),],)
@@ -787,7 +784,7 @@ st.altair_chart(chart, use_container_width=True)
 
 </ComponentSlider>
 
-### Input widgets
+### 输入小部件
 
 <br />
 
@@ -796,9 +793,9 @@ st.altair_chart(chart, use_container_width=True)
 
 <Image pure alt="screenshot" src="/images/api/button.svg" />
 
-<h4>Button</h4>
+<h4>按钮</h4>
 
-Display a button widget.
+显示按钮小部件。
 
 ```python
 clicked = st.button("Click me")
@@ -809,9 +806,9 @@ clicked = st.button("Click me")
 
 <Image pure alt="screenshot" src="/images/api/download_button.svg" />
 
-<h4>Download button</h4>
+<h4>下载按钮</h4>
 
-Display a download button widget.
+显示下载按钮小部件。
 
 ```python
 st.download_button("Download file", file)
@@ -835,9 +832,9 @@ st.form_submit_button("Sign up")
 
 <Image pure alt="screenshot" src="/images/api/link_button.svg" />
 
-<h4>Link button</h4>
+<h4>链接按钮</h4>
 
-Display a link button.
+显示链接按钮。
 
 ```python
 st.link_button("Go to gallery", url)
@@ -862,9 +859,9 @@ st.page_link("pages/profile.py", label="My profile")
 
 <Image pure alt="screenshot" src="/images/api/checkbox.jpg" />
 
-<h4>Checkbox</h4>
+<h4>复选框</h4>
 
-Display a checkbox widget.
+显示复选框小部件。
 
 ```python
 selected = st.checkbox("I agree")
@@ -875,9 +872,9 @@ selected = st.checkbox("I agree")
 
 <Image pure alt="screenshot" src="/images/api/color_picker.jpg" />
 
-<h4>Color picker</h4>
+<h4>颜色选择器</h4>
 
-Display a color picker widget.
+显示颜色选择器小部件。
 
 ```python
 color = st.color_picker("Pick a color")
@@ -901,9 +898,9 @@ st.feedback("stars")
 
 <Image pure alt="screenshot" src="/images/api/multiselect.jpg" />
 
-<h4>Multiselect</h4>
+<h4>多选</h4>
 
-Display a multiselect widget. The multiselect widget starts as empty.
+显示多选小部件。 The multiselect widget starts as empty.
 
 ```python
 choices = st.multiselect("Buy", ["milk", "apples", "potatoes"])
@@ -927,9 +924,9 @@ st.pills("Tags", ["Sports", "AI", "Politics"])
 
 <Image pure alt="screenshot" src="/images/api/radio.jpg" />
 
-<h4>Radio</h4>
+<h4>单选按钮</h4>
 
-Display a radio button widget.
+显示单选按钮小部件。
 
 ```python
 choice = st.radio("Pick one", ["cats", "dogs"])
@@ -953,9 +950,9 @@ st.segmented_control("Filter", ["Open", "Closed", "All"])
 
 <Image pure alt="screenshot" src="/images/api/selectbox.jpg" />
 
-<h4>Selectbox</h4>
+<h4>选择框</h4>
 
-Display a select widget.
+显示选择小部件。
 
 ```python
 choice = st.selectbox("Pick one", ["cats", "dogs"])
@@ -968,7 +965,7 @@ choice = st.selectbox("Pick one", ["cats", "dogs"])
 
 <h4>Select-slider</h4>
 
-Display a slider widget to select items from a list.
+显示滑块小部件以从列表中选择项目。
 
 ```python
 size = st.select_slider("Pick a size", ["S", "M", "L"])
@@ -992,7 +989,7 @@ activated = st.toggle("Activate")
 
 <Image pure alt="screenshot" src="/images/api/number_input.jpg" />
 
-<h4>Number input</h4>
+<h4>数字输入</h4>
 
 Display a numeric input widget.
 
@@ -1005,9 +1002,9 @@ choice = st.number_input("Pick a number", 0, 10)
 
 <Image pure alt="screenshot" src="/images/api/slider.jpg" />
 
-<h4>Slider</h4>
+<h4>滑块</h4>
 
-Display a slider widget.
+显示滑块小部件。
 
 ```python
 number = st.slider("Pick a number", 0, 100)
@@ -1018,9 +1015,9 @@ number = st.slider("Pick a number", 0, 100)
 
 <Image pure alt="screenshot" src="/images/api/date_input.jpg" />
 
-<h4>Date input</h4>
+<h4>日期输入</h4>
 
-Display a date input widget.
+显示日期输入小部件。
 
 ```python
 date = st.date_input("Your birthday")
@@ -1033,7 +1030,7 @@ date = st.date_input("Your birthday")
 
 <h4>Datetime input</h4>
 
-Display a datetime input widget.
+显示日期时间输入小部件。
 
 ```python
 datetime = st.datetime_input("Schedule your event")
@@ -1044,9 +1041,9 @@ datetime = st.datetime_input("Schedule your event")
 
 <Image pure alt="screenshot" src="/images/api/time_input.jpg" />
 
-<h4>Time input</h4>
+<h4>时间输入</h4>
 
-Display a time input widget.
+显示时间输入小部件。
 
 ```python
 time = st.time_input("Meeting time")
@@ -1074,7 +1071,7 @@ if prompt:
 
 <h4>Text-area</h4>
 
-Display a multi-line text input widget.
+显示多行文本输入小部件。
 
 ```python
 text = st.text_area("Text to translate")
@@ -1085,9 +1082,9 @@ text = st.text_area("Text to translate")
 
 <Image pure alt="screenshot" src="/images/api/text_input.jpg" />
 
-<h4>Text input</h4>
+<h4>文本输入</h4>
 
-Display a single-line text input widget.
+显示单行文本输入小部件。
 
 ```python
 name = st.text_input("First name")
@@ -1111,9 +1108,9 @@ speech = st.audio_input("Record a voice message")
 
 <Image pure alt="screenshot" src="/images/api/data_editor.jpg" />
 
-<h4>Data editor</h4>
+<h4>数据编辑器</h4>
 
-Display a data editor widget.
+显示数据编辑器小部件。
 
 ```python
 edited = st.data_editor(df, num_rows="dynamic")
@@ -1126,7 +1123,7 @@ edited = st.data_editor(df, num_rows="dynamic")
 
 <h4>File uploader</h4>
 
-Display a file uploader widget.
+显示文件上传小部件。
 
 ```python
 data = st.file_uploader("Upload a CSV")
@@ -1171,9 +1168,9 @@ with elements("new_element"):
 
 <Image pure alt="screenshot" src="/images/api/components/tags.jpg" />
 
-<h4>Tags</h4>
+<h4>标签</h4>
 
-Add tags to your Streamlit apps. Created by [@gagan3012](https://github.com/gagan3012).
+向您的 Streamlit 应用添加标签。由 [@gagan3012](https://github.com/gagan3012) 创建。
 
 ```python
 from streamlit_tags import st_tags
@@ -1292,7 +1289,7 @@ option_menu("Main Menu", ["Home", 'Settings'],
 
 <h4>Streamlit Extras</h4>
 
-A library with useful Streamlit extras. Created by [@arnaudmiribel](https://github.com/arnaudmiribel/).
+一个包含有用 Streamlit 额外功能的库。由 [@arnaudmiribel](https://github.com/arnaudmiribel/) 创建。
 
 ```python
 from streamlit_extras.stoggle import stoggle
@@ -1408,9 +1405,9 @@ webrtc_streamer(key="sample")
 
 <Image pure alt="screenshot" src="/images/api/components/drawable-canvas.jpg" />
 
-<h4>Drawable Canvas</h4>
+<h4>可绘制画布</h4>
 
-Provides a sketching canvas using [Fabric.js](http://fabricjs.com/). Created by [@andfanilo](https://github.com/andfanilo).
+使用 [Fabric.js](http://fabricjs.com/) 提供绘图画布。由 [@andfanilo](https://github.com/andfanilo) 创建。
 
 ```python
 from streamlit_drawable_canvas import st_canvas
@@ -1474,7 +1471,7 @@ streamlit_image_coordinates("https://placekitten.com/200/300")
 
 <h4>Streamlit Lottie</h4>
 
-Integrate [Lottie](https://lottiefiles.com/) animations inside your Streamlit app. Created by [@andfanilo](https://github.com/andfanilo).
+在您的 Streamlit 应用中集成 [Lottie](https://lottiefiles.com/) 动画。由 [@andfanilo](https://github.com/andfanilo) 创建。
 
 ```python
 lottie_hello = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
@@ -1681,7 +1678,7 @@ show_pages([ Page("streamlit_app.py", "Home", "🏠"),
 
 </ComponentSlider>
 
-### Chat elements
+### 聊天元素
 
 <br />
 
@@ -1739,7 +1736,7 @@ with st.status('Running'):
 
 <h4>st.write_stream</h4>
 
-Write generators or streams to the app with a typewriter effect.
+使用打字机效果将生成器或流写入应用。
 
 ```python
 st.write_stream(my_generator)
@@ -1749,7 +1746,7 @@ st.write_stream(my_llm_stream)
 </RefCard>
 </TileContainer>
 
-### Status elements
+### 状态元素
 
 <br />
 
@@ -1953,7 +1950,7 @@ custom_notification_box(icon='info', textDisplay='We are almost done with your r
 
 <h4>Streamlit Extras</h4>
 
-A library with useful Streamlit extras. Created by [@arnaudmiribel](https://github.com/arnaudmiribel/).
+一个包含有用 Streamlit 额外功能的库。由 [@arnaudmiribel](https://github.com/arnaudmiribel/) 创建。
 
 ```python
 from streamlit_extras.let_it_rain import rain
@@ -2771,7 +2768,7 @@ assert at.title[0].value == "My awesome app"
 
 <RefCard href="/develop/api-reference/app-testing/testing-element-classes#sttestingv1element_treebutton" size="third">
 
-<h4>Button</h4>
+<h4>按钮</h4>
 
 A representation of `st.button` and `st.form_submit_button`.
 
@@ -2795,7 +2792,7 @@ at.chat_input[0].set_value("What is Streamlit?").run()
 
 <RefCard href="/develop/api-reference/app-testing/testing-element-classes#sttestingv1element_treecheckbox" size="third">
 
-<h4>Checkbox</h4>
+<h4>复选框</h4>
 
 A representation of `st.checkbox`.
 
@@ -2832,7 +2829,7 @@ at.date_input[0].set_value(release_date).run()
 
 <RefCard href="/develop/api-reference/app-testing/testing-element-classes#sttestingv1element_treemultiselect" size="third">
 
-<h4>Multiselect</h4>
+<h4>多选</h4>
 
 A representation of `st.multiselect`.
 
@@ -2856,7 +2853,7 @@ at.number_input[0].increment().run()
 
 <RefCard href="/develop/api-reference/app-testing/testing-element-classes#sttestingv1element_treeradio" size="third">
 
-<h4>Radio</h4>
+<h4>单选按钮</h4>
 
 A representation of `st.radio`.
 
@@ -2880,7 +2877,7 @@ at.select_slider[0].set_range("A","C").run()
 
 <RefCard href="/develop/api-reference/app-testing/testing-element-classes#sttestingv1element_treeselectbox" size="third">
 
-<h4>Selectbox</h4>
+<h4>选择框</h4>
 
 A representation of `st.selectbox`.
 
@@ -2892,7 +2889,7 @@ at.selectbox[0].select("New York").run()
 
 <RefCard href="/develop/api-reference/app-testing/testing-element-classes#sttestingv1element_treeslider" size="third">
 
-<h4>Slider</h4>
+<h4>滑块</h4>
 
 A representation of `st.slider`.
 

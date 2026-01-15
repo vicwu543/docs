@@ -1,11 +1,11 @@
 ---
-title: How can I make Streamlit watch for changes in other modules I'm importing in my app?
+title: 如何让 Streamlit 监视我在应用中导入的其他模块中的更改？
 slug: /knowledge-base/using-streamlit/streamlit-watch-changes-other-modules-importing-app
 ---
 
-# How can I make Streamlit watch for changes in other modules I'm importing in my app?
+# 如何让 Streamlit 监视我在应用中导入的其他模块中的更改？
 
-By default, Streamlit only watches modules contained in the current directory of the main app module. You can track other modules by adding the parent directory of each module to the `PYTHONPATH`.
+默认情况下，Streamlit 仅监视包含在主应用模块当前目录中的模块。您可以通过将每个模块的父目录添加到 `PYTHONPATH` 来跟踪其他模块。
 
 ```bash
 export PYTHONPATH=$PYTHONPATH:/path/to/module

@@ -1,82 +1,82 @@
 ---
-title: User authentication and information
+title: 用户身份验证和信息
 slug: /develop/concepts/connections/authentication
-description: Learn how to implement user authentication and personalization in Streamlit apps with admin controls, user information, and personalized experiences across sessions.
+description: 了解如何使用管理员控制、用户信息和跨会话的个性化体验在 Streamlit 应用中实现用户身份验证和个性化。
 keywords: user authentication, personalization, admin controls, user information, session management, user identity, authentication systems, personalized apps
 ---
 
-# User authentication and information
+# 用户身份验证和信息
 
-Personalizing your app for your users is a great way to make your app more engaging.
+为您的用户个性化您的应用是让您的应用更具吸引力的好方法。
 
-User authentication and personalization unlocks a plethora of use cases for developers, including controls for admins, a personalized stock ticker, or a chatbot app with a saved history between sessions.
+用户身份验证和个性化为开发人员解锁了大量的用例，包括管理员控制、个性化的股票行情、或具有保存历史记录的会话间聊天机器人应用。
 
-Before reading this guide, you should have a basic understanding of [secrets management](/develop/concepts/connections/secrets-management).
+在阅读本指南之前，您应该对[secrets 管理](/develop/concepts/connections/secrets-management)有基本了解。
 
 ## OpenID Connect
 
-Streamlit supports user authentication with OpenID Connect (OIDC), which is an authentication protocol built on top of OAuth 2.0. OIDC supports authentication, but not authorization: that is, OIDC connections tell you _who_ a user is (authentication), but don't give you the authority to _impersonate_ them (authorization). If you need to connect with a generic OAuth 2.0 provider or have your app to act on behalf of a user, consider using or creating a custom component.
+Streamlit 支持使用 OpenID Connect (OIDC) 进行用户身份验证，这是一种构建在 OAuth 2.0 之上的身份验证协议。OIDC 支持身份验证，但不支持授权：即，OIDC 连接告诉您用户是_谁_（身份验证），但不会给您_模拟_他们的权限（授权）。如果您需要连接通用 OAuth 2.0 提供商或让您的应用代表用户执行操作，请考虑使用或创建自定义组件。
 
-Some popular OIDC providers are:
+一些流行的 OIDC 提供商包括：
 
 - [Google Identity](https://developers.google.com/identity/openid-connect/openid-connect)
 - [Microsoft Entra ID](https://learn.microsoft.com/en-us/power-pages/security/authentication/openid-settings)
 - [Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard_oidc.htm)
 - [Auth0](https://auth0.com/docs/get-started/auth0-overview/create-applications/regular-web-apps)
 
-## `st.login()`, `st.user`, and `st.logout()`
+## `st.login()`、`st.user` 和 `st.logout()`
 
-There are three commands involved with user authentication:
+用户身份验证涉及三个命令：
 
-- [`st.login()`](/develop/api-reference/user/st.login) redirects the user to your identity provider. After they log in, Streamlit stores an identity cookie and then redirects them to the homepage of your app in a new session.
-- [`st.user`](/develop/api-reference/user/st.user) is a dict-like object for accessing user information. It has a persistent attribute, `.is_logged_in`, which you can check for the user's login status. When they are logged in, other attributes are available per your identity provider's configuration.
-- [`st.logout()`](/develop/api-reference/user/st.logout) removes the identity cookie from the user's browser and redirects them to the homepage of your app in a new session.
+- [`st.login()`](/develop/api-reference/user/st.login) 将用户重定向到您的身份提供商。他们在登录后，Streamlit 会存储一个身份 Cookie，然后将他们重定向到您的应用的新会话主页。
+- [`st.user`](/develop/api-reference/user/st.user) 是一个类字典对象，用于访问用户信息。它有一个持久属性 `.is_logged_in`，您可以用来检查用户的登录状态。当他们登录时，其他属性将根据您的身份提供商配置可用。
+- [`st.logout()`](/develop/api-reference/user/st.logout) 从用户的浏览器中删除身份 Cookie，并将他们重定向到您的应用的新会话主页。
 
-## User cookies and logging out
+## 用户 Cookie 和登出
 
-Streamlit checks for the identity cookie at the beginning of each new session. If a user logs in to your app in one tab and then opens a new tab, they will automatically be logged in to your app in the new tab. When you call `st.logout()` in a user session, Streamlit removes the identity cookie and starts a new session. This logs the user out from the current session. However, if they were logged in to other sessions already, they will remain logged in within those sessions. The information in `st.user` is updated at the beginning of a session (which is why `st.login()` and `st.logout()` both start new sessions after saving or deleting the identity cookie).
+Streamlit 在每个新会话开始时检查身份 Cookie。如果用户在一个标签页中登录您的应用，然后打开新标签页，他们将自动在新标签页中登录您的应用。当您在用户会话中调用 `st.logout()` 时，Streamlit 会删除身份 Cookie 并启动新会话。这会使用户从当前会话登出。但是，如果他们已经在其他会话中登录，他们将在那些会话中保持登录状态。`st.user` 中的信息在会话开始时更新（这就是为什么 `st.login()` 和 `st.logout()` 都在保存或删除身份 Cookie 后启动新会话的原因）。
 
-If a user closes your app without logging out, the identity cookie will expire after 30 days. This expiration time is not configurable and is not tied to any expiration time that may be returned in your user's identity token. If you need to prevent persistent authentication in your app, check the expiration information returned by the identity provider in `st.user` and manually call `st.logout()` when needed.
+如果用户在不登出的情况下关闭您的应用，身份 Cookie 将在 30 天后过期。此过期时间不可配置，且与用户身份令牌中可能返回的任何过期时间无关。如果您需要防止在您的应用中持久身份验证，请检查 `st.user` 中身份提供商返回的过期信息，并在需要时手动调用 `st.logout()`。
 
-Streamlit does not modify or delete any cookies saved directly by your identity provider. For example, if you use Google as your identity provider and a user logs in to your app with Google, they will remain logged in to their Google account after they log out of your app with `st.logout()`.
+Streamlit 不会修改或删除直接由您的身份提供商保存的任何 Cookie。例如，如果您使用 Google 作为身份提供商，用户使用 Google 登录您的应用，他们在使用 `st.logout()` 从您的应用登出后，仍将保持登录到他们的 Google 账户。
 
-## Setting up an identity provider
+## 设置身份提供商
 
-In order to use an identity provider, you must first configure your identity provider through an admin account. This typically involves setting up a client or application within the identity provider's system. Follow the documentation for your identity provider. As a general overview, an identity-provider client typically does the following:
+为了使用身份提供商，您必须首先通过管理员账户配置您的身份提供商。这通常涉及在身份提供商系统中设置客户端或应用程序。请遵循您身份提供商的文档。总的来说，身份提供商客户端通常执行以下操作：
 
-- Manages the list of your users.
-- Optional: Allows users to add themselves to your user list.
-- Declares the set of attributes passed from each user account to the client (which is then passed to your Streamlit app).
-- Only allows authentication requests to come from your Streamlit app.
-- Redirects users back to your Streamlit app after they authenticate.
+- 管理您的用户列表。
+- 可选：允许用户将自己添加到您的用户列表。
+- 声明从每个用户账户传递到客户端的属性集（然后传递到您的 Streamlit 应用）。
+- 仅允许来自您的 Streamlit 应用的身份验证请求。
+- 在用户认证后将用户重定向回您的 Streamlit 应用。
 
-To configure your app, you'll need the following:
+要配置您的应用，您需要以下内容：
 
-- Your app's URL
-  For example, use `http://localhost:8501` for most local development cases.
-- A redirect URL, which is your app's URL with the pathname `oauth2callback`
-  For example, `http://localhost:8501/oauth2callback` for most local development cases.
-- A cookie secret, which should be a strong, randomly generated string
+- 您的应用的 URL
+  例如，对于大多数本地开发情况，使用 `http://localhost:8501`。
+- 重定向 URL，这是您的应用 URL 带有路径名 `oauth2callback`
+  例如，对于大多数本地开发情况，使用 `http://localhost:8501/oauth2callback`。
+- Cookie 密钥，这应该是一个强随机生成的字符串
 
-After you use this information to configure your identity-provider client, you'll receive the following information from your identity provider:
+在使用此信息配置您的身份提供商客户端后，您将从身份提供商收到以下信息：
 
-- Client ID
-- Client secret
-- Server metadata URL
+- 客户端 ID
+- 客户端密钥
+- 服务器元数据 URL
 
-Examples for popular OIDC provider configurations are listed in the API reference for `st.login()`.
+流行的 OIDC 提供商配置示例在 `st.login()` 的 API 参考中列出。
 
-## Configure your OIDC connection in Streamlit
+## 在 Streamlit 中配置您的 OIDC 连接
 
-After you've configured your identity-provider client, you'll need to configure your Streamlit app, too. `st.login()` uses your app's `secrets.toml` file to configure your connection, similar to how `st.connection()` works.
+在配置好身份提供商客户端后，您也需要配置您的 Streamlit 应用。`st.login()` 使用您的应用的 `secrets.toml` 文件配置您的连接，类似于 `st.connection()` 的工作方式。
 
-Whether you have one OIDC provider or many, you'll need to have an `[auth]` dictionary in `secrets.toml`. You must declare `redirect_uri` and `cookie_secret` in the `[auth]` dictionary. These two values are shared between all OIDC providers in your app.
+无论您有一个 OIDC 提供商还是多个，您都需要在 `secrets.toml` 中有一个 `[auth]` 字典。您必须在 `[auth]` 字典中声明 `redirect_uri` 和 `cookie_secret`。这两个值在您的应用中的所有 OIDC 提供商之间共享。
 
-If you are only using one OIDC provider, you can put the remaining three properties (`client_id`, `client_secret`, and `server_metadata_url`) in `[auth]`. However, if you are using multiple providers, they should each have a unique name so you can declare their unique values in their own dictionaries. For example, if you name your connections `"connection_1"` and `"connection_2"`, put their remaining properties in dictionaries named `[auth.connection_1]` and `[auth.connection_2]`, respectively.
+如果您只使用一个 OIDC 提供商，可以将剩余三个属性（`client_id`、`client_secret` 和 `server_metadata_url`）放在 `[auth]` 中。但是，如果您使用多个提供商，它们应该各自具有唯一名称，以便您可以将它们的唯一值声明在各自的字典中。例如，如果您将连接命名为 `"connection_1"` 和 `"connection_2"`，请将它们的剩余属性分别放在名为 `[auth.connection_1]` 和 `[auth.connection_2]` 的字典中。
 
-## A simple example
+## 简单示例
 
-If you use Google Identity as your identity provider, a basic configuration for local development will look like the following TOML file:
+如果您使用 Google Identity 作为身份提供商，本地开发的基本配置将如下 TOML 文件所示：
 
 `.streamlit/secrets.toml`:
 
@@ -89,39 +89,39 @@ client_secret = "xxx"
 server_metadata_url = "https://accounts.google.com/.well-known/openid-configuration"
 ```
 
-Make sure the port in `redirect_uri` matches the port you are using. The `cookie_secret` should be a strong, randomly generated secret. Both the `redirect_uri` and `cookie_secret` should have been entered into your client configuration on Google Cloud. You must copy the `client_id` and `client_secret` from Google Cloud after you create your client. For some identity providers, `server_metadata_url` may be unique to your client. However, for Google Cloud, a single URL is shared for OIDC clients.
+确保 `redirect_uri` 中的端口与您使用的端口匹配。`cookie_secret` 应该是一个强随机生成的密钥。`redirect_uri` 和 `cookie_secret` 都应该已输入到 Google Cloud 上的客户端配置中。您必须在创建客户端后从 Google Cloud 复制 `client_id` 和 `client_secret`。对于某些身份提供商，`server_metadata_url` 可能对您的客户端是唯一的。但对于 Google Cloud，OIDC 客户端共享单个 URL。
 
-In your app, create a simple login flow:
+在您的应用中，创建一个简单的登录流程：
 
 ```python
 import streamlit as st
 
 if not st.user.is_logged_in:
-    if st.button("Log in with Google"):
+    if st.button("使用 Google 登录"):
         st.login()
     st.stop()
 
-if st.button("Log out"):
+if st.button("登出"):
     st.logout()
-st.markdown(f"Welcome! {st.user.name}")
+st.markdown(f"欢迎！{st.user.name}")
 ```
 
-When you use `st.stop()`, your script run ends as soon as the login button is displayed. This lets you avoid nesting your entire page within a conditional block. Additionally, you can use callbacks to simplify the code further:
+当您使用 `st.stop()` 时，您的脚本运行在显示登录按钮时结束。这可以让您避免将整个页面嵌套在条件块中。此外，您可以使用回调进一步简化代码：
 
 ```python
 import streamlit as st
 
 if not st.user.is_logged_in:
-    st.button("Log in with Google", on_click=st.login)
+    st.button("使用 Google 登录", on_click=st.login)
     st.stop()
 
-st.button("Log out", on_click=st.logout)
-st.markdown(f"Welcome! {st.user.name}")
+st.button("登出", on_click=st.logout)
+st.markdown(f"欢迎！{st.user.name}")
 ```
 
-## Using multiple OIDC providers
+## 使用多个 OIDC 提供商
 
-If you use more than one OIDC provider, you'll need to declare a unique name for each. If you want to use Google Identity and Microsoft Entra ID as two providers for the same app, your configuration for local development will look like the following TOML file:
+如果您使用多个 OIDC 提供商，您需要为每个提供商声明一个唯一名称。如果您想使用 Google Identity 和 Microsoft Entra ID 作为同一应用的两个提供商，本地开发的配置将如下 TOML 文件所示：
 
 `.streamlit/secrets.toml`:
 
@@ -141,44 +141,44 @@ client_secret = "xxx"
 server_metadata_url = "https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration"
 ```
 
-Microsoft's server metadata URL varies slightly depending on how your client is scoped. Replace `{tenant}` with the appropriate value described in Microsoft's documentation for [OpenID configuration](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#find-your-apps-openid-configuration-document-uri).
+Microsoft 的服务器元数据 URL 根据客户端的作用域略有不同。将 `{tenant}` 替换为 Microsoft 文档中[OpenID 配置](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#find-your-apps-openid-configuration-document-uri)描述的适当值。
 
-Your app code:
+您的应用代码：
 
 ```python
 import streamlit as st
 
 if not st.user.is_logged_in:
-    if st.button("Log in with Google"):
+    if st.button("使用 Google 登录"):
         st.login("google")
-    if st.button("Log in with Microsoft"):
+    if st.button("使用 Microsoft 登录"):
         st.login("microsoft")
     st.stop()
 
-if st.button("Log out"):
+if st.button("登出"):
     st.logout()
-st.markdown(f"Welcome! {st.user.name}")
+st.markdown(f"欢迎！{st.user.name}")
 ```
 
-Using callbacks, this would look like:
+使用回调，这看起来像：
 
 ```python
 import streamlit as st
 
 if not st.user.is_logged_in:
-    st.button("Log in with Google", on_click=st.login, args=["google"])
-    st.button("Log in with Microsoft", on_click=st.login, args=["microsoft"])
+    st.button("使用 Google 登录", on_click=st.login, args=["google"])
+    st.button("使用 Microsoft 登录", on_click=st.login, args=["microsoft"])
     st.stop()
 
-st.button("Log out", on_click=st.logout)
-st.markdown(f"Welcome! {st.user.name}")
+st.button("登出", on_click=st.logout)
+st.markdown(f"欢迎！{st.user.name}")
 ```
 
-## Passing keywords to your identity provider
+## 向您的身份提供商传递关键字
 
-To customize the behavior of your identity provider, you may need to declare additional keywords. For a complete list of OIDC parameters, see [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) and your provider's documentation. By default, Streamlit sets `scope="openid profile email"` and `prompt="select_account"`. You can change these and other OIDC parameters by passing a dictionary of settings to `client_kwargs`. `state` and `nonce`, which are used for security, are handled automatically and don't need to be specified.
+要自定义身份提供商的行为，您可能需要声明额外的关键字。有关 OIDC 参数的完整列表，请参见 [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) 和您的提供商文档。默认情况下，Streamlit 设置 `scope="openid profile email"` 和 `prompt="select_account"`。您可以通过将设置字典传递给 `client_kwargs` 来更改这些和其他 OIDC 参数。用于安全性的 `state` 和 `nonce` 会自动处理，无需指定。
 
-For example,if you are using Auth0 and need to force users to log in every time, use `prompt="login"` as described in Auth0's [Customize Signup and Login Prompts](https://auth0.com/docs/customize/login-pages/universal-login/customize-signup-and-login-prompts). Your configuration will look like this:
+例如，如果您使用 Auth0 并且需要强制用户每次都登录，请使用 Auth0 [自定义注册和登录提示](https://auth0.com/docs/customize/login-pages/universal-login/customize-signup-and-login-prompts)中描述的 `prompt="login"`。您的配置将如下所示：
 
 ```toml
 [auth]
@@ -193,5 +193,5 @@ client_kwargs = { "prompt" = "login" }
 ```
 
 <Note>
-  Hosted Code environments such as GitHub Codespaces have additional security controls in place preventing the login redirect to be handled properly.
+  GitHub Codespaces 等托管代码环境具有额外的安全控制措施，阻止登录重定向被正确处理。
 </Note>

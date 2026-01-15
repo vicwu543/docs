@@ -1,13 +1,13 @@
 ---
-title: Deployment tutorials
+title: 部署教程
 slug: /deploy/tutorials
-description: Step-by-step deployment guides for various cloud platforms including Community Cloud, Docker, and Kubernetes.
+description: 各种云平台（包括 Community Cloud、Docker 和 Kubernetes）的逐步部署指南。
 keywords: deployment, tutorials, docker, kubernetes, cloud, platforms, guides, step-by-step
 ---
 
-# Deployment tutorials
+# 部署教程
 
-This sections contains step-by-step guides on how to deploy Streamlit apps to various cloud platforms and services. We have deployment guides for:
+本部分包含关于如何将 Streamlit 应用部署到各种云平台和服务的逐步指南。我们有以下的部署指南：
 
 <DataSourcesContainer>
 <DataSourcesCard href="/deploy/streamlit-community-cloud/get-started">
@@ -35,11 +35,11 @@ This sections contains step-by-step guides on how to deploy Streamlit apps to va
 </DataSourcesCard>
 </DataSourcesContainer>
 
-While we work on official Streamlit deployment guides for other hosting providers, here are some user-submitted tutorials for different cloud services:
+当我们为其他托管提供商编写官方 Streamlit 部署指南时，这里是用户提交的针对不同云服务的一些教程：
 
-- [How to deploy Streamlit apps to **Google App Engine**](https://dev.to/whitphx/how-to-deploy-streamlit-apps-to-google-app-engine-407o), by [Yuichiro Tachibana (Tsuchiya)](https://discuss.streamlit.io/u/whitphx/summary).
-- [Host Streamlit on **Heroku**](https://towardsdatascience.com/quickly-build-and-deploy-an-application-with-streamlit-988ca08c7e83), by Maarten Grootendorst.
-- [Deploy Streamlit on **Ploomber Cloud**](https://docs.cloud.ploomber.io/en/latest/apps/streamlit.html), by Ido Michael.
-- [Host Streamlit on **21YunBox**](https://www.21yunbox.com/docs/#/deploy-streamlit), by Toby Lei.
-- [Deploy a Streamlit App on **Koyeb**](https://www.koyeb.com/docs/deploy/streamlit), by Justin Ellingwood.
-- [Community-supported deployment wiki](https://discuss.streamlit.io/t/streamlit-deployment-guide-wiki/5099).
+- [如何将 Streamlit 应用部署到 **Google App Engine**](https://dev.to/whitphx/how-to-deploy-streamlit-apps-to-google-app-engine-407o)，由 [Yuichiro Tachibana (Tsuchiya)](https://discuss.streamlit.io/u/whitphx/summary) 提供。
+- [在 **Heroku** 上托管 Streamlit](https://towardsdatascience.com/quickly-build-and-deploy-an-application-with-streamlit-988ca08c7e83)，由 Maarten Grootendorst 提供。
+- [在 **Ploomber Cloud** 上部署 Streamlit](https://docs.cloud.ploomber.io/en/latest/apps/streamlit.html)，由 Ido Michael 提供。
+- [在 **21YunBox** 上托管 Streamlit](https://www.21yunbox.com/docs/#/deploy-streamlit)，由 Toby Lei 提供。
+- [在 **Koyeb** 上部署 Streamlit 应用](https://www.koyeb.com/docs/deploy/streamlit)，由 Justin Ellingwood 提供。
+- [社区支持的部署 wiki](https://discuss.streamlit.io/t/streamlit-deployment-guide-wiki/5099)。

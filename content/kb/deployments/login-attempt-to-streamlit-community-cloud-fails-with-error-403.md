@@ -1,14 +1,14 @@
 ---
-title: Login attempt to Streamlit Community Cloud fails with error 403
+title: 登录Streamlit Community Cloud失败，错误403
 slug: /knowledge-base/deploy/login-attempt-to-streamlit-community-cloud-fails-with-error-403
 ---
 
-# Login attempt to Streamlit Community Cloud fails with error 403
+# 登录Streamlit Community Cloud失败，错误403
 
-## Problem
+## 问题
 
-Streamlit Community Cloud has monitoring jobs to detect malicious users using the platform for crypto mining. These jobs sometimes result in false positives and a normal user starts getting error 403 against a login attempt.
+Streamlit Community Cloud具有监控作业来检测使用该平台进行加密挖矿的恶意用户。这些作业有时会导致误报，正常用户开始针对登录尝试获得错误403。
 
-## Solution
+## 解决方案
 
-Please contact [Support](mailto:support@streamlit.io) by providing your **GitHub username** for help referring to this article.
+请通过提供你的**GitHub用户名**[联系支持](mailto:support@streamlit.io)，以获取参考此文章的帮助。

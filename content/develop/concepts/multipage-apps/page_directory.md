@@ -1,19 +1,19 @@
 ---
-title: Creating multipage apps using the `pages/` directory
+title: 使用 `pages/` 目录创建多页应用
 slug: /develop/concepts/multipage-apps/pages-directory
-description: Learn how to create multipage Streamlit apps using the simple pages/ directory approach with automatic page recognition and sidebar navigation.
-keywords: pages directory, multipage apps, automatic navigation, sidebar navigation, page organization, simple multipage, directory structure
+description: 了解如何使用简单的 pages/ 目录方法创建多页 Streamlit 应用，具有自动页面识别和侧边栏导航。
+keywords: pages 目录, 多页应用, 自动导航, 侧边栏导航, 页面组织, 简单多页, 目录结构
 ---
 
-# Creating multipage apps using the `pages/` directory
+# 使用 `pages/` 目录创建多页应用
 
-The most customizable method for declaring multipage apps is using [Page and navigation](/develop/concepts/multipage-apps/page-and-navigation). However, Streamlit also provides a frictionless way to create multipage apps where pages are automatically recognized and shown in a navigation widget inside your app's sidebar. This method uses the `pages/` directory.
+声明多页应用的最可定制方法是使用[页面和导航](/develop/concepts/multipage-apps/page-and-navigation)。但是，Streamlit 还提供了一种无摩擦的方式来创建多页应用，其中页面会自动识别并显示在应用侧边栏中的导航部件中。此方法使用 `pages/` 目录。
 
-This page assumes you understand the [Page terminology](/develop/concepts/multipage-apps/overview#page-terminology) presented in the overview.
+此页面假设您了解概述中介绍的[页面术语](/develop/concepts/multipage-apps/overview#page-terminology)。
 
-## App structure
+## 应用结构
 
-When you use the `pages/` directory, Streamlit identifies pages in your multipage app by directory structure and filenames. Your entrypoint file (the file you pass to `streamlit run`), is your app's homepage. When you have a `pages/` directory next to your entrypoint file, Streamlit will identify each Python file within it as a page. The following example has three pages. `your_homepage.py` is the entrypoint file and homepage.
+当您使用 `pages/` 目录时，Streamlit 通过目录结构和文件名识别多页应用中的页面。您的入口点文件（传递给 `streamlit run` 的文件）是应用的主页。当您在入口点文件旁边有 `pages/` 目录时，Streamlit 将识别其中的每个 Python 文件作为页面。以下示例有三个页面。`your_homepage.py` 是入口点文件和主页。
 
 ```
 your_working_directory/
@@ -23,35 +23,35 @@ your_working_directory/
 └── your_homepage.py
 ```
 
-Run your multipage app just like you would for a single-page app. Pass your entrypoint file to `streamlit run`.
+像运行单页应用一样运行您的多页应用。将您的入口点文件传递给 `streamlit run`。
 
 ```
 streamlit run your_homepage.py
 ```
 
-Only `.py` files in the `pages/` directory will be identified as pages. Streamlit ignores all other files in the `pages/` directory and its subdirectories. Streamlit also ignores Python files in subdirectories of `pages/`.
+只有 `pages/` 目录中的 `.py` 文件将被识别为页面。Streamlit 忽略 `pages/` 目录及其子目录中的所有其他文件。Streamlit 还忽略 `pages/` 子目录中的 Python 文件。
 
 <Important>
 
-If you call `st.navigation` in your app (in any session), Streamlit will switch to using the newer, Page-and-navigation multipage structure. In this case, the `pages/` directory will be ignored across all sessions. You will not be able to revert back to the `pages/` directory unless you restart you app.
+如果您在应用中（在任何会话中）调用 `st.navigation`，Streamlit 将切换到使用较新的页面和导航多页结构。在这种情况下，`pages/` 目录将在所有会话中被忽略。除非您重启应用，否则您无法回退到 `pages/` 目录。
 
 </Important>
 
-### How pages are sorted in the sidebar
+### 侧边栏中的页面排序方式
 
-See the overview to understand how Streamlit assigns [Automatic page labels and URLs](/develop/concepts/multipage-apps/overview#automatic-page-labels-and-urls) based on the `number`, `separator`, `identifier`, and `".py"` extension that constitute a filename.
+请参见概述以了解 Streamlit 如何根据构成文件名的 `number`、`separator`、`identifier` 和 `".py"` 扩展名分配[自动页面标签和 URL](/develop/concepts/multipage-apps/overview#automatic-page-labels-and-urls)。
 
-The entrypoint file is always displayed first. The remaining pages are sorted as follows:
+入口点文件始终首先显示。其余页面按以下方式排序：
 
-- Files that have a `number` appear before files without a `number`.
-- Files are sorted based on the `number` (if any), followed by the `label` (if any).
-- When files are sorted, Streamlit treats the `number` as an actual number rather than a string. So `03` is the same as `3`.
+- 具有 `number` 的文件出现在没有 `number` 的文件之前。
+- 文件根据 `number`（如果有），然后是 `label`（如果有）进行排序。
+- 对文件进行排序时，Streamlit 将 `number` 视为实际数字而不是字符串。所以 `03` 与 `3` 相同。
 
-This table shows examples of filenames and their corresponding labels, sorted by the order in which they appear in the sidebar.
+此表显示了文件名示例及其对应的标签，按它们在侧边栏中出现的顺序排序。
 
-**Examples**:
+**示例**：
 
-| **Filename**              | **Rendered label** |
+| **文件名**              | **渲染标签** |
 | :------------------------ | :----------------- |
 | `1 - first page.py`       | first page         |
 | `12 monkeys.py`           | monkeys            |
@@ -61,20 +61,20 @@ This table shows examples of filenames and their corresponding labels, sorted by
 
 <Tip>
 
-Emojis can be used to make your page names more fun! For example, a file named `🏠_Home.py` will create a page titled "🏠 Home" in the sidebar. When adding emojis to filenames, it’s best practice to include a numbered prefix to make autocompletion in your terminal easier. Terminal-autocomplete can get confused by unicode (which is how emojis are represented).
+表情符号可以用来让您的页面名称更有趣！例如，名为 `🏠_Home.py` 的文件将在侧边栏中创建一个标题为"🏠 Home"的页面。在文件名中添加表情符号时，最佳实践是包含编号前缀以使终端中的自动完成功能更容易。终端自动完成可能会被 unicode（表情符号的表示方式）混淆。
 
 </Tip>
 
-## Notes and limitations
+## 注意事项和限制
 
-- Pages support run-on-save.
-  - When you update a page while your app is running, this causes a rerun for users currently viewing that exact page.
-  - When you update a page while your app is running, the app will not automatically rerun for users currently viewing a different page.
-- While your app is running, adding or deleting a page updates the sidebar navigation immediately.
-- [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) works at the page level.
-  - When you set `title` or `favicon` using `st.set_page_config`, this applies to the current page only.
-  - When you set `layout` using `st.set_page_config`, the setting will remain for the session until changed by another call to `st.set_page_config`. If you use `st.set_page_config` to set `layout`, it's recommended to call it on _all_ pages.
-- Pages share the same Python modules globally:
+- 页面支持保存时运行。
+  - 当您在应用运行时更新页面时，这会导致当前查看该确切页面的用户重新运行。
+  - 当您在应用运行时更新页面时，应用不会为当前查看不同页面的用户自动重新运行。
+- 当您的应用运行时，添加或删除页面会立即更新侧边栏导航。
+- [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) 在页面级别工作。
+  - 当您使用 `st.set_page_config` 设置 `title` 或 `favicon` 时，这仅适用于当前页面。
+  - 当您使用 `st.set_page_config` 设置 `layout` 时，该设置将在会话中保持直到被另一个 `st.set_page_config` 调用更改。如果您使用 `st.set_page_config` 设置 `layout`，建议在_所有_页面上调用它。
+- 页面全局共享相同的 Python 模块：
 
   ```python
   # page1.py
@@ -83,10 +83,10 @@ Emojis can be used to make your page names more fun! For example, a file named `
 
   # page2.py
   import foo
-  st.write(foo.hello)  # If page1 already executed, this writes 123
+  st.write(foo.hello)  # 如果 page1 已经执行，这将写入 123
   ```
 
-- Pages share the same [st.session_state](/develop/concepts/architecture/session-state):
+- 页面共享相同的 [st.session_state](/develop/concepts/architecture/session-state)：
 
   ```python
   # page1.py
@@ -96,7 +96,7 @@ Emojis can be used to make your page names more fun! For example, a file named `
 
   # page2.py
   import streamlit as st
-  st.write(st.session_state["shared"]) # If page1 already executed, this writes True
+  st.write(st.session_state["shared"]) # 如果 page1 已经执行，这将写入 True
   ```
 
-You now have a solid understanding of multipage apps. You've learned how to structure apps, define pages, and navigate between pages in the user interface. It's time to [create your first multipage app](/get-started/tutorials/create-a-multipage-app)! 🥳
+您现在对多页应用有了扎实的理解。您已经学习了如何构建应用、定义页面以及在用户界面中导航页面。现在是时候[创建您的第一个多页应用](/get-started/tutorials/create-a-multipage-app)了！🥳

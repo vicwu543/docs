@@ -1,7 +1,7 @@
 ---
 title: st.slider
 slug: /develop/api-reference/widgets/st.slider
-description: st.slider displays a slider widget for numerical values.
+description: st.slider 显示数值滑块小部件。
 keywords: slider, widget, input, range, value, interactive
 ---
 
@@ -9,8 +9,8 @@ keywords: slider, widget, input, range, value, interactive
 
 ### Featured videos
 
-Check out our video on how to use one of Streamlit's core functions, the slider!
+查看我们关于如何使用 Streamlit 核心功能之一的视频：滑块！
 <YouTube videoId="tzAdd-MuWPw" />
 
-In the video below, we'll take it a step further and make a double-ended slider.
+在下面的视频中，我们将更进一步，制作双端滑块。
 <YouTube videoId="sCvdt79asrE" />

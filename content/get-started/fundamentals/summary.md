@@ -1,22 +1,21 @@
 ---
-title: App model summary
+title: 应用模型摘要
 slug: /get-started/fundamentals/summary
-description: A summary of Streamlit's app model including execution flow, data handling, and state management.
+description: Streamlit 应用模型的摘要，包括执行流程、数据处理和状态管理。
 keywords: app model, execution flow, data handling, state management, streamlit architecture, app summary, fundamentals recap
 ---
 
-# App model summary
+# 应用模型摘要
 
-Now that you know a little more about all the individual pieces, let's close
-the loop and review how it works together:
+现在您对所有各个部分了解得更多了，让我们总结一下它是如何一起工作的：
 
-1. Streamlit apps are Python scripts that run from top to bottom.
-1. Every time a user opens a browser tab pointing to your app, the script is executed and a new session starts.
-1. As the script executes, Streamlit draws its output live in a browser.
-1. Every time a user interacts with a widget, your script is re-executed and Streamlit redraws its output in the browser.
-   - The output value of that widget matches the new value during that rerun.
-1. Scripts use the Streamlit cache to avoid recomputing expensive functions, so updates happen very fast.
-1. Session State lets you save information that persists between reruns when you need more than a simple widget.
-1. Streamlit apps can contain multiple pages, which are defined in separate `.py` files in a `pages` folder.
+1. Streamlit 应用是从上到下运行的 Python 脚本。
+1. 每次用户打开指向您的应用的浏览器选项卡时，脚本都会执行并启动一个新会话。
+1. 当脚本执行时，Streamlit 会在浏览器中实时绘制其输出。
+1. 每次用户与小部件交互时，您的脚本都会重新执行，并且 Streamlit 会在浏览器中重新绘制其输出。
+   - 该小部件的输出值在重新运行期间与新值相匹配。
+1. 脚本使用 Streamlit 缓存来避免重新计算昂贵的函数，因此更新发生得非常快。
+1. 会话状态让您保存在重新运行之间持续存在的信息，当您需要超过简单小部件时。
+1. Streamlit 应用可以包含多个页面，这些页面在 `pages` 文件夹中的单独 `.py` 文件中定义。
 
 ![The Streamlit app model](/images/app_model.png)

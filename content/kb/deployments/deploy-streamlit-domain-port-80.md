@@ -1,19 +1,19 @@
 ---
-title: How do I deploy Streamlit on a domain so it appears to run on a regular port (i.e. port 80)?
+title: 如何在域上部署Streamlit以使其显示在常规端口(即端口 80)上运行？
 slug: /knowledge-base/deploy/deploy-streamlit-domain-port-80
 ---
 
-# How do I deploy Streamlit on a domain so it appears to run on a regular port (i.e. port 80)?
+# 如何在域上部署Streamlit以使其显示在常规端口(即端口 80)上运行？
 
-## Problem
+## 问题
 
-You want to deploy a Streamlit app on a domain so it appears to run on port 80.
+你想在一个域上部署Streamlit应用程序，使其显示在端口 80 上运行。
 
-## Solution
+## 解决方案
 
-- You should use a **reverse proxy** to forward requests from a webserver like [Apache](https://httpd.apache.org/) or [Nginx](https://www.nginx.com/) to the port where your Streamlit app is running. You can accomplish this in several different ways. The simplest way is to [forward all requests sent to your domain](https://discuss.streamlit.io/t/permission-denied-in-ec2-port-80/798/3) so that your Streamlit app appears as the content of your website.
+- 你应该使用**反向代理**来从[Apache](https://httpd.apache.org/)或[Nginx](https://www.nginx.com/)等web服务器转发请求到你的Streamlit应用程序运行所在的端口。你可以以许多不同的方案完成此作。最简单的方案是[转发所有发送到你的域的请求](https://discuss.streamlit.io/t/permission-denied-in-ec2-port-80/798/3)，以便Streamlit应用程序车止作为你的应用程序内容。
 
-- Another approach is to configure your webserver to forward requests to designated subfolders (e.g. _http://awesomestuff.net/streamlitapp_) to different Streamlit apps on the same domain, as in this [example config for Nginx](https://discuss.streamlit.io/t/how-to-use-streamlit-with-nginx/378/7) submitted by a Streamlit community member.
+- 另一个方法是配置你的web服务器以转发请求到指定的子文件夹(例如 _http://awesomestuff.net/streamlitapp_)到同一域上的不同Streamlit应用程序，如此[Nginx配置示例](https://discuss.streamlit.io/t/how-to-use-streamlit-with-nginx/378/7)于Streamlit穆族会员提交。
 
 Related forum posts:
 

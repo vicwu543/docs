@@ -1,39 +1,39 @@
 ---
-title: Favorite your app
+title: 收藏您的应用
 slug: /deploy/streamlit-community-cloud/manage-your-app/favorite-your-app
-description: Learn how to favorite and unfavorite your Streamlit apps in Community Cloud to quickly access them from your workspace.
+description: 了解如何在 Community Cloud 中收藏和取消收藏您的 Streamlit 应用，以便从您的工作区快速访问它们。
 keywords: favorite, unfavorite, star, workspace, quick access, organize, manage, apps, toolbar
 ---
 
-# Favorite your app
+# 收藏您的应用
 
-Streamlit Community Cloud supports a "favorite" feature that lets you quickly access your apps from your workspace. Favorited apps appear at the top of their workspace with a yellow star (<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>) beside them. You can favorite and unfavorite apps in any workspace to which you have access as a developer or invited viewer.
+Streamlit Community Cloud 支持"收藏"功能，让您可以从您的工作区快速访问您的应用。收藏的应用在其工作区顶部显示，旁边有一个黄色星星 (<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>)。您可以在您作为开发者或受邀查看者有访问权限的任何工作区中收藏和取消收藏应用。
 
-![Favorite apps appear on top in Streamlit Community Cloud](/images/streamlit-community-cloud/workspace-two-apps.png)
+![收藏的应用在 Streamlit Community Cloud 中显示在顶部](/images/streamlit-community-cloud/workspace-two-apps.png)
 
 <Note>
 
-Favorites are specific to your account. Other members of your workspace cannot see which apps you have favorited.
+收藏是特定于您的账户的。您工作区的其他成员看不到您收藏了哪些应用。
 
 </Note>
 
-## Favoriting and unfavoriting your app
+## 收藏和取消收藏您的应用
 
-You can favorite your app:
+您可以收藏您的应用：
 
-- [From your workspace](#favorite-your-app-from-your-workspace).
-- [From your app](#favorite-your-app-from-your-app-toolbar)!
+- [从您的工作区](#favorite-your-app-from-your-workspace)。
+- [从您的应用](#favorite-your-app-from-your-app-toolbar)！
 
-### Favorite your app from your workspace
+### 从您的工作区收藏您的应用
 
-1. From your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, hover over your app.
+1. 从您在 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> 的工作区，将鼠标悬停在您的应用上。
 
-   If your app is not yet favorited, a star outline (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>star_border</i>) will appear on hover.
+   如果您的应用尚未收藏，悬停时会出现星星轮廓 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>star_border</i>)。
 
-1. Click on the star (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>star_border</i>/<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>) next to your app name to toggle its favorited status.
+1. 单击您的应用名称旁边的星星 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>star_border</i>/<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>) 以切换其收藏状态。
 
-### Favorite your app from your app toolbar
+### 从您的应用工具栏收藏您的应用
 
-From your app at `<your-custom-subdomain>.streamlit.app`, click the star (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>star_border</i>/<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>) in the upper-right corner to toggle your app's favorited status.
+从您的应用 `<your-custom-subdomain>.streamlit.app`，单击右上角的星星 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>star_border</i>/<i style={{ verticalAlign: "-.25em", color: "#faca2b" }} className={{ class: "material-icons-sharp" }}>star</i>) 以切换您的应用的收藏状态。
 
-![Favorite your app directly from your live app](/images/streamlit-community-cloud/favorite-select.png)
+![直接从您的实时应用收藏您的应用](/images/streamlit-community-cloud/favorite-select.png)

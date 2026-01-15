@@ -1,21 +1,21 @@
 ---
-title: Embed your app
+title: 嵌入你的应用
 slug: /deploy/streamlit-community-cloud/share-your-app/embed-your-app
-description: Learn how to embed your Streamlit app in websites, blogs, and platforms using iframe and oEmbed methods with customizable options.
-keywords: embed, iframe, oembed, website, blog, platform, integration, customization, options, sharing
+description: 了解如何使用iframe和oEmbed方法在网站、博客和平台中嵌入Streamlit应用，具有可自定义的选项。
+keywords: 嵌入, iframe, oembed, 网站, 博客, 平台, 集成, 自定义, 选项, 共享
 ---
 
-# Embed your app
+# 嵌入你的应用
 
-Embedding Streamlit Community Cloud apps enriches your content by integrating interactive, data-driven applications directly within your pages. Whether you're writing a blog post, a technical document, or sharing resources on platforms like Medium, Notion, or even StackOverflow, embedding Streamlit apps adds a dynamic component to your content. This allows your audience to interact with your ideas, rather than merely reading about them or looking at screenshots.
+在网站、博客和平台中嵌入Streamlit Community Cloud应用可以通过将交互式、数据驱动的应用直接集成到页面中来丰富你的内容。无论你是在写博客文章、技术文档，还是在Medium、Notion甚至StackOverflow等平台上共享资源，嵌入Streamlit应用都会为你的内容添加动态组件。这允许你的观众与你的想法互动，而不仅仅是阅读或查看截图。
 
-Streamlit Community Cloud supports both [iframe](#embedding-with-iframes) and [oEmbed](#embedding-with-oembed) methods for embedding **public** apps. This flexibility enables you to share your apps across a wide array of platforms, broadening your app's visibility and impact. In this guide, we'll cover how to use both methods effectively to share your Streamlit apps with the world.
+Streamlit Community Cloud支持使用[iframe](#embedding-with-iframes)和[oEmbed](#embedding-with-oembed)两种方法来嵌入**公开**应用。这种灵活性使你能够在各种平台上分享你的应用，扩大应用的可见性和影响力。在本指南中，我们将介绍如何有效地使用两种方法与世界分享Streamlit应用。
 
-## Embedding with iframes
+## 使用iframe嵌入
 
-Streamlit Community Cloud supports embedding **public** apps using the subdomain scheme. To embed a public app, add the query parameter `/?embed=true` to the end of the `*.streamlit.app` URL.
+Streamlit Community Cloud支持使用子域方案嵌入**公开**应用。要嵌入公开应用，将查询参数`/?embed=true`添加到`*.streamlit.app` URL的末尾。
 
-For example, say you want to embed the <a href="https://30days.streamlit.app/" target="_blank">30DaysOfStreamlit app</a>. The URL to include in your iframe is: `https://30days.streamlit.app/?embed=true`:
+例如，假设你想嵌入[30DaysOfStreamlit应用](https://30days.streamlit.app/)。要在iframe中包含的URL是：`https://30days.streamlit.app/?embed=true`：
 
 ```javascript
 <iframe
@@ -24,136 +24,117 @@ For example, say you want to embed the <a href="https://30days.streamlit.app/" t
 ></iframe>
 ```
 
-<Cloud name="30days" height="450px" />
-
 <Important>
 
-There will be no official support for embedding private apps.
+对于嵌入私有应用，将没有正式支持。
 
 </Important>
 
-In addition to allowing you to embed apps via iframes, the `?embed=true` query parameter also does the following:
+除了允许你通过iframe嵌入应用，`?embed=true`查询参数还执行以下操作：
 
-- Removes the toolbar with the app menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>).
-- Removes the padding at the top and bottom of the app.
-- Removes the footer.
-- Removes the colored line from the top of the app.
+- 移除带有应用菜单图标的工具栏。
+- 移除应用顶部和底部的填充。
+- 移除页脚。
+- 移除应用顶部的彩色线。
 
-For granular control over the embedding behavior, Streamlit allows you to specify one or more instances of the `?embed_options` query parameter (e.g. to show the toolbar, open the app in dark theme, etc). [Click here for a full list of Embed options.](#embed-options)
+为了对嵌入行为进行细粒度控制，Streamlit允许你指定一个或多个`?embed_options`查询参数实例（例如显示工具栏、以深色主题打开应用等）。[点击此处查看完整的嵌入选项列表。](#embed-options)
 
-## Embedding with oEmbed
+## 使用oEmbed嵌入
 
-Streamlit's oEmbed support allows for a simpler embedding experience. You can directly drop a Streamlit app's URL into a Medium, Ghost, or Notion page (or any of more than 700 content providers that supports oEmbed or <a href="https://embed.ly/" target="_blank">embed.ly</a>). The embedded app will automatically appear! This helps Streamlit Community Cloud apps seamlessly integrate into these platforms, improving the visibility and accessibility of your apps.
+Streamlit的oEmbed支持提供了更简单的嵌入体验。你可以直接将Streamlit应用的URL放入Medium、Ghost或Notion页面（或任何支持oEmbed或embed.ly的700多个内容提供商）。嵌入的应用将自动出现！这有助于Streamlit Community Cloud应用无缝集成到这些平台中，提高应用的可见性和可访问性。
 
-### Example
+### 示例
 
-When creating content in a Notion page, Medium article, or Ghost blog, you only need to paste the app's URL and hit "**Enter**." The app will then render automatically at that spot in your content. You can use your undecorated app URL without the `?embed=true` query parameter.
+在Notion页面、Medium文章或Ghost博客中创建内容时，你只需粘贴应用的URL并按"Enter"。然后应用将在内容中的该位置自动呈现。你可以使用不带`?embed=true`查询参数的应用URL。
 
 ```
 https://30days.streamlit.app/
 ```
 
-Here's an example of <a href="https://github.com/chrieke" target="_blank">@chrieke</a>'s <a href="https://chrieke-prettymapp-streamlit-prettymappapp-1k0qxh.streamlit.app/" target="_blank">Prettymapp app</a> embedded in a Medium article:
+oEmbed应该可以在几个平台上开箱即用，包括但不限于：
 
-<Image src="/images/streamlit-community-cloud/oembed.gif" alt="Example: Embed an app in a Medium article with oEmbed" clean />
+- Medium
+- Notion
+- Looker
+- Tableau
+- Ghost
+- Discourse
+- StackOverflow
+- W3
+- Reddit
 
-<Tip>
+请查看具体平台的文档以验证对oEmbed的支持。
 
-Ensure the platform hosting the embedded Streamlit app supports oEmbed or <a href="https://embed.ly/" target="_blank">embed.ly</a>.
+### iframe与oEmbed的比较
 
-</Tip>
+这两种方法之间唯一值得注意的区别是iframe允许你使用下一部分中描述的各种`?embed_options`来自定义应用的嵌入行为（例如显示工具栏、以深色主题打开应用等）。
 
-### Key Sites for oEmbed
+## 嵌入选项
 
-oEmbed should work out of the box for several platforms including but not limited to:
+当使用iframe嵌入时，Streamlit允许你指定一个或多个`?embed_options`查询参数实例来对嵌入行为进行细粒度控制。
 
-- <a target="_blank" href="https://medium.com/">Medium</a>
-- <a target="_blank" href="https://notion.so/">Notion</a>
-- <a target="_blank" href="https://www.looker.com/">Looker</a>
-- <a target="_blank" href="https://www.tableau.com/">Tableau</a>
-- <a target="_blank" href="https://ghost.org/">Ghost</a>
-- <a target="_blank" href="https://www.discourse.org/">Discourse</a>
-- <a target="_blank" href="https://stackoverflow.com/">StackOverflow</a>
-- <a target="_blank" href="https://www.w3schools.com/">W3</a>
-- <a target="_blank" href="https://www.reddit.com/">Reddit</a>
+`?embed`和`?embed_options`对`st.query_params`及其前身`st.experimental_get_query_params`和`st.experimental_set_query_params`都是不可见的。你无法获取或设置它们的值。
 
-Please check the specific platform's documentation to verify support for oEmbed.
+`?embed_options`的支持值如下所列：
 
-### iframe versus oEmbed
-
-The only noteworthy differences between the methods is that iframing allows you to customize the app's embedding behavior (e.g. showing the toolbar, opening the app in dark theme, etc) using the various `?embed_options` described in the next section.
-
-## Embed options
-
-When [Embedding with iframes](#embedding-with-iframes), Streamlit allows you to specify one or more instances of the `?embed_options` query parameter for granular control over the embedding behavior.
-
-Both `?embed` and `?embed_options` are invisible to [`st.query_params`](/develop/api-reference/caching-and-state/st.query_params) and its precursors, [`st.experimental_get_query_params`](/develop/api-reference/caching-and-state/st.experimental_get_query_params) and [`st.experimental_set_query_params`](/develop/api-reference/caching-and-state/st.experimental_set_query_params). You can't get or set their values.
-
-The supported values for `?embed_options` are listed below:
-
-1. Show the toolbar at the top right of the app which includes the app menu (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>), running man, and link to GitHub.
+1. 显示应用右上角的工具栏，包括应用菜单、运行按钮和GitHub链接。
 
    ```javascript
    /?embed=true&embed_options=show_toolbar
    ```
 
-2. Show padding at the top and bottom of the app.
+2. 显示应用顶部和底部的填充。
 
    ```javascript
    /?embed=true&embed_options=show_padding
    ```
 
-3. Show the footer reading "Made with Streamlit." (This doesn't apply to Streamlit versions 1.29.0 and later since the footer was removed from the library.)
+3. 显示读取"Made with Streamlit."的页脚。（这不适用于Streamlit 1.29.0及更高版本，因为页脚已从库中移除。）
 
    ```javascript
    /?embed=true&embed_options=show_footer
    ```
 
-4. Show the colored line at the top of the app.
+4. 显示应用顶部的彩色线。
 
    ```javascript
    /?embed=true&embed_options=show_colored_line
    ```
 
-5. Hide the "skeleton" that appears while an app is loading.
+5. 隐藏应用加载时出现的"骨架"。
 
    ```javascript
    /?embed=true&embed_options=hide_loading_screen
    ```
 
-6. Disable scrolling for the main body of the app. (The sidebar will still be scrollable.)
+6. 禁用应用主体的滚动。（侧栏仍可滚动。）
 
    ```javascript
    /?embed=true&embed_options=disable_scrolling
    ```
 
-7. Open the app with light theme.
+7. 使用浅色主题打开应用。
 
    ```javascript
    /?embed=true&embed_options=light_theme
    ```
 
-8. Open the app with dark theme.
+8. 使用深色主题打开应用。
 
    ```javascript
    /?embed=true&embed_options=dark_theme
    ```
 
-You can also combine the params:
+你也可以组合这些参数：
 
 ```javascript
 /?embed=true&embed_options=show_toolbar&embed_options=show_padding&embed_options=show_footer&embed_options=show_colored_line&embed_options=disable_scrolling
 ```
 
-### Build an embed link
+### 构建嵌入链接
 
-You can conveniently build an embed link for your app &mdash; right from your app!
+你可以方便地直接从应用构建嵌入链接！
 
-1. From your app at `<your-custom-subdomain>.streamlit.app`, click "**Share**" in the upper-right corner.
-2. Click "**Embed**" to access a list of selectable embed options.
-
-   ![Access embed options from the share button](/images/streamlit-community-cloud/share-menu-embed.png)
-
-3. Select your embed options and click "**Get embed link**" to copy the embed link to your clipboard.
-
-   ![Build a customized embed link for your app from the share button](/images/streamlit-community-cloud/share-menu-embed-url.png)
+1. 从`<your-custom-subdomain>.streamlit.app`的应用，点击右上角的"共享"。
+2. 点击"嵌入"以访问可选择的嵌入选项列表。
+3. 选择嵌入选项并点击"获取嵌入链接"以将嵌入链接复制到剪贴板。

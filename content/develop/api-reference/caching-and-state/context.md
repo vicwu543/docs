@@ -1,7 +1,7 @@
 ---
 title: st.context
 slug: /develop/api-reference/caching-and-state/st.context
-description: st.context displays a read-only dict of cookies and headers.
+description: st.context 显示 cookies 和 headers 的只读字典。
 keywords: context, cookies, headers, browser, session, locale, theme, timezone, ip address, embedded
 ---
 

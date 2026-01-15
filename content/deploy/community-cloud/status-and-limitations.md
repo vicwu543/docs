@@ -1,50 +1,50 @@
 ---
-title: Status and limitations
+title: 状态和限制
 slug: /deploy/streamlit-community-cloud/status
-description: Learn about Community Cloud status, limitations, GitHub OAuth scope, Python environments, configuration overrides, and IP addresses.
+description: 了解 Community Cloud 状态、限制、GitHub OAuth 范围、Python 环境、配置覆盖和 IP 地址。
 keywords: status, limitations, github oauth, python environments, configuration, ip addresses, debian, linux, security
 ---
 
-# Status and limitations of Community Cloud
+# Community Cloud 的状态和限制
 
-## Community Cloud Status
+## Community Cloud 状态
 
-You can view the current status of Community Cloud at [streamlitstatus.com](https://www.streamlitstatus.com/).
+您可以在 [streamlitstatus.com](https://www.streamlitstatus.com/) 查看 Community Cloud 的当前状态。
 
-## GitHub OAuth scope
+## GitHub OAuth 范围
 
-To deploy your app, Streamlit requires access to your app's source code in GitHub and the ability to manage the public keys associated with your repositories. The default GitHub OAuth scopes are sufficient to work with apps in public GitHub repositories. However, to access your private repositories, we create a read-only [GitHub Deploy Key](https://docs.github.com/en/free-pro-team@latest/developers/overview/managing-deploy-keys#deploy-keys) and then access your repo using an SSH key. When we create this key, GitHub notifies repo admins of the creation as a security measure.
+要部署您的应用，Streamlit 需要访问 GitHub 中的应用源代码以及管理与存储库关联的公钥的能力。默认的 GitHub OAuth 范围足以处理公开 GitHub 存储库中的应用。但是，要访问您的专有存储库，我们创建一个只读 [GitHub 部署密钥](https://docs.github.com/en/free-pro-team@latest/developers/overview/managing-deploy-keys#deploy-keys)，然后使用 SSH 密钥访问您的存储库。当我们创建此密钥时，GitHub 会以安全措施的形式通知存储库管理员创建。
 
-Streamlit requires the additional `repo` OAuth scope from GitHub to work with your private repos and manage deploy keys. We recognize that the `repo` scope provides Streamlit with extra permissions that we do not really need and which, as people who prize security, we'd rather not even be granted. This was the permission model available from GitHub when Community Cloud was created. However, we are working on adopting the new GitHub permission model to reduce uneeded permissions.
+Streamlit 需要来自 GitHub 的额外 `repo` OAuth 范围才能使用您的专有存储库并管理部署密钥。我们意识到 `repo` 范围为 Streamlit 提供了我们不真正需要的额外权限，作为重视安全的人，我们宁愿根本不被授予。这是创建 Community Cloud 时 GitHub 提供的权限模型。但是，我们正在采用新的 GitHub 权限模型来减少不必要的权限。
 
-### Developer permissions
+### 开发者权限
 
-Because of the OAuth limitations noted above, a developer must have administrative permissions to a repository to deploy apps from it.
+由于上述 OAuth 限制，开发者必须具有存储库的管理权限才能从中部署应用。
 
-## Repository file structure
+## 存储库文件结构
 
-You can deploy multiple apps from your repository, and your entrypoint file(s) may be anywhere in your directory structure. However, Community Cloud initializes all apps from the root of your repository, even if the entrypoint file is in a subdirectory. This has the following consequences:
+您可以从存储库部署多个应用，您的入口文件可能在目录结构的任何位置。但是，Community Cloud 从存储库的根目录初始化所有应用，即使入口文件在子目录中也是如此。这具有以下后果：
 
-- Community Cloud only recognizes one `.streamlit/configuration.toml` file at the root (of each branch) of your repository.
-- You must declare image, video, and audio file paths for Streamlit commands relative to the root of your repository. For example, `st.image`, `st.logo`, and the `page_icon` parameter in `st.set_page_config` expect file locations relative to your working directory (i.e. where you execute `streamlit run`).
+- Community Cloud 仅在存储库的根目录（每个分支）识别一个 `.streamlit/configuration.toml` 文件。
+- 您必须声明 Streamlit 命令的图像、视频和音频文件路径相对于存储库的根目录。例如，`st.image`、`st.logo` 和 `st.set_page_config` 中的 `page_icon` 参数期望文件位置相对于您的工作目录（即执行 `streamlit run` 的位置）。
 
-## Linux environments
+## Linux 环境
 
-Community Cloud is built on Debian Linux.
+Community Cloud 建立在 Debian Linux 上。
 
-- Community Cloud uses Debian 11 ("bullseye"). To browse available packages that can be installed, see the [package list](https://packages.debian.org/bullseye/).
-- All file paths must use forward-slash path separators.
+- Community Cloud 使用 Debian 11（"bullseye"）。要浏览可安装的可用包，请参阅 [包列表](https://packages.debian.org/bullseye/)。
+- 所有文件路径必须使用正斜杠路径分隔符。
 
-## Python environments
+## Python 环境
 
-- You cannot mix and match Python package managers for a single app. Community Cloud configures your app's Python environment based on the first environment configuration file it finds. For more information, see [Other Python package managers](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#other-python-package-managers).
-- We recommend that you use the latest version of Streamlit to ensure full Community Cloud functionality. Be sure to take note of Streamlit's [current requirements](https://github.com/streamlit/streamlit/blob/develop/lib/setup.py) for package compatibility when planning your environment, especially `protobuf>=3.20,<6`.
-- If you pin `streamlit< 1.20.0`, you must also pin `altair<5`. Earlier versions of Streamlit did not correctly restrict Altair's version. A workaround script running on Community Cloud will forcibly install `altair<5` if a newer version is detected. This could unintentionally upgrade Altair's dependencies in violation of your environment configuration. Newer versions of Streamlit support Altair version 5.
-- Community Cloud only supports released versions of Python that are still receiving security updates. You may not use end-of-life, prerelease, or feature versions of Python. For more information, see [Status of Python versions](https://devguide.python.org/versions/).
+- 您不能为单个应用混合和匹配 Python 包管理器。Community Cloud 根据它找到的第一个环境配置文件配置应用的 Python 环境。有关更多信息，请参阅 [其他 Python 包管理器](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#other-python-package-managers)。
+- 我们建议您使用最新版本的 Streamlit 以确保完整的 Community Cloud 功能。规划您的环境时，请务必注意 Streamlit 对包兼容性的 [当前要求](https://github.com/streamlit/streamlit/blob/develop/lib/setup.py)，特别是 `protobuf>=3.20,<6`。
+- 如果您固定 `streamlit< 1.20.0`，您还必须固定 `altair<5`。早期版本的 Streamlit 没有正确限制 Altair 的版本。在 Community Cloud 上运行的解决方案脚本将在检测到较新版本时强制安装 `altair<5`。这可能会无意中升级 Altair 的依赖项，违反您的环境配置。较新的 Streamlit 版本支持 Altair 版本 5。
+- Community Cloud 仅支持仍在接收安全更新的已发布 Python 版本。您可能不会使用生命周期终止、预发布或功能版本的 Python。有关更多信息，请参阅 [Python 版本状态](https://devguide.python.org/versions/)。
 
-## Configuration
+## 配置
 
-The following configuration options are set within Community Cloud and will override any contrary setting in your `config.toml` file:
+以下配置选项在 Community Cloud 中设置，并将覆盖 `config.toml` 文件中的任何相反设置：
 
 ```toml
 [client]
@@ -61,13 +61,13 @@ enableXsrfProtection = true
 gatherUsageStats = true
 ```
 
-## IP addresses
+## IP 地址
 
-If you need to whitelist IP addresses for a connection, Community Cloud is currently served from the following IP addresses:
+如果您需要将 IP 地址列入白名单以建立连接，Community Cloud 目前由以下 IP 地址提供服务：
 
 <Warning>
 
-    These IP addresses may change at any time without notice.
+    这些 IP 地址可能随时更改，恕不另行通知。
 
 </Warning>
 
@@ -92,8 +92,8 @@ If you need to whitelist IP addresses for a connection, Community Cloud is curre
     <div style={{ width: "150px" }}>34.82.135.155</div>
 </Flex>
 
-## Other limitations
+## 其他限制
 
-- When you print something to the Cloud logs, you may need to do a `sys.stdout.flush()` before it shows up.
-- Community Cloud hosts all apps in the United States. This is currently not configurable.
-- Community Cloud rate limits app updates from GitHub to no more than five per minute.
+- 当您在云日志中打印内容时，您可能需要在其显示之前执行 `sys.stdout.flush()`。
+- Community Cloud 在美国托管所有应用。这目前不可配置。
+- Community Cloud 将 GitHub 中的应用更新速率限制为每分钟最多五个。

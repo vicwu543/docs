@@ -1,33 +1,33 @@
 ---
-title: Automate your tests with CI
+title: 使用 CI 自动化测试
 slug: /develop/concepts/app-testing/automate-tests
-description: Learn how to integrate Streamlit app testing with Continuous Integration systems like GitHub Actions for automated testing workflows.
+description: 了解如何将 Streamlit 应用测试与持续集成系统（如 GitHub Actions）集成以实现自动化测试工作流。
 keywords: automated testing, ci testing, continuous integration, github actions, jenkins, gitlab ci, automated workflows, test automation, ci cd, deployment testing
 ---
 
-# Automate your tests with CI
+# 使用 CI 自动化测试
 
-One of the key benefits of app testing is that tests can be automated using Continuous Integration (CI). By running tests automatically during development, you can validate that changes to your app don't break existing functionality. You can verify app code as you commit, catch bugs early, and prevent accidental breaks before deployment.
+应用测试的一个关键好处是可以使用持续集成（CI）来自动化测试。通过在开发过程中自动运行测试，您可以验证对应用的更改不会破坏现有功能。您可以在提交代码时验证应用代码，及早发现错误，并在部署前防止意外中断。
 
-There are many popular CI tools, including GitHub Actions, Jenkins, GitLab CI, Azure DevOps, and Circle CI. Streamlit app testing will integrate easily with any of them similar to any other Python tests.
+有许多流行的 CI 工具，包括 GitHub Actions、Jenkins、GitLab CI、Azure DevOps 和 Circle CI。Streamlit 应用测试可以轻松集成到其中任何一个工具中，类似于其他 Python 测试。
 
 ## GitHub Actions
 
-Since many Streamlit apps (and all Community Cloud apps) are built in GitHub, this page uses examples from [GitHub Actions](https://docs.github.com/en/actions). For more information about GitHub Actions, see:
+由于许多 Streamlit 应用（以及所有社区云应用）都在 GitHub 中构建，本页面使用 [GitHub Actions](https://docs.github.com/en/actions) 的示例。有关 GitHub Actions 的更多信息，请参见：
 
-- [Quickstart for GitHub Actions](https://docs.github.com/en/actions/quickstart)
-- [GitHub Actions: About continuous integration](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration)
-- [GitHub Actions: Build & test Python](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python)
+- [GitHub Actions 快速入门](https://docs.github.com/en/actions/quickstart)
+- [GitHub Actions：关于持续集成](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration)
+- [GitHub Actions：构建和测试 Python](https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python)
 
-## Streamlit App Action
+## Streamlit 应用 Action
 
-[Streamlit App Action](https://github.com/marketplace/actions/streamlit-app-action) provides an easy way to add automated testing to your app repository in GitHub. It also includes basic smoke testing for each page of your app without you writing any test code.
+[Streamlit 应用 Action](https://github.com/marketplace/actions/streamlit-app-action) 提供了一种简单的方法，将自动化测试添加到您在 GitHub 中的应用仓库中。它还包括对应用每个页面的基本冒烟测试，而无需您编写任何测试代码。
 
-To install Streamlit App Action, add a workflow `.yml` file to your repository's `.github/workflows/` folder. For example:
+要安装 Streamlit 应用 Action，请在仓库的 `.github/workflows/` 文件夹中添加一个工作流 `.yml` 文件。例如：
 
 ```yaml
 # .github/workflows/streamlit-app.yml
-name: Streamlit app
+name: Streamlit 应用
 
 on:
   push:
@@ -51,9 +51,9 @@ jobs:
           app-path: streamlit_app.py
 ```
 
-Let's take a look in more detail at what this action workflow is doing.
+让我们更详细地看看这个动作工作流在做什么。
 
-### Triggering the workflow
+### 触发工作流
 
 ```yaml
 on:
@@ -63,9 +63,9 @@ on:
     branches: ["main"]
 ```
 
-This workflow will be triggered and execute tests on pull requests targeting the `main` branch, as well as any new commits pushed to the `main` branch. Note that it will also execute the tests on subsequent commits to any open pull requests. See [GitHub Actions: Triggering a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) for more information and examples.
+当针对 `main` 分支发起拉取请求时，以及推送到 `main` 分支的任何新提交时，将触发并执行此工作流。请注意，它还将对任何开放的拉取请求的后续提交执行测试。有关更多信息和示例，请参见 [GitHub Actions：触发工作流](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow)。
 
-### Setting up the test environment
+### 设置测试环境
 
 ```yaml
 jobs:
@@ -78,12 +78,12 @@ jobs:
           python-version: "3.11"
 ```
 
-The workflow has a `streamlit` job that executes a series of steps. The job runs on a Docker container with the `ubuntu-latest` image.
+工作流有一个执行一系列步骤的 `streamlit` 作业。该作业在使用 `ubuntu-latest` 镜像的 Docker 容器上运行。
 
-- `actions/checkout@v4` checks out the current repository code from GitHub and copies the code to the job environment.
-- `actions/setup-python@v5` installs Python version 3.11.
+- `actions/checkout@v4` 从 GitHub 检出当前仓库代码，并将代码复制到作业环境中。
+- `actions/setup-python@v5` 安装 Python 3.11 版本。
 
-### Running the app tests
+### 运行应用测试
 
 ```yaml
 - uses: streamlit/streamlit-app-action@v0.0.3
@@ -91,31 +91,31 @@ The workflow has a `streamlit` job that executes a series of steps. The job runs
     app-path: streamlit_app.py
 ```
 
-Streamlit App Action does the following:
+Streamlit 应用 Action 执行以下操作：
 
-- Install `pytest` and install any dependencies specified in `requirements.txt`.
-- Run the built-in app smoke tests.
-- Run any other Python tests found in the repository.
+- 安装 `pytest` 并安装 `requirements.txt` 中指定的任何依赖项。
+- 运行内置的应用冒烟测试。
+- 运行在仓库中找到的任何其他 Python 测试。
 
 <Tip>
 
-If your app doesn't include `requirements.txt` in the repository root directory, you will need to add a step to install dependencies with your chosen package manager before running Streamlit App Action.
+如果您的应用仓库根目录中不包含 `requirements.txt`，您需要添加一个步骤，使用您选择的包管理器安装依赖项，然后再运行 Streamlit 应用 Action。
 
 </Tip>
 
-The built-in smoke tests have the following behavior:
+内置冒烟测试具有以下行为：
 
-- Run the app specified at `app-path` as an AppTest.
-- Validate that it completes successfully and does not result in an uncaught exception.
-- Do the same for any additional `pages/` of the app relative to `app-path`.
+- 在 AppTest 中运行 `app-path` 指定的应用。
+- 验证它能成功完成且不会导致未捕获的异常。
+- 对相对于 `app-path` 的应用任何附加 `pages/` 执行相同的操作。
 
-If you want to run Streamlit App Action without the smoke tests, you can set `skip-smoke: true`.
+如果您想在不使用冒烟测试的情况下运行 Streamlit 应用 Action，可以设置 `skip-smoke: true`。
 
-### Linting your app code
+### 检查应用代码
 
-Linting is the automated checking of source code for programmatic and stylistic errors. This is done by using a lint tool (otherwise known as a linter). Linting is important to reduce errors and improve the overall quality of your code, especially for repositories with multiple developers or public repositories.
+Linting 是对源代码进行程序性和风格错误的自动检查。这是通过使用 lint 工具（也称为 linter）完成的。Linting 对减少错误和提高代码的整体质量很重要，特别是对于有多个开发者的仓库或公共仓库。
 
-You can add automated linting with [Ruff](https://docs.astral.sh/ruff/) by passing `ruff: true` to Streamlit App Action.
+您可以通过向 Streamlit 应用 Action 传递 `ruff: true` 来使用 [Ruff](https://docs.astral.sh/ruff/) 添加自动 linting。
 
 ```yaml
 - uses: streamlit/streamlit-app-action@v0.0.3
@@ -126,24 +126,24 @@ You can add automated linting with [Ruff](https://docs.astral.sh/ruff/) by passi
 
 <Tip>
 
-You may want to add a pre-commit hook like [ruff-pre-commit](https://github.com/astral-sh/ruff-pre-commit) in your local development environment to fix linting errors before they get to CI.
+您可能希望在本地开发环境中添加像 [ruff-pre-commit](https://github.com/astral-sh/ruff-pre-commit) 这样的预提交钩子，在到达 CI 之前修复 linting 错误。
 
 </Tip>
 
-### Viewing results
+### 查看结果
 
-If tests fail, the CI workflow will fail and you will see the results in GitHub. Console logs are available by clicking into the workflow run [as described here](https://docs.github.com/en/actions/using-workflows/about-workflows#viewing-the-activity-for-a-workflow-run).
+如果测试失败，CI 工作流将失败，您将在 GitHub 中看到结果。通过点击工作流运行可以获取控制台日志，[如这里所述](https://docs.github.com/en/actions/using-workflows/about-workflows#viewing-the-activity-for-a-workflow-run)。
 
 ![](/images/test-results-logs.png)
 
-For higher-level test results, you can use [pytest-results-action](https://github.com/marketplace/actions/pytest-results-actions). You can combine this with Streamlit App Action as follows:
+对于更高级别的测试结果，您可以使用 [pytest-results-action](https://github.com/marketplace/actions/pytest-results-actions)。您可以将此与 Streamlit 应用 Action 结合使用，如下所示：
 
 ```yaml
-# ... setup as above ...
+# ... 如上设置 ...
 - uses: streamlit/streamlit-app-action@v0.0.3
   with:
     app-path: streamlit_app.py
-    # Add pytest-args to output junit xml
+    # 添加 pytest-args 以输出 junit xml
     pytest-args: -v --junit-xml=test-results.xml
 - if: always()
   uses: pmeier/pytest-results-action@v0.6.0
@@ -155,10 +155,10 @@ For higher-level test results, you can use [pytest-results-action](https://githu
 
 ![](/images/test-results-summary.png)
 
-## Writing your own actions
+## 编写自己的 Actions
 
-The above is just provided as an example. Streamlit App Action is a quick way to get started. Once you learn the basics of your CI tool of choice, it's easy to build and customize your own automated workflows. This is a great way to improve your overall productivity as a developer and the quality of your apps.
+以上只是一个示例。Streamlit 应用 Action 是一个快速入门的方法。一旦您学会了所选 CI 工具的基础知识，就很容易构建和自定义自己的自动化工作流。这对于提高开发者整体生产力和应用质量是非常好的方法。
 
-## Working example
+## 工作示例
 
-As a final working example example, take a look at our [`streamlit/llm-examples` Actions](https://github.com/streamlit/llm-examples/actions), defined in [this workflow file](https://github.com/streamlit/llm-examples/blob/main/.github/workflows/app-testing.yml).
+作为最终的工作示例，看看我们的 [`streamlit/llm-examples` Actions](https://github.com/streamlit/llm-examples/actions)，在[这个工作流文件](https://github.com/streamlit/llm-examples/blob/main/.github/workflows/app-testing.yml)中定义。

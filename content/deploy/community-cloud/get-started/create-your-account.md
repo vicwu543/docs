@@ -1,52 +1,52 @@
 ---
-title: Create your account
+title: 创建您的账户
 slug: /deploy/streamlit-community-cloud/get-started/create-your-account
-description: Learn how to create your Streamlit Community Cloud account using email, Google, or GitHub authentication methods.
-keywords: create account, sign up, authentication, email, google, github, oauth, community cloud
+description: 了解如何使用电子邮件、Google 或 GitHub 认证方法创建您的 Streamlit 社区云账户。
+keywords: 创建账户, 注册, 认证, 电子邮件, Google, GitHub, oauth, 社区云
 ---
 
-# Create your account
+# 创建您的账户
 
-Before you can start deploying apps for the world to see, you need to sign up for your Streamlit Community Cloud account.
+在您开始部署应用程序供全世界查看之前，您需要注册您的 Streamlit 社区云账户。
 
-Each Community Cloud account is associated with an email. Two accounts can't have the same email. When sharing a private app, you will assign viewing privileges by email. Additionally, two accounts can't have the same source control (GitHub account). If you try to create a second Community Cloud account with the same source control, Community Cloud will merge the accounts.
+每个社区云账户都与一个电子邮件关联。两个账户不能使用相同的电子邮件。当分享私有应用程序时，您将通过电子邮件分配查看权限。此外，两个账户不能具有相同源码控制系统（GitHub 账户）。如果您尝试使用相同源码控制系统创建第二个社区云账户，社区云将会合并这些账户。
 
-## Sign up
+## 注册
 
-Community Cloud allows you to sign in using one of the three following methods:
+社区云允许您使用以下三种方法之一登录：
 
-- Emailed, one-use codes
+- 通过电子邮件发送的单次使用验证码
 - Google
 - GitHub
 
 <Important>
-    Even when you sign in through GitHub, the authentication flow returns your email address to Community Cloud. Changing the email on your GitHub account can affect your Community Cloud account if you sign in through GitHub.
+    即使您通过 GitHub 登录，认证流程也会将您的电子邮件地址返回给社区云。如果您通过 GitHub 登录，更改 GitHub 账户上的电子邮件可能会影响您的社区云账户。
 </Important>
 
-1. Go to <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>.
-1. Click "**Continue to sign-in**."
-1. Continue with one of the three options listed below.
+1. 前往 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>.
+1. 点击"**继续登录**".
+1. 使用下面列出的三个选项之一继续操作。
 
-   ### Option 1: Sign in using emailed codes
-   1. In the "Email" field, enter your email address.
-   1. Click "**Continue**." (If prompted, verify you are human.)
-   1. Go to your email inbox, and copy your one-time, six-digit code. The code is valid for ten minutes.
-   1. Return to the authentication page, and enter your code. (If prompted, verify you are human.)
+   ### 选项 1: 使用邮件验证码登录
+   1. 在"电子邮件"字段中，输入您的电子邮件地址。
+   1. 点击"**继续**"。(如果提示，请验证您是人类。)
+   1. 前往您的电子邮件收件箱，复制您的一次性六位数字验证码。验证码有效期为十分钟。
+   1. 返回到认证页面，输入您的验证码。(如果提示，请验证您是人类。)
 
-   ### Option 2: Sign in using Google
-   1. Click "**Continue with Google**."
-   1. Enter your Google credentials, and follow Google's authentication prompts.
+   ### 选项 2: 使用 Google 登录
+   1. 点击"**使用 Google 继续**"。
+   1. 输入您的 Google 凭据，并按照 Google 的身份验证提示操作。
 
-   ### Option 3: Sign in using GitHub
-   1. Click "**Continue with GitHub**."
-   1. Enter your GitHub credentials, and follow GitHub's authentication prompts.
+   ### 选项 3: 使用 GitHub 登录
+   1. 点击"**使用 GitHub 继续**"。
+   1. 输入您的 GitHub 凭据，并按照 GitHub 的身份验证提示操作。
 
-      This adds the "Streamlit Community Cloud" OAuth application to your GitHub account. This application is only used to pass your email when you sign in to Community Cloud. On the next page, you'll perform additional steps to allow Community Cloud to access your repositories. For more information about using and reviewing the OAuth applications on your account, see [Using OAuth apps](https://docs.github.com/en/apps/oauth-apps/using-oauth-apps) in GitHub's docs.
+      这会将"Streamlit 社区云"OAuth 应用程序添加到您的 GitHub 账户。此应用程序仅用于在您登录社区云时传递您的电子邮件。在下一页，您将执行额外步骤以允许社区云访问您的存储库。有关使用和审查您账户上的 OAuth 应用程序的更多信息，请参阅 GitHub 文档中的 [使用 OAuth 应用](https://docs.github.com/en/apps/oauth-apps/using-oauth-apps)。
 
-1. Fill in your information, and click "**Continue**" at the bottom.
+1. 填写您的信息，然后点击底部的"**继续**"。
 
-   The "Primary email" field is prefilled with the email you used to sign in. If you change this email in the account setup form, it will only impact marketing emails; it will not reflect on your new account. To change the email associated with your account after it's created, see [Update your email address](/deploy/streamlit-community-cloud/manage-your-account/update-your-email).
+   "主要电子邮件"字段预先填入了您用来登录的电子邮件。如果您在账户设置表单中更改此电子邮件，它只会影响营销电子邮件；它不会反映在您的新账户上。要在创建账户后更改与账户关联的电子邮件，请参阅 [更新您的电子邮件地址](/deploy/streamlit-community-cloud/manage-your-account/update-your-email)。
 
-## Finish up
+## 完成
 
-Congratulations on creating your Streamlit Community Cloud account! A warning icon (<i style={{ verticalAlign: "-.25em", color: "#ff8700" }} className={{ class: "material-icons-sharp" }}>warning</i>) next to "**Workspaces**" in the upper-left corner is expected; this indicates that your account is not yet connected to GitHub. Even if you created your account by signing in through GitHub, your account does not yet have permission to access your repositories. Continue to the next page to connect your GitHub account.
+恭喜您创建了 Streamlit 社区云账户！左上角 "**工作空间**" 旁边的警告图标 (<i style={{ verticalAlign: "-.25em", color: "#ff8700" }} className={{ class: "material-icons-sharp" }}>warning</i>) 是正常的；这表示您的账户尚未连接到 GitHub。即使您通过 GitHub 创建了账户，您的账户尚无权访问您的存储库。请继续下一页连接您的 GitHub 账户。

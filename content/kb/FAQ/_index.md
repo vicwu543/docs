@@ -1,26 +1,26 @@
 ---
-title: FAQ
+title: 常见问题解答
 slug: /knowledge-base/using-streamlit
-description: Explore answers to frequently asked questions about developing a Streamlit app.
+description: 了解关于开发 Streamlit 应用的常见问题的答案。
 ---
 
-# FAQ
+# 常见问题解答
 
-Here are some frequently asked questions about using Streamlit. If you feel something important is missing that everyone needs to know, please [open an issue](https://github.com/streamlit/docs/issues) or [submit a pull request](https://github.com/streamlit/docs/pulls) and we'll be happy to review it!
+以下是关于使用 Streamlit 的常见问题。如果您认为遗漏了重要内容，请 [提出问题](https://github.com/streamlit/docs/issues) 或 [提交拉取请求](https://github.com/streamlit/docs/pulls)，我们会很乐意审查！
 
-- [Sanity checks](/knowledge-base/using-streamlit/sanity-checks)
-- [How can I make Streamlit watch for changes in other modules I'm importing in my app?](/knowledge-base/using-streamlit/streamlit-watch-changes-other-modules-importing-app)
-- [What browsers does Streamlit support?](/knowledge-base/using-streamlit/supported-browsers)
-- [Where does st.file_uploader store uploaded files and when do they get deleted?](/knowledge-base/using-streamlit/where-file-uploader-store-when-deleted)
-- [How do you retrieve the filename of a file uploaded with st.file_uploader?](/knowledge-base/using-streamlit/retrieve-filename-uploaded)
-- [How to remove "· Streamlit" from the app title?](/knowledge-base/using-streamlit/remove-streamlit-app-title)
-- [How to download a file in Streamlit?](/knowledge-base/using-streamlit/how-download-file-streamlit)
-- [How to download a Pandas DataFrame as a CSV?](/knowledge-base/using-streamlit/how-download-pandas-dataframe-csv)
-- [How can I make `st.pydeck_chart` use custom Mapbox styles?](/knowledge-base/using-streamlit/pydeck-chart-custom-mapbox-styles)
-- [How to insert elements out of order?](/knowledge-base/using-streamlit/insert-elements-out-of-order)
-- [How do I upgrade to the latest version of Streamlit?](/knowledge-base/using-streamlit/how-upgrade-latest-version-streamlit)
-- [Widget updating for every second input when using session state](/knowledge-base/using-streamlit/widget-updating-session-state)
-- [How do I create an anchor link?](/knowledge-base/using-streamlit/create-anchor-link)
-- [How do I enable camera access?](/knowledge-base/using-streamlit/enable-camera)
-- [Why does Streamlit restrict nested `st.columns`?](/knowledge-base/using-streamlit/why-streamlit-restrict-nested-columns)
-- [What is serializable session state?](/knowledge-base/using-streamlit/serializable-session-state)
+- [健全性检查](/knowledge-base/using-streamlit/sanity-checks)
+- [如何让 Streamlit 监视我在应用中导入的其他模块中的更改？](/knowledge-base/using-streamlit/streamlit-watch-changes-other-modules-importing-app)
+- [Streamlit 支持哪些浏览器？](/knowledge-base/using-streamlit/supported-browsers)
+- [st.file_uploader 在哪里存储上传的文件，何时删除它们？](/knowledge-base/using-streamlit/where-file-uploader-store-when-deleted)
+- [如何检索使用 st.file_uploader 上传的文件的文件名？](/knowledge-base/using-streamlit/retrieve-filename-uploaded)
+- [如何从应用标题中删除"· Streamlit"？](/knowledge-base/using-streamlit/remove-streamlit-app-title)
+- [如何在 Streamlit 中下载文件？](/knowledge-base/using-streamlit/how-download-file-streamlit)
+- [如何将 Pandas DataFrame 下载为 CSV？](/knowledge-base/using-streamlit/how-download-pandas-dataframe-csv)
+- [如何使 st.pydeck_chart 使用自定义 Mapbox 样式？](/knowledge-base/using-streamlit/pydeck-chart-custom-mapbox-styles)
+- [如何按不同的顺序插入元素？](/knowledge-base/using-streamlit/insert-elements-out-of-order)
+- [如何升级到最新版本的 Streamlit？](/knowledge-base/using-streamlit/how-upgrade-latest-version-streamlit)
+- [使用会话状态时窗口小部件每秒输入更新一次](/knowledge-base/using-streamlit/widget-updating-session-state)
+- [如何创建锚链接？](/knowledge-base/using-streamlit/create-anchor-link)
+- [如何启用摄像头访问？](/knowledge-base/using-streamlit/enable-camera)
+- [为什么 Streamlit 限制嵌套 st.columns？](/knowledge-base/using-streamlit/why-streamlit-restrict-nested-columns)
+- [什么是可序列化的会话状态？](/knowledge-base/using-streamlit/serializable-session-state)

@@ -1,15 +1,13 @@
 ---
-title: Enabling camera or microphone access in your browser
+title: 在您的浏览器中启用摄像头或麦克风访问
 slug: /knowledge-base/using-streamlit/enable-camera
 ---
 
-# Enabling camera or microphone access in your browser
+# 在您的浏览器中启用摄像头或麦克风访问
 
-Streamlit apps may include a widget to upload images from your camera or record sound with your microphone. To
-safeguard the users' privacy and security, browsers require users to explicitly allow access to their
-camera or microphone before those devices can be used.
+Streamlit 应用可能包含从您的摄像头上传图像或用麦克风录制声音的小部件。为了保护用户的隐私和安全，浏览器要求用户在使用这些设备之前明确允许对其摄像头或麦克风的访问。
 
-To learn how to enable camera access, please check the documentation for your browser:
+要了解如何启用摄像头访问，请查看您的浏览器的文档：
 
 - [Chrome](https://support.google.com/chrome/answer/2693767)
 - [Safari](https://support.apple.com/guide/safari/websites-ibrwe2159f50/mac)

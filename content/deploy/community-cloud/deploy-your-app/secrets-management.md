@@ -1,34 +1,34 @@
 ---
-title: Secrets management for your Community Cloud app
+title: Community Cloud应用的秘密管理
 slug: /deploy/streamlit-community-cloud/deploy-your-app/secrets-management
-description: Learn how to securely manage secrets, credentials, and API keys for your Community Cloud app using the secrets management interface.
-keywords: secrets, credentials, api keys, security, st.secrets, secrets.toml, environment variables, advanced settings
+description: 了解如何使用秘密管理界面为Community Cloud应用安全地管理秘密、凭证和API密钥。
+keywords: 秘密, 凭证, api密钥, 安全, st.secrets, secrets.toml, 环境变量, 高级设置
 ---
 
-# Secrets management for your Community Cloud app
+# Community Cloud应用的秘密管理
 
-## Introduction
+## 介绍
 
-If you are [connecting to data sources](/develop/tutorials/databases), you will likely need to handle credentials or secrets. Storing unencrypted secrets in a git repository is a bad practice. If your application needs access to sensitive credentials, the recommended solution is to store those credentials in a file that is not committed to the repository and to pass them as environment variables.
+如果你正在[连接到数据源](/develop/tutorials/databases)，你可能需要处理凭证或秘密。在git仓库中存储未加密的秘密是不好的做法。如果你的应用需要访问敏感的凭证，推荐的解决方案是将这些凭证存储在不提交到仓库的文件中，并将其作为环境变量传递。
 
-## How to use secrets management
+## 如何使用秘密管理
 
-Community Cloud lets you save your secrets within your app's settings. When developing locally, you can use `st.secrets` in your code to read secrets from a `.streamlit/secrets.toml` file. However, this `secrets.toml` file should never be committed to your repository. Instead, when you deploy your app, you can paste the contents of your `secrets.toml` file into the "**Advanced settings**" dialog. You can update your secrets at any time through your app's settings in your workspace.
+Community Cloud允许你在应用的设置中保存秘密。在本地开发时，你可以在代码中使用`st.secrets`从`.streamlit/secrets.toml`文件读取秘密。但是，此`secrets.toml`文件永远不应该提交到仓库。相反，当你部署应用时，你可以将`secrets.toml`文件的内容粘贴到"**高级设置**"对话框中。你可以通过工作空间中应用的设置随时更新秘密。
 
-### Prerequisites
+### 先决条件
 
-- You should understand how to use `st.secrets` and `secrets.toml`. See [Secrets management](/develop/concepts/connections/secrets-management).
+- 你应该了解如何使用`st.secrets`和`secrets.toml`。请参阅[秘密管理](/develop/concepts/connections/secrets-management)。
 
-### Advanced settings
+### 高级设置
 
-While deploying your app, you can access "**Advanced settings**" to set your secrets. After your app is deployed, you can view or update your secrets through the app's settings. The deployment workflow is fully described on the next page, but the "**Advanced settings**" dialog looks like this:
+在部署应用时，你可以访问"**高级设置**"来设置你的秘密。部署应用后，你可以通过应用的设置查看或更新秘密。完整的部署工作流程在下一页中描述，但"**高级设置**"对话框看起来像这样：
 
 <div style={{ maxWidth: '70%', margin: 'auto' }}>
-<Image alt="Advanced settings for deploying your app" src="/images/streamlit-community-cloud/deploy-an-app-advanced.png" />
+<Image alt="部署你的应用的高级设置" src="/images/streamlit-community-cloud/deploy-an-app-advanced.png" />
 </div>
 
-Simply copy and paste the contents of your local `secrets.toml` file into the "Secrets" field within the dialog. After you click "**Save**" to commit the changes, that's it!
+只需将本地`secrets.toml`文件的内容复制并粘贴到对话框内的"秘密"字段中。在你点击"**保存**"以提交更改后，就完成了！
 
-### Edit your app's secrets
+### 编辑你的应用秘密
 
-If you need to add or edit your secrets for an app that is already deployed, you can access secrets through your [App settings](/deploy/streamlit-community-cloud/manage-your-app/app-settings). See [View or update your secrets](/deploy/streamlit-community-cloud/manage-your-app/app-settings#view-or-update-your-secrets).
+如果你需要为已经部署的应用添加或编辑秘密，你可以通过[应用设置](/deploy/streamlit-community-cloud/manage-your-app/app-settings)访问秘密。请参阅[查看或更新你的秘密](/deploy/streamlit-community-cloud/manage-your-app/app-settings#view-or-update-your-secrets)。

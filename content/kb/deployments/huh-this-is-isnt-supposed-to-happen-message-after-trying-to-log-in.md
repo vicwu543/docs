@@ -1,24 +1,24 @@
 ---
-title: Huh. This is isn't supposed to happen message after trying to log in
+title: 登录时出现"呃。这不应该发生"消息
 slug: /knowledge-base/deploy/huh-this-isnt-supposed-to-happen-message-after-trying-to-log-in
 ---
 
-# Huh. This is isn't supposed to happen message after trying to log in
+# 登录时出现"呃。这不应该发生"消息
 
-This article helps to resolve the login issue caused by email mismatching between the GitHub and the Streamlit Community Cloud.
+本文帮助解决由GitHub和Streamlit Community Cloud之间电子邮件不匹配引起的登录问题。
 
-## Problem
+## 问题
 
-You see the following message after signing in to your Streamlit Community Cloud account:
+登录到你的Streamlit Community Cloud账户后，你会看到以下消息：
 
 ![Huh. This is isn't supposed to happen message](/images/knowledge-base/huh-this-isnt-supposed-to-happen.png)
 
-This message usually indicates that our system has linked your GitHub username with an email address other than the email address you're currently logged in with.
+此消息通常表示我们的系统已将你的GitHub用户名与你当前登录的电子邮件地址以外的电子邮件地址关联。
 
-## Solution
+## 解决方案
 
-No worries – all you have to do is:
+别担心–你只需要：
 
-1. Log out of Streamlit Community Cloud completely (via both your email and GitHub accounts).
-2. Log in first with your email account (you can do so via either ["Continue with Google"](/deploy/streamlit-community-cloud/manage-your-account/sign-in-sign-out#sign-in-with-google) or ["Continue with email"](/knowledge-base/deploy/sign-in-without-sso)).
-3. Log in with your [GitHub account](/deploy/streamlit-community-cloud/manage-your-account/sign-in-sign-out#sign-in-with-email).
+1. 完全退出Streamlit Community Cloud(通过你的电子邮件和GitHub账户)。
+2. 首先使用你的电子邮件账户登录(你可以通过["Continue with Google"](/deploy/streamlit-community-cloud/manage-your-account/sign-in-sign-out#sign-in-with-google)或["Continue with email"](/knowledge-base/deploy/sign-in-without-sso)进行)。
+3. 使用你的[GitHub账户](/deploy/streamlit-community-cloud/manage-your-account/sign-in-sign-out#sign-in-with-email)登录。

@@ -1,7 +1,7 @@
 ---
 title: st.bar_chart
 slug: /develop/api-reference/charts/st.bar_chart
-description: st.bar_chart displays an interactive bar chart.
+description: st.bar_chart 显示交互式条形图。
 keywords: bar chart, chart, visualization, data, plot, graph, dataframe, categorical, comparison
 ---
 

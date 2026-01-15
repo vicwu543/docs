@@ -1,54 +1,60 @@
 ---
-title: Threading in Streamlit
+title: Streamlit 中的线程处理
 slug: /develop/concepts/design/multithreading
-description: Learn about multithreading in Streamlit applications, including limitations, best practices, and techniques for implementing concurrent processes safely.
-keywords: multithreading, threading, concurrency, streamlit threading, concurrent processes, thread safety, async programming, background tasks, parallel processing
+description: 了解 Streamlit 应用中的多线程处理，包括限制、最佳实践和安全实现并发过程的技术。
+keywords: 多线程处理, 线程, 并发, streamlit 线程处理, 并发过程, 线程安全, 异步编程, 后台任务, 并行处理
 ---
 
-# Multithreading in Streamlit
+# Streamlit 中的多线程处理
 
-Multithreading is a type of concurrency, which improves the efficiency of computer programs. It's a way for processors to multitask. Streamlit uses threads within its architecture, which can make it difficult for app developers to include their own multithreaded processes. Streamlit does not officially support multithreading in app code, but this guide provides information on how it can be accomplished.
+多线程处理是一种并发类型，可以提高计算机程序的效率。这是处理器执行多任务的一种方式。Streamlit 在其架构中使用线程，这可能使应用开发人员难以包含他们自己的多线程过程。Streamlit 不正式支持应用代码中的多线程处理，但本指南提供了有关如何实现的信息。
 
-## Prerequisites
+## 前置条件
 
-- You should have a basic understanding of Streamlit's [architecture](/develop/concepts/architecture/architecture).
+- 你应该对 Streamlit 的[架构](/develop/concepts/architecture/architecture)有基本的理解。
 
-## When to use multithreading
+## 何时使用多线程处理
 
-Multithreading is just one type of concurrency. Multiprocessing and coroutines are other forms of concurrency. You need to understand how your code is bottlenecked to choose the correct kind of concurrency.
+多线程处理只是并发的一种类型。多处理和协程是并发的其他形式。你需要理解代码如何被限制以选择正确的并发类型。
 
-Multiprocessing is inherently parallel, meaning that resources are split and multiple tasks are performed simultaneously. Therefore, multiprocessing is helpful with compute-bound operations. In contrast, multithreading and coroutines are not inherently parallel and instead allow resource switching. This makes them good choices when your code is stuck _waiting_ for something, like an IO operation. AsyncIO uses coroutines and may be preferable with very slow IO operations. Threading may be preferable with faster IO operations. For a helpful guide to using AsyncIO with Streamlit, see this [Medium article by Sehmi-Conscious Thoughts](https://sehmi-conscious.medium.com/got-that-asyncio-feeling-f1a7c37cab8b).
+多处理本质上是并行的，意味着资源被分割并且多个任务同时执行。因此，多处理对于计算密集型操作很有帮助。相比之下，多线程处理和协程本质上不是并行的，而是允许资源切换。这使得它们是一个不错的选择，当你的代码被困在等待某些东西时，例如 IO 操作。AsyncIO 使用协程，可能对于非常慢的 IO 操作更可取。线程处理可能对于更快的 IO 操作更可取。有关将 AsyncIO 与 Streamlit 一起使用的有用指南，请参阅[Sehmi-Conscious Thoughts 的这篇 Medium 文章](https://sehmi-conscious.medium.com/got-that-asyncio-feeling-f1a7c37cab8b)。
 
-Don't forget that Streamlit has [fragments](/develop/concepts/architecture/fragments) and [caching](/develop/concepts/architecture/caching), too! Use caching to avoid unnecessarily repeating computations or IO operations. Use fragments to isolate a bit of code you want to update separately from the rest of the app. You can set fragments to rerun at a specified interval, so they can be used to stream updates to a chart or table.
+别忘了 Streamlit 也有[片段](/develop/concepts/architecture/fragments)和[缓存](/develop/concepts/architecture/caching)！使用缓存来避免不必要地重复计算或 IO 操作。使用片段来隔离你想从应用的其余部分单独更新的一段代码。你可以将片段设置为以指定的间隔重新运行，这样它们可以用于流式更新图表或表格。
 
-## Threads created by Streamlit
+## Streamlit 创建的线程
 
 Streamlit creates two types of threads in Python:
 
 - The **server thread** runs the Tornado web (HTTP + WebSocket) server.
 - A **script thread** runs page code &mdash; one thread for each script run in a session.
+## Streamlit 创建的线程
 
-When a user connects to your app, this creates a new session and runs a script thread to initialize the app for that user. As the script thread runs, it renders elements in the user's browser tab and reports state back to the server. When the user interacts with the app, another script thread runs, re-rendering the elements in the browser tab and updating state on the server.
+Streamlit 在 Python 中创建两种类型的线程：
 
-This is a simplifed illustration to show how Streamlit works:
+- **服务器线程**运行 Tornado web（HTTP + WebSocket）服务器。
+- **脚本线程**运行页面代码 — 每个会话中的脚本运行一个线程。
 
-![Each user session uses script threads to communicate between the user's front end and the Streamlit server.](/images/concepts/Streamlit-threading.svg)
+当用户连接到你的应用时，这会创建一个新的会话并运行脚本线程来为该用户初始化应用。当脚本线程运行时，它在用户的浏览器标签中呈现元素并向服务器报告状态。当用户与应用交互时，另一个脚本线程运行，重新呈现浏览器标签中的元素并更新服务器上的状态。
+
+这是一个简化的图示，显示 Streamlit 如何工作：
+
+![每个用户会话都使用脚本线程在用户的前端和 Streamlit 服务器之间进行通信。](/images/concepts/Streamlit-threading.svg)
 
 ## `streamlit.errors.NoSessionContext`
 
-Many Streamlit commands, including `st.session_state`, expect to be called from a script thread. When Streamlit is running as expected, such commands use the `ScriptRunContext` attached to the script thread to ensure they work within the intended session and update the correct user's view. When those Streamlit commands can't find any `ScriptRunContext`, they raise a `streamlit.errors.NoSessionContext` exception. Depending on your logger settings, you may also see a console message identifying a thread by name and warning, "missing ScriptRunContext!"
+许多 Streamlit 命令，包括 `st.session_state`，期望从脚本线程调用。当 Streamlit 按预期运行时，此类命令使用附加到脚本线程的 `ScriptRunContext` 来确保它们在预期的会话中工作并更新正确的用户视图。当那些 Streamlit 命令找不到任何 `ScriptRunContext` 时，它们会引发 `streamlit.errors.NoSessionContext` 异常。根据你的记录器设置，你也可能看到一个控制台消息，按名称标识线程并警告"缺少 ScriptRunContext！"
 
-## Creating custom threads
+## 创建自定义线程
 
-When you work with IO-heavy operations like remote query or data loading, you may need to mitigate delays. A general programming strategy is to create threads and let them work concurrently. However, if you do this in a Streamlit app, these custom threads may have difficulty interacting with your Streamlit server.
+当你使用 IO 密集操作（如远程查询或数据加载）时，你可能需要减少延迟。一般编程策略是创建线程并让它们并发工作。但是，如果你在 Streamlit 应用中执行此操作，这些自定义线程可能在与 Streamlit 服务器交互时遇到困难。
 
-This section introduces two patterns to let you create custom threads in your Streamlit app. These are only patterns to provide a starting point rather than complete solutions.
+本部分介绍两种模式，让你在 Streamlit 应用中创建自定义线程。这些只是提供起点而不是完整解决方案的模式。
 
-### Option 1: Do not use Streamlit commands within a custom thread
+### 选项 1：不在自定义线程内使用 Streamlit 命令
 
-If you don't call Streamlit commands from a custom thread, you can avoid the problem entirely. Luckily Python threading provides ways to start a thread and collect its result from another thread.
+如果你不从自定义线程调用 Streamlit 命令，你可以完全避免该问题。幸运的是，Python 线程处理提供了启动线程并从另一个线程收集其结果的方法。
 
-In the following example, five custom threads are created from the script thread. After the threads are finished running, their results are displayed in the app.
+在以下示例中，从脚本线程创建五个自定义线程。线程完成运行后，它们的结果显示在应用中。
 
 ```python
 import streamlit as st
@@ -84,7 +90,7 @@ st.button("Rerun")
 
 <Cloud name="doc-multithreading-no-st-commands-batched" height="700px" />
 
-If you want to display results in your app as various custom threads finish running, use containers. In the following example, five custom threads are created similarly to the previous example. However, five containers are initialized before running the custom threads and a `while` loop is used to display results as they become available. Since the Streamlit `write` command is called outside of the custom threads, this does not raise an exception.
+如果你想在应用中显示结果，当各种自定义线程完成运行时，使用容器。在以下示例中，五个自定义线程的创建方式与之前的示例类似。但是，在运行自定义线程之前初始化五个容器，并使用 `while` 循环在结果可用时显示它们。由于 Streamlit `write` 命令是在自定义线程外部调用的，这不会引发异常。
 
 ```python
 import streamlit as st
@@ -131,19 +137,19 @@ st.button("Rerun")
 
 <Cloud name="doc-multithreading-no-st-commands-iterative" height="700px" />
 
-### Option 2: Expose `ScriptRunContext` to the thread
+### 选项 2：向线程暴露 `ScriptRunContext`
 
-If you want to call Streamlit commands from within your custom threads, you must attach the correct `ScriptRunContext` to the thread.
+如果你想从自定义线程内调用 Streamlit 命令，你必须将正确的 `ScriptRunContext` 附加到线程。
 
 <Warning>
 
-- This is not officially supported and may change in a future version of Streamlit.
-- This may not work with all Streamlit commands.
-- Ensure custom threads do not outlive the script thread owning the `ScriptRunContext`. Leaking of `ScriptRunContext` may cause security vulnerabilities, fatal errors, or unexpected behavior.
+- 这不被正式支持，并且可能在 Streamlit 的未来版本中更改。
+- 这可能不适用于所有 Streamlit 命令。
+- 确保自定义线程不会超过拥有 `ScriptRunContext` 的脚本线程的生命周期。`ScriptRunContext` 的泄漏可能导致安全漏洞、致命错误或意外行为。
 
 </Warning>
 
-In the following example, a custom thread with `ScriptRunContext` attached can call `st.write` without a warning.
+在以下示例中，附加了 `ScriptRunContext` 的自定义线程可以调用 `st.write` 而不会出现警告。
 
 ```python
 import streamlit as st
@@ -159,7 +165,7 @@ class WorkerThread(Thread):
         self.target = target
 
     def run(self):
-        # runs in custom thread, but can call Streamlit APIs
+        # 在自定义线程中运行，但可以调用 Streamlit API
         start_time = time.time()
         time.sleep(self.delay)
         end_time = time.time()

@@ -1,45 +1,45 @@
 ---
-title: Streamlit's native app testing framework
+title: Streamlit 原生应用测试框架
 slug: /develop/concepts/app-testing
-description: Explore comprehensive guides about Streamlit's native app testing framework, including setup, examples, and best practices for CI/CD integration.
-keywords: app testing, streamlit testing, AppTest, automated testing, test framework, pytest, unit testing, integration testing, ci testing, test automation, testing best practices
+description: 探索有关 Streamlit 原生应用测试框架的综合指南，包括设置、示例和 CI/CD 集成的最佳实践。
+keywords: 应用测试, streamlit 测试, AppTest, 自动化测试, 测试框架, pytest, 单元测试, 集成测试, ci 测试, 测试自动化, 测试最佳实践
 ---
 
-# Streamlit's native app testing framework
+# Streamlit 原生应用测试框架
 
-Streamlit app testing enables developers to build and run automated tests. Bring your favorite test automation software and enjoy simple syntax to simulate user input and inspect rendered output.
+Streamlit 应用测试使开发者能够构建和运行自动化测试。带上你喜欢的测试自动化软件，享受简单的语法来模拟用户输入并检查渲染输出。
 
-The provided class, AppTest, simulates a running app and provides methods to set up, manipulate, and inspect the app contents via API instead of a browser UI. AppTest provides similar functionality to browser automation tools like Selenium or Playwright, but with less overhead to write and execute tests. Use our testing framework with a tool like [pytest](https://docs.pytest.org/) to execute or automate your tests. A typical pattern is to build a suite of tests for an app to ensure consistent functionality as the app evolves. The tests run locally and/or in a CI environment like GitHub Actions.
+提供的类 AppTest 模拟运行的应用，并提供方法来通过 API（而不是浏览器 UI）设置、操纵和检查应用内容。AppTest 提供与浏览器自动化工具（如 Selenium 或 Playwright）类似的功能，但编写和执行测试的开销更少。将我们的测试框架与 [pytest](https://docs.pytest.org/) 之类的工具一起使用来执行或自动化你的测试。典型的模式是为应用构建一套测试，以确保应用随着发展的一致功能。测试在本地和/或 CI 环境（如 GitHub Actions）中运行。
 
 <InlineCalloutContainer>
     <InlineCallout
         color="indigo-70"
         icon="science"
-        bold="Get started"
+        bold="入门"
         href="/develop/concepts/app-testing/get-started"
-    >introduces you to the app testing framework and how to execute tests using <code>pytest</code>. Learn how to initialize and run simulated apps, including how to retrieve, manipulate, and inspect app elements.</InlineCallout>
+    >向你介绍应用测试框架以及如何使用 <code>pytest</code> 执行测试。了解如何初始化和运行模拟的应用，包括如何检索、操纵和检查应用元素。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="password"
-        bold="Beyond the basics"
+        bold="超越基础知识"
         href="/develop/concepts/app-testing/beyond-the-basics"
-    >explains how to work with secrets and Session State within app tests, including how to test multipage apps.</InlineCallout>
+    >解释如何在应用测试中使用 secrets 和 Session State，包括如何测试多页应用。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="play_circle"
-        bold="Automate your tests"
+        bold="自动化你的测试"
         href="/develop/concepts/app-testing/automate-tests"
-    >with Continuous Integration (CI) to validate app changes over time.</InlineCallout>
+    >使用持续集成 (CI) 随时间验证应用更改。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="quiz"
-        bold="Example"
+        bold="示例"
         href="/develop/concepts/app-testing/examples"
-    >puts together the concepts explained above. Check out an app with multiple tests in place.</InlineCallout>
+    >将上面解释的概念放在一起。查看已实施多个测试的应用。</InlineCallout>
     <InlineCallout
         color="indigo-70"
         icon="saved_search"
-        bold="Cheat sheet"
+        bold="速查表"
         href="/develop/concepts/app-testing/cheat-sheet"
-    >is a compact reference summarizing the available syntax.</InlineCallout>
+    >是总结可用语法的紧凑参考。</InlineCallout>
 </InlineCalloutContainer>

@@ -1,58 +1,58 @@
 ---
-title: How to install a package not on PyPI/Conda but available on GitHub
+title: 如何安装不在 PyPI/Conda 上但可在 GitHub 上获得的包
 slug: /knowledge-base/dependencies/install-package-not-pypi-conda-available-github
 ---
 
-# How to install a package not on PyPI/Conda but available on GitHub
+# 如何安装不在 PyPI/Conda 上但可在 GitHub 上获得的包
 
-## Overview
+## 概述
 
-Are you trying to deploy your app to [Streamlit Community Cloud](/deploy/streamlit-community-cloud), but don't know how to specify a [Python dependency](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies) in your requirements file that is available on a public GitHub repo but not any package index like PyPI or Conda? If so, continue reading to find out how!
+您是否尝试将应用部署到[Streamlit Community Cloud](/deploy/streamlit-community-cloud)，但不知道如何在 requirements 文件中指定[Python 依赖项](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies)，而该依赖项在公共 GitHub 仓库上可用，但不在 PyPI 或 Conda 等任何包索引上？如果是这样，请继续阅读以了解如何操作！
 
-Let's suppose you want to install `SomePackage` and its Python dependencies from GitHub, a hosting service for the popular version control system (VCS) Git. And suppose `SomePackage` is found at the the following URL: `https://github.com/SomePackage.git`.
+假设您想从 GitHub 安装 `SomePackage` 及其 Python 依赖项，GitHub 是流行的版本控制系统 (VCS) Git 的托管服务。假设 `SomePackage` 可在以下 URL 获取：`https://github.com/SomePackage.git`。
 
-pip (via `requirements.txt`) [supports](https://pip.pypa.io/en/stable/topics/vcs-support/) installing from GitHub. This support requires a working executable to be available (for Git). It is used through a URL prefix: `git+`.
+pip（通过 `requirements.txt`）[支持](https://pip.pypa.io/en/stable/topics/vcs-support/)从 GitHub 安装。此支持需要一个可用的工作可执行文件（对于 Git）。它通过 URL 前缀使用：`git+`。
 
-## Specify the GitHub web URL
+## 指定 GitHub 网址
 
-To install `SomePackage`, innclude the following in your `requirements.txt` file:
+要安装 `SomePackage`，请在 `requirements.txt` 文件中包含以下内容：
 
 ```bash
 git+https://github.com/SomePackage#egg=SomePackage
 ```
 
-You can even specify a "git ref" such as branch name, a commit hash or a tag name, as shown in the examples below.
+您甚至可以指定 "git ref"，例如分支名称、提交哈希或标签名称，如下面的示例所示。
 
-## Specify a Git branch name
+## 指定 Git 分支名称
 
-Install `SomePackage` by specifying a branch name such as `main`, `master`, `develop`, etc, in `requirements.txt`:
+通过在 `requirements.txt` 中指定分支名称（如 `main`、`master`、`develop` 等）来安装 `SomePackage`：
 
 ```bash
 git+https://github.com/SomePackage.git@main#egg=SomePackage
 ```
 
-## Specify a commit hash
+## 指定提交哈希
 
-Install `SomePackage` by specifying a commit hash in `requirements.txt`:
+通过在 `requirements.txt` 中指定提交哈希来安装 `SomePackage`：
 
 ```bash
 git+https://github.com/SomePackage.git@eb40b4ff6f7c5c1e4366cgfg0671291bge918#egg=SomePackage
 ```
 
-## Specify a tag
+## 指定标签
 
-Install `SomePackage` by specifying a tag in `requirements.txt`:
+通过在 `requirements.txt` 中指定标签来安装 `SomePackage`：
 
 ```bash
 git+https://github.com/SomePackage.git@v1.1.0#egg=SomePackage
 ```
 
-## Limitations
+## 限制
 
-It is currently **not possible** to install private packages from private GitHub repos using the URI form:
+目前**不可能**使用 URI 形式从私有 GitHub 仓库安装私有包：
 
 ```bash
 git+https://{token}@github.com/user/project.git@{version}
 ```
 
-where `version` is a tag, a branch, or a commit. And `token` is a personal access token with read only permissions. Streamlit Community Cloud only supports installing public packages from public GitHub repos.
+其中 `version` 是标签、分支或提交。`token` 是具有只读权限的个人访问令牌。Streamlit Community Cloud 仅支持从公共 GitHub 仓库安装公共包。

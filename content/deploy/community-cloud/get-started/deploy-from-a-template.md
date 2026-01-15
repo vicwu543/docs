@@ -1,62 +1,62 @@
 ---
-title: Deploy an app from a template
+title: 从模板部署应用
 slug: /deploy/streamlit-community-cloud/get-started/deploy-from-a-template
-description: Learn how to deploy a Streamlit app from a template using Community Cloud's template picker with GitHub Codespaces integration.
-keywords: template, deploy, fork, github codespaces, template picker, gdp dashboard, python version, subdomain
+description: 了解如何使用Community Cloud的模板选择器与GitHub Codespaces集成从模板部署Streamlit应用。
+keywords: 模板, 部署, fork, github codespaces, 模板选择器, gdp仪表板, python版本, 子域
 ---
 
-# Deploy an app from a template
+# 从模板部署应用
 
-Streamlit Community Cloud makes it easy to get started with several convenient templates. Just pick a template, and Community Cloud will fork it to your account and deploy it. Any edits you push to your new fork will immediately show up in your deployed app. Additionally, if you don't want to use a local development environment, Community Cloud makes it easy to create a GitHub codespace that's fully configured for Streamlit app development.
+Streamlit Community Cloud让你用几个便捷的模板轻松入门。只需选择一个模板，Community Cloud就会将其fork到你的账户并部署它。你推送到新fork的任何编辑都会立即显示在部署的应用中。此外，如果你不想使用本地开发环境，Community Cloud让你轻松创建一个为Streamlit应用开发完全配置的GitHub codespace。
 
-## Access the template picker
+## 访问模板选择器
 
-There are two ways to begin deploying a template: the "**Create app**" button and the template gallery at the bottom of your workspace.
+开始部署模板有两种方式："**创建应用**"按钮和工作空间底部的模板库。
 
-- If you click the "**Create app**" button, Community Cloud will ask you "Do you already have an app?" Select "**Nope, create one from a template**."
-- If you scroll to the bottom of your workspace in the "**My apps**" section, you can see the most popular templates. Click on one directly, or select "**View all templates**."
+- 如果你点击"**创建应用**"按钮，Community Cloud会问你"你已经有应用吗？"选择"**否，从模板创建一个**"。
+- 如果你滚动到工作空间底部的"**我的应用**"部分，你可以看到最受欢迎的模板。直接点击一个，或选择"**查看所有模板**"。
 
-The template picker shows a list of available templates on the left. A preview for the current, selected template shows on the right.
+模板选择器在左侧显示可用模板列表。当前选定模板的预览显示在右侧。
 
-!["Deploy from a template" page on Community Cloud](/images/streamlit-community-cloud/deploy-template-picker.png)
+![Community Cloud上的"从模板部署"页面](/images/streamlit-community-cloud/deploy-template-picker.png)
 
-## Select a template
+## 选择模板
 
-1. From the list of templates on the left, select "**GDP dashboard**."
-1. Optional: For "Name of new GitHub repository," enter a name for your new, forked repository.
+1. 从左侧的模板列表中，选择"**GDP仪表板**"。
+1. 可选：对于"新GitHub仓库的名称"，输入新fork仓库的名称。
 
-   When you deploy a template, Community Cloud forks the template repository into your GitHub account. Community Cloud chooses a default name for this repository based on the selected template. If you have previously deployed the same template with its default name, Community Cloud will append an auto-incrementing number to the name.
+   当你从模板部署时，Community Cloud会将模板仓库fork到你的GitHub账户。Community Cloud根据选定的模板为此仓库选择默认名称。如果你之前使用默认名称部署了相同的模板，Community Cloud会将自动递增的数字附加到名称。
 
    <Note>
-       Even if you have another user's or organization's workspace selected, Community Cloud will always deploy a template app from your personal workspace. That is, Community Cloud will always fork a template into your GitHub user account. If you want to deploy a template app from an organization, manually fork the template in GitHub, and deploy it from your fork in the associated workspace.
+       即使你有另一个用户或组织的工作空间已选中，Community Cloud也始终会从你的个人工作空间部署模板应用。也就是说，Community Cloud始终会将模板fork到你的GitHub用户账户。如果你想从组织部署模板应用，在GitHub中手动fork模板，并在关联的工作空间中从你的fork部署它。
    </Note>
 
-1. Optional: In the "App URL" field, choose a subdomain for your new app.
+1. 可选：在"应用URL"字段中，为新应用选择子域。
 
-   Every Community Cloud app is deployed to a subdomain on `streamlit.app`, but you can change your app's subdomain at any time. For more information, see [App settings](/deploy/streamlit-community-cloud/manage-your-app/app-settings).
+   每个Community Cloud应用都部署到`streamlit.app`上的子域，但你可以随时更改应用的子域。有关更多信息，请参阅[应用设置](/deploy/streamlit-community-cloud/manage-your-app/app-settings)。
 
-1. Optional: To edit the template in a GitHub codespace immediately, select the option to "**Open GitHub Codespaces...**"
+1. 可选：要立即在GitHub codespace中编辑模板，选择"**打开GitHub Codespaces...**"的选项。
 
-   You can create a codespace for your app at any time. To learn how to create a codespace after you've deployed an app, see [Edit your app](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app).
+   你可以在任何时候为应用创建codespace。要了解如何在部署应用后创建codespace，请参阅[编辑你的应用](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app)。
 
-1. Optional: To change the version of Python, at the bottom of the screen, click "**Advanced settings**," select a Python version, and then click "**Save**."
+1. 可选：要更改Python版本，在屏幕底部点击"**高级设置**"，选择Python版本，然后点击"**保存**"。
 
    <Important>
-       After an app is deployed, you can't change the version of Python without deleting and redeploying the app. 
+       部署应用后，在不删除和重新部署应用的情况下，你无法更改Python版本。
    </Important>
 
-1. At the bottom, click "**Deploy**."
+1. 在底部点击"**部署**"。
 
-## View your app
+## 查看你的应用
 
-- If you didn't select the option to open GitHub Codespaces, you are redirected to your new app.
+- 如果你没有选择打开GitHub Codespaces的选项，你会被重定向到你的新应用。
 
-  ![GDP dashboard template app](/images/streamlit-community-cloud/deploy-template-GDP.png)
+  ![GDP仪表板模板应用](/images/streamlit-community-cloud/deploy-template-GDP.png)
 
-- If you selected the option to open GitHub Codespaces, you are redirected to your new codespace, which can take several minutes to be fully initialized. After the Visual Studio Code editor appears in your codespace, it can take several minutes to install Python and start the Streamlit server. When complete, a split screen view displays a code editor on the left and a running app on the right. The code editor opens two tabs by default: the repository's readme file and the app's entrypoint file.
+- 如果你选择了打开GitHub Codespaces的选项，你会被重定向到新的codespace，完全初始化可能需要几分钟。在Visual Studio Code编辑器出现在你的codespace中后，安装Python并启动Streamlit服务器可能需要几分钟。完成后，分割屏幕视图在左侧显示代码编辑器，在右侧显示运行应用。代码编辑器默认打开两个选项卡：仓库的readme文件和应用的入口文件。
 
-  ![GDP dashboard template app in a codespace](/images/streamlit-community-cloud/deploy-template-GDP-codespace.png)
+  ![codespace中的GDP仪表板模板应用](/images/streamlit-community-cloud/deploy-template-GDP-codespace.png)
 
 <Important>
-    The app displayed in your codespace is not the same instance you deployed on Community Cloud. Your codespace is a self-contained development environment. When you make edits inside a codespace, those edits don't leave the codespace until you commit them to your repository. When you commit your changes to your repository, Community Cloud detects the changes and updates your deployed app. To learn more, see [Edit your app](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app).
+    你的codespace中显示的应用不是你在Community Cloud上部署的同一个实例。你的codespace是一个独立的开发环境。当你在codespace内进行编辑时，这些编辑在你提交到仓库之前不会离开codespace。当你提交更改到仓库时，Community Cloud检测更改并更新你部署的应用。要了解更多，请参阅[编辑你的应用](/deploy/streamlit-community-cloud/manage-your-app/edit-your-app)。
 </Important>

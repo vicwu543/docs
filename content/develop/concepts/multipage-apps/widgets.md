@@ -1,25 +1,25 @@
 ---
-title: Working with widgets in multipage apps
+title: 在多页应用中使用部件
 slug: /develop/concepts/multipage-apps/widgets
-description: Learn how widgets behave across pages in multipage Streamlit apps, including widget state management, IDs, and cross-page interactions.
-keywords: multipage widgets, widget state, widget IDs, cross-page widgets, widget behavior, state management, multipage interactions, widget persistence
+description: 了解部件在多页 Streamlit 应用中的行为，包括部件状态管理、ID 和跨页面交互。
+keywords: 多页部件, 部件状态, 部件 ID, 跨页面部件, 部件行为, 状态管理, 多页交互, 部件持久性
 ---
 
-# Working with widgets in multipage apps
+# 在多页应用中使用部件
 
-When you create a widget in a Streamlit app, Streamlit generates a widget ID and uses it to make your widget stateful. As your app reruns with user interaction, Streamlit keeps track of the widget's value by associating its value to its ID. In particular, a widget's ID depends on the page where it's created. If you define an identical widget on two different pages, then the widget will reset to its default value when you switch pages.
+当您在 Streamlit 应用中创建一个部件时，Streamlit 会生成一个部件 ID 并使用它使您的部件有状态。随着用户交互，您的应用重新运行，Streamlit 通过将其值关联到其 ID 来跟踪部件的值。特别是，部件的 ID 取决于创建它的页面。如果您在两个不同页面上定义相同的部件，那么当您切换页面时，部件将重置为其默认值。
 
-This guide explains three strategies to deal with the behavior if you'd like to have a widget remain stateful across all pages. If don't want a widget to appear on all pages, but you do want it to remain stateful when you navigate away from its page (and then back), Options 2 and 3 can be used. For detailed information about these strategies, see [Understanding widget behavior](/develop/concepts/architecture/widget-behavior).
+本指南解释了三种策略来处理此行为，如果您希望部件在所有页面上保持有状态。如果您不希望部件出现在所有页面上，但希望在离开其页面（然后返回）时保持有状态，则可以使用选项 2 和 3。有关这些策略的详细信息，请参见[了解部件行为](/develop/concepts/architecture/widget-behavior)。
 
-## Option 1 (preferred): Execute your widget command in your entrypoint file
+## 选项 1（首选）：在您的入口点文件中执行您的部件命令
 
-When you define your multipage app with `st.Page` and `st.navigation`, your entrypoint file becomes a frame of common elements around your pages. When you execute a widget command in your entrypoint file, Streamlit associates the widget to your entrypoint file instead of a particular page. Since your entrypoint file is executed in every app rerun, any widget in your entrypoint file will remain stateful as your users switch between pages.
+当您使用 `st.Page` 和 `st.navigation` 定义多页应用时，您的入口点文件成为页面周围公共元素的框架。当您在入口点文件中执行部件命令时，Streamlit 将部件关联到您的入口点文件而不是特定页面。由于您的入口点文件在每次应用重新运行时都会执行，入口点文件中的任何部件将在用户在页面间切换时保持有状态。
 
-This method does not work if you define your app with the `pages/` directory.
+如果您使用 `pages/` 目录定义应用，此方法不起作用。
 
-The following example includes a selectbox and slider in the sidebar that are rendered and stateful on all pages. The widgets each have an assigned key so you can access their values through Session State within a page.
+以下示例在侧边栏中包含一个选择框和滑块，它们在所有页面上渲染并保持有状态。每个部件都有一个分配的键，以便您可以通过会话状态在页面内访问它们的值。
 
-**Directory structure:**
+**目录结构：**
 
 ```
 your-repository/
@@ -28,7 +28,7 @@ your-repository/
 └── streamlit_app.py
 ```
 
-**`streamlit_app.py`:**
+**`streamlit_app.py`：**
 
 ```python
 import streamlit as st
@@ -41,23 +41,23 @@ st.sidebar.slider("Size", 1, 5, key="size")
 pg.run()
 ```
 
-## Option 2: Save your widget values into a dummy key in Session State
+## 选项 2：在会话状态中将您的部件值保存到虚拟键中
 
-If you want to navigate away from a widget and return to it while keeping its value, or if you want to use the same widget on multiple pages, use a separate key in `st.session_state` to save the value independently from the widget. In this example, a temporary key is used with a widget. The temporary key uses an underscore prefix. Hence, `"_my_key"` is used as the widget key, but the data is copied to `"my_key"` to preserve it between pages.
+如果您希望离开部件并返回到它同时保持其值，或者如果您希望在多个页面上使用相同的部件，请使用 `st.session_state` 中的单独键来独立于部件保存值。在此示例中，临时键与部件一起使用。临时键使用下划线前缀。因此，`"_my_key"` 用作部件键，但数据被复制到 `"my_key"` 以在页面间保留它。
 
 ```python
 import streamlit as st
 
 def store_value():
-    # Copy the value to the permanent key
+    # 将值复制到永久键
     st.session_state["my_key"] = st.session_state["_my_key"]
 
-# Copy the saved value to the temporary key
+# 将保存的值复制到临时键
 st.session_state["_my_key"] = st.session_state["my_key"]
 st.number_input("Number of filters", key="_my_key", on_change=store_value)
 ```
 
-If this is functionalized to work with multiple widgets, it could look something like this:
+如果这被功能化以与多个部件一起工作，它可能看起来像这样：
 
 ```python
 import streamlit as st
@@ -71,11 +71,11 @@ load_value("my_key")
 st.number_input("Number of filters", key="_my_key", on_change=store_value, args=["my_key"])
 ```
 
-## Option 3: Interrupt the widget clean-up process
+## 选项 3：中断部件清理过程
 
-When Streamlit gets to the end of an app run, it will delete the data for any widgets that were not rendered. This includes data for any widget not associated to the current page. However, if you re-save a key-value pair in an app run, Streamlit will not associate the key-value pair to any widget until you execute a widget command again with that key.
+当 Streamlit 到达应用运行结束时，它将删除任何未渲染部件的数据。这包括任何未关联到当前页面的部件的数据。但是，如果您在应用运行中重新保存键值对，Streamlit 将不会将键值对关联到任何部件，直到您再次使用该键执行部件命令。
 
-As a result, if you have the following code at the top of every page, any widget with the key `"my_key"` will retain its value wherever it's rendered (or not). Alternatively, if you are using `st.navigation` and `st.Page`, you can include this once in your entrypoint file before executing your page.
+因此，如果您在每个页面顶部有以下代码，具有键 `"my_key"` 的任何部件将在其渲染（或不渲染）的地方保留其值。或者，如果您使用 `st.navigation` 和 `st.Page`，您可以在执行页面之前在入口点文件中包含此内容一次。
 
 ```python
 if "my_key" in st.session_state:

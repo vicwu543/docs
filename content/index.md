@@ -1,20 +1,20 @@
 ---
-title: Welcome to Streamlit
+title: 欢迎使用 Streamlit
 features:
-  - title: Get started
+  - title: 快速上手
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     color: indigo-70
     icon: arrow_forward
     url: /get-started
     image: ""
-  - title: API reference
+  - title: API 参考
     body: Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
       fugit, sed quia.
     color: orange-70
     icon: dvr
     url: /develop/api-reference
     image: ""
-  - title: Topic guides
+  - title: 主题指南
     body: Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
       fugit, sed quia.
     color: lightBlue-70
@@ -24,14 +24,14 @@ features:
       sed quia.
     image: ""
 whats_new:
-  - title: Feature title
+  - title: 功能标题
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend a
       facilisis sagittis, vitae nibh massa in facilisis et. Pretium eget non
       cursus purus tempus porta sodales.
     icon: visibility
     url: /get-started
     image: /img/logo.svg
-  - title: Feature title
+  - title: 功能标题
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend a
       facilisis sagittis, vitae nibh massa in facilisis et. Pretium eget non
       cursus purus tempus porta sodales.
@@ -41,11 +41,11 @@ whats_new:
   - body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend a
       facilisis sagittis, vitae nibh massa in facilisis et. Pretium eget non
       cursus purus tempus porta sodales.
-    title: Feature title
+    title: 功能标题
     url: /get-started
     image: /img/logo.svg
     icon: edit
-  - title: Feature title
+  - title: 功能标题
     body: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend a
       facilisis sagittis, vitae nibh massa in facilisis et. Pretium eget non
       cursus purus tempus porta sodales.
@@ -53,14 +53,14 @@ whats_new:
     icon: edit
     image: ""
 news:
-  - publish_date: April 7, 2021
-    title: New Story 1
+  - publish_date: 2021年4月7日
+    title: 新故事 1
     body:
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis leo
       felis, quis egestas est dignissim vel.
     url: https://www.streamlit.io
-  - publish_date: April 7, 2021
-    title: New Story 2
+  - publish_date: 2021年4月7日
+    title: 新故事 2
     body:
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis leo
       felis, quis egestas est dignissim vel. Pellentesque interdum massa metus,
@@ -78,4 +78,4 @@ news:
 next: get-started
 ---
 
-[Streamlit](https://www.streamlit.io) is an open-source Python library that makes it easy to create and share beautiful, custom web apps for machine learning and data science. In just a few minutes you can build and deploy powerful data apps - so let’s get started!
+[Streamlit](https://www.streamlit.io) 是一个开源的 Python 库，可以轻松创建和共享漂亮的自定义网络应用程序，适用于机器学习和数据科学。只需几分钟您就可以构建和部署强大的数据应用程序 - 让我们开始吧！

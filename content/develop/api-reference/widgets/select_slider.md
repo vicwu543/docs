@@ -1,7 +1,7 @@
 ---
 title: st.select_slider
 slug: /develop/api-reference/widgets/st.select_slider
-description: st.select_slider displays a slider widget to select items from a list.
+description: st.select_slider 显示滑块小部件以从列表中选择项目。
 keywords: st.select_slider, select slider, discrete slider, option slider, list slider, slider selection, categorical slider, range selector
 ---
 
@@ -9,8 +9,8 @@ keywords: st.select_slider, select slider, discrete slider, option slider, list 
 
 ### Featured videos
 
-Check out our video on how to use one of Streamlit's core functions, the select slider! 🎈
+查看我们关于如何使用 Streamlit 核心功能之一的视频：选择滑块！🎈
 <YouTube videoId="MTaL_1UCb2g" />
 
-In the video below, we'll take it a step further and make a double-ended slider.
+在下面的视频中，我们将更进一步，制作双端滑块。
 <YouTube videoId="sCvdt79asrE" />

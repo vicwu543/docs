@@ -1,43 +1,43 @@
 ---
-title: Working with connections, secrets, and user authentication
+title: 使用连接、密钥和用户认证
 slug: /develop/concepts/connections
-description: Explore comprehensive guides to connecting Streamlit apps to data sources, managing secrets securely, implementing user authentication, and following security best practices.
-keywords: connections, data connections, secrets management, user authentication, security, api connections, database connections, secure data access, authentication flow
+description: 探索将 Streamlit 应用连接到数据源、管理密钥安全、实施用户认证以及遵循安全最佳实践的综合指南。
+keywords: 连接, 数据连接, 密钥管理, 用户认证, 安全, API 连接, 数据库连接, 安全数据访问, 认证流程
 ---
 
-# Working with connections, secrets, and user authentication
+# 使用连接、密钥和用户认证
 
 <TileContainer layout="list">
 
 <RefCard href="/develop/concepts/connections/connecting-to-data">
 
-<h5>Connecting to data</h5>
+<h5>连接到数据</h5>
 
-Connect your app to remote data or a third-party API.
+将您的应用连接到远程数据或第三方 API。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/connections/secrets-management">
 
-<h5>Secrets managements</h5>
+<h5>密钥管理</h5>
 
-Set up your development environement and design your app to handle secrets securely.
+设置您的开发环境并设计您的应用以安全处理密钥。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/connections/authentication">
 
-<h5>Authentication and user information</h5>
+<h5>认证和用户信息</h5>
 
-Use an OpenID Connect provider to authenticate users and personalize your app.
+使用 OpenID Connect 提供商认证用户并个性化您的应用。
 
 </RefCard>
 
 <RefCard href="/develop/concepts/connections/security-reminders">
 
-<h5>Security reminders</h5>
+<h5>安全提醒</h5>
 
-Check out a few reminders to follow best practices and avoid security mistakes.
+查看一些遵循最佳实践并避免安全错误的提醒。
 
 </RefCard>
 

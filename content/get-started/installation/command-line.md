@@ -1,111 +1,105 @@
 ---
-title: Install Streamlit using command line
+title: 使用命令行安装 Streamlit
 slug: /get-started/installation/command-line
-description: Step-by-step guide to install Streamlit using command line tools and build your first Hello World app.
-keywords: command line installation, pip install streamlit, venv, virtual environment, command line setup, pip installation, terminal install
+description: 使用命令行工具安装 Streamlit 的逐步指南，并构建您的第一个 Hello World 应用。
+keywords: 命令行安装, pip 安装 streamlit, venv, 虚拟环境, 命令行设置, pip 安装, 终端安装
 ---
 
-# Install Streamlit using command line
+# 使用命令行安装 Streamlit
 
-This page will walk you through creating an environment with `venv` and installing Streamlit with `pip`. These are our recommended tools, but if you are familiar with others you can use your favorite ones too. At the end, you'll build a simple "Hello world" app and run it. If you prefer to have a graphical interface to manage your Python environments, check out how to [Install Streamlit using Anaconda Distribution](/get-started/installation/anaconda-distribution).
+本页面将引导您使用 `venv` 创建环境并使用 `pip` 安装 Streamlit。这些是我们推荐的工具，但如果您熟悉其他工具，也可以使用您喜欢的工具。最后，您将构建一个简单的"Hello world"应用并运行它。如果您更喜欢使用图形界面来管理您的 Python 环境，请查看如何 [使用 Anaconda 发行版安装 Streamlit](/get-started/installation/anaconda-distribution)。
 
-## Prerequisites
+## 先决条件
 
-As with any programming tool, in order to install Streamlit you first need to make sure your
-computer is properly set up. More specifically, you’ll need:
+与任何编程工具一样，为了安装 Streamlit，您首先需要确保您的计算机已正确设置。更具体地说，您需要：
 
 1. **Python**
 
-   We support [version 3.9 to 3.13](https://www.python.org/downloads/).
+   我们支持 [版本 3.9 到 3.13](https://www.python.org/downloads/)。
 
-1. **A Python environment manager** (recommended)
+1. **Python 环境管理器** (推荐)
 
-   Environment managers create virtual environments to isolate Python package installations between
-   projects.
+   环境管理器在项目之间创建虚拟环境，以隔离 Python 包的安装。
 
-   We recommend using virtual environments because installing or upgrading a Python package may
-   cause unintentional effects on another package. For a detailed introduction to Python
-   environments, check out
-   [Python Virtual Environments: A Primer](https://realpython.com/python-virtual-environments-a-primer/).
+   我们推荐使用虚拟环境，因为安装或升级 Python 包可能会对另一个包产生意外影响。有关 Python 环境的详细介绍，请查看
+   [Python 虚拟环境：入门指南](https://realpython.com/python-virtual-environments-a-primer/)。
 
-   For this guide, we'll be using `venv`, which comes with Python.
+   对于本指南，我们将使用 `venv`，它随 Python 一起提供。
 
-1. **A Python package manager**
+1. **Python 包管理器**
 
-   Package managers handle installing each of your Python packages, including Streamlit.
+   包管理器处理安装每个 Python 包，包括 Streamlit。
 
-   For this guide, we'll be using `pip`, which comes with Python.
+   对于本指南，我们将使用 `pip`，它随 Python 一起提供。
 
-1. **Only on MacOS: Xcode command line tools**
+1. **仅在 macOS 上：Xcode 命令行工具**
 
-   Download Xcode command line tools using [these instructions](https://mac.install.guide/commandlinetools/4.html)
-   in order to let the package manager install some of Streamlit's dependencies.
+   使用 [这些说明](https://mac.install.guide/commandlinetools/4.html) 下载 Xcode 命令行工具，以便包管理器安装 Streamlit 的一些依赖项。
 
-1. **A code editor**
+1. **代码编辑器**
 
-   Our favorite editor is [VS Code](https://code.visualstudio.com/download), which is also what we use in
-   all our tutorials.
+   我们最喜欢的编辑器是 [VS Code](https://code.visualstudio.com/download)，我们在所有教程中都使用它。
 
-## Create an environment using `venv`
+## 使用 `venv` 创建环境
 
-1. Open a terminal and navigate to your project folder.
+1. 打开终端并导航到您的项目文件夹。
 
    ```bash
    cd myproject
    ```
 
-2. In your terminal, type:
+2. 在终端中，输入：
 
    ```bash
    python -m venv .venv
    ```
 
-3. A folder named ".venv" will appear in your project. This directory is where your virtual environment and its dependencies are installed.
+3. 您的项目中将出现一个名为".venv"的文件夹。此目录是您的虚拟环境及其依赖项安装的位置。
 
-## Activate your environment
+## 激活您的环境
 
-4. In your terminal, activate your environment with one of the following commands, depending on your operating system.
+4. 在终端中，根据您的操作系统，使用以下命令之一激活您的环境。
 
    ```bash
-   # Windows command prompt
+   # Windows 命令提示符
    .venv\Scripts\activate.bat
 
    # Windows PowerShell
    .venv\Scripts\Activate.ps1
 
-   # macOS and Linux
+   # macOS 和 Linux
    source .venv/bin/activate
    ```
 
-5. Once activated, you will see your environment name in parentheses before your prompt. "(.venv)"
+5. 激活后，您将在提示符前的括号中看到您的环境名称。"(.venv)"
 
-## Install Streamlit in your environment
+## 在您的环境中安装 Streamlit
 
-6. In the terminal with your environment activated, type:
+6. 在激活环境的终端中，输入：
 
    ```bash
    pip install streamlit
    ```
 
-7. Test that the installation worked by launching the Streamlit Hello example app:
+7. 通过启动 Streamlit Hello 示例应用程序来测试安装是否成功：
 
    ```bash
    streamlit hello
    ```
 
-   If this doesn't work, use the long-form command:
+   如果这不起作用，请使用完整命令：
 
    ```bash
    python -m streamlit hello
    ```
 
-8. Streamlit's Hello app should appear in a new tab in your web browser!
+8. Streamlit 的 Hello 应用程序应该在您的网页浏览器的新标签页中出现！
    <Cloud name="doc-mpa-hello" height="700px" />
-9. Close your terminal when you are done.
+9. 完成后关闭您的终端。
 
-## Create a "Hello World" app and run it
+## 创建"Hello World"应用程序并运行它
 
-10. Create a file named `app.py` in your project folder.
+10. 在您的项目文件夹中创建一个名为 `app.py` 的文件。
 
 ```python
 import streamlit as st
@@ -113,41 +107,41 @@ import streamlit as st
 st.write("Hello world")
 ```
 
-11. Any time you want to use your new environment, you first need to go to your project folder (where the `.venv` directory lives) and run the command to activate it:
+11. 每当您想使用您的新环境时，首先需要转到您的项目文件夹（其中包含 `.venv` 目录）并运行激活它的命令：
 
 ```bash
-# Windows command prompt
+# Windows 命令提示符
 .venv\Scripts\activate.bat
 
 # Windows PowerShell
 .venv\Scripts\Activate.ps1
 
-# macOS and Linux
+# macOS 和 Linux
 source .venv/bin/activate
 ```
 
-12. Once activated, you will see your environment's name in parentheses at the beginning of your terminal prompt. "(.venv)"
+12. 激活后，您将在终端提示符开头的括号中看到您的环境名称。"(.venv)"
 
-13. Run your Streamlit app.
+13. 运行您的 Streamlit 应用程序。
 
 ```bash
 streamlit run app.py
 ```
 
-If this doesn't work, use the long-form command:
+如果这不起作用，请使用完整命令：
 
 ```bash
 python -m streamlit run app.py
 ```
 
-14. To stop the Streamlit server, press `Ctrl+C` in the terminal.
+14. 要停止 Streamlit 服务器，请在终端中按 `Ctrl+C`。
 
-15. When you're done using this environment, return to your normal shell by typing:
+15. 当您完成使用此环境时，通过输入以下内容返回到正常 shell：
 
 ```bash
 deactivate
 ```
 
-## What's next?
+## 下一步是什么？
 
-Read about our [Basic concepts](/get-started/fundamentals/main-concepts) to understand Streamlit's dataflow model.
+阅读我们的 [基本概念](/get-started/fundamentals/main-concepts) 来了解 Streamlit 的数据流模型。

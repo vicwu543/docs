@@ -1,11 +1,11 @@
 ---
-title: How do you retrieve the filename of a file uploaded with st.file_uploader?
+title: 如何使用st.file_uploader检索上传的文件的文件名？
 slug: /knowledge-base/using-streamlit/retrieve-filename-uploaded
 ---
 
-# How do you retrieve the filename of a file uploaded with st.file_uploader?
+# 如何使用st.file_uploader检索上传的文件的文件名？
 
-If you upload a single file (i.e. `accept_multiple_files=False`), the filename can be retrieved by using the `.name` attribute on the returned UploadedFile object:
+对于上传单个文件时`accept_multiple_files=False`，你可以通过返回的UploadedFile对象使用`.name`属性来获取文件名。
 
 ```python
 import streamlit as st
@@ -16,7 +16,7 @@ if uploaded_file:
    st.write("Filename: ", uploaded_file.name)
 ```
 
-If you upload multiple files (i.e. `accept_multiple_files=True`), the individual filenames can be retrieved by using the `.name` attribute on each UploadedFile object in the returned list:
+对于上传多个文件时`accept_multiple_files=True`，你可以通过返回的列表中的每个UploadedFile对象使用`.name`属性来获取每个上传的文件名。
 
 ```python
 import streamlit as st
@@ -28,6 +28,7 @@ if uploaded_files:
        st.write("Filename: ", uploaded_file.name)
 ```
 
-Related forum posts:
+相关论坛帖子：
 
 - https://discuss.streamlit.io/t/is-it-possible-to-get-uploaded-file-file-name/7586
+

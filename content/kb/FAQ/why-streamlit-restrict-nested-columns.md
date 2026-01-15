@@ -1,20 +1,15 @@
 ---
-title: Why does Streamlit restrict nested st.columns?
+title: 为什么 Streamlit 限制嵌套 st.columns？
 slug: /knowledge-base/using-streamlit/why-streamlit-restrict-nested-columns
 ---
 
-# Why does Streamlit restrict nested `st.columns`?
+# 为什么 Streamlit 限制嵌套 `st.columns`？
 
-Starting in version 1.46.0, Streamlit removed explicit limits on nesting columns, expanders, popovers, and chat message containers. To follow best design practices and maintain a good appearance on all screen sizes, don't overuse nested layouts.
+从版本 1.46.0 开始，Streamlit 移除了对嵌套列、扩展器、弹出窗口和聊天消息容器的显式限制。为了遵循最佳设计实践并在所有屏幕尺寸上保持良好的外观，不要过度使用嵌套布局。
 
-From version 1.18.0 to 1.45.0, Streamlit allows nesting [`st.columns`](/develop/api-reference/layout/st.columns) inside other
-`st.columns` with the following restrictions:
+从版本 1.18.0 到 1.45.0，Streamlit 允许在其他 `st.columns` 内嵌套 [`st.columns`](/develop/api-reference/layout/st.columns)，但有以下限制：
 
-- In the main area of the app, columns can be nested up to one level of nesting.
-- In the sidebar, columns cannot be nested.
+- 在应用的主要区域中，列可以嵌套最多一个级别。
+- 在侧边栏中，列不能被嵌套。
 
-These restrictions were in place to make Streamlit apps look good on all device sizes. Nesting columns multiple times often leads to a bad UI.
-You might be able to make it look good on one screen size but as soon as a user on a different screen views the app,
-they will have a bad experience. Some columns will be tiny, others will be way too long, and complex layouts will look out of place.
-Streamlit tries its best to automatically resize elements to look good across devices, without any help from the developer.
-But for complex layouts with multiple levels of nesting, this is not possible.
+这些限制是为了使 Streamlit 应用在所有设备尺寸上看起来很好。嵌套列多次通常会导致糟糕的用户界面。您可能能够在一个屏幕尺寸上使其看起来不错，但一旦不同屏幕上的用户查看该应用，他们就会有糟糕的体验。某些列会很小，其他列会太长，复杂的布局看起来会很不合适。Streamlit 尽力自动调整元素的大小，以在各种设备上看起来不错，无需开发人员的任何帮助。但对于具有多个级别嵌套的复杂布局，这是不可能的。

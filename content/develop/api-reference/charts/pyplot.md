@@ -1,14 +1,14 @@
 ---
 title: st.pyplot
 slug: /develop/api-reference/charts/st.pyplot
-description: st.pyplot displays a matplotlib.pyplot figure.
+description: st.pyplot 显示 matplotlib.pyplot 图表。
 keywords: pyplot, matplotlib, chart, visualization, data, plot, graph, figure, scientific, custom
 ---
 
 <Autofunction function="streamlit.pyplot" />
 
 <Warning>
-    Matplotlib [doesn't work well with threads](https://matplotlib.org/3.3.2/faq/howto_faq.html#working-with-threads). So if you're using Matplotlib you should wrap your code with locks. This Matplotlib bug is more prominent when you deploy and share your apps because you're more likely to get concurrent users then. The following example uses [`Rlock`](https://docs.python.org/3/library/threading.html#rlock-objects) from the `threading` module.
+    Matplotlib [不支持线程](https://matplotlib.org/3.3.2/faq/howto_faq.html#working-with-threads)。因此，如果您使用 Matplotlib，您应该用锁包装您的代码。当您部署和共享应用时，这个 Matplotlib 错误会更加突出，因为您更有可能获得并发用户。以下示例使用 `threading` 模块的 [`Rlock`](https://docs.python.org/3/library/threading.html#rlock-objects)。
 
     ```python
     import streamlit as st

@@ -1,36 +1,36 @@
 ---
-title: Workspace settings
+title: 工作空间设置
 slug: /deploy/streamlit-community-cloud/manage-your-account/workspace-settings
-description: Learn how to access and manage your Streamlit Community Cloud workspace settings including linked accounts, limits, and support resources.
-keywords: workspace settings, linked accounts, limits, support, resources, account management, configuration
+description: 了解如何访问和管理Streamlit Community Cloud工作空间设置，包括链接账户、限制和支持资源。
+keywords: 工作空间设置, 链接账户, 限制, 支持, 资源, 账户管理, 配置
 ---
 
-# Workspace settings
+# 工作空间设置
 
-From your workspace settings you can [Manage your account](/deploy/streamlit-community-cloud/manage-your-account), see your [App resources and limits](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits) and access support resources.
+从工作空间设置，你可以[管理你的账户](/deploy/streamlit-community-cloud/manage-your-account)、查看[应用资源和限制](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits)并访问支持资源。
 
-## Access your workspace settings
+## 访问工作空间设置
 
-1. Sign in to <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>.
-1. In the upper-left corner, click on your workspace name.
-1. In the drop-down menu, click "**Settings**."
+1. 登录到<a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>。
+1. 在左上角，点击工作空间名称。
+1. 在下拉菜单中，点击"**设置**"。
 
-   ![Access your workspace settings from your workspace](/images/streamlit-community-cloud/account-settings-header.png)
+   ![从工作空间访问工作空间设置](/images/streamlit-community-cloud/account-settings-header.png)
 
-## Linked accounts
+## 链接账户
 
-The "**Linked accounts**" section shows your current email identity and source control account. To learn more, see [Manage your account](/deploy/streamlit-community-cloud/manage-your-account).
+"**链接账户**"部分显示当前电子邮件身份和源代码控制账户。要了解更多，请参阅[管理你的账户](/deploy/streamlit-community-cloud/manage-your-account)。
 
-![Manage your linked accounts in workspace settings](/images/streamlit-community-cloud/workspace-settings-linked-accounts.png)
+![在工作空间设置中管理链接账户](/images/streamlit-community-cloud/workspace-settings-linked-accounts.png)
 
-## Limits
+## 限制
 
-The "**Limits**" section shows your current resources and limits. To learn more, see [App resources and limits](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits).
+"**限制**"部分显示当前资源和限制。要了解更多，请参阅[应用资源和限制](/deploy/streamlit-community-cloud/manage-your-app#app-resources-and-limits)。
 
-![Resource limits displayed in workspace settings](/images/streamlit-community-cloud/workspace-settings-limits.png)
+![工作空间设置中显示的资源限制](/images/streamlit-community-cloud/workspace-settings-limits.png)
 
-## Support
+## 支持
 
-The "**Support**" section provides a convenient list of useful resources so you know where to go for help.
+"**支持**"部分提供了一个有用资源的便捷列表，以便你知道在需要帮助时去哪里。
 
-![Support options available through workspace settings](/images/streamlit-community-cloud/workspace-settings-support.png)
+![通过工作空间设置提供的支持选项](/images/streamlit-community-cloud/workspace-settings-support.png)

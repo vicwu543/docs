@@ -1,48 +1,48 @@
 ---
-title: Understanding Streamlit's client-server architecture
+title: 理解 Streamlit 的客户端-服务器架构
 slug: /develop/concepts/architecture/architecture
-description: Learn about Streamlit's client-server architecture, WebSocket connections, session management, and deployment considerations.
-keywords: architecture, client-server, websocket, session, deployment, server, client
+description: 了解 Streamlit 的客户端-服务器架构、WebSocket 连接、会话管理和部署考虑。
+keywords: 架构, 客户端-服务器, websocket, 会话, 部署, 服务器, 客户端
 ---
 
-# Understanding Streamlit's client-server architecture
+# 理解 Streamlit 的客户端-服务器架构
 
-Streamlit apps have a client-server structure. The Python backend of your app is the server. The frontend you view through a browser is the client. When you develop an app locally, your computer runs both the server and the client. If someone views your app across a local or global network, the server and client run on different machines. If you intend to share or deploy your app, it's important to understand this client-server structure to avoid common pitfalls.
+Streamlit 应用有一个客户端-服务器结构。你的应用的 Python 后端是服务器。你通过浏览器查看的前端是客户端。当你在本地开发应用时，你的计算机同时运行服务器和客户端。如果有人通过本地或全球网络查看你的应用，服务器和客户端会在不同的机器上运行。如果你打算共享或部署你的应用，理解这个客户端-服务器结构很重要，以避免常见的陷阱。
 
-## Python backend (server)
+## Python 后端（服务器）
 
-When you execute the command `streamlit run your_app.py`, your computer uses Python to start up a Streamlit server. This server is the brains of your app and performs the computations for all users who view your app. Whether users view your app across a local network or the internet, the Streamlit server runs on the one machine where the app was initialized with `streamlit run`. The machine running your Streamlit server is also called a host.
+当你执行命令 `streamlit run your_app.py` 时，你的计算机使用 Python 启动一个 Streamlit 服务器。这个服务器是你的应用的大脑，并为查看你的应用的所有用户执行计算。无论用户是通过本地网络还是互联网查看你的应用，Streamlit 服务器都在初始化该应用的 `streamlit run` 的那台机器上运行。运行你的 Streamlit 服务器的机器也称为主机。
 
-## Browser frontend (client)
+## 浏览器前端（客户端）
 
-When someone views your app through a browser, their device is a Streamlit client. When you view your app from the same computer where you are running or developing your app, then server and client are coincidentally running on the same machine. However, when users view your app across a local network or the internet, the client runs on a different machine from the server.
+当有人通过浏览器查看你的应用时，他们的设备是一个 Streamlit 客户端。当你从运行或开发应用的同一台计算机查看应用时，服务器和客户端恰好在同一台机器上运行。但是，当用户通过本地网络或互联网查看你的应用时，客户端在与服务器不同的机器上运行。
 
-## Server-client impact on app design
+## 服务器-客户端对应用设计的影响
 
-Keep in mind the following considerations when building your Streamlit app:
+构建 Streamlit 应用时，请记住以下考虑事项：
 
-- The computer running or hosting your Streamlit app is responsible for providing the compute and storage necessary to run your app for all users and must be sized appropriately to handle concurrent users.
-- Your app will not have access to a user's files, directories, or OS. Your app can only work with specific files a user has uploaded to your app through a widget like `st.file_uploader`.
-- If your app communicates with any peripheral devices (like cameras), you must use Streamlit commands or custom components that will access those devices _through the user's browser_ and correctly communicate between the client (frontend) and server (backend).
-- If your app opens or uses any program or process outside of Python, they will run on the server. For example, you may want to use `webrowser` to open a browser for the user, but this will not work as expected when viewing your app over a network; it will open a browser on the Streamlit server, unseen by the user.
-- If you use load balancing or replication in your deployment, some Streamlit features won't work without session affinity or stickiness. For more information, continue reading.
+- 运行或托管你的 Streamlit 应用的计算机负责为所有用户提供必要的计算和存储来运行你的应用，并必须大小恰当以处理并发用户。
+- 你的应用将无法访问用户的文件、目录或操作系统。你的应用只能使用用户通过小部件（如 `st.file_uploader`）上传到你的应用的特定文件。
+- 如果你的应用与任何外设（如摄像头）通信，你必须使用 Streamlit 命令或自定义组件，这些命令或组件将通过用户的浏览器访问这些设备，并在客户端（前端）和服务器（后端）之间正确通信。
+- 如果你的应用打开或使用 Python 之外的任何程序或过程，它们将在服务器上运行。例如，你可能想使用 `webrowser` 为用户打开浏览器，但当你通过网络查看应用时，这不会按预期工作；它将在 Streamlit 服务器上打开浏览器，对用户不可见。
+- 如果你在部署中使用负载均衡或复制，某些 Streamlit 功能在没有会话关联或粘性的情况下将无法工作。有关更多信息，请继续阅读。
 
-## WebSockets and session management
+## WebSocket 和会话管理
 
-While most Streamlit app developers don’t need to interact directly with WebSockets, understanding their role is important for advanced deployments, custom components, or managing connections at scale.
+虽然大多数 Streamlit 应用开发者不需要直接与 WebSocket 交互，但理解它们的角色对于高级部署、自定义组件或大规模管理连接很重要。
 
-Streamlit’s server is built on the Tornado web framework, which uses WebSockets to maintain a persistent, two-way communication channel between the client and server. This persistent connection allows the server to push real-time updates to the client and maintain session context for each user. Each browser tab or window creates its own WebSocket connection, resulting in a separate session within your app.
+Streamlit 的服务器建立在 Tornado Web 框架之上，该框架使用 WebSocket 来维持客户端和服务器之间的持久、双向通信通道。这种持久连接允许服务器将实时更新推送到客户端并为每个用户维持会话上下文。每个浏览器选项卡或窗口都创建自己的 WebSocket 连接，导致应用中的单独会话。
 
-In large-scale or production deployments, load balancing and server replication are common. However, the way Streamlit handles sessions and local (server) files requires special consideration in these environments. When a client requests media (such as an image or audio file) via HTTP, there is no session context attached to that request. In deployments with multiple server replicas or load balancers, the HTTP request for the media file might be routed to a different server than the one handling the user’s WebSocket connection and session information. If the media file isn’t available on all replicas, you may encounter errors like `MediaFileStorageError: Bad filename`. Any command that allows the user to upload files can also be impacted and may raise HTTP status code 400.
+在大规模或生产部署中，负载均衡和服务器复制很常见。但是，Streamlit 处理会话和本地（服务器）文件的方式需要在这些环境中特别考虑。当客户端通过 HTTP 请求媒体（如图像或音频文件）时，该请求中没有附加会话上下文。在多个服务器副本或负载均衡器的部署中，媒体文件的 HTTP 请求可能被路由到与处理用户 WebSocket 连接和会话信息的服务器不同的服务器。如果媒体文件在所有副本上都不可用，你可能会遇到错误，如 `MediaFileStorageError: Bad filename`。任何允许用户上传文件的命令也可能受到影响，可能会引发 HTTP 状态代码 400。
 
-### Session affinity or stickiness
+### 会话关联或粘性
 
-In general, you can do one of the following to resolve or reduce this limitation:
+通常，你可以执行以下操作之一来解决或减少这个限制：
 
-- Enable session affinity (also known as stickiness) in your proxy. This ensures that all requests from a user’s session are handled by the same server instance.
-- Convert media to a Base64 encoded data URI before passing it to a Streamlit command. This passes the media data through the WebSocket instead of using Streamlit's media storage which is accessed through HTTP requests.
-- Save dynamically generated files to a stable location outside of your server replicas (e.g. S3 storage), and pass the external URLs to Streamlit commands. This avoids Streamlit's media storage.
+- 在你的代理中启用会话关联（也称为粘性）。这确保了用户会话中的所有请求都由同一服务器实例处理。
+- 在将媒体传递给 Streamlit 命令之前，将媒体转换为 Base64 编码的数据 URI。这通过 WebSocket 而不是通过 HTTP 请求访问的 Streamlit 媒体存储来传递媒体数据。
+- 将动态生成的文件保存到服务器副本之外的稳定位置（例如 S3 存储），并将外部 URL 传递给 Streamlit 命令。这避免了 Streamlit 的媒体存储。
 
-Enabling session affinity is a general solution which resolves the limitation for both media files and uploaded files. For configuration details, consult your deployment platform’s documentation.
+启用会话关联是一个一般解决方案，可以解决媒体文件和上传文件的限制。有关配置详细信息，请咨询你的部署平台的文档。
 
-Using Base64 encoded data URIs or external file storage can straightforwardly resolve the limitation for media files, but are not complete solutions to resolve the limitation for file uploads. For more information, see GitHub issue [#4173](https://github.com/streamlit/streamlit/issues/4173).
+使用 Base64 编码的数据 URI 或外部文件存储可以直接解决媒体文件的限制，但不是解决文件上传限制的完整解决方案。有关更多信息，请参阅 GitHub 问题 [#4173](https://github.com/streamlit/streamlit/issues/4173)。

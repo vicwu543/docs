@@ -1,37 +1,35 @@
 ---
-title: Create a Component
+title: 创建组件
 slug: /develop/concepts/custom-components/create
-description: Step-by-step guide to creating custom Streamlit components from scratch, including setup, development environment, and component structure.
+description: 从头开始创建自定义 Streamlit 组件的分步指南，包括设置、开发环境和组件结构。
 keywords: create component, component development, component setup, development environment, component structure, custom component creation, build components
 ---
 
-# Create a Component
+# 创建组件
 
 <Note>
 
-If you are only interested in **using Streamlit Components**, then you can skip this section and
-head over to the [Streamlit Components Gallery](https://streamlit.io/components) to find and install
-components created by the community!
+如果您只对**使用 Streamlit 组件**感兴趣，那么您可以跳过此部分并前往 [Streamlit 组件库](https://streamlit.io/components) 查找和安装社区创建的组件！
 
 </Note>
 
-Developers can write JavaScript and HTML "components" that can be rendered in Streamlit apps. Streamlit Components can receive data from, and also send data to, Streamlit Python scripts.
+开发人员可以编写 JavaScript 和 HTML"组件"，这些组件可以在 Streamlit 应用中渲染。Streamlit 组件可以从 Streamlit Python 脚本接收数据，也可以向其发送数据。
 
-Streamlit Components let you expand the functionality provided in the base Streamlit package. Use Streamlit Components to create the needed functionality for your use-case, then wrap it up in a Python package and share with the broader Streamlit community!
+Streamlit 组件让您扩展基础 Streamlit 包中提供的功能。使用 Streamlit 组件为您用例所需的功能创建，然后将其包装在 Python 包中并与更广泛的 Streamlit 社区分享！
 
-**With Streamlit Components you can add new features to your app in the following ways:**
+**通过 Streamlit 组件，您可以通过以下方式向应用添加新功能：**
 
-- Create your own components to use in place of existing Streamlit elements and widgets.
-- Create completely new Streamlit elements and widgets by wrapping existing React.js, Vue.js, or other JavaScript widget toolkits.
-- Render Python objects by constructing HTML representations and styling them to fit your app's theme.
-- Create convenience functions to embed commonly-used web features like [GitHub gists and Pastebin](https://github.com/randyzwitch/streamlit-embedcode).
+- 创建您自己的组件，以替代现有的 Streamlit 元素和部件。
+- 通过包装现有的 React.js、Vue.js 或其他 JavaScript 部件工具包创建全新的 Streamlit 元素和部件。
+- 通过构建 HTML 表示并将其样式化以适应您的应用主题来渲染 Python 对象。
+- 创建便捷函数来嵌入常用的网络功能，如 [GitHub gists 和 Pastebin](https://github.com/randyzwitch/streamlit-embedcode)。
 
-Check out these Streamlit Components tutorial videos by Streamlit engineer Tim Conkling to get started:
+查看 Streamlit 工程师 Tim Conkling 制作的这些 Streamlit 组件教程视频以开始：
 
-## Part 1: Setup and Architecture
+## 第一部分：设置和架构
 
 <YouTube videoId="BuD3gILJW-Q" />
 
-## Part 2: Make a Slider Widget
+## 第二部分：制作滑块部件
 
 <YouTube videoId="QjccJl_7Jco" />

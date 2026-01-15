@@ -1,33 +1,33 @@
 ---
-title: The app chrome
+title: 应用 chrome
 slug: /develop/concepts/architecture/app-chrome
-description: Learn about Streamlit's app chrome including the status area, toolbar, and configurable app menu with developer options and deployment features.
-keywords: app chrome, streamlit chrome, app menu, status area, toolbar, developer options, app interface, streamlit ui, app navigation, deployment menu
+description: 了解 Streamlit 的应用 chrome，包括状态区域、工具栏和可配置的应用菜单，具有开发者选项和部署功能。
+keywords: 应用 chrome, streamlit chrome, 应用菜单, 状态区域, 工具栏, 开发者选项, 应用界面, streamlit ui, 应用导航, 部署菜单
 ---
 
-# The app chrome
+# 应用 chrome
 
-Your Streamlit app has a few widgets in the top right to help you as you develop. These widgets also help your viewers as they use your app. We call this things “the app chrome”. The chrome includes a status area, toolbar, and app menu.
+你的 Streamlit 应用在右上角有一些小部件，可以在你开发时帮助你。这些小部件也可以在你的观看者使用你的应用时帮助他们。我们称这些东西为"应用 chrome"。chrome 包括一个状态区域、工具栏和应用菜单。
 
-Your app menu is configurable. By default, you can access developer options from the app menu when viewing an app locally or on Streamlit Community Cloud while logged into an account with administrative access. While viewing an app, click the icon in the upper-right corner to access the menu.
+你的应用菜单是可配置的。默认情况下，当在本地查看应用或在 Streamlit Community Cloud 上查看并以具有管理员访问权限的帐户登录时，你可以从应用菜单访问开发者选项。查看应用时，点击右上角的图标来访问菜单。
 
-![App menu](/images/app-menu/app-menu-developer.png)
+![应用菜单](/images/app-menu/app-menu-developer.png)
 
-## Menu options
+## 菜单选项
 
-The menu is split into two sections. The upper section contains options available to all viewers and the lower section contains options for developers. Read more about [customizing this menu](#customize-the-menu) at the end of this page.
+菜单分为两个部分。上部分包含对所有观看者都可用的选项，下部分包含开发者的选项。在此页面的末尾了解有关[自定义此菜单](#customize-the-menu)的更多信息。
 
-### Rerun
+### 重新运行
 
-You can manually trigger a rerun of your app by clicking "**Rerun**" from the app menu. This rerun will not reset your session. Your widget states and values stored in [`st.session_state`](/develop/concepts/architecture/session-state) will be preserved. As a shortcut, without opening the app menu, you can rerun your app by pressing "**R**" on your keyboard (if you aren't currently focused on an input element).
+你可以通过从应用菜单中点击"**重新运行**"来手动触发应用的重新运行。此重新运行不会重置你的会话。你的小部件状态和存储在 [`st.session_state`](/develop/concepts/architecture/session-state) 中的值将被保留。作为快捷方式，不打开应用菜单，你可以通过按键盘上的"**R**"来重新运行你的应用（如果你当前未专注于输入元素）。
 
-### Settings
+### 设置
 
-With the "**Settings**" option, you can control the appearance of your app while it is running. If viewing the app locally, you can set how your app responds to changes in your source code. See more about development flow in [Basic concepts](/get-started/fundamentals/main-concepts#development-flow). You can also force your app to appear in wide mode, even if not set within the script using [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config).
+使用"**设置**"选项，你可以控制应用运行时的外观。如果在本地查看应用，你可以设置应用如何响应源代码的更改。请参阅[基本概念](/get-started/fundamentals/main-concepts#development-flow)中有关开发流的更多信息。你也可以强制你的应用以宽模式显示，即使未在使用 [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) 的脚本中设置。
 
-#### Theme settings
+#### 主题设置
 
-After clicking "**Settings**" from the app menu, you can choose between "**Light**", "**Dark**", or "**Use system setting**" for the app's base theme. Click "**Edit active theme**" to modify the theme, color-by-color.
+从应用菜单中点击"**设置**"后，你可以为应用的基础主题选择"**浅色**"、"**深色**"或"**使用系统设置**"。点击"**编辑活动主题**"来逐个修改主题颜色。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-settings-modal.png" alt="Settings" clean />
@@ -39,101 +39,101 @@ After clicking "**Settings**" from the app menu, you can choose between "**Light
     <Image src="/images/app-menu/app-menu-settings-theme.png" alt="Theme" clean />
 </div>
 
-### Print
+### 打印
 
-Click "**Print**" or use keyboard shortcuts (`⌘+P` or `Ctrl+P`) to open a print dialog. This option uses your browser's built-in print-to-pdf function. To modify the appearance of your print, you can do the following:
+点击"**打印**"或使用键盘快捷键（`⌘+P` 或 `Ctrl+P`）打开打印对话框。此选项使用你浏览器的内置打印为 PDF 功能。要修改打印的外观，你可以执行以下操作：
 
-- Expand or collapse the sidebar before printing to respectively include or exclude it from the print.
-- Resize the sidebar in your app by clicking and dragging its right border to achieve your desired width.
-- You may need to enable "**Background graphics**" in your print dialog if you are printing in dark mode.
-- You may need to disable wide mode in [Settings](#settings) or adjust the print scale to prevent elements from clipping off the page.
+- 在打印前展开或折叠侧边栏，分别将其包括或排除在打印中。
+- 通过点击和拖动其右边框，在你的应用中调整侧边栏的大小以实现你想要的宽度。
+- 如果在深色模式下打印，你可能需要在打印对话框中启用"**背景图形**"。
+- 你可能需要在[设置](#settings)中禁用宽模式或调整打印缩放以防止元素裁剪出页面。
 
-### Record a screencast
+### 录制截屏
 
-You can easily make screen recordings right from your app! Screen recording is supported in the latest versions of Chrome, Edge, and Firefox. Ensure your browser is up-to-date for compatibility. Depending on your current settings, you may need to grant permission to your browser to record your screen or to use your microphone if recording a voiceover.
+你可以直接从应用中轻松录制屏幕！最新版本的 Chrome、Edge 和 Firefox 支持屏幕录制。确保你的浏览器是最新的以兼容。根据你的当前设置，你可能需要授予浏览器权限来录制你的屏幕或使用你的麦克风来录制旁白。
 
-1. While viewing your app, open the app menu from the upper-right corner.
-2. Click "**Record a screencast**."
-3. If you want to record audio through your microphone, check "**Also record audio**."
-4. Click "**Start recording**." (You may be prompted by your OS to permit your browser to record your screen or use your microphone.)
+1. 查看你的应用时，从右上角打开应用菜单。
+2. 点击"**录制截屏**"。
+3. 如果你想通过麦克风录制音频，请检查"**也录制音频**"。
+4. 点击"**开始录制**"。（你的操作系统可能会提示你的浏览器来录制你的屏幕或使用你的麦克风。）
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-record-2.png" alt="Record" />
 </div>
 
-5. Select which tab, window, or monitor you want to record from the listed options. The interface will vary depending on your browser.
+5. 从列出的选项中选择要录制的选项卡、窗口或监视器。界面将根据你的浏览器而有所不同。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-record-3.png" alt="Record" />
 </div>
 
-6. Click "**Share**."
+6. 点击"**分享**"。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-record-4.png" alt="Record" />
 </div>
 
-7. While recording, you will see a red circle on your app's tab and on the app menu icon. If you want to cancel the recording, click "**Stop sharing**" at the bottom of your app.
+7. 录制时，你会在应用的标签页和应用菜单图标上看到红色圆圈。如果你想取消录制，请在应用的底部点击"**停止分享**"。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-record-5.png" alt="Record" />
 </div>
 
-8. When you are done recording, press "**Esc**" on your keyboard or click "**Stop recording**" from your app's menu.
+8. 完成录制后，在键盘上按"**Esc**"或从你的应用菜单中点击"**停止录制**"。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-record-6.png" alt="Record" />
 </div>
 
-9. Follow your browser's instructions to save your recording. Your saved recording will be available where your browser saves downloads.
+9. 按照你浏览器的说明保存你的录制。你保存的录制将在你的浏览器保存下载的地方。
 
-The whole process looks like this:
+整个过程如下所示：
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-record.gif" alt="Record" />
 </div>
 
-### About
+### 关于
 
-You can conveniently check what version of Streamlit is running from the "**About**" option. Developers also have the option to customize the message shown here using [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config).
+你可以方便地从"**关于**"选项中检查正在运行的 Streamlit 版本。开发者也可以选择使用 [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) 自定义此处显示的消息。
 
-## Developer options
+## 开发者选项
 
-By default, developer options only show when viewing an app locally or when viewing a Community Cloud app while logged in with administrative permission. You can [customize the menu](#customize-the-menu) if you want to make these options available for all users.
+默认情况下，开发者选项仅在本地查看应用时或在 Streamlit Community Cloud 应用上查看时以管理员权限登录时显示。如果你想为所有用户提供这些选项，你可以[自定义菜单](#customize-the-menu)。
 
-### Clear cache
+### 清除缓存
 
-Reset your app's cache by clicking "**Clear cache**" from the app's menu or by pressing "**C**" on your keyboard while not focused on an input element. This will remove all cached entries for [`@st.cache_data`](/develop/api-reference/caching-and-state/st.cache_data) and [`@st.cache_resource`](/develop/api-reference/caching-and-state/st.cache_resource).
+通过从应用的菜单中点击"**清除缓存**"或在不专注于输入元素时在键盘上按"**C**"来重置应用的缓存。这将删除 [`@st.cache_data`](/develop/api-reference/caching-and-state/st.cache_data) 和 [`@st.cache_resource`](/develop/api-reference/caching-and-state/st.cache_resource) 的所有缓存条目。
 
-### Deploy this app
+### 部署此应用
 
-If you are running an app locally from within a git repo, you can deploy your app to Streamlit Community Cloud in a few easy clicks! Make sure your work has been pushed to your online GitHub repository before beginning. For the greatest convenience, make sure you have already created your [Community Cloud account](/deploy/streamlit-community-cloud/get-started/create-your-account) and are signed in.
+如果你在 git 仓库中本地运行应用，你可以通过几次简单点击将应用部署到 Streamlit Community Cloud！在开始之前，请确保你的工作已推送到在线 GitHub 仓库。为了获得最大的便利，请确保你已经创建了[社区云帐户](/deploy/streamlit-community-cloud/get-started/create-your-account)并已登录。
 
-1. Click "**Deploy**" next to the app menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>).
+1. 点击应用菜单图标（<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>）旁边的"**部署**"。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-deploy.png" alt="Settings" />
 </div>
 
-2. Click "**Deploy now**."
+2. 点击"**立即部署**"。
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/app-menu-deploy-1.png" alt="Settings" />
 </div>
 
-3. You will be taken to Community Cloud's "Deploy an app" page. Your app's repository, branch, and file name will be prefilled to match your current app! Learn more about [deploying an app](/deploy/streamlit-community-cloud/deploy-your-app) on Streamlit Community Cloud.
+3. 你将被带到 Community Cloud 的"部署应用"页面。你的应用的仓库、分支和文件名将被预填充以匹配你的当前应用！了解更多关于在 Streamlit Community Cloud 上[部署应用](/deploy/streamlit-community-cloud/deploy-your-app)的信息。
 
-The whole process looks like this:
+整个过程如下所示：
 
 <div style={{ maxWidth: '90%', margin: '0 2em 0 2em' }}>
     <Image src="/images/app-menu/deploy-from-local.gif" alt="Settings" />
 </div>
 
-## Customize the menu
+## 自定义菜单
 
-Using `client.toolbarMode` in your app's [configuration](/develop/concepts/configuration), you can make the app menu appear in the following ways:
+使用你应用的[配置](/develop/concepts/configuration)中的 `client.toolbarMode`，你可以使应用菜单以以下方式显示：
 
-- `"developer"` &mdash; Show the developer options to all viewers.
-- `"viewer"` &mdash; Hide the developer options from all viewers.
-- `"minimal"` &mdash; Show only those options set externally. These options can be declared through [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) or populated through Streamlit Community Cloud.
-- `"auto"` &mdash; This is the default and will show the developer options when accessed through localhost or through Streamlit Community Cloud when logged into an administrative account for the app. Otherwise, the developer options will not show.
+- `"developer"` &mdash; 向所有观看者显示开发者选项。
+- `"viewer"` &mdash; 隐藏所有观看者的开发者选项。
+- `"minimal"` &mdash; 仅显示在外部设置的那些选项。这些选项可以通过 [`st.set_page_config`](/develop/api-reference/configuration/st.set_page_config) 声明或通过 Streamlit Community Cloud 填充。
+- `"auto"` &mdash; 这是默认设置，当通过 localhost 访问或通过 Streamlit Community Cloud 访问应用的管理员帐户登录时，将显示开发者选项。否则，开发者选项将不显示。

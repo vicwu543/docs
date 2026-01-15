@@ -1,7 +1,7 @@
 ---
 title: st.plotly_chart
 slug: /develop/api-reference/charts/st.plotly_chart
-description: st.plotly_chart displays an interactive Plotly chart.
+description: st.plotly_chart 显示交互式 Plotly 图表。
 keywords: plotly_chart, plotly, chart, visualization, data, plot, graph, interactive, dashboard, web-based
 ---
 
@@ -15,11 +15,11 @@ keywords: plotly_chart, plotly, chart, visualization, data, plot, graph, interac
 
 ## Theming
 
-Plotly charts are displayed using the Streamlit theme by default. This theme is sleek, user-friendly, and incorporates Streamlit's color palette. The added benefit is that your charts better integrate with the rest of your app's design.
+Plotly 图表默认使用 Streamlit 主题显示。这个主题简洁、用户友好，并包含 Streamlit 的调色板。额外的好处是您的图表能更好地与应用的其余设计集成。
 
-The Streamlit theme is available from Streamlit 1.16.0 through the `theme="streamlit"` keyword argument. To disable it, and use Plotly's native theme, use `theme=None` instead.
+从 Streamlit 1.16.0 开始，可以通过 `theme="streamlit"` 关键字参数使用 Streamlit 主题。要禁用它并使用 Plotly 的原生主题，请改用 `theme=None`。
 
-Let's look at an example of charts with the Streamlit theme and the native Plotly theme:
+让我们看看使用 Streamlit 主题和原生 Plotly 主题的图表示例：
 
 ```python
 import plotly.express as px
@@ -48,13 +48,13 @@ with tab2:
     st.plotly_chart(fig, theme=None, use_container_width=True)
 ```
 
-Click the tabs in the interactive app below to see the charts with the Streamlit theme enabled and disabled.
+点击下方交互式应用中的选项卡，查看启用和禁用 Streamlit 主题的图表。
 
 <Cloud name="doc-plotly-chart-theme" height="525px" />
 
-If you're wondering if your own customizations will still be taken into account, don't worry! You can still make changes to your chart configurations. In other words, although we now enable the Streamlit theme by default, you can overwrite it with custom colors or fonts. For example, if you want a chart line to be green instead of the default red, you can do it!
+如果您想知道自己的自定义设置是否仍会被考虑，不要担心！您仍然可以对图表配置进行更改。换句话说，虽然我们现在默认启用 Streamlit 主题，但您可以用自定义颜色或字体覆盖它。例如，如果您希望图表线条是绿色而不是默认的红色，您可以这样做！
 
-Here's an example of an Plotly chart where a custom color scale is defined and reflected:
+以下是一个定义了自定义颜色比例并反映在图表中的 Plotly 图表示例：
 
 ```python
 import plotly.express as px
@@ -77,8 +77,8 @@ with tab2:
     st.plotly_chart(fig, theme=None, use_container_width=True)
 ```
 
-Notice how the custom color scale is still reflected in the chart, even when the Streamlit theme is enabled 👇
+注意，即使启用 Streamlit 主题，自定义颜色比例仍会反映在图表中 👇
 
 <Cloud name="doc-plotly-custom-colors" height="650px" />
 
-For many more examples of Plotly charts with and without the Streamlit theme, check out the [plotly.streamlit.app](https://plotly.streamlit.app).
+有关更多使用和不使用 Streamlit 主题的 Plotly 图表示例，请查看 [plotly.streamlit.app](https://plotly.streamlit.app)。

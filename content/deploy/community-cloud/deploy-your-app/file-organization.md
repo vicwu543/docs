@@ -1,19 +1,19 @@
 ---
-title: File organization for your Community Cloud app
+title: Community Cloud应用的文件组织
 slug: /deploy/streamlit-community-cloud/deploy-your-app/file-organization
-description: Learn how to organize your files, dependencies, and configuration for successful Community Cloud deployment including subdirectories and multiple apps.
-keywords: file organization, repository structure, entrypoint, dependencies, configuration, subdirectories, multiple apps, git lfs
+description: 了解如何组织文件、依赖和配置以成功部署Community Cloud，包括子目录和多个应用。
+keywords: 文件组织, 仓库结构, 入口文件, 依赖, 配置, 子目录, 多个应用, git lfs
 ---
 
-# File organization for your Community Cloud app
+# Community Cloud应用的文件组织
 
-Streamlit Community Cloud copies all the files in your repository and executes `streamlit run` from its root directory. Because Community Cloud is creating a new Python environment to run your app, you need to include a declaration of any [App dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies) in addition to any [Configuration](/develop/concepts/configuration) options.
+Streamlit Community Cloud复制仓库中的所有文件并从其根目录执行`streamlit run`。因为Community Cloud正在创建一个新的Python环境来运行你的应用，你需要包括对任何[应用依赖](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies)的声明，以及任何[配置](/develop/concepts/configuration)选项。
 
-You can have multiple apps in your repository, and their entrypoint files can be anywhere in your repository. However, you can only have one configuration file. This page explains how to correctly organize your app, configuration, and dependency files. The following examples assume you are using `requirements.txt` to declare your dependencies because it is the most common. As explained on the next page, Community Cloud supports other formats for configuring your Python environment.
+你可以在你的仓库中有多个应用，其入口文件可以在仓库的任何位置。但是，你只能有一个配置文件。本页解释如何正确组织你的应用、配置和依赖文件。以下示例假设你使用`requirements.txt`来声明依赖，因为这是最常见的方式。如前一页所述，Community Cloud支持其他格式来配置你的Python环境。
 
-## Basic example
+## 基础示例
 
-In the following example, the entrypoint file (`your_app.py`) is in the root of the project directory alongside a `requirements.txt` file to declare the app's dependencies.
+在以下示例中，入口文件（`your_app.py`）位于项目目录的根目录，与`requirements.txt`文件并排，以声明应用的依赖。
 
 ```
 your_repository/
@@ -21,7 +21,7 @@ your_repository/
 └── your_app.py
 ```
 
-If you are including custom configuration, your config file must be located at `.streamlit/config.toml` within your repository.
+如果你包括自定义配置，你的配置文件必须位于仓库内的`.streamlit/config.toml`。
 
 ```
 your_repository/
@@ -31,19 +31,19 @@ your_repository/
 └── your_app.py
 ```
 
-Additionally, any files that need to be locally available to your app should be included in your repository.
+此外，应用需要本地可用的任何文件都应包括在仓库中。
 
 <Tip>
 
-If you have really big or binary data that you change frequently, and git is running slowly, you might want to check out [Git Large File Store (LFS)](https://git-lfs.github.com/) as a better way to store large files in GitHub. You don't need to make any changes to your app to start using it. If your GitHub repository uses LFS, it will _just work_ with Streamlit Community Cloud.
+如果你有非常大或二进制的数据，你经常更改，git运行缓慢，你可能想看看[Git Large File Store (LFS)](https://git-lfs.github.com/)作为在GitHub中存储大文件的更好方式。你不需要对应用做任何更改来开始使用它。如果你的GitHub仓库使用LFS，它将_正常工作_与Streamlit Community Cloud。
 
 </Tip>
 
-## Use an entrypoint file in a subdirectory
+## 在子目录中使用入口文件
 
-When your entrypoint file is in a subdirectory, the configuration file must stay at the root. However, your dependency file may be either at the root or next to your entrypoint file.
+当入口文件在子目录中时，配置文件必须保留在根目录。但是，依赖文件可以在根目录或入口文件旁边。
 
-Your dependency file can be at the root of your repository while your entrypoint file is in a subdirectory.
+你的依赖文件可以在仓库根目录，而入口文件在子目录中。
 
 ```
 your_repository/
@@ -54,7 +54,7 @@ your_repository/
     └── your_app.py
 ```
 
-Alternatively, your dependency file can be in the same subdirectory as your entrypoint file.
+或者，你的依赖文件可以在与入口文件相同的子目录中。
 
 ```
 your_repository/
@@ -65,9 +65,9 @@ your_repository/
     └── your_app.py
 ```
 
-Although most Streamlit commands interpret paths relative to the entrypoint file, some commands interpret paths relative to the working directory. On Community Cloud, the working directory is always the root of your repository. Therefore, when developing and testing your app locally, execute `streamlit run` from the root of your repository. This ensures that paths are interpreted consistently between your local environment and Community Cloud.
+虽然大多数Streamlit命令相对于入口文件解释路径，但某些命令相对于工作目录解释路径。在Community Cloud上，工作目录始终是仓库的根目录。因此，在本地开发和测试应用时，从仓库根目录执行`streamlit run`。这确保路径在本地环境和Community Cloud之间的解释一致。
 
-In the previous example, this would look something like this:
+在前面的示例中，这将看起来像这样：
 
 ```bash
 cd your_repository
@@ -75,9 +75,9 @@ streamlit run subdirectory/your_app.py
 ```
 
 <Tip>
-    Remember to always use forward-slash path separators in your paths. Community Cloud can't work with backslash-separated paths.
+    记住总是在你的路径中使用正斜杠路径分隔符。Community Cloud无法使用反斜杠分隔的路径。
 </Tip>
 
-## Multiple apps in one repository
+## 仓库中的多个应用
 
-When you have multiple apps in one repository, they share the same configuration file (`.streamlit/config.toml`) at the root of your repository. A dependency file may be shared or configured separately for these multiple apps. To define separate dependency files for your apps, place each entrypoint file in its own subdirectory along with its own dependency file. To learn more about how Community Cloud prioritizes and parses dependency files, see [App dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies).
+当你在一个仓库中有多个应用时，它们共享仓库根目录的同一个配置文件（`.streamlit/config.toml`）。依赖文件可能为这些多个应用共享或单独配置。要为应用定义单独的依赖文件，将每个入口文件放在其自己的子目录中，以及其自己的依赖文件。要了解更多关于Community Cloud如何优先级和解析依赖文件，请参阅[应用依赖](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies)。

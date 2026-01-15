@@ -1,48 +1,47 @@
 ---
-title: Get started with Streamlit
+title: Streamlit 快速开始指南
 slug: /get-started
-description: Get started with Streamlit, from installation to your first app.
+description: Streamlit 快速开始指南，从安装到第一个应用。
 keywords: get started, installation, fundamentals, tutorial, first app, beginner, streamlit
 ---
 
-# Get started with Streamlit
+# Streamlit 快速开始指南
 
-This Get Started guide explains how Streamlit works, how to install Streamlit on your preferred
-operating system, and how to create your first Streamlit app!
+本快速开始指南介绍如何使用 Streamlit、如何在首选操作系统上安装 Streamlit，以及如何创建你的第一个 Streamlit 应用！
 
 <InlineCalloutContainer>
     <InlineCallout
         color="orange-70"
         icon="downloading"
-        bold="Installation"
+        bold="安装"
         href="/get-started/installation"
-    >helps you set up your development environment. Walk through installing Streamlit on Windows, macOS, or Linux. Alternatively, code right in your browser with GitHub Codespaces or Streamlit in Snowflake.</InlineCallout>
+    >帮助你设置开发环境。走过在 Windows、macOS 或 Linux 上安装 Streamlit 的过程。或者，在浏览器中使用 GitHub Codespaces 或 Streamlit in Snowflake 进行编码。</InlineCallout>
     <InlineCallout
         color="orange-70"
         icon="description"
-        bold="Fundamentals"
+        bold="基础知识"
         href="/get-started/fundamentals"
-    >introduces you to Streamlit's data model and development flow. You'll learn what makes Streamlit the most powerful way to build data apps, including the ability to display and style data, draw charts and maps, add interactive widgets, customize app layouts, cache computation, and define themes.</InlineCallout>
+    >介绍 Streamlit 的数据模型和开发流程。你将学习什么使 Streamlit 成为构建数据应用的最强大方式，包括显示和样式化数据、绘制图表和地图、添加交互式控件、自定义应用布局、缓存计算和定义主题的能力。</InlineCallout>
     <InlineCallout
         color="orange-70"
         icon="auto_awesome"
-        bold="First steps"
+        bold="首步教程"
         href="/get-started/tutorials"
-    >walks you through creating apps using core features to fetch and cache data, draw charts, plot information on a map, and use interactive widgets to filter results.</InlineCallout>
+    >引导你使用核心功能创建应用，包括获取和缓存数据、绘制图表、在地图上绘制信息，以及使用交互式控件过滤结果。</InlineCallout>
     <InlineCallout
         color="orange-70"
         icon="rocket_launch"
-        bold="Use GitHub Codespaces"
+        bold="使用 GitHub Codespaces"
         href="/get-started/installation/community-cloud"
-    >if you want to skip past local installation and code right in your browser. This guide uses Streamlit Community Cloud to help you automatically configure a codespace.</InlineCallout>
+    >如果你想跳过本地安装并直接在浏览器中编码。本指南使用 Streamlit Community Cloud 帮助你自动配置代码空间。</InlineCallout>
 </InlineCalloutContainer>
 
 <NoteSplit
 background="gray-20"
 title="30 Days of Streamlit 🎈"
-copy="30 Days of Streamlit 🎈 is a free, self-paced 30 day challenge that teaches you how to build and deploy data apps with Streamlit. Complete the daily challenges, share your solutions with us on Twitter and LinkedIn, and stop by the forum with any questions!"
+copy="30 Days of Streamlit 🎈 是一个免费、自主节奏的 30 天挑战，教你如何使用 Streamlit 构建和部署数据应用。完成每日挑战，在 Twitter 和 LinkedIn 上与我们分享你的解决方案，并访问论坛提出任何问题！"
 button={{
-        text: "Start the challenge",
+        text: "开始挑战",
         link: "https://30days.streamlit.app/",
         target: "_blank",
       }}

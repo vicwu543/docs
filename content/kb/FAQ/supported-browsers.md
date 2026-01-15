@@ -1,11 +1,11 @@
 ---
-title: What browsers does Streamlit support?
+title: Streamlit 支持哪些浏览器？
 slug: /knowledge-base/using-streamlit/supported-browsers
 ---
 
-# What browsers does Streamlit support?
+# Streamlit 支持哪些浏览器？
 
-The latest version of Streamlit is compatible with the two most recent versions of the following browsers:
+Streamlit 的最新版本与以下浏览器的两个最新版本兼容：
 
 - [Google Chrome](https://www.google.com/chrome/browser)
 - [Firefox](https://www.mozilla.org/en-US/firefox/new/)
@@ -14,6 +14,6 @@ The latest version of Streamlit is compatible with the two most recent versions 
 
 <Note>
 
-You may not be able to use all the latest features of Streamlit with unsupported browsers or older versions of the above browsers. Streamlit will not provide bug fixes for unsupported browsers.
+您可能无法使用不受支持的浏览器或上述浏览器的较旧版本的 Streamlit 的所有最新功能。Streamlit 不会为不受支持的浏览器提供错误修复。
 
 </Note>

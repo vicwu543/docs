@@ -1,38 +1,37 @@
 ---
-title: Managing dependencies when deploying your app
+title: 部署应用时管理依赖项
 slug: /deploy/concepts/dependencies
-description: Learn how to manage Python dependencies, requirements.txt files, and package installation when deploying Streamlit apps to cloud platforms.
+description: 了解如何管理 Python 依赖项、requirements.txt 文件以及在部署 Streamlit 应用到云平台时的包安装。
 keywords: dependencies, requirements.txt, pip, python packages, deployment, environment, installation
 ---
 
-# Managing dependencies when deploying your app
+# 部署应用时管理依赖项
 
-Before you began developing your app, you set up and configured your development environment by installing Python and Streamlit. When you deploy your app, you need to set up and configure your deployment environment in the same way. When you deploy your app to a cloud service, your app's [Python server](/develop/concepts/architecture/architecture#python-backend-server) will be running on a remote machine. This remote machine will not have access all the files and programs on your personal computer.
+开始开发您的应用前，你通过安装 Python 和 Streamlit 来设置和配置开发环境。部署应用时，你需要以相同的方式设置和配置部署环境。部署应用到云服务时，你的应用的 [Python 服务器](/develop/concepts/architecture/architecture#python-backend-server) 将在远程计算机上运行。此远程计算机无法访问你个人计算机上的所有文件和程序。
 
-All Streamlit apps have at least two dependencies: Python and Streamlit. Your app may have additional dependencies in the form of Python packages or software that must be installed to properly execute your script. If you are using a service like Streamlit Community Cloud which is designed for Streamlit apps, we'll take care of Python and Streamlit for you!
+所有 Streamlit 应用至少有两个依赖项：Python 和 Streamlit。您的应用可能有以 Python 包或一定被安装的软件形式的其他依赖项。如果你使用的是第三方平台 Streamlit Community Cloud，其非正是型 Streamlit 应用，我们会为你处理 Python 和 Streamlit！
 
-## Install Python and other software
+## 安装 Python 和其他软件
 
-If you are using Streamlit Community Cloud, Python is already installed. You can just pick the version in the deployment dialog. If you need to install Python yourself or you have other non-Python software to install, follow your platform's instructions to install additional software. You will commonly use a package management tool to do this.
-For example, Streamlit Community Cloud uses Advanced Package Tool (`apt`) for Debian-based Linux systems. For more information about installing non-Python depencies on Streamlit Community Cloud, see [`apt-get` dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#apt-get-dependencies).
+如果你使用 Streamlit Community Cloud，Python 已经安装。你可以简单地在部署对话中选择版本。如果你需要自己安装 Python 或有其他非 Python 软件要安装，按照你的平台的请求程序来安装附加软件。我们通常会使用包管理工具来执行此操作。例如，Streamlit Community Cloud 对于基于 Debian 的 Linux 系统使用高级包管理器（`apt`）。有关在 Streamlit Community Cloud 上安装非 Python 依赖项的更多信息，请参阅 [`apt-get` 依赖项](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#apt-get-dependencies)。
 
-## Install Python packages
+## 安装 Python 包
 
-Once you have Python installed in your deployment environment, you'll need to install all the necessary Python packages, including Streamlit! With each `import` of an installed package, you add a Python dependency to your script. You need to install those dependencies in your deployment environment through a Python package manager.
+在您的部署环境中安装 Python 后，您需要安装所有必要的 Python 包，包括 Streamlit！每次你对一个已安装的包的 `import` ，你正在为您的脚本添加一个 Python 依赖项。你需要通过 Python 包管理器在部署环境中安装这些依赖项。
 
-If you are using Streamlit Community Cloud, you'll have the latest version of Streamlit and all of its dependencies installed by default. So, if you're making a simple app and don't need additional dependencies, you won't have to do anything at all!
+如果您使用 Streamlit Community Cloud，您默认会安装最新版本的 Streamlit 和它的所有依赖项。所以，如果您会做一个简单的应用或不需要额外依赖项，您不需要做任何事情！
 
-### `pip` and `requirements.txt`
+### `pip` 和 `requirements.txt`
 
-Since `pip` comes by default with Python, the most common way to configure your Python environment is with a `requirements.txt` file. Each line of a `requirements.txt` file is a package to `pip install`. You should _not_ include <a href="https://docs.python.org/3/py-modindex.html" target="_blank">built-in Python libraries</a> like `math`, `random`, or `distutils` in your `requirements.txt` file. These are a part of Python and aren't installed separately.
+由于 `pip` 废默认宏了 Python，最常见的配置 Python 环境的方法是使用 `requirements.txt` 文件。`requirements.txt` 文件的每一行都是要 `pip install` 的一个包。你应该不_不_在您的 `requirements.txt` 文件中包括 <a href="https://docs.python.org/3/py-modindex.html" target="_blank">内置 Python 库</a>、比如 `math`、`random` 或 `distutils` 等。这些是 Python 的一部分，不是单独安装的。
 
 <Tip>
 
-Since dependencies may rely on a specific version of Python, always be aware of the Python version used in your development environment, and select the same version for your deployment environment.
+由于依赖项可能依赖于 Python 的特定版本，始终了正您的开发环境中使用的 Python 版本，并为您的部署环境选择相同的版本。
 
 </Tip>
 
-If you have a script like the following, you would only need to install Streamlit. No extra dependencies would be needed since `pandas` and `numpy` are installed as direct dependencies of `streamlit`. Similarly, `math` and `random` are built into Python.
+如果你有一个像下面这样的脚本，你只需要安装 Streamlit。不需要额外的依赖项，因为 `pandas` 和 `numpy` 是作为 `streamlit` 的直接依赖项安装的。同样，`math` 和 `random` 是内置到 Python 中的。
 
 ```python
 import streamlit as st
@@ -44,7 +43,7 @@ import random
 st.write('Hi!')
 ```
 
-However, it's a best practice accurately record packages you use, so the recommended `requirements.txt` file would be:
+但是，最佳实践是血辿记录你使用的包，因此推荐的 `requirements.txt` 文件是：
 
 ```none
 streamlit
@@ -52,7 +51,7 @@ pandas
 numpy
 ```
 
-If you needed to specify certain versions, another valid example would be:
+如果你需要指定特定的版本，另一个有效的例子是：
 
 ```none
 streamlit==1.24.1
@@ -60,4 +59,4 @@ pandas>2.0
 numpy<=1.25.1
 ```
 
-A `requirements.txt` file is commonly saved in the root of your repository or file directory. If you are using Streamlit Community Cloud, see [Add Python dependencies](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies) for more information. Otherwise, check your platform's documentation.
+`requirements.txt` 文件通常保存在您的上校目录或文件组构的根目录中。如果你使用 Streamlit Community Cloud，请参阅 [添加 Python 依赖项](/deploy/streamlit-community-cloud/deploy-your-app/app-dependencies#add-python-dependencies) 了詳详信息。否则，帮你的平台文档。

@@ -1,38 +1,38 @@
 ---
-title: App testing example
+title: 应用测试示例
 slug: /develop/concepts/app-testing/examples
-description: Complete example of testing a Streamlit login page including authentication logic, secrets management, security best practices, and comprehensive test coverage.
+description: 测试 Streamlit 登录页面的完整示例，包括身份验证逻辑、密钥管理、安全最佳实践和全面的测试覆盖。
 keywords: testing example, login testing, authentication testing, secrets testing, security testing, test example, complete test, login page example, testing patterns
 ---
 
-# App testing example
+# 应用测试示例
 
-## Testing a login page
+## 测试登录页面
 
-Let's consider a login page. In this example, `secrets.toml` is not present. We'll manually declare dummy secrets directly in the tests. To avoid [timing attacks](https://en.wikipedia.org/wiki/Timing_attack), the login script uses `hmac` to compare a user's password to the secret value as a security best practice.
+让我们考虑一个登录页面。在此示例中，`secrets.toml` 不存在。我们将在测试中直接手动声明虚拟密钥。为了避免[定时攻击](https://en.wikipedia.org/wiki/Timing_attack)，登录脚本使用 `hmac` 将用户的密码与密钥值进行比较，作为安全最佳实践。
 
-### Project summary
+### 项目摘要
 
-#### Login page behavior
+#### 登录页面行为
 
-Before diving into the app's code, let's think about what this page is supposed to do. Whether you use test-driven development or you write unit tests after your code, it's a good idea to think about the functionality that needs to be tested. The login page should behave as follows:
+在深入应用代码之前，让我们思考一下这个页面应该做什么。无论您使用测试驱动开发还是在代码之后编写单元测试，考虑需要测试的功能都是一个好主意。登录页面应该表现如下：
 
-- Before a user interacts with the app:
-  - Their status is "unverified."
-  - A password prompt is displayed.
-- If a user types an incorrect password:
-  - Their status is "incorrect."
-  - An error message is displayed.
-  - The password attempt is cleared from the input.
-- If a user types a correct password:
-  - Their status is "verified."
-  - A confirmation message is displayed.
-  - A logout button is displayed (without a login prompt).
-- If a logged-in user clicks the **Log out** button:
-  - Their status is "unverified."
-  - A password prompt is displayed.
+- 在用户与应用交互之前：
+  - 他们的状态是"未验证"。
+  - 显示密码提示。
+- 如果用户输入错误密码：
+  - 他们的状态是"错误"。
+  - 显示错误消息。
+  - 从输入中清除密码尝试。
+- 如果用户输入正确密码：
+  - 他们的状态是"已验证"。
+  - 显示确认消息。
+  - 显示注销按钮（没有登录提示）。
+- 如果已登录用户点击**注销**按钮：
+  - 他们的状态是"未验证"。
+  - 显示密码提示。
 
-#### Login page project structure
+#### 登录页面项目结构
 
 ```none
 myproject/
@@ -41,9 +41,9 @@ myproject/
     └── test_app.py
 ```
 
-#### Login page Python file
+#### 登录页面 Python 文件
 
-The user's status mentioned in the page's specifications are encoded in `st.session_state.status`. This value is initialized at the beginning of the script as "unverified" and is updated through a callback when the password prompt receives a new entry.
+页面规范中提到的用户状态在 `st.session_state.status` 中编码。此值在脚本开始时初始化为"未验证"，并在密码提示接收到新条目时通过回调更新。
 
 ```python
 """app.py"""
@@ -51,7 +51,7 @@ import streamlit as st
 import hmac
 
 st.session_state.status = st.session_state.get("status", "unverified")
-st.title("My login page")
+st.title("我的登录页面")
 
 
 def check_password():
@@ -62,16 +62,16 @@ def check_password():
     st.session_state.password = ""
 
 def login_prompt():
-    st.text_input("Enter password:", key="password", on_change=check_password)
+    st.text_input("输入密码:", key="password", on_change=check_password)
     if st.session_state.status == "incorrect":
-        st.warning("Incorrect password. Please try again.")
+        st.warning("密码错误。请重试。")
 
 def logout():
     st.session_state.status = "unverified"
 
 def welcome():
-    st.success("Login successful.")
-    st.button("Log out", on_click=logout)
+    st.success("登录成功。")
+    st.button("注销", on_click=logout)
 
 
 if st.session_state.status != "verified":
@@ -80,9 +80,9 @@ if st.session_state.status != "verified":
 welcome()
 ```
 
-#### Login page test file
+#### 登录页面测试文件
 
-These tests closely follow the app's specifications above. In each test, a dummy secret is set before running the app and proceeding with further simulations and checks.
+这些测试严格遵循上述应用规范。在每个测试中，在运行应用并继续进行进一步模拟和检查之前，会设置虚拟密钥。
 
 ```python
 from streamlit.testing.v1 import AppTest
@@ -109,7 +109,7 @@ def test_incorrect_password():
     assert len(at.success) == 0
     assert len(at.button) == 0
     assert at.text_input[0].value == ""
-    assert "Incorrect password" in at.warning[0].value
+    assert "密码错误" in at.warning[0].value
 
 def test_correct_password():
     at = AppTest.from_file("app.py")
@@ -121,8 +121,8 @@ def test_correct_password():
     assert len(at.warning) == 0
     assert len(at.success) == 1
     assert len(at.button) == 1
-    assert "Login successful" in at.success[0].value
-    assert at.button[0].label == "Log out"
+    assert "登录成功" in at.success[0].value
+    assert at.button[0].label == "注销"
 
 def test_log_out():
     at = AppTest.from_file("app.py")
@@ -138,15 +138,15 @@ def test_log_out():
     assert at.text_input[0].value == ""
 ```
 
-See how Session State was modified in the last test? Instead of fully simulating a user logging in, the test jumps straight to a logged-in state by setting `at.session_state["status"] = "verified"`. After running the app, the test proceeds to simulate the user logging out.
+看到最后一个测试中如何修改会话状态了吗？测试不是完全模拟用户登录，而是通过设置 `at.session_state["status"] = "verified"` 直接跳转到已登录状态。运行应用后，测试继续模拟用户注销。
 
-### Automating your tests
+### 自动化测试
 
-If `myproject/` was pushed to GitHub as a repository, you could add GitHub Actions test automation with [Streamlit App Action](https://github.com/marketplace/actions/streamlit-app-action). This is as simple as adding a workflow file at `myproject/.github/workflows/`:
+如果将 `myproject/` 作为仓库推送到 GitHub，您可以使用 [Streamlit 应用 Action](https://github.com/marketplace/actions/streamlit-app-action) 添加 GitHub Actions 测试自动化。这就像在 `myproject/.github/workflows/` 添加工作流文件一样简单：
 
 ```yaml
 # .github/workflows/streamlit-app.yml
-name: Streamlit app
+name: Streamlit 应用
 
 on:
   push:

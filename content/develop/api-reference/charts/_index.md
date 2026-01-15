@@ -1,20 +1,13 @@
 ---
 title: Chart elements
 slug: /develop/api-reference/charts
-description: Create interactive data visualizations with Streamlit's charting capabilities including simple charts, advanced visualization libraries, and community components.
+description: 使用 Streamlit 的图表功能创建交互式数据可视化，包括简单图表、高级可视化库和社区组件。
 keywords: charts, visualization, matplotlib, vega-lite, deck.gl, altair, plotly, bokeh, pydeck, graphviz, maps, line chart, bar chart, area chart, scatter chart
 ---
 
 # Chart elements
 
-Streamlit supports several different charting libraries, and our goal is to
-continually add support for more. Right now, the most basic library in our
-arsenal is [Matplotlib](https://matplotlib.org/). Then there are also
-interactive charting libraries like [Vega
-Lite](https://vega.github.io/vega-lite/) (2D charts) and
-[deck.gl](https://github.com/uber/deck.gl) (maps and 3D charts). And
-finally we also provide a few chart types that are "native" to Streamlit,
-like `st.line_chart` and `st.area_chart`.
+Streamlit 支持多种不同的图表库，我们的目标是不断添加更多支持。现在，我们武器库中最基本的库是 [Matplotlib](https://matplotlib.org/)。然后还有像 [Vega Lite](https://vega.github.io/vega-lite/)（2D 图表）和 [deck.gl](https://github.com/uber/deck.gl)（地图和 3D 图表）这样的交互式图表库。最后，我们还提供了一些"原生"于 Streamlit 的图表类型，如 `st.line_chart` 和 `st.area_chart`。
 
 ## Simple chart elements
 
@@ -24,7 +17,7 @@ like `st.line_chart` and `st.area_chart`.
 
 <h4>Simple area charts</h4>
 
-Display an area chart.
+显示面积图。
 
 ```python
 st.area_chart(my_data_frame)
@@ -36,7 +29,7 @@ st.area_chart(my_data_frame)
 
 <h4>Simple bar charts</h4>
 
-Display a bar chart.
+显示条形图。
 
 ```python
 st.bar_chart(my_data_frame)
@@ -48,7 +41,7 @@ st.bar_chart(my_data_frame)
 
 <h4>Simple line charts</h4>
 
-Display a line chart.
+显示线图。
 
 ```python
 st.line_chart(my_data_frame)
@@ -60,7 +53,7 @@ st.line_chart(my_data_frame)
 
 <h4>Simple scatter charts</h4>
 
-Display a line chart.
+显示散点图。
 
 ```python
 st.scatter_chart(my_data_frame)
@@ -72,7 +65,7 @@ st.scatter_chart(my_data_frame)
 
 <h4>Scatterplots on maps</h4>
 
-Display a map with points on it.
+显示带有点的地图。
 
 ```python
 st.map(my_data_frame)
@@ -89,7 +82,7 @@ st.map(my_data_frame)
 
 <h4>Matplotlib</h4>
 
-Display a matplotlib.pyplot figure.
+显示 matplotlib.pyplot 图表。
 
 ```python
 st.pyplot(my_mpl_figure)
@@ -101,7 +94,7 @@ st.pyplot(my_mpl_figure)
 
 <h4>Altair</h4>
 
-Display a chart using the Altair library.
+使用 Altair 库显示图表。
 
 ```python
 st.altair_chart(my_altair_chart)
@@ -113,7 +106,7 @@ st.altair_chart(my_altair_chart)
 
 <h4>Vega-Lite</h4>
 
-Display a chart using the Vega-Lite library.
+使用 Vega-Lite 库显示图表。
 
 ```python
 st.vega_lite_chart(my_vega_lite_chart)
@@ -125,7 +118,7 @@ st.vega_lite_chart(my_vega_lite_chart)
 
 <h4>Plotly</h4>
 
-Display an interactive Plotly chart.
+显示交互式 Plotly 图表。
 
 ```python
 st.plotly_chart(my_plotly_chart)
@@ -137,7 +130,7 @@ st.plotly_chart(my_plotly_chart)
 
 <h4>Bokeh</h4>
 
-Display an interactive Bokeh chart.
+显示交互式 Bokeh 图表。
 
 ```python
 st.bokeh_chart(my_bokeh_chart)
@@ -149,7 +142,7 @@ st.bokeh_chart(my_bokeh_chart)
 
 <h4>PyDeck</h4>
 
-Display a chart using the PyDeck library.
+使用 PyDeck 库显示图表。
 
 ```python
 st.pydeck_chart(my_pydeck_chart)
@@ -161,7 +154,7 @@ st.pydeck_chart(my_pydeck_chart)
 
 <h4>GraphViz</h4>
 
-Display a graph using the dagre-d3 library.
+使用 dagre-d3 库显示图表。
 
 ```python
 st.graphviz_chart(my_graphviz_spec)
@@ -178,7 +171,7 @@ st.graphviz_chart(my_graphviz_spec)
 
 <h4>Plost</h4>
 
-A deceptively simple plotting library for Streamlit. Created by [@tvst](https://github.com/tvst).
+一个看似简单的 Streamlit 绘图库。由 [@tvst](https://github.com/tvst) 创建。
 
 ```python
 import plost
@@ -193,7 +186,7 @@ plost.line_chart(my_dataframe, x='time', y='stock_value', color='stock_name',)
 
 <h4>HiPlot</h4>
 
-High dimensional Interactive Plotting. Created by [@facebookresearch](https://github.com/facebookresearch).
+高维交互式绘图。由 [@facebookresearch](https://github.com/facebookresearch) 创建。
 
 ```python
 data = [{'dropout':0.1, 'lr': 0.001, 'loss': 10.0, 'optimizer': 'SGD'}, {'dropout':0.15, 'lr': 0.01, 'loss': 3.5, 'optimizer': 'Adam'}, {'dropout':0.3, 'lr': 0.1, 'loss': 4.5, 'optimizer': 'Adam'}]
@@ -208,7 +201,7 @@ hip.Experiment.from_iterable(data).display()
 
 <h4>ECharts</h4>
 
-High dimensional Interactive Plotting. Created by [@andfanilo](https://github.com/andfanilo).
+Streamlit 的 ECharts 组件。由 [@andfanilo](https://github.com/andfanilo) 创建。
 
 ```python
 from streamlit_echarts import st_echarts
@@ -223,7 +216,7 @@ st_echarts(options=options)
 
 <h4>Streamlit Folium</h4>
 
-Streamlit Component for rendering Folium maps. Created by [@randyzwitch](https://github.com/randyzwitch).
+用于渲染 Folium 地图的 Streamlit 组件。由 [@randyzwitch](https://github.com/randyzwitch) 创建。
 
 ```python
 m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
@@ -238,7 +231,7 @@ st_data = st_folium(m, width=725)
 
 <h4>Spacy-Streamlit</h4>
 
-spaCy building blocks and visualizers for Streamlit apps. Created by [@explosion](https://github.com/explosion).
+Streamlit 应用的 spaCy 构建块和可视化工具。由 [@explosion](https://github.com/explosion) 创建。
 
 ```python
 models = ["en_core_web_sm", "en_core_web_md"]
@@ -253,7 +246,7 @@ spacy_streamlit.visualize(models, "Sundar Pichai is the CEO of Google.")
 
 <h4>Streamlit Agraph</h4>
 
-A Streamlit Graph Vis, based on [react-grah-vis](https://github.com/crubier/react-graph-vis). Created by [@ChrisDelClea](https://github.com/ChrisDelClea).
+基于 [react-grah-vis](https://github.com/crubier/react-graph-vis) 的 Streamlit 图可视化。由 [@ChrisDelClea](https://github.com/ChrisDelClea) 创建。
 
 ```python
 from streamlit_agraph import agraph, Node, Edge, Config
@@ -268,7 +261,7 @@ agraph(nodes=nodes, edges=edges, config=config)
 
 <h4>Streamlit Lottie</h4>
 
-Integrate [Lottie](https://lottiefiles.com/) animations inside your Streamlit app. Created by [@andfanilo](https://github.com/andfanilo).
+在您的 Streamlit 应用中集成 [Lottie](https://lottiefiles.com/) 动画。由 [@andfanilo](https://github.com/andfanilo) 创建。
 
 ```python
 lottie_hello = load_lottieurl("https://assets5.lottiefiles.com/packages/lf20_V9t630.json")
@@ -283,7 +276,7 @@ st_lottie(lottie_hello, key="hello")
 
 <h4>Plotly Events</h4>
 
-Make Plotly charts interactive!. Created by [@null-jones](https://github.com/null-jones/).
+让 Plotly 图表具有交互性！由 [@null-jones](https://github.com/null-jones/) 创建。
 
 ```python
 fig = px.line(x=[1], y=[1])
@@ -298,7 +291,7 @@ selected_points = plotly_events(fig)
 
 <h4>Streamlit Extras</h4>
 
-A library with useful Streamlit extras. Created by [@arnaudmiribel](https://github.com/arnaudmiribel/).
+一个包含有用 Streamlit 扩展的库。由 [@arnaudmiribel](https://github.com/arnaudmiribel/) 创建。
 
 ```python
 chart += get_annotations_chart(annotations=[("Mar 01, 2008", "Pretty good day for GOOG"), ("Dec 01, 2007", "Something's going wrong for GOOG & AAPL"), ("Nov 01, 2008", "Market starts again thanks to..."), ("Dec 01, 2009", "Small crash for GOOG after..."),],)

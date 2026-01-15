@@ -1,25 +1,25 @@
 ---
 title: st.altair_chart
 slug: /develop/api-reference/charts/st.altair_chart
-description: st.altair_chart displays an interactive chart using the Altair library.
+description: st.altair_chart 使用 Altair 库显示交互式图表。
 keywords: altair_chart, altair, chart, visualization, data, plot, graph, vega-lite, interactive, grammar of graphics
 ---
 
 <Autofunction function="streamlit.altair_chart" />
 
-## Chart selections
+## 图表选择
 
 <Autofunction function="VegaLiteState" />
 
-<Autofunction function="DeltaGenerator.add_rows" deprecated={true} deprecatedText="We plan to deprecate <code>.add_rows()</code>. Please leave <a href='https://github.com/streamlit/streamlit/issues/13063'>feedback</a>." />
+<Autofunction function="DeltaGenerator.add_rows" deprecated={true} deprecatedText="我们计划弃用 <code>.add_rows()</code>。请留下<a href='https://github.com/streamlit/streamlit/issues/13063'>反馈</a>。" />
 
-## Theming
+## 主题
 
-Altair charts are displayed using the Streamlit theme by default. This theme is sleek, user-friendly, and incorporates Streamlit's color palette. The added benefit is that your charts better integrate with the rest of your app's design.
+Altair 图表默认使用 Streamlit 主题显示。此主题时尚、用户友好，并融入 Streamlit 的调色板。额外的好处是您的图表更好地与应用的其余设计集成。
 
-The Streamlit theme is available from Streamlit 1.16.0 through the `theme="streamlit"` keyword argument. To disable it, and use Altair's native theme, use `theme=None` instead.
+从 Streamlit 1.16.0 开始，Streamlit 主题通过 `theme="streamlit"` 关键字参数可用。要禁用它并使用 Altair 的原生主题，请改用 `theme=None`。
 
-Let's look at an example of charts with the Streamlit theme and the native Altair theme:
+让我们看看使用 Streamlit 主题和原生 Altair 主题的图表示例：
 
 ```python
 import altair as alt
@@ -44,13 +44,13 @@ with tab2:
     st.altair_chart(chart, theme=None, use_container_width=True)
 ```
 
-Click the tabs in the interactive app below to see the charts with the Streamlit theme enabled and disabled.
+单击下面的交互式应用中的选项卡，查看启用和禁用 Streamlit 主题的图表。
 
 <Cloud name="doc-altair-chart" height="500px" />
 
-If you're wondering if your own customizations will still be taken into account, don't worry! You can still make changes to your chart configurations. In other words, although we now enable the Streamlit theme by default, you can overwrite it with custom colors or fonts. For example, if you want a chart line to be green instead of the default red, you can do it!
+如果您想知道自己的自定义是否仍会被考虑，不要担心！您仍然可以对图表配置进行更改。换句话说，虽然我们现在默认启用 Streamlit 主题，但您可以用自定义颜色或字体覆盖它。例如，如果您希望图表线条为绿色而不是默认红色，您可以做到！
 
-Here's an example of an Altair chart where manual color passing is done and reflected:
+以下是手动传递颜色并反映的 Altair 图表示例：
 
 <Collapse title="See the code">
 
@@ -120,8 +120,8 @@ with tab2:
 
 </Collapse>
 
-Notice how the custom colors are still reflected in the chart, even when the Streamlit theme is enabled 👇
+注意，即使启用 Streamlit 主题，自定义颜色仍反映在图表中 👇
 
 <Cloud name="doc-altair-custom-colors" height="675px" />
 
-For many more examples of Altair charts with and without the Streamlit theme, check out the [altair.streamlit.app](https://altair.streamlit.app).
+有关更多使用和不使用 Streamlit 主题的 Altair 图表示例，请查看 [altair.streamlit.app](https://altair.streamlit.app)。

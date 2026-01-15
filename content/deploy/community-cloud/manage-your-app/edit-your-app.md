@@ -1,85 +1,85 @@
 ---
-title: Edit your app
+title: 编辑您的应用
 slug: /deploy/streamlit-community-cloud/manage-your-app/edit-your-app
-description: Learn how to edit your deployed Streamlit app using GitHub Codespaces or any development environment with automatic deployment updates.
+description: 了解如何使用 GitHub Codespaces 或任何开发环境编辑您的已部署 Streamlit 应用，并实现自动部署更新。
 keywords: edit, codespaces, development, environment, github, automatic, deployment, updates, cloud, editing
 ---
 
-# Edit your app
+# 编辑您的应用
 
-You can edit your app from any development environment of your choice. Streamlit Community Cloud will monitor your repository and automatically copy any file changes you commit. You will immediately see commits reflected in your deployed app for most changes (such as edits to your app's Python files).
+您可以使用您选择的任何开发环境编辑您的应用。Streamlit Community Cloud 将监控您的仓库并自动复制您提交的任何文件更改。对于大多数更改（例如对您的应用 Python 文件的编辑），您将立即在已部署的应用中看到提交的反映。
 
-Community Cloud also makes it easy to skip the work of setting up a development environment. With a few simple clicks, you can configure a development environment using GitHub Codespaces.
+Community Cloud 还使跳过设置开发环境的工作变得容易。只需几次点击，您就可以使用 GitHub Codespaces 配置开发环境。
 
-## Edit your app with GitHub Codespaces
+## 使用 GitHub Codespaces 编辑您的应用
 
-Spin up a cloud-based development environment for your deployed app in minutes. You can run your app within your codespace to enjoy experimenting in a safe, sandboxed environment. When you are done editing your code, you can commit your changes to your repo or just leave them in your codespace to return to later.
+在几分钟内为您的已部署应用启动基于云的开发环境。您可以在您的 codespace 中运行您的应用，以享受在安全、沙盒环境中实验。当您完成代码编辑后，您可以将更改提交到您的仓库，或者只是将它们留在您的 codespace 中稍后返回。
 
-### Create a codespace for your deployed app
+### 为您的已部署应用创建 codespace
 
-1. From your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, click the overflow icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) next to your app. Click "**Edit with Codespaces**."
+1. 从您在 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> 的工作区，单击您的应用旁边的溢出图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>)。单击"**使用 Codespaces 编辑**"。
 
-   ![Edit your app with GitHub Codespaces](/images/streamlit-community-cloud/workspace-app-edit.png)
+   ![使用 GitHub Codespaces 编辑您的应用](/images/streamlit-community-cloud/workspace-app-edit.png)
 
-   Community Cloud will add a `.devcontainer/devcontainer.json` file to your repository. If you already have a file of the same name in your repository, it will not be changed. If you want your repository to receive the instance created by Community Cloud, delete or rename your existing devcontainer configuration.
+   Community Cloud 将向您的仓库添加一个 `.devcontainer/devcontainer.json` 文件。如果您的仓库中已经有一个同名文件，它不会被更改。如果您希望您的仓库接收 Community Cloud 创建的实例，请删除或重命名您现有的 devcontainer 配置。
 
-1. Wait for GitHub to set up your codespace.
+1. 等待 GitHub 设置您的 codespace。
 
-   It can take several minutes to fully initialize your codespace. After the Visual Studio Code editor appears in your codespace, it can take several minutes to install Python and start the Streamlit server. When complete, a split screen view displays a code editor on the left and a running app on the right. The code editor opens two tabs by default: the repository's readme file and the app's entrypoint file.
+   完全初始化您的 codespace 可能需要几分钟时间。在您的 codespace 中出现 Visual Studio Code 编辑器后，可能需要几分钟来安装 Python 并启动 Streamlit 服务器。完成后，分屏视图将在左侧显示代码编辑器，在右侧显示运行的应用。代码编辑器默认打开两个选项卡：仓库的自述文件和应用的入口点文件。
 
-   ![Your new GitHub Codespace](/images/streamlit-community-cloud/deploy-template-blank-codespace.png)
+   ![您的新 GitHub Codespace](/images/streamlit-community-cloud/deploy-template-blank-codespace.png)
 
-1. Optional: For more room to work, open the app preview in another tab.
+1. 可选：为了有更多工作空间，在另一个选项卡中打开应用预览。
 
-   If you have multiple monitors and want a little more room to work, open your app preview in another tab instead of using the Simple Browser within Visual Studio Code. Just copy the URL from the Simple Browser into another tab, and then close the Simple Browser. Now you have more room to edit your code. The remaining steps on this page will continue to display the split-screen view in Visual Studio Code.
+   如果您有多个显示器并想要更多工作空间，请将应用预览在另一个选项卡中打开，而不是使用 Visual Studio Code 中的简单浏览器。只需从简单浏览器复制 URL 到另一个选项卡，然后关闭简单浏览器。现在您有更多空间编辑您的代码。本页面的其余步骤将继续显示 Visual Studio Code 中的分屏视图。
 
-1. Make a change to your app.
+1. 对您的应用进行更改。
 
-   When you make changes to your app, the file is automatically saved within your codespace. Your edits do not affect your repository or deployed app until you commit those changes, which is explained in a later step. The app preview shown on the right is local to your codespace.
+   当您对您的应用进行更改时，文件会在您的 codespace 中自动保存。您的编辑不会影响您的仓库或已部署的应用，直到您提交这些更改，这将在后面的步骤中解释。右侧显示的应用预览是您的 codespace 本地的。
 
-1. In order to see updates automatically reflected on the right, click "**Always rerun**" when prompted after your first edit.
+1. 为了在右侧自动看到更新，在您的第一次编辑后提示时单击"**始终重新运行**"。
 
-   ![Select "Always rerun" to automatically see edits in your running app](/images/streamlit-community-cloud/deploy-template-blank-codespace-edit.png)
+   ![选择"始终重新运行"以在运行的应用中自动看到编辑](/images/streamlit-community-cloud/deploy-template-blank-codespace-edit.png)
 
-   Alternatively, you can click "**Rerun**" to avoid unnecessary reruns while writing code. Because your code is continually saved, automatically rerunning the app will raises errors when you pause partway through a line of code. Regardless of which you choose, you can change the setting through the app chrome. Just click the overflow icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>) in the upper-right corner of your preview app, click "**Settings**," and then toggle "**Run on save**."
+   或者，您可以单击"**重新运行**"以避免在编写代码时不必要的重新运行。因为您的代码会持续保存，自动重新运行应用会在您在代码行中途暂停时引发错误。无论您选择哪个，您都可以通过应用 chrome 更改设置。只需单击预览应用右上角的溢出图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_vert</i>)，单击"**设置**"，然后切换"**保存时运行**"。
 
-1. Continue to edit your app. Your codespace will continue to automatically save your files as you work with them, and the preview will continue to update as the app reruns.
+1. 继续编辑您的应用。您的 codespace 将继续在您处理文件时自动保存它们，并且预览将继续在应用重新运行时更新。
 
-### Optional: Publish your changes
+### 可选：发布您的更改
 
-After making edits to your app, you can choose to commit your edits to your repository to update your deployed app instantly. If you just want to keep your edits in your codespace to return to later, skip to [Stop or delete your codespace](#stop-or-delete-your-codespace).
+在对您的应用进行编辑后，您可以选择将您的编辑提交到您的仓库以立即更新您的已部署应用。如果您只想将您的编辑保留在您的 codespace 中稍后返回，请跳到[停止或删除您的 codespace](#stop-or-delete-your-codespace)。
 
-1. In the left navigation bar, click the source control icon.
+1. 在左侧导航栏中，单击源代码控制图标。
 
-   ![Click on the source control icon](/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-source-control.png)
+   ![单击源代码控制图标](/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-source-control.png)
 
-1. In the source control sidebar on the left, enter a name for your commit.
-1. Click "**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>check</i> Commit**."
+1. 在左侧的源代码控制侧边栏中，为您的提交输入名称。
+1. 单击"**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>check</i> 提交**"。
 
-   ![See your deployed Streamlit app](/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-commit.png)
+   ![查看您的已部署 Streamlit 应用](/images/streamlit-community-cloud/deploy-template-blank-codespace-edit-commit.png)
 
-1. To stage and commit all your changes, in the confirmation dialog, click "**Yes**." Your changes are committed locally in your codespace.
-1. To push your commit to GitHub, in the source control sidebar on the left, click "**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>cached</i> 1 <i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>arrow_upward</i>**."
-1. To push commits to "origin/main," in the confirmation dialog, click "**OK**."
+1. 要暂存和提交您的所有更改，在确认对话框中单击"**是**"。您的更改在您的 codespace 中本地提交。
+1. 要将您的提交推送到 GitHub，在左侧的源代码控制侧边栏中，单击"**<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>cached</i> 1 <i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>arrow_upward</i>**"。
+1. 要将提交推送到"origin/main"，在确认对话框中单击"**确定**"。
 
-   Your changes are now saved to your GitHub repository. Community Cloud will immediately reflect the changes in your deployed app.
+   您的更改现在保存到您的 GitHub 仓库。Community Cloud 将立即在您的已部署应用中反映更改。
 
-1. Optional: To see your updated, published app, return to the "**My apps**" section of your workspace at <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a>, and click on your app.
+1. 可选：要查看您的更新、已发布的应用，返回到您在 <a href="https://share.streamlit.io" target="_blank">share.streamlit.io</a> 的工作区的"**我的应用**"部分，并单击您的应用。
 
-### Stop or delete your codespace
+### 停止或删除您的 codespace
 
-When you stop interacting with your codespace, GitHub will generally stop your codespace for you. However, the surest way to avoid undesired use of your capacity is to stop or delete your codespace when you are done.
+当您停止与您的 codespace 交互时，GitHub 通常会为您停止 codespace。但是，避免不 desired 使用容量的最可靠方法是在完成后停止或删除您的 codespace。
 
-1. Go to <a href="https://github.com/codespaces" target="_blank">github.com/codespaces</a>. At the bottom of the page, all your codespaces are listed. Click the overflow menu icon (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_horiz</i>) for your codespace.
+1. 转到 <a href="https://github.com/codespaces" target="_blank">github.com/codespaces</a>。在页面底部，列出了您的所有 codespace。单击您的 codespace 的溢出菜单图标 (<i style={{ verticalAlign: "-.25em" }} className={{ class: "material-icons-sharp" }}>more_horiz</i>)。
 
-   ![Stop or delete your GitHub Codespace](/images/streamlit-community-cloud/deploy-hello-codespace-manage.png)
+   ![停止或删除您的 GitHub Codespace](/images/streamlit-community-cloud/deploy-hello-codespace-manage.png)
 
-2. Click "**Stop codespace**" if you'd like to return to your work later. Otherwise, click "**Delete**."
+2. 如果您想稍后返回工作，单击"**停止 codespace**"。否则，单击"**删除**"。
 
    <div style={{ maxWidth: '40%', margin: 'auto' }}>
-   <Image alt="Stop your GitHub codespace" src="/images/streamlit-community-cloud/codespace-menu.png" />
+   <Image alt="停止您的 GitHub codespace" src="/images/streamlit-community-cloud/codespace-menu.png" />
    </div>
 
-3. Congratulations! You just deployed an app to Community Cloud. 🎉 Head back to your workspace at <a href="https://share.streamlit.io/" target="_blank">share.streamlit.io/</a> and [deploy another Streamlit app](/deploy/streamlit-community-cloud/deploy-your-app).
+3. 恭喜！您刚刚将应用部署到 Community Cloud。🎉 返回到您在 <a href="https://share.streamlit.io/" target="_blank">share.streamlit.io/</a> 的工作区并[部署另一个 Streamlit 应用](/deploy/streamlit-community-cloud/deploy-your-app)。
 
-   ![See your deployed Streamlit app](/images/streamlit-community-cloud/deploy-template-blank-edited.png)
+   ![查看您的已部署 Streamlit 应用](/images/streamlit-community-cloud/deploy-template-blank-edited.png)
