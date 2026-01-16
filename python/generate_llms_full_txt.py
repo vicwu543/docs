@@ -60,7 +60,7 @@ def parse_menu_ordering(menu_file_path: Path) -> List[str]:
 
         return urls
 
-    except (FileNotFoundError, yaml.YAMLError, frontmatter.FrontmatterError) as e:
+    except (FileNotFoundError, yaml.YAMLError) as e:
         print(f"Error parsing menu.md: {str(e)}")
         return []
 
@@ -323,7 +323,7 @@ def process_markdown_files(content_dir: Path) -> List[Dict[str, Optional[str]]]:
 
             # Add to catalog
             content_catalog.append({"url": url, "content": post.content})
-        except frontmatter.FrontmatterError as e:
+        except yaml.YAMLError as e:
             print(f"Error parsing frontmatter in {file_path}: {str(e)}")
         except Exception as e:
             print(f"Error processing {file_path}: {str(e)}")

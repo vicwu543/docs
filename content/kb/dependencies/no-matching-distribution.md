@@ -1,5 +1,5 @@
 ---
-title: ERROR: No matching distribution found for
+title: "ERROR: No matching distribution found for"
 slug: /knowledge-base/dependencies/no-matching-distribution
 ---
 

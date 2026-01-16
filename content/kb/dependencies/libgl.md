@@ -1,5 +1,5 @@
 ---
-title: ImportError: libGL.so.1: 无法打开共享对象文件: 没有那个文件或目录
+title: "ImportError: libGL.so.1: 无法打开共享对象文件: 没有那个文件或目录"
 slug: /knowledge-base/dependencies/libgl
 ---
 

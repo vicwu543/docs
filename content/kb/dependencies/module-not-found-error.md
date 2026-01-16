@@ -1,5 +1,5 @@
 ---
-title: ModuleNotFoundError: No module named
+title: "ModuleNotFoundError: No module named"
 slug: /knowledge-base/dependencies/module-not-found-error
 ---
 
